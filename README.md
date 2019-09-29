@@ -16,7 +16,7 @@
   + 네트워크와 보안
   
 + Part 2. Language
-  +프로그래밍 패러다임
+  + 프로그래밍 패러다임
   + Java
   + Kotlin
   + Swift
