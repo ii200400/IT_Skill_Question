@@ -16,6 +16,7 @@
   + 네트워크와 보안
   
 + Part 2. Language
+  +프로그래밍 패러다임
   + Java
   + Kotlin
   + Swift
@@ -23,6 +24,8 @@
   
 + Part 3. 분야별 정리
   + Machine Learning
+  
++ Part 4. 기타 용어 정리
 
 *****
 
