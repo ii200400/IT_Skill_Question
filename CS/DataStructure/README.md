@@ -386,16 +386,40 @@ stack을 사용하여 구현한다.\
 3. 음수 사이클이 존재하는지 판별이 가능하다.
 
 + 예시 사진
-order라는 순서로 간선을 탐색한다.
-<img src="../image/1.1%20Graph15.png" width="40%" height="40%">
-<img src="../image/1.1%20Graph16.png" width="40%" height="40%">
 
-#### Floyd-Warshall Algorithm (플로이드-워샬 알고리즘)
+order에 적혀준 순서로 간선을 탐색한다.
+<img src="../image/1.1%20Graph15.png" width="60%" height="60%">
+<img src="../image/1.1%20Graph16.png" width="60%" height="60%">
+
+#### Floyd-Warshall Algorithm (플로이드-워셜 알고리즘)
 **음의 가중치가 있는 그래프**에서 **모든 노드에서 다른 모든 노드까지의 최단 경로**를 구하기 위해 고안되었다.
 코딩은 쉬운데 무슨 말인지 내가 아직 이해를 못했다..
 
-+ 참고
++ 동작 방식
+모든 정점쌍 (i,j)에 대하여 k라는 경유지를 거쳤을 때, 기존의 정점쌍의 거리보다 짧아진다면, 정점쌍의 최단거리를 갱신시켜준다.\
+모든 최단거리는 음수 사이클이 없다면, 그 경로의 길이는 당연히 N이하가 되고 이를 이용해 동적계획법으로 해결 가능하다.\
+..는데 잘 모르겠다. 그림을 봐도 모르겠다..
+
++ 특징
+1. 시간복잡도는 O(V^3)이다.
+2. 음수 가중치가 있는 그래프에서 사용 가능하다.
+
++ 경로 종류별 사용 알고리즘
   + 시작 노드 하나, 도착 노드 하나 - Dijkstra 알고리즘, Bellman-Ford 알고리즘 
   + 시작 노드 하나, 도착 노드 전체 - 위와 동문
   + 시작 노드 전체, 도착 노드 하나 - 그래프의 에지 방향을 모두 반대로 바꾸면 시작 노드 하나, 도착 노드 전체 문제로 바뀐다.
   + 시작 노드 전체, 도착 노드 전체 - Dijkstra 알고리즘, Bellman-Ford 알고리즘의 도착/시작 노드를 모든 노드에 적용한다. 혹은 Floyd-Warshall Algorithm 사용
+
+## Tree
+
+### Binary Tree
+
+### Full Binary Tree
+
+### Complete Binary Tree
+
+### BST(Binary Search Tree)
+
+## Heap
+
+## HashTable
