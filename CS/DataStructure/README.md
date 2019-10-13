@@ -649,6 +649,9 @@ Open Address 의 경우 빈 버킷을 적어질수록 Worst Case 발생 빈도�
   + 해시 함수를 선택하는 중요성이 상대적으로 적다.
   + 한 버킷에만 데이터가 몰리면 성능이 저하된다.
   + 추가적인 저장공간(연결리스트)를 사용하므로 추가적인 연산이 필요하다.
+  + 1개의 Bucket당 평균적으로 a개의 키가 들어있다고 할 때\
+    + head에 삽입할 때에는 O(1), tail에 삽입할 때에는 BestCase O(a)/ WorstCase O(n)의 시간 복잡도를 가진다. 
+    + 탐색/삭제는 BestCase O(a), WorstCase O(n)의 시간 복잡도를 가진다.
   
 + 참조
   + https://velog.io/@cyranocoding/Hash-Hashing-Hash-Table%ED%95%B4%EC%8B%9C-%ED%95%B4%EC%8B%B1-%ED%95%B4%EC%8B%9C%ED%85%8C%EC%9D%B4%EB%B8%94-%EC%9E%90%EB%A3%8C%EA%B5%AC%EC%A1%B0%EC%9D%98-%EC%9D%B4%ED%95%B4-6ijyonph6o
