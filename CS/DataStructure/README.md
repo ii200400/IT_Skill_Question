@@ -567,7 +567,6 @@ Case 1이 Black-Height 조건에 맞지 않았을 때 / Case 2가 연속으로 R
 
 <img src="../image/1.1%20Graph25.png" width="40%" height="40%"> <img src="../image/1.1%20Graph26.png" width="40%" height="40%">
 
-
 #### 삭제 구현 방법
 설명이 잘 되어있는 곳을 못 찾았다.\
 스스로 생각해서 도출해도 되지만 지금은 시간이 너무 없어서 생략한다.
@@ -591,6 +590,8 @@ HashTable 또는 HashMap이라고 불린다.\
   해시 코드(hash code), 해시섬(hash sum), 체크섬(check sum) 등으로도 불린다.
   + Bucket (=Slot, 버킷) : 값(value)이 저장되는 곳이다.
   + Collision (충돌) : 해시 함수에서 다른 키로 같은 해시값이 생성되어 이미 사용하고 있는 저장소 위치에 접근하는 상황을 해시 충돌이라고 한다.
+  
+  <img src="../image/1.1%20Graph29.png" width="50%" height="50%">
 
 ### 좋은 Hash Function 조건
 1. 키(key)에 대응하는 값(value)은 1:1 대응이 **아닌 것**이 좋다.\
@@ -613,6 +614,8 @@ Worst Case라면 슬프게도 빈 공간을 찾지 못하고 원래자리로 돌
 순차적으로 비어있는 버킷을 찾을 때까지 계속 탐색한다.\
 처음 탐색한 위치를 f(k)이라고 하면 다음과 같이 탐색한다.\
  f(k) + 1 -> f(k) + 2 -> f(k) + 3 -> ...
+ 
+ <img src="../image/1.1%20Graph27.png" width="50%" height="650%">
 
 2. Quadratic probing (제곱 탐색)\
 순차적으로 탐색하지 않고 제곱한 값을 더하면서 탐색한다.\
@@ -643,15 +646,22 @@ Open Address 의 경우 빈 버킷을 적어질수록 Worst Case 발생 빈도�
 한 버킷에 저장된 데이터 수가 많을수록 위의 방법보다 효율적이다.\
 반대로 데이터 수가 적다면 연결 리스트를 사용하는 것이 메모리를 절약할 수 있다.
 
+<img src="../image/1.1%20Graph28.png" width="60%" height="60%">
+
 + 특징
   + 한 버킷에 여러 데이터가 저장될 수 있어 한정된 해시 테이블에서 더 많은 데이터를 저장할 수 있다.
   + 연결 리스트의 특성과 같이 데이터의 크기가 동적이다.
   + 해시 함수를 선택하는 중요성이 상대적으로 적다.
   + 한 버킷에만 데이터가 몰리면 성능이 저하된다.
   + 추가적인 저장공간(연결리스트)를 사용하므로 추가적인 연산이 필요하다.
-  + 1개의 Bucket당 평균적으로 a개의 키가 들어있다고 할 때\
+  + 1개의 Bucket당 평균적으로 a개의 데이터가 들어있다고 할 때\
     + head에 삽입할 때에는 O(1), tail에 삽입할 때에는 BestCase O(a)/ WorstCase O(n)의 시간 복잡도를 가진다. 
     + 탐색/삭제는 BestCase O(a), WorstCase O(n)의 시간 복잡도를 가진다.
+  
++ 기타
+  + 보조 해시 함수 :  Separate Chaining 방식을 사용할 때, 해시값을 변형하여 해시 충돌 가능성을 줄이는 것이다.
+  + load factor : 해시 버킷의 수가 저장하는 데이터 수에 비해서 적어서 충돌이 많이 일어난다면 해시 버킷의 수를 증가시키면 되는데 그러한 임계점을 의미한다. \
+  예를들어서 100개의 버킷이 있는 해시 테이블에서 75개의 버킷이 사용될때 해시 버킷을 동적 확장한다고 하면 load factor는 0.75이다.
   
 + 참조
   + https://velog.io/@cyranocoding/Hash-Hashing-Hash-Table%ED%95%B4%EC%8B%9C-%ED%95%B4%EC%8B%B1-%ED%95%B4%EC%8B%9C%ED%85%8C%EC%9D%B4%EB%B8%94-%EC%9E%90%EB%A3%8C%EA%B5%AC%EC%A1%B0%EC%9D%98-%EC%9D%B4%ED%95%B4-6ijyonph6o
