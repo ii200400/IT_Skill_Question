@@ -6,9 +6,15 @@ ex)1-1. List2.png
 
 이미지를 상대적 경로를 이용해서 올리려고 할 때
 ```
-![test image](./1.1%20Array1.png)</code>
+![test image](../1.1%20Array1.png)</code>
 ```
 ![test image](../image/1.1%20Array1.png)
+
++이미지 크기를 조절하고 싶을 때
+```
+<img src="../image/1.1%20Array1.png" width="40%" height="40%">
+```
+<img src="../image/1.1%20Array1.png" width="40%" height="40%">
 
 이미지를 절대적 경로를 이용해서 올리려고 할 때
 ```
