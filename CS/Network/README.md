@@ -5,7 +5,7 @@
 + TCP와 UDP
 + TCP/IP 4계층
 + 3-way handshaking & 4-way handshaking
-+ Http와 Https
++ Http & Https
 
 </br>
 
@@ -230,7 +230,7 @@ OSI 7계층의 물리계층과 데이터 링크 계층과 비슷한 역할을 �
 보통은 MAC주소를 사용하지만 명시적으로 정의되어있는 것은 아니다.
 관련된 기술로 이더넷, Wi-Fi 등이, 프로토콜로는 PPP, SLIP 등이 있다.
 
-+용어
++ 용어
   + 호스트(host) :  컴퓨터 네트워크에 연결된 컴퓨터나 기타 장치이다.
 
 #### 2. 인터넷 계층 (Internet Layer)
@@ -274,4 +274,15 @@ TCP/IP의 응용 계층과 다른 계층들과는 서로의 세부사항을 신�
 
 </br>
 
-## 3-way handshaking & 4-way handshaking
+## TCP 3-way handshaking & 4-way handshaking
+
+우선 TCP는 연결 시작 시에 3-way handshaking 과정을 거치고 종료 시 4-way handshaking을 통해 해제한다는 것을 기억하고   
+아래의 블로그를 확인하자. (축약할 내용도 없고 추가 내용도 알차서 변경하거나 수정할 내용이 없어 링크를 그대로 가져왔다.)
+
+https://asfirstalways.tistory.com/356
+
+</br>
+
+## Http & Https
+
+
