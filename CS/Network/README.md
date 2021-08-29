@@ -162,10 +162,11 @@ HTTP, FTP, SMTP 등이 이 계층에 속한 프로토콜이다.
 전송계층에서 일반적으로 쓰이는 TCP와 UDP에 대한 특징을 위주로 서술하였다.   
 두 프로토콜의 차이점을 중점으로 기억하는 것이 좋다.
 
-#### TCP (Transmission Control Protocol, 전송제어 프로토콜) - 연결형 프로토콜
+### TCP (Transmission Control Protocol, 전송제어 프로토콜) - 연결형 프로토콜
 
 + 특징
   + 가상회선을 이용하는 연결 성립 후 통신   
+    + 소켓이라고 부르는 종단점을 생성
     + 전이중, 점대점 방식의 연결 (일반적인 전화가 이와 같다.)   
     + 3-way handshaking 과정을 통해 연결을 설정하고 4-way handshaking을 통해 해제
   + 신뢰성 있는 데이터 전송(데이터 순서 보장, 오류 검출, 재전송 요청)
@@ -180,7 +181,7 @@ HTTP, FTP, SMTP 등이 이 계층에 속한 프로토콜이다.
   + 전이중(full-duplex) : 전송이 양방향으로 동시에 일어날 수 있음을 의미
   + 점대점(point to point) : 점대점이란 각 연결이 정확히 2개의 종단점을 가지고 있음을 의미
 
-#### UDP (User Datagram Protocol, 사용자 데이터그램 프로토콜) - 비연결형 프로토콜
+### UDP (User Datagram Protocol, 사용자 데이터그램 프로토콜) - 비연결형 프로토콜
 
 + 특징
   + 연결 없이 통신이 가능한 프로토콜
@@ -198,7 +199,7 @@ HTTP, FTP, SMTP 등이 이 계층에 속한 프로토콜이다.
     네트워크에 참여하는 기계들의 계산과 대역폭 성능에 의존하여 구성되는 통신망을 의미한다.   
     이 네트워크에서의 기기는 클라이언트와 서버 역할을 동시에 하게 된다.
     
-#### TCP vs UDP
+### TCP vs UDP
 
 <img src="../image/1.5%20TCPvsUDP.png" width="60%" height="60%">
 
@@ -283,6 +284,24 @@ https://asfirstalways.tistory.com/356
 
 </br>
 
-## Http & Https
+## HTTP & HTTPS
 
+웹 상에서 서버와 클라이언트의 데이터를 교환하기 위한 프로토콜이다.   
+애플리케이션 레벨의 프로토콜로 TCP/IP 위에서 작동한다.   
+HTTPS는 HTTP에 데이터 암호화가 추가된 프로토콜이다.
 
++ 약어
+  + HTTP(Hyper Text Transfer Protocol)
+  + HTTPS(Hyper Text Transfer Protocol Secure)
+
+### HTTP 문제점 및 HTTPS 보안성
+
++ 평문 데이터(일반 텍스트)로 데이터를 교환하며 TCP/IP 는 도청 가능한 프로토콜이다.
++ 통신 상대를 확인하지 않는다.
++ 완전성(정보의 정확성)을 증명할 수 없기 때문에 변조가 가능하다.
+
+#### 출처
+
++ https://mangkyu.tistory.com/98
+
+</br>
