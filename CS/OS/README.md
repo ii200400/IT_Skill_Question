@@ -9,8 +9,6 @@
   + 임계영역
 + 스캐줄러
 + CPU 스캐줄링
-+ 메모리 관리 전략
-+ 가상 메모리
 
 </br>
 
@@ -345,8 +343,8 @@ signal 매커니즘이란,
 
 #### 단기스케줄러(Short-term scheduler or CPU scheduler)
 
-+ CPU 와 메모리 사이의 스케줄링을 담당하며 CPU 스케줄러라고도 불린다.
-+ Ready Queue 에 존재하는 프로세스 중 어떤 프로세스를 running 시킬지 결정
++ CPU 와 메모리 사이의 스케줄링을 담당하며 **CPU 스케줄러**라고도 불린다.
++ Ready Queue 에 존재하는 프로세스 중 어떤 프로세스를 작업시킬지(running) 결정
 + 프로세스에 CPU 를 할당(scheduler dispatch)
 + 프로세스의 상태변화 : ready -> running -> waiting -> ready
 
@@ -356,6 +354,12 @@ signal 매커니즘이란,
 + 현 시스템에서 메모리에 너무 많은 프로그램이 동시에 올라가는 것을 조절
 + 프로세스의 상태 변화 : ready -> suspended
 
+*****
+
+*프로세스 상태주기*
+
+> <img src="../image/1.3%20Process2.png" width="50%" height="50%">
+
 ##### 참고
 
 + https://jhnyang.tistory.com/372
@@ -363,10 +367,10 @@ signal 매커니즘이란,
 
 ### CPU 스케줄러
 
-CPU를 사용하려고 하는 프로세스들 사이의 우선순위를 관리하는 스케줄러을 CPU스케줄러이라고 한다.
+CPU를 사용하려고 하는 프로세스(Ready Queue 에 있는 프로세스)들 사이의 우선순위를 관리하는 스케줄러
 
 + CPU 스케줄링 종류
-  + 비선점 프로세스 스케줄링 : 프로세스가 CPU를 할당받으면 자발적으로 중지될 때까지 계속 실행되도록 보장한다.
+  + 비선점 프로세스 스케줄링 : 프로세스가 CPU를 할당받으면 자발적으로 중지할 때까지 계속 실행되도록 보장한다.
     + FCFS 스케줄링(First Come First Served Scheduling)
     + SJF 스케줄링(Shortest Job First Scheduling)
   + 선점 프로세스 스케줄링 : 프로세스가 CPU를 할당받아 실행 중인 프로세스를 중지하고 CPU를 강제로 점유할 수 있다.
@@ -385,11 +389,12 @@ CPU를 먼저 요청한 프로세스가 먼저 CPU를 배정받는 비선점 스
   
 
 ### SJF(Shortest Job First) & SRTF(Shortest Remaining time First)
-다른 프로세스가 먼저 도착했어도 CPU burst time(처리시간)이 짧은 프로세스에게 먼저 CPU를 할당해주는 스케줄링 방법\
+
+다른 프로세스가 먼저 도착했어도 CPU burst time(처리시간)이 짧은 프로세스에게 먼저 CPU를 할당해주는 스케줄링 방법   
 비선점 스케줄러이면 SJF(Shortest Job First), 선점형 스케줄러이면 SRTF(Shortest Remaining time First)이라고 부른다.
 
-현재 수행중인 프로세스의 남은 burst time 보다 더 짧은 CPU burst time 을 가지는 새로운 프로세스가 도착하면\
-SJF는 도착하면 대기 큐 head 부분에 새로운 프로세스를 대기시키고\
+현재 수행중인 프로세스의 남은 burst time 보다 더 짧은 CPU burst time 을 가지는 새로운 프로세스가 도착하면   
+SJF는 도착하면 대기 큐 head 부분에 새로운 프로세스를 대기시키고   
 SRTF는 수행중인 프로세스에게서 CPU를 빼앗아 새로운 프로세스에게 할당해준다.
 
 + 장점
@@ -397,12 +402,13 @@ SRTF는 수행중인 프로세스에게서 CPU를 빼앗아 새로운 프로세�
   
 + 단점
   + Starvation(CPU 사용시간이 긴 프로세스들이 영원히 CPU 할당을 못 받는 상황)이 생길 수 있다.
-    + Starvation 해결방법 - Aging\
+    + Starvation 해결방법 - Aging   
     대기하고있는 프로세스에 나이를 부여하여 처리시간이 긴 프로세스여도 기다린 시간이 길면 자원을 할당받을 수 있도록 한다.
   + (SRTF만 해당) 새로운 프로세스가 도달할 때마다 스케줄링을 다시하기 때문에 CPU burst time(CPU 사용시간)을 측정할 수가 없다.
 
 ### Round Robin
-각 프로세스에게 같은 할당 시간(Time Quantum)를 설정하여\
+
+각 프로세스에게 같은 할당 시간(Time Quantum)를 설정하여   
 CPU를 점유한 프로세스가 할당 시간을 지나면 선점당하고 프로세스 대기열의 제일 뒤에 가서 다시 줄을 선도록 하는 선점 스케줄링이다.
 
 + 장점
