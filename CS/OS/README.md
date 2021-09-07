@@ -333,16 +333,32 @@ signal 매커니즘이란,
 또한, 얼마나 자주 결정을 내려야 하는지에 따라   
 "장기 스케줄링", "중기 스케줄링" 및 "단기 스케줄링" 세 가지 종류로 구분한다.
 
+참고로 현재에 이르러서는 cpu가 좋아지고 가상 메모리 관리도 발달되면서 단기 스케줄러만 사용한다고 한다.   
+가상 메모리 관리로 프로세스를 장기 스케줄러 쓸 필요 없이 바로바로 메모리를 할당해주면 되기 때문
+
 #### 장기스케줄러(Long-term scheduler or job scheduler)
 
-
-
-#### 중기스케줄러(Medium-term scheduler or Swapper)
-
-
++ 메모리와 디스크 사이의 스케줄링을 담당하여 프로세스에게 메모리를 할당(admit)하는 역할
++ 실행중인 프로세스의 수 제어
++ 프로세스의 상태 변화 : new(create) -> ready (프로세스를 Ready Queue에 이동시킴)
++ 입출력 빈도가 높은 프로세스와 cpu 작업 빈도가 높은 프로세스를 적절히 선택하여 큐에 올리는 것이 중점
 
 #### 단기스케줄러(Short-term scheduler or CPU scheduler)
 
++ CPU 와 메모리 사이의 스케줄링을 담당하며 CPU 스케줄러라고도 불린다.
++ Ready Queue 에 존재하는 프로세스 중 어떤 프로세스를 running 시킬지 결정
++ 프로세스에 CPU 를 할당(scheduler dispatch)
++ 프로세스의 상태변화 : ready -> running -> waiting -> ready
+
+#### 중기스케줄러(Medium-term scheduler or Swapper)
+
++ 여유 공간 마련을 위해 프로세스가 가진 메모리를 해제(스와핑-Swapping)한다.
++ 현 시스템에서 메모리에 너무 많은 프로그램이 동시에 올라가는 것을 조절
++ 프로세스의 상태 변화 : ready -> suspended
+
+##### 참고
+
++ https://jhnyang.tistory.com/372
 
 
 ### CPU 스케줄러
