@@ -178,11 +178,111 @@ car 클래스는 wheel이라는 클래스를 변수로 가지도록 만들면 co
 
 ##### 참고
 
-객체지향에 대해서 자세히 아려다가 머리털 빠지는 줄..
-
 + [객체 지향](http://www.incodom.kr/%EA%B0%9D%EC%B2%B4_%EC%A7%80%ED%96%A5)
 + [절차 지향](http://www.incodom.kr/%EC%A0%88%EC%B0%A8_%EC%A7%80%ED%96%A5)
 + [다형성(Polymorphism)이란?](https://steady-coding.tistory.com/446)
 + [객체지향 설계원칙 이해하기](https://western-sky.tistory.com/77)
 + [단일 책임 원칙(SRP)이란?](https://steady-coding.tistory.com/370)
 + [개방 폐쇄 원칙(OCP)이란?](https://steady-coding.tistory.com/378)
+
+## RESTful API
+
+“REpresentational State Transfer” 의 약자인 REST에 ~ful 이라는 형용사형 어미를 붙여 이름이 만들어졌다.   
+즉, REST의 기본 원칙을 잘 지킨 api를 RESTful API 이라고 부른다.   
+
+본격적으로 설명하기 앞서 REST와 API에 대한 설명을 먼저 간략하게 진행하고 하겠다.
+
+### REST (REpresentational State Transfer)
+
+월드 와이드 웹(www)과 같은 분산 하이퍼미디어 시스템을 위한 소프트웨어 개발 아키텍처의 한 형식으로   
+설계의 중심에 자원(Resource)이 있고 HTTP Method 를 통해 자원을 처리하도록 하는 설계(ROA - Resource Oriented Architecture)를 말한다.   
+기본적으로 자원의 이름(자원의 표현)으로 처리 방식을 구분하여 해당 자원의 상태(정보)를 주고 받으며   
+웹의 기술과 HTTP 프로토콜을 그대로 활용하기 때문에 웹의 장점을 최대한 활용할 수 있다.
+
+#### REST 구성 요소
+
+1. 자원(Resource): URI   
+모든 자원에 고유한 ID가 존재하고, 이 자원은 Server에 존재한다.   
+자원을 구별하는 ID는 ‘/groups/:group_id’와 같이 HTTP URI에 포함되어 사용될 수도 있다.   
+Client는 URI를 이용해서 자원을 지정하고 해당 자원의 상태(정보)에 대한 조작을 Server에 요청한다.
+
+2. 행위(Verb): HTTP Method   
+HTTP 프로토콜의 Method를 사용한다.   
+HTTP 프로토콜은 GET, POST, PUT, PATCH, DELETE 와 같은 메서드를 제공한다.
+
+3. 표현(Representation of Resource)   
+Client가 자원의 상태(정보)에 대한 조작을 요청하면 Server는 이에 적절한 응답(Representation)을 보낸다.   
+REST에서 하나의 자원은 JSON, XML, TEXT, RSS 등 여러 형태의 데이터 형식으로 표현될 수 있다.   
+JSON 혹은 XML를 통해 데이터를 주고 받는 것이 일반적이다.
+
+즉, HTTP URI(Uniform Resource Identifier)를 통해 자원(Resource)을 명시하고   
+HTTP Method(POST, GET, PUT, PATCH, DELETE)를 통해 해당 자원을 처리(CRUD Operation)하는 것을 의미한다.
++ CRUD Operation
+  + Create : 생성(POST)
+  + Read : 조회(GET)
+  + Update : 수정(PUT, PATCH)
+  + Delete : 삭제(DELETE)
+  + HEAD: header 정보 조회(HEAD)
+
+### REST 특징
+
+1. Server-Client(서버-클라이언트 구조)   
+자원이 있는 쪽이 Server, 자원을 요청하는 쪽이 Client가 된다.
+REST Server: API를 제공하고 비즈니스 로직 처리 및 저장을 책임진다.
+Client: 사용자 인증이나 context(세션, 로그인 정보) 등을 직접 관리하고 책임진다.
+서로 간 의존성이 줄어든다.
+
+2. Stateless(무상태)   
+HTTP 프로토콜은 Stateless Protocol이므로 REST 역시 무상태성을 갖는다.
+Client의 context를 Server에 저장하지 않는다.
+즉, 세션과 쿠키와 같은 context 정보를 신경쓰지 않아도 되므로 구현이 단순해진다.
+Server는 각각의 요청을 완전히 별개의 것으로 인식하고 처리한다.
+각 API 서버는 Client의 요청만을 단순 처리한다.
+즉, 이전 요청이 다음 요청의 처리에 연관되어서는 안된다.
+물론 이전 요청이 DB를 수정하여 DB에 의해 바뀌는 것은 허용한다.
+Server의 처리 방식에 일관성을 부여하고 부담이 줄어들며, 서비스의 자유도가 높아진다.
+
+3. Cacheable(캐시 처리 가능)
+웹 표준 HTTP 프로토콜을 그대로 사용하므로 웹에서 사용하는 기존의 인프라를 그대로 활용할 수 있다.
+즉, HTTP가 가진 가장 강력한 특징 중 하나인 캐싱 기능을 적용할 수 있다.
+HTTP 프로토콜 표준에서 사용하는 Last-Modified 태그나 E-Tag를 이용하면 캐싱 구현이 가능하다.
+대량의 요청을 효율적으로 처리하기 위해 캐시가 요구된다.
+캐시 사용을 통해 응답시간이 빨라지고 REST Server 트랜잭션이 발생하지 않기 때문에 전체 응답시간, 성능, 서버의 자원 이용률을 향상시킬 수 있다.
+
+4. Layered System(계층화)
+Client는 REST API Server만 호출한다.
+REST Server는 다중 계층으로 구성될 수 있다.
+API Server는 순수 비즈니스 로직을 수행하고 그 앞단에 보안, 로드밸런싱, 암호화, 사용자 인증 등을 추가하여 구조상의 유연성을 줄 수 있다.
+또한 로드밸런싱, 공유 캐시 등을 통해 확장성과 보안성을 향상시킬 수 있다.
+PROXY, 게이트웨이 같은 네트워크 기반의 중간 매체를 사용할 수 있다.
+Code-On-Demand(optional)
+Server로부터 스크립트를 받아서 Client에서 실행한다.
+반드시 충족할 필요는 없다.
+
+5. Uniform Interface(인터페이스 일관성)
+URI로 지정한 Resource에 대한 조작을 통일되고 한정적인 인터페이스로 수행한다.
+HTTP 표준 프로토콜에 따르는 모든 플랫폼에서 사용이 가능하다.
+특정 언어나 기술에 종속되지 않는다.
+https://gmlwjd9405.github.io/2018/09/21/rest-and-restful.html
+
+### API - Application Programming Interface
+
+    응용 프로그램에서 사용할 수 있도록, 운영 체제나 프로그래밍 언어가 제공하는 기능을 제어할 수 있게 만든 인터페이스를 뜻한다.
+    -wikipedia-
+    
+api는 여러곳에서 쓰고 있기 때문에 기본적으로는 위의 정의가 더 정확하나,   
+RESTful API에서의 api는 '애플리케이션 소프트웨어를 구축하고 통합하기 위한 정의 및 프로토콜 세트'라고 생각하면 된다.   
+여기서 '애플리케이션 소프트웨어'는 PC 앱도, 웹도, 핸드폰 앱도 될 수 있으며   
+'프로토콜'은 카메라나 진동 센서 같은 기능에 관한 것일수도, 통신을 위한 것일 수도 있다.
+
+즉, 다양한 장치에서 다양한 언어로 프로그래밍하여도 일관적인 결과를 얻을 수 있도록 큰 틀(인터페이스)을 만들어주는 역할을 한다.
+
+
+
+##### 참고
+
++ [[Network] REST란? REST API란? RESTful이란?](https://gmlwjd9405.github.io/2018/09/21/rest-and-restful.html)
++ 
+
+
+
