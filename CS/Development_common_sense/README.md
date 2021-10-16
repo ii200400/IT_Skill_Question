@@ -8,7 +8,7 @@
   + REST
   + API
   + REST API 설계 규칙
-
++ 함수형 프로그래밍
 
 ## 객체 지향 프로그래밍 (Object Oriented Programming - OOP)
 
@@ -21,6 +21,8 @@
   특정 객체를 추상화하여 속성(attribute)과 행위(behavior)를 변수와 메서드로 정의한 것.
 + 인스턴스(instance)   
   클래스에서 정의한 것을 토대로 실제 메모리상에 할당된 것으로 실제 프로그램에서 사용되는 데이터
+
+<br/>
 
 ### 객체 지향 프로그래밍의 특징
 
@@ -51,6 +53,8 @@
       + 오버로딩(Overloading)   
         같은 이름의 함수를 매개변수를 다르게 하여 여러 개 정의하여 사용하는 것   
         작성 방법은 [이곳](https://steady-coding.tistory.com/446)을 참고하자.
+
+<br/>
 
 ### 객체 지향 설계 5원칙
 
@@ -137,6 +141,8 @@ car 클래스는 wheel이라는 클래스를 변수로 가지도록 만들면 co
 그래도 이론을 먼저 보는 사람들이 보기에는 잘 와닿지 않을 것이다, 스스로 위배를 하면서 언칙을 생각하면 금방 이해할 것이라 생각한다.   
 또한, **원칙을 지키는 것이 좋지만 객체지향이 모든 방면에서 모든 일을 완벽하게 적용시킬 수는 없는 것 또한 알게 되었다.**
 
+<br/>
+
 ### 절차 지향 프로그래밍
 
 객체 지향 프로그래밍은 절차 지향 프로그램과 많이 비교를 하는데 이를 위해 절차 지향 프로그래밍을 가볍게 살펴보겠다.
@@ -186,6 +192,8 @@ car 클래스는 wheel이라는 클래스를 변수로 가지도록 만들면 co
     + 객체화된 인스턴스의 draw() 메소드를 호출해 각 인스턴스의 도형 그리기를 수행   
       ex) LineObject.draw()
 
+<br/>
+
 ##### 참고
 
 + [객체 지향](http://www.incodom.kr/%EA%B0%9D%EC%B2%B4_%EC%A7%80%ED%96%A5)
@@ -194,6 +202,8 @@ car 클래스는 wheel이라는 클래스를 변수로 가지도록 만들면 co
 + [객체지향 설계원칙 이해하기](https://western-sky.tistory.com/77)
 + [단일 책임 원칙(SRP)이란?](https://steady-coding.tistory.com/370)
 + [개방 폐쇄 원칙(OCP)이란?](https://steady-coding.tistory.com/378)
+
+<br/>
 
 ## RESTful API
 
@@ -236,6 +246,8 @@ HTTP Method(POST, GET, PUT, PATCH, DELETE)를 통해 해당 자원을 처리(CRU
   + Update : 수정(PUT, PATCH)
   + Delete : 삭제(DELETE)
   + HEAD: header 정보 조회(HEAD)
+
+<br/>
 
 ### REST 특징
 
@@ -283,6 +295,8 @@ REST API 메시지만 보고도 이를 쉽게 이해 할 수 있는 자체 표�
 **REST는 플렛폼과 언어가 다른 클라이언트라도 HTTP 프로토콜이 적용 가능하다면,   
 표현이 쉽고 일관된 클라이언트의 요청과 서버의 응답에 따라 빠르고 안전한 통신을 쉽게 구현할 수 있는 구조(아키텍쳐)를 제시한다.**
 
+<br/>
+
 ### API - Application Programming Interface
 
     응용 프로그램에서 사용할 수 있도록, 운영 체제나 프로그래밍 언어가 제공하는 기능을 제어할 수 있게 만든 인터페이스를 뜻한다.
@@ -300,6 +314,8 @@ RESTful API에서의 api는 '애플리케이션 소프트웨어를 구축하고 
 여기서 나는 아키텍쳐와 인터페이스를 햇갈려했는데 아키텍쳐는 설계도, 인터페이스는 실재가 있는 기둥으로 생각하였다.
 설계도는 실재로 구현된 것이 없어서 바꾸고 싶다면 지우개로 지우고 다시 그리면 되지만...   
 기둥은 한 번 만들고 바꾸려면 위층(자식 클래스)을 다 부수어야 한다. 물론 일단 부수고 윗층이 가라 앉는 것(뻐-그)을 구경해도 된다. ^ㅠ^
+
+<br/>
 
 ### REST API 설계 규칙
 
@@ -330,6 +346,8 @@ RESTful API에서의 api는 '애플리케이션 소프트웨어를 구축하고 
       URI가 다르다는 것은 처리할 자원이 다르거나 처리 방법이 다르다는 의미이고 리소스가 다르면 URL도 다르다.
       Ex) student를 생성하는 route: POST /students   
       Ex) id=12인 student를 삭제하는 route: DELETE /students/12
+
+<br/>
 
 #### 유의사항
 
@@ -364,6 +382,8 @@ RESTful 한 설계를 돕고 가독성을 높여주는 사항을 기술하겠다
     + GET : /users/{userid}/devices (일반적으로 소유 ‘has’의 관계를 표현할 때)   
     + GET : /users/{userid}/likes/devices (관계명이 애매하거나 구체적 표현이 필요할 때)
 
+<br/>
+
 #### HTTP 응답 상태 코드
 
 대표적인 상태코드만 표로 정리한 것이다.
@@ -388,4 +408,8 @@ RESTful 한 설계를 돕고 가독성을 높여주는 사항을 기술하겠다
 + [[Network] REST란? REST API란? RESTful이란?](https://gmlwjd9405.github.io/2018/09/21/rest-and-restful.html)
 + [REST API 제대로 알고 사용하기](https://meetup.toast.com/posts/92)
 + [REST API 관점에서 바라보는 HTTP 상태 코드(HTTP status code)](https://sanghaklee.tistory.com/61)
+
+<br/>
+
+## 함수형 프로그래밍
 
