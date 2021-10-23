@@ -10,6 +10,8 @@
   + REST API 설계 규칙
 + MVC(Model-View-Controller) 패턴
 + 함수형 프로그래밍
++ VCS(Version Control System)
+  + Git
 
 ## 객체 지향 프로그래밍 (Object Oriented Programming - OOP)
 
@@ -452,6 +454,9 @@ MVC 패턴을 검색하면 나오는 블로그의 정리된 글들과 사진을 
 3. Model이 작업을 완료한 후 결과물을 Controller에게 반환한다.
 4. Controller는 Model의 결과물을 표시할 View를 선택한다.
 5. View는 Model의 결과물을 화면에 표시한다.
+    + 방법1 : View가 Model을 직접 이용하여 업데이트 하는 방법
+    + 방법2 : Model에서 View를 호출(Notify)하여 업데이트 하는 방법
+    + 방법3 : View가 주기적으로 Model의 변경을 감지(Polling)하여 업데이트 하는 방법
 
 ### 특징
 
@@ -486,3 +491,45 @@ MVC 패턴을 검색하면 나오는 블로그의 정리된 글들과 사진을 
 그런데 코루틴이나 핸들러 콜백 등의 비동기 프로그래밍에 대한 내용도 공부해야하니.. 아마 많이 늦어질 것이다..   
 
 공부할 내용이 참 많아 햄복카다.. ^ㅠ^
+
+## VCS(Version Control System)
+
+컴퓨터에 있는 대부분의 파일들을 저장하여 버전관리를 돕는 시스템을 말한다.   
+이러한 시스템이 없었을 때에는 폴더별로 이름에 버전을 붙여서 수동으로 관리했다고 한다...   
+(최종.zip, 마지막 최종.zip, 진짜 마지막 최종.zip...)   
+
+크게 2가지 형식의 VCS가 있는데 아래와 같다.
+
++ Centralized Version Control
+  + 서버에 파일을 업로드하고 버전을 관리하는 방식
+  + 각 개발자들이 서버의 파일을 업데이트하며 즉시 동기화가 된다.
+  + 네트워크를 통해 서버에 접속해야만하기 때문에 네트워크나 서버에 문제가 있으면 작업을 못한다.
+  + CVS, SubVersion, Perferce 등이 해당된다.
+
++ Distributed Version Control
+  + 각 개발자들이 개별적으로 버전관리(로컬 저장소)를 진행하고 원할때 서버와 버전 동기화를 진행해주는 방식
+  + 즉시 동기화가 되지는 않지만 오프라인 환경에서도 사용 가능하며 서버가 다운되도 안전하다.
+  + Git, Mercurial, Darce 등이 해당된다.
+  + 대표적인 클라우드 서버로 GitHub와 BitBucket가 있다.
+
+### Git
+
+현재 가장 유명하고도 대표적인 VCS 중 하나이다.       
+Git의 특징을 나열해보면 다음과 같다.
+
++ 대표적인 무료 VCS 
+  + 사용하는 사람이 많으면 사용법이나 해결책을 찾기 쉽다.
++ 오픈소스
++ 다른 VCS에 비해 빠르고 가벼움
++ 오프라인 환경에서도 작동
++ 되돌리기(Undo) 기능
++ branchd와 merge를 활용한 쉽고 빠른 협업
+
+Git을 실재로 사용하기 위해서는 다양한 명령어들을 숙지하고   
+버전 관리를 시각적으로 보여주는 프로그램(SourceTree)도 필요하다면 설치해서 활용하게되는데   
+해당 내용은 너무 많으니 동영상 링크를 참고하기를 바란다...
+
+##### 참고
+
++ [깃, 깃허브 이건 알고 사용하자](https://www.youtube.com/watch?v=lPrxhA4PLoA&t=0s&ab_channel=%EB%93%9C%EB%A6%BC%EC%BD%94%EB%94%A9by%EC%97%98%EB%A6%AC)
++ [깃, 깃허브 제대로 배우기 (기본 마스터편, 실무에서 꿀리지 말자)](https://www.youtube.com/watch?v=Z9dvM7qgN9s&ab_channel=%EB%93%9C%EB%A6%BC%EC%BD%94%EB%94%A9by%EC%97%98%EB%A6%AC)
