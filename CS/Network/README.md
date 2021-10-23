@@ -1,33 +1,36 @@
 # 1-5. 네트워크
 
-+ 네트워크 개요 및 용어 정리
-+ OSI 7계층
-+ TCP와 UDP
-+ TCP/IP 4계층
-+ 3-way handshaking & 4-way handshaking
-+ Http & Https
++ [OSI 7계층](https://github.com/ii200400/IT_Skill_Question/tree/master/CS/Network#osi-7%EA%B3%84%EC%B8%B5)
++ [TCP와 UDP](https://github.com/ii200400/IT_Skill_Question/tree/master/CS/Network#%EC%A0%84%EC%86%A1%EA%B3%84%EC%B8%B5-%ED%94%84%EB%A1%9C%ED%86%A0%EC%BD%9C--tcp--udp-)
+  + [TCP (Transmission Control Protocol)](https://github.com/ii200400/IT_Skill_Question/tree/master/CS/Network#tcp-transmission-control-protocol-%EC%A0%84%EC%86%A1%EC%A0%9C%EC%96%B4-%ED%94%84%EB%A1%9C%ED%86%A0%EC%BD%9C---%EC%97%B0%EA%B2%B0%ED%98%95-%ED%94%84%EB%A1%9C%ED%86%A0%EC%BD%9C)
+  + [UDP (User Datagram Protocol)](https://github.com/ii200400/IT_Skill_Question/tree/master/CS/Network#udp-user-datagram-protocol-%EC%82%AC%EC%9A%A9%EC%9E%90-%EB%8D%B0%EC%9D%B4%ED%84%B0%EA%B7%B8%EB%9E%A8-%ED%94%84%EB%A1%9C%ED%86%A0%EC%BD%9C---%EB%B9%84%EC%97%B0%EA%B2%B0%ED%98%95-%ED%94%84%EB%A1%9C%ED%86%A0%EC%BD%9C)
++ [TCP/IP 4계층](https://github.com/ii200400/IT_Skill_Question/tree/master/CS/Network#tcpip-%ED%94%84%EB%A1%9C%ED%86%A0%EC%BD%9C-4%EA%B3%84%EC%B8%B5)
++ [3-way handshaking & 4-way handshaking](https://github.com/ii200400/IT_Skill_Question/tree/master/CS/Network#tcp-3-way-handshaking--4-way-handshaking)
++ [Http & Https](https://github.com/ii200400/IT_Skill_Question/tree/master/CS/Network#http--https)
+  + [HTTP 문제점 및 HTTPS 보안성](https://github.com/ii200400/IT_Skill_Question/tree/master/CS/Network#http-%EB%AC%B8%EC%A0%9C%EC%A0%90-%EB%B0%8F-https-%EB%B3%B4%EC%95%88%EC%84%B1)
+  + [Https 특징](https://github.com/ii200400/IT_Skill_Question/tree/master/CS/Network#https)
 
 </br>
 
-## 네트워크 개요 및 용어 정리
+## 네트워크 개요
 
       "몇 개의 독립적인 장치가 적절한 영역내에서 적당히 빠른 속도의 물리적 통신 채널을 통하여 
       서로가 직접 통신할 수 있도록 지원해 주는 데이타 통신 체계"
       -IEEE(Institute of Electrical and Electronics Engineers:국제 전기 전자 공학회)
 
 네트워크는 Net + Work 의 합성어로, 그물망처럼 연결된 통신 이용 형태를 의미한다.   
-(많은 컴퓨터를 연결하다보니 연결망이 복잡해져서 그렇지 사실은 아래와 같이 두 컴퓨터만 이어놓아도 네트워크이다.)
+(많은 컴퓨터를 연결하다보니 연결망이 복잡해져서 그렇지 사실은 아래와 같이 두 컴퓨터만 이어놓아도 네트워크라고 한다.)
       
 <img src="../image/1.5%20Intro1.png" width="30%" height="30%">
 
-컴퓨터를 조금 더 효율적으로 활용할 수 있도록 개발되었으며\
+컴퓨터를 조금 더 효율적으로 활용할 수 있도록 개발되었으며   
 현재에 이르러서 대부분의 한국인들은 무선 인터넷망(wifi)이 없이는 살 수 없는 몸이 되고 말았다.
 
-이것으로 우리는 웹을 사용하고 다른 플레이어들과 실시간으로 게임이 가능하고 가족들과 영상통화를 할 수 있게 되었지만\
+이것으로 우리는 웹을 사용하고 다른 플레이어들과 실시간으로 게임이 가능하고 가족들과 영상통화를 할 수 있게 되었지만   
 보안이 크게 취약해지게 되었고 구현 및 활용이 상대적으로 많이 어렵다.
 
-통신을 하기 위해서 데이터 형식이나 규칙을 만들어야할 필요가 있었는데\
-이를 배우기 전에 네트워크에서 자주 사용되는 용어들부터 정리하고 시작하겠다.
+통신을 하기 위해서 데이터 형식이나 규칙을 만들고 내용을 암호화하여 숨길 필요가 생겼는데   
+이러한 내용들이 해당 목차의 주된 내용이다.
 
 </br>
 
@@ -90,7 +93,7 @@ IP 주소를 참고하여 일단 데이터를 최적의 경로로 전송하고 �
 
 #### 4. 전송계층
 
-일단 TCP 기준으로,   
+전송계층은 프로토콜 별로 다른 특징을 가지는데 여기에서는 TCP 기준으로 서술한다.      
 네트워크의 단말기(컴퓨터나 핸드폰 등)가 신뢰성있는 데이터를 주고 받을 수 있도록 해 준다.   
 오류검출 및 복구와 흐름제어, 중복검사 등을 수행하여 패킷이 확실히 단말기에 갈 수 있도록 한다.
 
@@ -100,7 +103,7 @@ TCP는 위의 네트워크 계층의 프로토콜인 IP를 기반으로 만들�
 
 주소는 Port를 사용한다.
 
-*특징에 대해서는 따로 아래의 TCP와 UDP 항목 참고 요망 *
+*특징에 대해서는 따로 아래의 [TCP와 UDP](https://github.com/ii200400/IT_Skill_Question/tree/master/CS/Network#%EC%A0%84%EC%86%A1%EA%B3%84%EC%B8%B5-%ED%94%84%EB%A1%9C%ED%86%A0%EC%BD%9C--tcp--udp-) 항목 참고 요망 *
 
 + 용어
   + Segment(세그먼트) : TCP에서 세션 간에 전달되는 데이터 단위, 동음이의로 네트워크의 일부분을 의미하기도 한다.
@@ -160,7 +163,8 @@ HTTP, FTP, SMTP 등이 이 계층에 속한 프로토콜이다.
 ## 전송계층 프로토콜 ( TCP / UDP )
 
 전송계층에서 일반적으로 쓰이는 TCP와 UDP에 대한 특징을 위주로 서술하였다.   
-두 프로토콜의 차이점을 중점으로 기억하는 것이 좋다.
+두 프로토콜의 차이점을 중점으로 기억하는 것이 좋다.   
+만약 아직 전송계층을 잘 모른다면 [윗글](https://github.com/ii200400/IT_Skill_Question/tree/master/CS/Network#4-%EC%A0%84%EC%86%A1%EA%B3%84%EC%B8%B5)을 먼저 참고하자.
 
 ### TCP (Transmission Control Protocol, 전송제어 프로토콜) - 연결형 프로토콜
 
@@ -278,7 +282,7 @@ TCP/IP의 응용 계층과 다른 계층들과는 서로의 세부사항을 신�
 ## TCP 3-way handshaking & 4-way handshaking
 
 우선 TCP는 연결 시작 시에 3-way handshaking 과정을 거치고 종료 시 4-way handshaking을 통해 해제한다는 것을 기억하고   
-아래의 블로그를 확인하자. (축약할 내용도 없고 추가 내용도 알차서 변경하거나 수정할 내용이 없어 링크를 그대로 가져왔다.)
+아래의 블로그를 확인하자. (축약할 내용도 없고 추가 내용도 알차서 링크를 그대로 가져왔다.)
 
 https://asfirstalways.tistory.com/356
 
@@ -310,6 +314,10 @@ TCP/IP 구조의 통신은 전부 통신 경로 상에서 패킷을 수집하는
 2. 콘텐츠를 암호화   
    말 그대로 HTTP 메시지의 내용만 암호화하는 것이다.   
    암호화해서 전송하면 받은 측에서는 그 암호를 해독하여 출력하는 처리가 필요하다.
+   
++ 용어
+  + SSL(Secure Socket Layer), TLS(Transport Layer Security)   
+    인터넷으로 전송된 데이터의 인증, 암호화, 암호 해독을 가능하게 하는 웹브라우저와 서버의 프로토콜
 
 #### 2. 통신 상대를 확인하지 않는다.
 
@@ -322,6 +330,11 @@ IP 주소나 포트 등에서 웹 서버에 액세스 제한이 없는 경우 �
 3. 통신하고 있는 상대가 접근이 허가된 상대인지를 확인할 수 없다.
 4. 어디에서 누가 요청을 했는지 확인할 수 없다.
 5. 의미없는 리퀘스트도 수신한다. —> DoS 공격을 방지할 수 없다.
+
++ 용어
+  + DoS attack(denial-of-service attack, 도스 공격)   
+    시스템을 악의적으로 공격해 해당 시스템의 리소스를 부족하게 하여 원래 의도된 용도로 사용하지 못하게 하는 공격   
+    대량의 데이터 패킷을 통신망으로 보내고 특정 서버에 수많은 접속 시도를 하는 등 다른 이용자가 정상적으로 서비스 이용을 하지 못하게 한다.
 
 ##### 보안 방법
 
@@ -344,18 +357,9 @@ IP 주소나 포트 등에서 웹 서버에 액세스 제한이 없는 경우 �
 2. SSL 혹은 TLS 사용  
    SSL 에서 제공하는 인증이나 암호화, 그리고 다이제스트 기능을 사용하면 된다.
 
-*****
+<br/>
 
-+ 용어
-  + SSL(Secure Socket Layer), TLS(Transport Layer Security)   
-    인터넷으로 전송된 데이터의 인증, 암호화, 암호 해독을 가능하게 하는 웹브라우저와 서버의 프로토콜
-  + DoS attack(denial-of-service attack, 도스 공격)   
-    시스템을 악의적으로 공격해 해당 시스템의 리소스를 부족하게 하여 원래 의도된 용도로 사용하지 못하게 하는 공격   
-    대량의 데이터 패킷을 통신망으로 보내고 특정 서버에 수많은 접속 시도를 하는 등 다른 이용자가 정상적으로 서비스 이용을 하지 못하게 한다.
-
-*****
-
-### HTTPS
+### HTTPS 특징
 
 HTTPS는 HTTP의 통신하는 소켓 부분을 SSL 혹은 TLS 프로토콜로 대체하여 보안성을 높이는 것일 뿐   
 새로운 애플리케이션 계층 프로토콜은 아니다.
