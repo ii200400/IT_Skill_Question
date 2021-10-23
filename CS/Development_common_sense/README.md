@@ -8,6 +8,7 @@
   + REST
   + API
   + REST API 설계 규칙
++ MVC(Model-View-Controller) 패턴
 + 함수형 프로그래밍
 
 ## 객체 지향 프로그래밍 (Object Oriented Programming - OOP)
