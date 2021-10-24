@@ -12,6 +12,9 @@
 + 함수형 프로그래밍
 + VCS(Version Control System)
   + Git
+  + Git WorkFlow
+  + Git 명령어
+  + Git Strategy (미완)
 
 ## 객체 지향 프로그래밍 (Object Oriented Programming - OOP)
 
@@ -520,14 +523,85 @@ Git의 특징을 나열해보면 다음과 같다.
 + 대표적인 무료 VCS 
   + 사용하는 사람이 많으면 사용법이나 해결책을 찾기 쉽다.
 + 오픈소스
-+ 다른 VCS에 비해 빠르고 가벼움
++ 스냅샷(Snapshot) 기술을 활용하여 다른 VCS에 비해 빠르고 가벼움
+  + 스냅샷(Snapshot)   
+    마치 사진 찍듯이 특정 시점에 스토리지의 파일 시스템을 포착해 보관하는 기술   
+    변경점이 있는 파일만을 그때마다 정리하고 변경점이 없는 파일은 이전의 링크를 그대로 가져와 파일 관리속도를 크게 향상시켰다.   
+    깃에서는 스냅샷 데이터를 기반으로 고유한 해시코드를 부여하고 버전정보를 빠르게 참조할 수 있도록 한다.
 + 오프라인 환경에서도 작동
 + 되돌리기(Undo) 기능
 + branchd와 merge를 활용한 쉽고 빠른 협업
 
-Git을 실재로 사용하기 위해서는 다양한 명령어들을 숙지하고   
-버전 관리를 시각적으로 보여주는 프로그램(SourceTree)도 필요하다면 설치해서 활용하게되는데   
-해당 내용은 너무 많으니 동영상 링크를 참고하기를 바란다...
+### Git WorkFlow
+
+깃을 사용하기 위해서는 파일 상태와 저장소(레포지토리)에 대한 용어를 알고 넘어가는 것이 좋다고 생각하여   
+깃 작업 흐름에 따라서 간단하게 해당 용어들을 설명하는 
+
++ Working Directory : 프로젝트를 작업하고 파일들을 수정하는 장소
+  + Untracked : 깃에 저장된 적이 없는 파일 상태를 의미, 보통 새로운 파일을 만든경우의 파일 상태이다.
+  + Tracked : 깃에 이미 저장된 적이 있는 파일 상태를 의미
+    + Unmodified : tracked 상태의 파일이 특별한 변경점이 없는 상태
+    + Modified : tracked 상태의 파일이 수정되었을 때의 상태
+    + Deleted : tracked 상태의 파일이 삭제되었을 때의 상태
+  + .gitignore   
+    로컬 환경의 정보나 빌드 정보 등 저장소에서 관리할 필요가 없는 파일들을 track하지 않도록 설정하는 파일
++ Staging Area   
+  버전 히스토리(이력)에 저장할 준비가 되어있는 파일들이 있는 영역   
+  변경점이 없는 파일은 스냅샷을 할 이유가 없기 때문에, Modified 상태의 파일들만 이 영역으로 들어올 수 있다.
++ Local Repository (로컬 저장소)   
+  버전 히스토리를 저장하고 관리하는 개인 컴퓨터 내의 저장소   
+  commit 명령어를 통해서 Staging Area의 파일들을 로컬 저장소에 저장할 수 있다.
++ Remote Repository (원격 저장소)   
+  버전 히스토리를 저장하고 관리하는 서버의 저장소   
+  push 명령어를 통해서 로컬 저장소의 히스토리를 원격 저장소로 업로드할 수 있다.   
+  반대로 pull 명령어를 이용하여 원격 저장소의 히스토리를 로컬 저장소로 다운로드할 수 있다.
+
+### Git 명령어
+
+Git을 실재로 사용하기 위해서는 다양한 명령어들을 숙지할 필요가 있다. (터미널 명령어들을 알고있다면 조금 더 쉽다.)   
+하지만 모든 명령어를 적어놓기에는 너무 많고 가장 자주 쓰이는 명령어들을 위주로 설명을 적어 놓겠다.   
+더 많은 명령어들을 확인하기 위해서는 [Documentation - Git SCM](https://git-scm.com/docs)을 확인바란다.
+
+Git은 기본적으로 'git command [-option]' 의 형식을 가진다.   
+command에는 add, status, config 등의 명령어가 필수적으로 입력되고   
+option에는 command에 맞는 옵션들이 선택사항으로 들어갈 수 있다.
+
++ git --version   
+  git이 설치되어있는지 확인하기 위해서 가장 자주 쓰이는, 깃 버전 확인 명령어
++ git config --global alias.[지정명령어] [명령어] (ex. git config --global alias.st status)   
+  명령어(status) 대신 지정한 명령어(st)를 적어도 컴퓨터가 해당 명령어(status)로 인식한다.
++ git [명령어] --h   
+  명령어에 대한 옵션들을 간단하게 확인할 수 있다.
++ git status   
+  현재 작업 브랜치(branch), pull 할 로컬 저장소의 commit의 수, untracked/tracked 파일 등   
+  버전 관리에 대해 작업 중인 파일과 저장소 상태를 간단히 볼 수 있다. 
+  + git status -s   
+    위의 명령어보다 더 간결한 형태로 작업 상황을 볼 수 있다.
++ git add [파일명]   
+  파일이 untracked나 modified 상태라면 Staging Area 영역으로 옮겨준다.
+  + git add * , git add *.css 등..   
+    현재 파일 내의 **존재하는** 지정한 파일들을 모두 Staging Area로 옮긴다.
+  + git add .   
+    현재 파일 내의 모든 파일과 **deleted된 파일을 까지** 모두 Staging Area로 옮긴다.
+    + 'git add -A'	'git add .' 'git add -u' 등 다양한 옵션이 있지만 개인적으로 'git add .'을 가장 많이 썼다.   
+       버전마다 조금씩 기능에 차이가 있는데 [스택오버플로](https://stackoverflow.com/questions/572549/difference-between-git-add-a-and-git-add)를 참고하자.
++ git diff   
+  현재 파일 내용과 staging된 파일 내용을 비교한다.
+  + gif diff --staged   
+    staging된 파일 내용과 최근 commit의 파일 내용을 비교한다.
++ git commit   
+  staged된 파일들을 레포지토리로 옮겨준다.
+  + git commit -m "메시지"   
+    "메시지"를 타이틀로하는 commit을 실행한다.
+  + git commit -a -m "메시지" , git commit -am "메시지"   
+    git add -a과 git commit -m "메시지"를 모두 실행시킨 것과 같다.
+
+### Git Strategy
+
+깃을 활용하여 버전 관리를 어떻게 해야할지에 대하여 다양한 전략(strategy)들이 존재한다.   
+기본적으로는 버전 관리를 위하여 적당한 수준의 기능별로 커밋을 진행해 나간다.
+
+해당 부분은 필자가 제대로 사용해본 경험이 없어서 정리를 늦게 진행할 예정이다.
 
 ##### 참고
 
