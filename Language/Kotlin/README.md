@@ -1,6 +1,6 @@
 # 2-1. Kotlin
 
-+ JVM과 GC 원리
++ Iterable
 + Collection
 + Mutable vs Immutable
 + Annotation
@@ -9,9 +9,9 @@
 + KeyWords
 + Overriding vs Overloading
 + Visibility Modifier (Access Modifier in Java)
++ JVM과 GC 원리
 
-> JetBrain에서 공식적으로 만든 [프로그래밍 학습 사이트 Hyperskill](https://hyperskill.org/knowledge-map/361?track=18)를 찾았다. 현재 몇 가지 강의를 확인 중에 있다.
-> 기대 이하이다, 아무리 초심자를 대상으로 했다지만 너무 쉽다. 정말 최소 한도의 정보만 알려주고 진행하는 방식에 서양권 특유의 정의 방식이 이해하기 난해하게 만든다.
+> 정리하고 싶은 내용들을 목차로 적어놓은 것이며 아직 대부분의 내용을 정리하지는 못했다.
 
 ## Kotlin 개요
 
@@ -21,6 +21,10 @@
 
 자바와 완전호환을 내세우며 등장하였으며 자바와 견주어도 괜찮은 성능과 사용자 편의성으로 사용자들을 대거 유입하였다.   
 안드로이드 공식 홈페이지에서도 오랫동안 사용했던 Java보다 Kotlin을 장려를 하고있다.
+
+자바의 구조와 기능들을 갖추고있어 자바 카테고리로 만들까도 생각하였지만,   
+대부분의 특징은 같아도 엄연히 다른 언어이고 코틀린만의 특징도 있기 때문에   
+자바와 겹치는 내용이 많을 것을 알면서도 코틀린 카테고리로 만들어 정리를 하게 되었다.
 
 </br>
 
@@ -52,10 +56,12 @@
 
 </br>
 
-## JVM과 GC 원리
+## Iterable
 
 
-
-</br>
 
 ## Collection
+
+Collection(콜렉션)은 대부분의 프로그래밍 언어에 있는 자료구조이며 Iterable을 상속받는다.. 는 글을 읽고   
+뒤돌아서 Iterable 카테고리를 만들고 Iterable 정리하러 간다.   
+상속 받는 클래스가 잇다면 해당 클래스를 먼저 이해하고 넘어가는 것이 훨씬 쉬울 것 같아서 우선 위의 카테고리부터 정리할 예정이다.
