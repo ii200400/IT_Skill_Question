@@ -52,20 +52,22 @@
 이밖에도...   
 코루틴(Coroutine), 간결성(Concise), 확장함수(Extension Functions) 등등 많은 특징을 가진다.
 
-참고: https://velog.io/@beargu2/Kotlin-%ED%8A%B9%EC%A7%95
+##### 참고
+
++ https://velog.io/@beargu2/Kotlin-%ED%8A%B9%EC%A7%95
 
 </br>
 
 ## Iterator
 
-컬렉션(Collection)이나 순차적인 데이터를 가지고 있는 자료형의 데이터를 순서대로 접근하기 위해 사용하는 코틀린의 표준 라이브러리 중 하나이다.   
-자료형의 모든 데이터를 하나씩 불러올 때 자주 사용되며 Iterable<T> 인터페이스를 상속한 자료형이라면 Iterator를 호출하여 구현할 수 있다.
+코틀린에서 자주 사용하는 표준 라이브러리 중 하나이다.   
+컬렉션(Collection)이나 순차적인 데이터를 가지고 있는 자료형의 데이터를 순서대로 접근하기 위해 사용한다.    
+`Iterable<T>` 인터페이스를 상속한 자료형이라면 Iterator를 호출하는 등 다양한 방법으로 데이터를 모두 탐색할 수 있다.
 
 Iterator는 다양한 자료형에 상속되어있는데 아래의 그림과 같다.
   
 <img src="../image/2.1%20Iterator1.png" width="50%" height="50%">
 
-  
 <br/>
   
 Iterator에는 Iterator.next와 Iterator.hasNext. 단 2개의 함수만 있다.   
@@ -74,47 +76,51 @@ Iterator.next는 다음 데이터를 탐색하고 해당 데이터를 반환하�
 
 위의 두 함수를 사용하여 모든 데이터를 살펴볼 수 있는데 다음과 같다.
   
-    val numbers = listOf("one", "two", "three", "four")
-    val numbersIterator = numbers.iterator()
-    while (numbersIterator.hasNext()) {
-        println(numbersIterator.next())
-    }
-    ----------
-    one
-    two
-    three
-    four
+  val numbers = listOf("one", "two", "three", "four")
+  val numbersIterator = numbers.iterator()
+  while (numbersIterator.hasNext()) {
+      println(numbersIterator.next())
+  }
+  ----------
+  one
+  two
+  three
+  four
 
 또 다른 방법으로도 위의 결과를 확인할 수 있는데 아마 다들 사용해본 경험이 있는 for문이다.
 
-    val numbers = listOf("one", "two", "three", "four")
-    for (item in numbers) {
-        println(item)
-    }
-    ----------
-    one
-    two
-    three
-    four
+  val numbers = listOf("one", "two", "three", "four")
+  for (item in numbers) {
+      println(item)
+  }
+  ----------
+  one
+  two
+  three
+  four
   
 forEach문 또한 같은 결과를 보이는 것을 확인할 수 있다.
   
-    val numbers = listOf("one", "two", "three", "four")
-    numbers.forEach {
-        println(it)
-    }
-    ----------
-    one
-    two
-    three
-    four
+  val numbers = listOf("one", "two", "three", "four")
+  numbers.forEach {
+      println(it)
+  }
+  ----------
+  one
+  two
+  three
+  four
+
+<br/>
+
+#### for vs forEach
 
 <br/>
 
 이터레이터는 이와같이 모든 데이터를 살펴볼 수 있는 라이브러리이다.   
 이러한 이터레이터는 `MutableIterator`, `ListIterator`, `MutableListIterator` 세 종류가 파생되어 나왔다.   
 각각의 차이점을 간단히 살펴보겠다.
-  
+
 #### 1. MutableIterator
   
 ##### 참고
