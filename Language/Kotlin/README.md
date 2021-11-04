@@ -61,8 +61,8 @@
 ## Iterator
 
 코틀린에서 자주 사용하는 표준 라이브러리 중 하나이다.   
-컬렉션(Collection)이나 순차적인 데이터를 가지고 있는 자료형의 데이터를 순서대로 접근하기 위해 사용한다.    
-`Iterable<T>` 인터페이스를 상속한 자료형이라면 Iterator를 호출하는 등 다양한 방법으로 데이터를 모두 탐색할 수 있다.
+[컬렉션(Collection)](https://github.com/ii200400/IT_Skill_Question/tree/master/Language/Kotlin#collection)이나 순차적인 데이터를 가지고 있는 자료형의 데이터를 순서대로 접근하기 위한 기능이다.    
+코틀린 내부를 살펴보면 `Iterable<T>` 인터페이스를 상속받은 자료형은 모두(사실 내가 확인한 자료형만) `Iterator` 기능을 담고 있었다.    
 
 Iterator는 다양한 자료형에 상속되어있는데 아래의 그림과 같다.
   
@@ -76,56 +76,98 @@ Iterator.next는 다음 데이터를 탐색하고 해당 데이터를 반환하�
 
 위의 두 함수를 사용하여 모든 데이터를 살펴볼 수 있는데 다음과 같다.
   
-  val numbers = listOf("one", "two", "three", "four")
-  val numbersIterator = numbers.iterator()
-  while (numbersIterator.hasNext()) {
-      println(numbersIterator.next())
-  }
-  ----------
-  one
-  two
-  three
-  four
+    val numbers = listOf("one", "two", "three", "four")
+    val numbersIterator = numbers.iterator()
+    while (numbersIterator.hasNext()) {
+        println(numbersIterator.next())
+    }
+    ----------
+    one
+    two
+    three
+    four
 
 또 다른 방법으로도 위의 결과를 확인할 수 있는데 아마 다들 사용해본 경험이 있는 for문이다.
 
-  val numbers = listOf("one", "two", "three", "four")
-  for (item in numbers) {
-      println(item)
-  }
-  ----------
-  one
-  two
-  three
-  four
+    val numbers = listOf("one", "two", "three", "four")
+    for (item in numbers) {
+        println(item)
+    }
+    ----------
+    one
+    two
+    three
+    four
   
 forEach문 또한 같은 결과를 보이는 것을 확인할 수 있다.
   
-  val numbers = listOf("one", "two", "three", "four")
-  numbers.forEach {
-      println(it)
-  }
-  ----------
-  one
-  two
-  three
-  four
-
-<br/>
-
-#### for vs forEach
+    val numbers = listOf("one", "two", "three", "four")
+    numbers.forEach {
+        println(it)
+    }
+    ----------
+    one
+    two
+    three
+    four
 
 <br/>
 
 이터레이터는 이와같이 모든 데이터를 살펴볼 수 있는 라이브러리이다.   
-이러한 이터레이터는 `MutableIterator`, `ListIterator`, `MutableListIterator` 세 종류가 파생되어 나왔다.   
+이러한 이터레이터는 `MutableIterator`, `ListIterator`, `MutableListIterator` 세 종류가 파생(상속)되어 나왔다.   
 각각의 차이점을 간단히 살펴보겠다.
 
+<br/>
+
 #### 1. MutableIterator
-  
+
+가변(mutable)적인 콜렉션을 위한 이터레이터이다.   
+데이터를 삭제할 수 있는 기능(`remove`)이 추가된다.
+
+#### 2. ListIterator
+
+라이브러리에는 인덱스를 통하여 데이터에 접근을 지원하는 이터레이터라고 한다.   
+*그런데 array는 해당 이터레이터를 사용하지 않고 기본 이터레이터를 사용한다. (..?)*
+
+추가되는 기능은 이전 데이터로 돌아가는 기능(`hasPrevious`, `previous`)과   
+인덱스를 찾는 기능(`nextIndex`, `previousIndex`)이다.   
+조금 놀랍게도 `previousIndex`는 현재 위치의 인덱스를 찾아주는 기능을 하고   
+`nextIndex`는 다음 위치의 인덱스를 찾아준다.   
+
+아래는 예시
+
+  val numbers = listOf("one", "two", "three", "four")
+  val listIterator = numbers.listIterator()
+  while (listIterator.hasNext()) listIterator.next()
+  println("Iterating backwards:")
+  while (listIterator.hasPrevious()) {
+      print("Index: ${listIterator.previousIndex()}")
+      println(", value: ${listIterator.previous()}")
+  }
+  ----------
+  Iterating backwards:
+  Index: 3, value: four
+  Index: 2, value: three
+  Index: 1, value: two
+  Index: 0, value: one
+
+#### 3. MutableListIterator
+
+
+
+#### for vs forEach
+
+~~이게 뭔가 살짝 들여다보게되면서 사건이 시작되었다..~~
+
+
+
+<br/>
+
 ##### 참고
 
 + [kotlinlang.org/docs](https://kotlinlang.org/docs/iterators.html)
++ [Kotlin] for문 vs foreach문](https://hwan-shell.tistory.com/245)
++ [코틀린 인라인 클래스란?](https://medium.com/mj-studio/%EC%BD%94%ED%8B%80%EB%A6%B0-%EC%9D%B8%EB%9D%BC%EC%9D%B8-%ED%81%B4%EB%9E%98%EC%8A%A4%EB%9E%80-2e455c893c4a)
 
 <br/>
   
