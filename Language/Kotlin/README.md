@@ -5,8 +5,9 @@
 + Mutable vs Immutable
 + Annotation
 + Generic
-+ final keyword
 + KeyWords
+  + final
+  + inline
 + Overriding vs Overloading
 + Visibility Modifier (Access Modifier in Java)
 + JVM과 GC 원리
@@ -124,42 +125,67 @@ forEach문 또한 같은 결과를 보이는 것을 확인할 수 있다.
 가변(mutable)적인 콜렉션을 위한 이터레이터이다.   
 데이터를 삭제할 수 있는 기능(`remove`)이 추가된다.
 
+    val numbers = mutableListOf("one", "two", "three", "four") 
+    val mutableIterator = numbers.iterator()
+
+    while (mutableIterator.hasNext()) {
+        mutableIterator.next()
+        mutableIterator.remove()    
+        println("After removal: $numbers")
+    }
+    -----
+    After removal: [two, three, four]
+    After removal: [three, four]
+    After removal: [four]
+    After removal: []
+
 #### 2. ListIterator
 
-라이브러리에는 인덱스를 통하여 데이터에 접근을 지원하는 이터레이터라고 한다.   
-*그런데 array는 해당 이터레이터를 사용하지 않고 기본 이터레이터를 사용한다. (..?)*
+라이브러리에는 인덱스를 통하여 데이터에 접근을 지원하는 이터레이터이다.   
+*그런데 array는 해당 이터레이터를 사용하지 않고 기본 이터레이터를 사용한다. 내가 뭔가 array에 대해서 잘 못 이해한 것일까?*
 
 추가되는 기능은 이전 데이터로 돌아가는 기능(`hasPrevious`, `previous`)과   
 인덱스를 찾는 기능(`nextIndex`, `previousIndex`)이다.   
 조금 놀랍게도 `previousIndex`는 현재 위치의 인덱스를 찾아주는 기능을 하고   
 `nextIndex`는 다음 위치의 인덱스를 찾아준다.   
 
-아래는 예시
-
-  val numbers = listOf("one", "two", "three", "four")
-  val listIterator = numbers.listIterator()
-  while (listIterator.hasNext()) listIterator.next()
-  println("Iterating backwards:")
-  while (listIterator.hasPrevious()) {
-      print("Index: ${listIterator.previousIndex()}")
-      println(", value: ${listIterator.previous()}")
-  }
-  ----------
-  Iterating backwards:
-  Index: 3, value: four
-  Index: 2, value: three
-  Index: 1, value: two
-  Index: 0, value: one
+    val numbers = listOf("one", "two", "three", "four")
+    val listIterator = numbers.listIterator()
+    while (listIterator.hasNext()) listIterator.next()
+    println("Iterating backwards:")
+    while (listIterator.hasPrevious()) {
+        print("Index: ${listIterator.previousIndex()}")
+        println(", value: ${listIterator.previous()}")
+    }
+    ----------
+    Iterating backwards:
+    Index: 3, value: four
+    Index: 2, value: three
+    Index: 1, value: two
+    Index: 0, value: one
 
 #### 3. MutableListIterator
 
+위의 이터레이터들의 특징을 모두 가지는 동시에 데이터를 추가(`add`)하고 수정(`set`)하는 기능까지 있는 이터레이터이다.
 
+    val numbers = mutableListOf("one", "four", "four") 
+    val mutableListIterator = numbers.listIterator()
+
+    mutableListIterator.next()
+    mutableListIterator.add("two")
+    mutableListIterator.next()
+    mutableListIterator.set("three")   
+    println(numbers)
+    -----
+    [one, two, three, four]
 
 #### for vs forEach
 
-~~이게 뭔가 살짝 들여다보게되면서 사건이 시작되었다..~~
+for문과 forEach문의 차이점이라고 검색하면 일반적으로 특정 자료형에서 for문과 forEach문의 속도 차이를 서술한 글이 대부분이다.   
+그런데 왜 속도가 2배, 3배나 차이나는지에 관한 설명은 나와있지 않은 것이 보통이다.   
+때문에 해당 내용에 관해 조금 자세하게 서술하려 했으나, 내용을 넣기에는 너무 주제의 글이 커질 것 같아서 두 문법의 차이점을 간단하게 서술하고 속도에 관한 차이점은 다른 주제의 링크를 남겨두는 것으로 생략하겠다.
 
-
+**키워드 카테고리의 인라인 주제 정리 시 해당 링크 추가 요망!**
 
 <br/>
 
