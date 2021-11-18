@@ -5,3 +5,5 @@
 아래와 같은 이미지를 사용하면 된다.   
 
 <img src="../image/2.1%20Iterator1.png" width="40%" height="40%">
+      
+    <img src="../image/2.1%20Iterator1.png" width="40%" height="40%">
