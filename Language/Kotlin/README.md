@@ -61,7 +61,7 @@
 
 ## Iterator
 
-코틀린에서 자주 사용하는 표준 라이브러리 중 하나이다.   
+코틀린에서 유용하게  표준 라이브러리 중 하나이다.   
 [컬렉션(Collection)](https://github.com/ii200400/IT_Skill_Question/tree/master/Language/Kotlin#collection)이나 순차적인 데이터를 가지고 있는 자료형의 데이터를 순서대로 접근하기 위한 기능이다.    
 코틀린 내부를 살펴보면 `Iterable<T>` 인터페이스를 상속받은 자료형은 모두(사실 내가 확인한 자료형만) `Iterator` 기능을 담고 있었다.    
 
@@ -123,7 +123,8 @@ forEach문 또한 같은 결과를 보이는 것을 확인할 수 있다.
 #### 1. MutableIterator
 
 가변(mutable)적인 콜렉션을 위한 이터레이터이다.   
-데이터를 삭제할 수 있는 기능(`remove`)이 추가된다.
+데이터를 삭제할 수 있는 기능(`remove`)이 추가된다.   
+~~그런데 가변적이라고 함은 add 기능도 있어야 할 것 같은데 없다.~~
 
     val numbers = mutableListOf("one", "two", "three", "four") 
     val mutableIterator = numbers.iterator()
@@ -179,13 +180,22 @@ forEach문 또한 같은 결과를 보이는 것을 확인할 수 있다.
     -----
     [one, two, three, four]
 
-#### for vs forEach
+### for vs forEach
 
-for문과 forEach문의 차이점이라고 검색하면 일반적으로 특정 자료형에서 for문과 forEach문의 속도 차이를 서술한 글이 대부분이다.   
-그런데 왜 속도가 2배, 3배나 차이나는지에 관한 설명은 나와있지 않은 것이 보통이다.   
-때문에 해당 내용에 관해 조금 자세하게 서술하려 했으나, 내용을 넣기에는 너무 주제의 글이 커질 것 같아서 두 문법의 차이점을 간단하게 서술하고 속도에 관한 차이점은 다른 주제의 링크를 남겨두는 것으로 생략하겠다.
+iterator예시를 통해 for문과 forEach문은 둘 모두 iterator를 활용하여 순차적으로 데이터를 탐색하는 기능을 가진 것을 알 수 있다.   
+둘의 차이가 궁금하여 필자가 IntelliJ를 통해 라이브러리 내부를 보았을 때, for문은 iterator와 직접적으로 사용하여 데이터를 탐색하고 forEach문은 for문을 활용하여 데이터를 탐색하는 것을 찾아볼 수 있었다.   
 
-**키워드 카테고리의 인라인 주제 정리 시 해당 링크 추가 요망!**
+<img src="../image/2.1 Iterator2.png" width="80%" height="80%">
+
+'어... 그러면 뭐가 그렇게 달라서 함수를 따로 만든 걸까?' 하는 생각에 for문과 forEach문의 차이점이라고 검색해보았다.   
+일반적으로 특정 자료형에서 for문과 forEach문의 속도 차이를 서술한 글이 대부분이었고 왜 속도가 2배, 3배나 차이나는지, 왜 어떤 자료형에서는 forEach문이 더 빠르고 어떤 자료형에서는 더 느린지에 관한 설명은 나와있지 않았다.   
+때문에 해당 내용에 관해 조금 자세하게 서술하려 했으나, 내용을 넣기에는 너무 주제의 글이 커질 것 같아서 두 문법의 차이점을 간단하게 서술하고 속도에 관한 차이점은 다른 주제의 링크[`inline` **링크 추가 요망**]()를 남겨두는 것으로 생략하겠다.
+
+**결과적으로 두 문법의 차이점은 아래와 같다.**
+
+1. forEach문은 기본적으로 람다형식의 함수를 계속 호출하는 형태로 for문 보다 속도가 느리다.
+2. forEach문은 람다함수를 사용하는 문제로 break가 되지 않는다.
+3. 몇몇 자료형의 forEach문은 내부적으로 [`inline` **링크 추가 요망**]() 키워드를 사용하여 for문 보다 속도가 빠르다.
 
 <br/>
 
@@ -200,8 +210,35 @@ for문과 forEach문의 차이점이라고 검색하면 일반적으로 특정 �
 ## Collection
 
 Collection(콜렉션)은 대부분의 프로그래밍 언어에 있는 라이브러리이며 코틀린 또한 기본적으로 제공하는 라이브러리이다.   
-순차적인 데이터(element 나 item)를 가지고 있는 자료구조들을 관리하는 유용한 도구로 사용된다.   
-코틀린에서는 대표적으로 List, Set, Map 3개의 자료형이 콜렉션에 포함된다.
+이터레이터를 상속받고 [`Generic` **링크 추가 요망**]()을 활용하여 구현된 콜렉션은 데이터들을 관리하는 유용한 도구로 사용된다.  
+
+콜렉션은 크게 Immutable(불변, only-read)과 Mutable(가변, read/write) 두 가지 유형으로 나눌 수 있다.   
+
+#### Immutable Collection
+
+참고로 라이브러리 내에서의 클래스 명은 Immutable Collection이 아닌 Collection이다.
+또한 Iterable은 Iterator을 가지고 있는 클래스로 Iterator라고 생각해도 무방할 정도로 간단한 클래스이다.
+
+<img src="../image/2.1 Collection1.PNG" width="80%" height="80%">
+
+가장 기본적인 컬랙션으로 상술했듯이 읽기만 가능하다.   
+가지고 있는 데이터들이 비어있는지 확인하는 함수(`isEmpty`) 와 특정 데이터들이 포함되어있는지 확인하는 함수(`contains`, `containsAll`)가 있다.   
+
+#### Mutable Collection
+
+<img src="../image/2.1 Collection1.PNG" width="80%" height="80%">
+
+콜렉션과 MutableIterable(MutableIterator)를 상속받아 데이터를 추가하고 삭제하는 기능이 추가된 콜랙션이다.   
+데이터 조작에 대한 함수들(`add`, `remove`, `addAll`, `removeAll`, `retainAll`, `clear`)이 추가된다.
+
++ 참고 사항   
+  코틀린 내부 라이브러리 중 Collection.kt 파일이 아닌 Collection.java 파일의 콜랙션을 사용하는 경우도 있는데 클래스명은 Collection으로 명시되어있지만 가진 기능들은 Mutable Collection이다, Collection.java 파일의 콜랙션은 아래와 같다.   
+
+
+
+<br/>
+
+코틀린에서 콜렉션이라고 하면 대표적으로 List, Set, Map 3개의 자료형을 언급하게 된다.
 
 + List   
   인덱스(Index)를 통해 특정 위치의 데이터(element)에 빠르게 접근하는 순서가 있는 자료형   
@@ -215,11 +252,7 @@ Collection(콜렉션)은 대부분의 프로그래밍 언어에 있는 라이브
   키(key)와 값(value)이라고 불리는 데이터를 하나의 집합으로 저장하고 키를 활용하여 값을 빠르게 찾는 자료형   
   키는 중복이 불가능하지만 값은 중복이 가능하고 순서보다는 키와 값 데이터의 매핑(연관성)을 중점으로 본다.
 
-### Collection types
-
-콜렉션은 크게 Mutable(가변, read/write)과 Immutable(불변, only-read)두 가지 유형으로 나눌 수 있다.
-
-
 ##### 참고
 
 + [kotlinlang.org/docs](https://kotlinlang.org/docs/collections-overview.html)
++ [Kotlin의 Collection 함수](https://medium.com/hongbeomi-dev/kotlin-collection-%ED%95%A8%EC%88%98-7a4b1290bce4)
