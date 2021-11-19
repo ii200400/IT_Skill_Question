@@ -2,7 +2,6 @@
 
 + Iterable
 + Collection
-+ Mutable vs Immutable
 + Annotation
 + Generic
 + KeyWords
@@ -16,8 +15,8 @@
 
 ## Kotlin 개요
 
-모바일, 서버 측 및 데스크톱 애플리케이션을 개발하는 개발자들이 사용하는 언어로 JetBrains에서 개발하였다.   
-2016년 첫 번째 공식 버전이 출시되고 Google I/O 2017 컨퍼런스에서 Google이 Android에서 Kotlin에 대한 최고 수준의 지원을 발표했다.   
+모바일, 서버 측 및 데스크톱 애플리케이션을 개발하는 개발자들이 사용할 수 있는 언어로 JetBrains에서 개발하였다.   
+2016년 첫 번째 공식 버전이 출시되고 Google I/O 2017 컨퍼런스에서 Google이 Android에서 Kotlin에 대한 최고 수준의 지원을 발표했다고 한다.   
 때문에 현재 코틀린은 안드로이드에서 특히 많이 쓰인다.
 
 자바와 완전호환을 내세우며 등장하였으며 자바와 견주어도 괜찮은 성능과 사용자 편의성으로 사용자들을 대거 유입하였다.   
@@ -29,7 +28,7 @@
 
 </br>
 
-### Kotlin 특징
+### Kotlin 특징(수정 요망 틀린건 아닌데 뭔가 아니다..)
 
 1. 자바와의 완전 호환   
   이미 광범위한 곳에 쓰이고 있는 자바와 호환이 된다는 것은 큰 장점이다.   
@@ -61,13 +60,14 @@
 
 ## Iterator
 
-코틀린에서 유용하게  표준 라이브러리 중 하나이다.   
+코틀린에서 유용하게 사용되는 표준 라이브러리 중 하나이다.   
 [컬렉션(Collection)](https://github.com/ii200400/IT_Skill_Question/tree/master/Language/Kotlin#collection)이나 순차적인 데이터를 가지고 있는 자료형의 데이터를 순서대로 접근하기 위한 기능이다.    
 코틀린 내부를 살펴보면 `Iterable<T>` 인터페이스를 상속받은 자료형은 모두(사실 내가 확인한 자료형만) `Iterator` 기능을 담고 있었다.    
 
 Iterator는 다양한 자료형에 상속되어있는데 아래의 그림과 같다.
   
 <img src="../image/2.1%20Iterator1.png" width="50%" height="50%">
+(출처: kotlinlang.com)
 
 <br/>
   
@@ -124,7 +124,6 @@ forEach문 또한 같은 결과를 보이는 것을 확인할 수 있다.
 
 가변(mutable)적인 콜렉션을 위한 이터레이터이다.   
 데이터를 삭제할 수 있는 기능(`remove`)이 추가된다.   
-~~그런데 가변적이라고 함은 add 기능도 있어야 할 것 같은데 없다.~~
 
     val numbers = mutableListOf("one", "two", "three", "four") 
     val mutableIterator = numbers.iterator()
@@ -194,32 +193,38 @@ iterator예시를 통해 for문과 forEach문은 둘 모두 iterator를 활용�
 **결과적으로 두 문법의 차이점은 아래와 같다.**
 
 1. forEach문은 기본적으로 람다형식의 함수를 계속 호출하는 형태로 for문 보다 속도가 느리다.
-2. forEach문은 람다함수를 사용하는 문제로 break가 되지 않는다.
+2. forEach문은 람다함수를 사용하는 문제로 break을 사용하면 continue와 같은 
 3. 몇몇 자료형의 forEach문은 내부적으로 [`inline` **링크 추가 요망**]() 키워드를 사용하여 for문 보다 속도가 빠르다.
 
 <br/>
+
+#### 자바 Iterator 라이브러리
+
+코틀린의 `MutableIterator` 클래스는 자바에서는 Iterator라는 클래스 명으로 들어가 있으며 코틀린의 Iterator와 대응되는 자바 클래스는 없다.   
+코틀린 라이브러리의 Mutable이라는 단어가 들어간 클래스들 중 몇몇은 자바 라이브러리의 일반 클래스와 대응되는 것을 볼 수 있다.   
+예를 들어 코틀린의 `MutableListIterator`와 자바의 `ListIterator`, 코틀린의 `MutableCollection`과 자바의 `Collection`가 대응된다.(개인적으로는 같아보인다.)   
+하지만 코틀린의 `MutableList`는 자바의 `ArrayList`를 이용하여 클래스를 생성한다. 때문에 자바와 코틀린은 같이 공부해야하고 확실하게 구분해야 한다고 생각한다.
 
 ##### 참고
 
 + [kotlinlang.org/docs](https://kotlinlang.org/docs/iterators.html)
 + [Kotlin] for문 vs foreach문](https://hwan-shell.tistory.com/245)
-+ [코틀린 인라인 클래스란?](https://medium.com/mj-studio/%EC%BD%94%ED%8B%80%EB%A6%B0-%EC%9D%B8%EB%9D%BC%EC%9D%B8-%ED%81%B4%EB%9E%98%EC%8A%A4%EB%9E%80-2e455c893c4a)
 
 <br/>
   
 ## Collection
 
-Collection(콜렉션)은 대부분의 프로그래밍 언어에 있는 라이브러리이며 코틀린 또한 기본적으로 제공하는 라이브러리이다.   
+Collection(콜렉션)은 코틀린 라이브러리 중 하나이며 코틀린 또한 기본적으로 제공하는 라이브러리이다.   
 이터레이터를 상속받고 [`Generic` **링크 추가 요망**]()을 활용하여 구현된 콜렉션은 데이터들을 관리하는 유용한 도구로 사용된다.  
 
 콜렉션은 크게 Immutable(불변, only-read)과 Mutable(가변, read/write) 두 가지 유형으로 나눌 수 있다.   
 
 #### Immutable Collection
 
-참고로 라이브러리 내에서의 클래스 명은 Immutable Collection이 아닌 Collection이다.
-또한 Iterable은 Iterator을 가지고 있는 클래스로 Iterator라고 생각해도 무방할 정도로 간단한 클래스이다.
-
 <img src="../image/2.1 Collection1.PNG" width="80%" height="80%">
+
+라이브러리 내에서의 클래스 명은 Immutable Collection이 아닌 Collection이다.
+또한 Iterable은 Iterator을 가지고 있는 클래스로 Iterator라고 생각해도 무방할 정도로 간단한 클래스이다.
 
 가장 기본적인 컬랙션으로 상술했듯이 읽기만 가능하다.   
 가지고 있는 데이터들이 비어있는지 확인하는 함수(`isEmpty`) 와 특정 데이터들이 포함되어있는지 확인하는 함수(`contains`, `containsAll`)가 있다.   
@@ -230,11 +235,6 @@ Collection(콜렉션)은 대부분의 프로그래밍 언어에 있는 라이브
 
 콜렉션과 MutableIterable(MutableIterator)를 상속받아 데이터를 추가하고 삭제하는 기능이 추가된 콜랙션이다.   
 데이터 조작에 대한 함수들(`add`, `remove`, `addAll`, `removeAll`, `retainAll`, `clear`)이 추가된다.
-
-+ 참고 사항   
-  코틀린 내부 라이브러리 중 Collection.kt 파일이 아닌 Collection.java 파일의 콜랙션을 사용하는 경우도 있는데 클래스명은 Collection으로 명시되어있지만 가진 기능들은 Mutable Collection이다, Collection.java 파일의 콜랙션은 아래와 같다.   
-
-
 
 <br/>
 
@@ -256,3 +256,4 @@ Collection(콜렉션)은 대부분의 프로그래밍 언어에 있는 라이브
 
 + [kotlinlang.org/docs](https://kotlinlang.org/docs/collections-overview.html)
 + [Kotlin의 Collection 함수](https://medium.com/hongbeomi-dev/kotlin-collection-%ED%95%A8%EC%88%98-7a4b1290bce4)
++ 코틀린 내부 라이브러리 주석들
