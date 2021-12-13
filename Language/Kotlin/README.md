@@ -56,7 +56,9 @@
   
 이밖에도...   
 코루틴(Coroutine), 간결성(Concise), 확장함수(Extension Functions) 등등 많은 특징을 가진다.   
-코틀린이 어떻게 쓰이는 언어이고 어떤 기능이 있는 언어인지 간결하게 확인하기 위해서는 [kotlinlang.org 다큐먼트의 Basics](https://kotlinlang.org/docs/basic-syntax.html)를 둘러보는 것을 추천한다. 물론 영어로 쓰여있기는 하나 친절하고 간결하게 쓰여있어 필자는 잘 이해하였다.
+코틀린이 어떻게 쓰이는 언어이고 어떤 기능이 있는 언어인지 간결하게 확인하기 위해서는 [kotlinlang.org 다큐먼트의 Basics](https://kotlinlang.org/docs/basic-syntax.html)를 둘러보는 것을 추천한다. 물론 영어로 쓰여있기는 하나 친절하고 간결하게 쓰여있어 필자는 잘 이해하였다.   
+만일 자바와의 차이점을 먼저 보고 싶다면 [kotlinlang.org 다큐먼트의 Platforms-JVM](https://kotlinlang.org/docs/basic-syntax.html)을 참고하자!
+
 
 ##### 참고
 
