@@ -66,8 +66,10 @@ Index를 이용하여 랜덤 접근(random access)이 가능한 순차적 자료
 ### List (리스트)
 
 빈 공간 만들지 않는 선형 자료구조이다.   
-일반적으로는 배열을 활용하여 구현하지만 노드와 링크를 활용하여 구현(LinkedList)하기도 한다.   
+일반적으로는 배열을 활용하여 구현(dynamic arrays 동적배열)하지만 노드와 링크를 활용하여 구현(LinkedList)하기도 한다.   
 노드와 링크를 활용하여 구현하는 방법은 [아래에 서술](https://github.com/ii200400/IT_Skill_Question/tree/master/CS/DataStructure#linkedlist-%EC%97%B0%EA%B2%B0%EB%A6%AC%EC%8A%A4%ED%8A%B8)하므로 지금은 배열을 활용하여 구현하였을 경우의 특징을 정리하겠다.
+
+참고로 리스트는 언어별로 자료형의 이름이 비슷하면서도 작동 방식은 상이할 수 있으므로 언어에서 리스트가 어떻게 작동되는지 잘 파악하기를 바란다. 이러한 점 때문에 필자는 각자 상이한 블로그 글로 인해서 크게 혼란스러웠다.
 
 #### 설명
 
@@ -160,7 +162,20 @@ ex) 공포게임 사일런트 힐에서는 마을 구현에만 메모리가 터�
     + 이름 그대로 이중 연결 리스트와 환형 연결 리스트의 특성을 모두 가지는 연결 리스트이다.
     + 헤드의 포인터는 테일을 가리키게 된다.
 
+### 동적배열과 연결리스트의 시간복잡도
+
+|          | List(연결리스트) |	동적배열 |
+|----------|------------------|-----------|
+| Indexing | O(N) | O(1)|
+| Insert / Delete at beginning | O(1) | O(N) |
+| Insert / Delete at end | O(1) 마지막 데이터의 주소를 알 때<br> O(N) 마지막 데이터의 주소를 모를때 |	O(1) |
+| Insert / Delete in middle |	탐색 시간 + O(1) | O(N) |
+| Insert / Delete average | O(N) | O(1)|
+
+개인적으로 동적배열이 가장 뒤에 데이터를 추가할 때 왜 O(1)인지 모르겠다...
+
 ### 참조
+
   + https://opentutorials.org/module/1335/8636
   + https://wayhome25.github.io/cs/2017/04/17/cs-18-1/
   
