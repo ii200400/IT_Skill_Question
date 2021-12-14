@@ -129,12 +129,12 @@ ex) 공포게임 사일런트 힐에서는 마을 구현에만 메모리가 터�
 연결리스트의 헤드(Head)를 시작으로 각 노드의 포인터를 사용하여리스트를 순회할 수 있게 한다.   
 
 삽입 시 아래와 같은 과정을 거친다.   
-가장 앞에 노드를 추가해주는 경우도 고려해야 한다.
-<img src="https://user-images.githubusercontent.com/19484971/145765069-ed8f5321-6970-41fa-82f3-6ffc16be80df.png" width="60%" height="60%">
+가장 앞에 노드를 추가해주는 경우도 고려해야 한다.   
+<img src="https://user-images.githubusercontent.com/19484971/145765069-ed8f5321-6970-41fa-82f3-6ffc16be80df.png" width="400">
 
 삭제 시 아래와 같은 과정을 거친다.   
-삽입과 같이 가장 앞의 노드를 삭제하는 경우도 고려해야 한다.
-<img src="https://user-images.githubusercontent.com/19484971/145765519-12eb8571-5e7b-4fa6-a459-e23abc4b28c9.png" width="40%" height="40%">
+삽입과 같이 가장 앞의 노드를 삭제하는 경우도 고려해야 한다.   
+<img src="https://user-images.githubusercontent.com/19484971/145765519-12eb8571-5e7b-4fa6-a459-e23abc4b28c9.png" width="400">
 
 ### 특징
 
@@ -148,16 +148,19 @@ ex) 공포게임 사일런트 힐에서는 마을 구현에만 메모리가 터�
 1. Singly Linked List(연결 리스트)   
     + 가장 기본적인 연결리스트
     + 각 노드는 자신의 값과 다음 노드를 가리키는 하나의 포인터를 가진다.
-<img src="https://user-images.githubusercontent.com/19484971/145764060-0c6388a1-8715-42f0-add6-af6dfd666b3b.png" width="40%" height="40%">
+
+<img src="https://user-images.githubusercontent.com/19484971/145764060-0c6388a1-8715-42f0-add6-af6dfd666b3b.png" width="400">
 
 2. Doubly Linked List(이중 연결 리스트)   
     + 각 노드는 자신의 값과 앞, 뒤 노드를 가리키는 포인터를 가진다.
-<img src="https://user-images.githubusercontent.com/19484971/145764587-4c4b242c-5837-461d-ac63-b24dc2bb2667.png" width="40%" height="40%">
+
+<img src="https://user-images.githubusercontent.com/19484971/145764587-4c4b242c-5837-461d-ac63-b24dc2bb2667.png" width="400">
 
 3. Circular Linked List(환형 연결 리스트)   
     + 마지막 노드인 테일(Tail)의 포인터를 첫번째 노드로 이어준 연결 리스트이다.
     + 헤드가 없다.
-<img src="https://user-images.githubusercontent.com/19484971/145764881-2d348983-8923-48b1-ac9e-872262b410b5.png" width="40%" height="40%">
+
+<img src="https://user-images.githubusercontent.com/19484971/145764881-2d348983-8923-48b1-ac9e-872262b410b5.png" width="400">
 
 4. Circular Doubly Linked List(환형 이중 연결 리스트)   
     + 이름 그대로 이중 연결 리스트와 환형 연결 리스트의 특성을 모두 가지는 연결 리스트이다.
@@ -205,7 +208,15 @@ ex) 공포게임 사일런트 힐에서는 마을 구현에만 메모리가 터�
 
 ![Stack1](../image/1.1%20Stack1.png)
 
+### 백준 문제 풀이
 
+[10828번 스택](https://www.acmicpc.net/problem/10828)   
+백준 풀이 공유 링크 : http://boj.kr/a6077912babd4197a06ca2ad19a1acc0
+
+[9012번 괄호](https://www.acmicpc.net/problem/9012)   
+백준 풀이 공유 링크 : http://boj.kr/ecdf3d7fc35f49ec9bcfe37017345092
+
+[더 많은 스택 문제!](https://www.acmicpc.net/problemset?sort=ac_desc&algo=71)
 
 #### 활용 예시
 
