@@ -211,7 +211,7 @@ ex) 공포게임 사일런트 힐에서는 마을 구현에만 메모리가 터�
 
 ![Stack1](../image/1.1%20Stack1.png)
 
-### 백준 문제 풀이
+#### 백준 문제 풀이
 
 [10828번 스택](https://www.acmicpc.net/problem/10828)   
 깃허브 풀이 링크 : https://github.com/ii200400/algorithm/blob/master/Baekjoon/kotlin/src/10828.kt     
@@ -272,7 +272,7 @@ LinkedList를 이용해서 만든 큐이다. 오버플로우가 발생하지 않
 
 </br>
 
-### 백준 문제 풀이
+#### 백준 문제 풀이
 
 [10845번 큐](https://www.acmicpc.net/problem/10845)   
 깃허브 풀이 링크 : https://github.com/ii200400/algorithm/blob/master/Baekjoon/kotlin/src/10845.kt   
@@ -293,8 +293,6 @@ LinkedList를 이용해서 만든 큐이다. 오버플로우가 발생하지 않
 </br>
 
 ## Graph
-
-#### 정의
 
 노드(node)와 그 노드를 연결하는 간선(edge)의 집합을 의미한다.   
 **네트워크 모델**을 만들기 위해서 사용되었다고 한다.
