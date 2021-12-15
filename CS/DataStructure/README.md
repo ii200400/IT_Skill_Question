@@ -29,8 +29,8 @@ Array와 List, 일부에서는 Queue 등.. 자료형처럼 사용하지만 엄�
 
 **<code>꼭 자료구조 종류의 특징과 유사한 자료구조 간의 차이점을 중심으로 읽고 다른 카테고리(DB, 네트워크 등)의 기본이 됨을 기억하자!</code>**
 
-해당 글은 다양한 블로그와 <https://www.codeground.org>의 Codeground Note, 영문 를 참고하여 작성하였음을 밝힌다.
-또한, 백준 문제 풀이는 모두 Kotlin으로 해결하였다.
+해당 글은 다양한 블로그와 <https://www.codeground.org>의 Codeground Note, 영문위키를 참고하여 작성하였음을 밝힌다.
+또한, 백준 문제 풀이는 모두 Kotlin으로 해결하였으며 깃허브에는 풀이 방법과 과정에 대한 설명을 작성하였다. (너무 간단해서 작성할 내용이 없다면 설명이 없을 수도 있다)
 
 </br>
 
@@ -130,11 +130,11 @@ ex) 공포게임 사일런트 힐에서는 마을 구현에만 메모리가 터�
 
 삽입 시 아래와 같은 과정을 거친다.   
 가장 앞에 노드를 추가해주는 경우도 고려해야 한다.   
-<img src="https://user-images.githubusercontent.com/19484971/145765069-ed8f5321-6970-41fa-82f3-6ffc16be80df.png" width="400">
+<img src="https://user-images.githubusercontent.com/19484971/145765069-ed8f5321-6970-41fa-82f3-6ffc16be80df.png" width="300">
 
 삭제 시 아래와 같은 과정을 거친다.   
 삽입과 같이 가장 앞의 노드를 삭제하는 경우도 고려해야 한다.   
-<img src="https://user-images.githubusercontent.com/19484971/145765519-12eb8571-5e7b-4fa6-a459-e23abc4b28c9.png" width="400">
+<img src="https://user-images.githubusercontent.com/19484971/145765519-12eb8571-5e7b-4fa6-a459-e23abc4b28c9.png" width="300">
 
 ### 특징
 
@@ -149,7 +149,7 @@ ex) 공포게임 사일런트 힐에서는 마을 구현에만 메모리가 터�
     + 가장 기본적인 연결리스트
     + 각 노드는 자신의 값과 다음 노드를 가리키는 하나의 포인터를 가진다.
 
-<img src="https://user-images.githubusercontent.com/19484971/145764060-0c6388a1-8715-42f0-add6-af6dfd666b3b.png" width="400">
+<img src="https://user-images.githubusercontent.com/19484971/145764060-0c6388a1-8715-42f0-add6-af6dfd666b3b.png" width="300">
 
 2. Doubly Linked List(이중 연결 리스트)   
     + 각 노드는 자신의 값과 앞, 뒤 노드를 가리키는 포인터를 가진다.
@@ -160,7 +160,7 @@ ex) 공포게임 사일런트 힐에서는 마을 구현에만 메모리가 터�
     + 마지막 노드인 테일(Tail)의 포인터를 첫번째 노드로 이어준 연결 리스트이다.
     + 헤드가 없다.
 
-<img src="https://user-images.githubusercontent.com/19484971/145764881-2d348983-8923-48b1-ac9e-872262b410b5.png" width="400">
+<img src="https://user-images.githubusercontent.com/19484971/145764881-2d348983-8923-48b1-ac9e-872262b410b5.png" width="300">
 
 4. Circular Doubly Linked List(환형 이중 연결 리스트)   
     + 이름 그대로 이중 연결 리스트와 환형 연결 리스트의 특성을 모두 가지는 연결 리스트이다.
@@ -187,22 +187,25 @@ ex) 공포게임 사일런트 힐에서는 마을 구현에만 메모리가 터�
 
 ## Stack and Queue
 
+선형 자료구조에서 가장 대표적인 데이터 관리 방법인 스택과 큐에 대해서 알아보자!
+두 자료구조 모두 배열과 링크드 리스트를 활용하여 구현할 수 있으며 기본적인 용어를 꼭 기억하고 넘어가자.
+
 ### Stack
 
-먼저 들어간 값이 나중에 나오는 FILO(First In, Last Out / 선입후출)의 특징을 가지는 선형 자료구조이다. 배열이나 링크드 리스트를 활용하여 구현할 수 있다. 
+먼저 들어간 값이 나중에 나오는 FILO(First In, Last Out / 선입후출)의 특징을 가지는 선형 자료구조이다.
 
 #### 용어
 
 1. FILO(First In, Last Out / 선입후출), LIFO(Last in First Out / 후입선출)   
    스택의 특징을 나타내는 용어로 먼저 들어간 것이 나중에 나오고, 나중에 들어간 것이 먼저 나온다는 의미이다. 스택의 작동 방식을 알면 이해가 쉽다.
 3. Top : 가장 위에 존재하는 원소의 위치를 가리키고 있는 인덱스 혹은 포인터 혹은 원소의 값
-1. push : 스택에서 값을 삽입하는 과정
-2. pop : 스택에 값을 빼내는 과정
+1. push : 스택에서 값을 삽입하는 메소드
+2. pop : 스택에 값을 빼내는 메소드
 
 #### 특징
 
 1. LIFO(Last in First Out)
-   먼저 들어간 원소가 나중에 나오는 조건을 가진다. 접시를 차곡차곡 쌓아올리고 위에서부터 쓰는 것을 상상하면 된다.
+   먼저 들어간 원소가 나중에 온다는 의미, 접시를 차곡차곡 쌓아올리고 위에서부터 쓰는 것을 상상하면 된다.
 
 #### 예시
 
@@ -211,9 +214,11 @@ ex) 공포게임 사일런트 힐에서는 마을 구현에만 메모리가 터�
 ### 백준 문제 풀이
 
 [10828번 스택](https://www.acmicpc.net/problem/10828)   
+깃허브 풀이 링크 : https://github.com/ii200400/algorithm/blob/master/Baekjoon/kotlin/src/10828.kt     
 백준 풀이 공유 링크 : http://boj.kr/a6077912babd4197a06ca2ad19a1acc0
 
 [9012번 괄호](https://www.acmicpc.net/problem/9012)   
+깃허브 풀이 링크 : https://github.com/ii200400/algorithm/blob/master/Baekjoon/kotlin/src/9012.kt
 백준 풀이 공유 링크 : http://boj.kr/ecdf3d7fc35f49ec9bcfe37017345092
 
 [더 많은 스택 문제!](https://www.acmicpc.net/problemset?sort=ac_desc&algo=71)
@@ -226,55 +231,64 @@ ex) 공포게임 사일런트 힐에서는 마을 구현에만 메모리가 터�
 
 ### Queue
 
+스택과 대비대는 FIFO(First in First Out / 선입선출)의 특징을 가지는 선형 자료구조이다.
+
 #### 용어
 
-1. enqueue : 큐에 데이터를 저장한다는 의미. 
-2. dequeue : 큐에서 데이터를 뺀다는 의미. 큐에 들어있는 데이터 중 가장 오래된 데이터를 가져온다.
-3. front : enqueue를 할 때 큐에서 뺄 데이터의 위치를 의미한다.
-4. rear : dequeue를 할 때 큐에 넣을 데이터의 위치를 의미한다.
+1. enqueue : 큐에 데이터를 저장하는 메소드
+2. dequeue : 큐에서 데이터를 빼는 메소드, 큐에 들어있는 데이터 중 가장 오래된 데이터를 가져온다.
+3. front : enqueue를 할 때 큐에서 뺄 데이터의 위치
+4. rear/back : dequeue를 할 때 큐에 넣을 데이터의 위치
 5. Overflow(오버플로우) : 더 이상 큐에 데이터를 저장할 수 없는 상태
 6. Underflow(언더플로우) : 큐에 저장된 데이터가 없어서 데이터를 가져올 수 없는 상태
 
 #### 특징
 1. FIFO(First In First Out / 선입선출)   
-    나중에 들어간 원소가 먼저 나오는 조건을 가진다. 버스정류장에서 차례로 버스를 타는 사람들을 생각해보자.
+   먼저 들어간 데이터가 먼저 나온다는 의미, 버스정류장에서 차례로 버스를 타는 사람들을 생각해보자.
 
 #### 종류
 
-1. Queue\
+1. Queue   
 가장 일반적인 큐
 
-(아래사진은 위에서 아래, 왼쪽에서 오른쪽 순서이다.)\
-<img src="../image/1.1%20Queue1.PNG" width="50%" height="50%">
+</br>
+
+2. Circular Queue(환형 큐)   
+배열로 큐를 구현할 때 앞의 남는 저장 공간을 활용하기 위해 환형 배열로 구현한 큐
+
+![Queue2](https://user-images.githubusercontent.com/19484971/146133406-ae2924a7-acc3-4dab-a796-cc3458e1cd96.png)   
+**환형 배열로 구현한 큐의 dequeue**
+
+![Queue3](https://user-images.githubusercontent.com/19484971/146133848-5bbe0ad6-6ffd-4591-9cce-85036665e8b4.png)   
+**환형 배열로 구현한 큐의 enqueue**
 
 </br>
 
-2. Circular Queue(환형 큐)\
-큐의 남는 저장 공간을 활용하기 위한 방식.
-
-(아래사진은 왼쪽에서 오른쪽, 위에서 아래 순서이다.)\
-![Queue2](../image/1.1%20Queue2.PNG)
-
-</br>
-
-3. Linked Queue\
-LinkedList를 이용해서 만든 큐이다.\
-오버플로우가 발생하지 않는 것이 특징이다.
+3. Linked Queue   
+LinkedList를 이용해서 만든 큐이다. 오버플로우가 발생하지 않는 것이 특징이다.
+그런데 필자는 Linked Queue 라고 부른 적은 없고 그냥 Queue라고 한다. 상관이 없는 것인지는 모르겠다.
 
 ![Queue3](../image/1.1%20Queue3.jpg)
 
 </br>
 
+### 백준 문제 풀이
+
+[10845번 큐](https://www.acmicpc.net/problem/10845)   
+깃허브 풀이 링크 : https://github.com/ii200400/algorithm/blob/master/Baekjoon/kotlin/src/10845.kt   
+백준 풀이 공유 링크 : http://boj.kr/126316f9f1bb4c8a936f2b8cc41a7315
+
+[1158번 요세푸스 문제](https://www.acmicpc.net/problem/1158)   
+깃허브 풀이 링크 : https://github.com/ii200400/algorithm/blob/master/Baekjoon/kotlin/src/1158.kt   
+백준 풀이 공유 링크(링크드 리스트) : http://boj.kr/126316f9f1bb4c8a936f2b8cc41a7315   
+백준 풀이 공유 링크(큐) : http://boj.kr/13797d6b38d145c487e7727b6ac936e2
+
+[더 많은 큐 문제!](https://www.acmicpc.net/problemset?sort=ac_desc&algo=72)
+
 #### 활용 예시
 
 1. 인쇄기 대기열같은 일반적인 대기줄 / 대기열에 사용된다.
 2. DFS(너비우선탐색) 알고리즘에서 사용된다.
-
-#### 생각해보기
-+ Stack 을 사용하여 미로찾기 구현하기
-+ Queue 를 사용하여 Heap 자료구조 구현하기
-+ Stack 두 개로 Queue 자료구조 구현하기
-+ Stack 으로 괄호 유효성 체크 코드 구현하기
 
 </br>
 
