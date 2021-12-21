@@ -7,8 +7,8 @@
   + Merge Sort
   + Quick Sort
   + Topological Sort
-+ Sieve of Eratosthenes
 + Divide & Conquer
++ Sieve of Eratosthenes
 + Binary Search
 + Graph Search
   + DFS(Depth-First Search)
@@ -135,52 +135,120 @@ fun insertSort(A: Array<Int>){
     }
 ```
 
-### Merge Sort(병합 정렬)
+### Merge Sort(합병 정렬)
 
-[분할 정복 알고리즘](https://github.com/ii200400/IT_Skill_Question/tree/master/CS/DataStructure#Divide-&-Conquer)을 활용한 정렬 방법   
-나뉘는 부분리스트의 개수에 따라서 n-way 병합 정렬이라고도 하며 기본적으로는 2-way 병합 정렬을 사용한다.
+[분할 정복 알고리즘](https://github.com/ii200400/IT_Skill_Question/tree/master/CS/DataStructure#Divide-&-Conquer)을 활용한 정렬 방법으로 정렬할 리스트가 1개가 될 때 까지 부분 리스트로 분할하였다가 합병을 진행하면서 정렬을 하는 방식이다.   
+나뉘는 부분리스트의 개수에 따라서 n-way 합병 정렬이라고도 하며 기본적으로는 2-way 합병 정렬을 사용한다.
 
 일관적으로 O(nlog n)의 시간복잡도를 가진다.
 
-> 위키에 있었던 병합 정렬 예시   
+> 위키에 있었던 합병 정렬 예시   
 > <img src="https://upload.wikimedia.org/wikipedia/commons/c/cc/Merge-sort-example-300px.gif" width=300>
 
 #### 구현 방법 
 
 1. 정렬되지 않은 숫자들을 1개가 될 때까지 나눈다. (숫자가 1개인 리스트는 정렬된 것과 같으므로)
-2. 다른 리스트들과 숫자를 하나씩 비교하여 병합을 진행한다.
+2. 다른 리스트와 숫자를 하나씩 비교하여 합병을 진행하면서 정렬한다.
 3. 리스트가 하나만 남을 때 까지 2를 반복한다. 
 
 #### 코드
 
 ```
+// mergeSort with kotlin
 
+// A: 정렬하고 싶은 리스트, tempA: A리스트의 복사본, low/high: 정렬하고 싶은 범위(low와 high 포함)
+// A 리스트 자체를 정렬시킨다.
+
+fun mergeSort(A: Array<Int>, tempA: Array<Int>, low: Int, high: Int){
+    if (low >= high) return
+
+    val mid = (low + high) / 2
+    mergeSort(A, tempA, low, mid)
+    mergeSort(A, tempA, mid+1, high)
+
+    var leftIdx = low
+    var rightIdx = mid+1
+    var tempIdx = low
+    while (tempIdx <= high){
+        when {
+            leftIdx > mid -> {
+                tempA[tempIdx] = A[rightIdx]
+                rightIdx += 1
+            }
+            rightIdx > high -> {
+                tempA[tempIdx] = A[leftIdx]
+                leftIdx += 1
+            }
+            A[leftIdx] < A[rightIdx] -> {
+                tempA[tempIdx] = A[leftIdx]
+                leftIdx += 1
+            }
+            else -> {
+                tempA[tempIdx] = A[rightIdx]
+                rightIdx += 1
+            }
+        }
+
+        tempIdx += 1
+    }
+
+    for (i in low..high) A[i] = tempA[i]
+}
 ```
+
+위의 2-way 탑다운(top-down)방법 이외에도 많은 구현 방법이 있다.   
 
 ### Quick Sort (퀵 정렬)
 
+[분할 정복 알고리즘](https://github.com/ii200400/IT_Skill_Question/tree/master/CS/DataStructure#Divide-&-Conquer)을 활용하는 정렬 알고리즘이다. 사용자가 지정한 임의의 pivot을 기준으로 큰 값과 작은 값들을 분할하여 정렬을 진행하는 방식이다.   
+정렬을 진행할 때 마다 1개의 숫자가 자신의 자리를 찾는다는 특징이 있다.
+
+사용자가 지정한 pivot이 리스트들의 최소값 혹은 최대값인 경우가 최악의 경우이며 중앙값인 경우가 최선의 경우가 된다. 최선의 경우 O(n), 최악의 경우 O(n^2) 의 시간복잡도를 가진다.   
+
 #### 구현 방법 
 
-1. 
+1. pivot이 되는 숫자를 하나 지정한다.
+2. pivot을 기준으로 작거나 같은 수를 왼쪽 파티션, 큰 수를 오른쪽 파티션으로 보낸다.
+3. 모든 수가 정렬될 때 까지 1~2를 반복한다.
 
 #### 코드
 
 ```
+// quickSort with kotlin
 
+// A: 정렬하고 싶은 리스트, start/end: 정렬하고 싶은 범위(start와 end 포함)
+// A 리스트 자체를 정렬시킨다.
+
+fun quickSort(A: Array<Int>, start: Int, end: Int){
+    val pivot = A[start]
+    var left = start+1
+    var right = end
+
+    while (true){
+        while (left <= right && A[left] <= pivot) left += 1
+        while (left <= right && pivot <= A[right]) right -= 1
+
+        if (left > right) break
+        val temp = A[left]
+        A[left] = A[right]
+        A[right] = temp
+    }
+
+    A[start] = A[right]
+    A[right] = pivot
+
+    if (right - start > 2) quickSort(A, start, right-1)
+    if (end - right > 2) quickSort(A, right+1, end)
+}
 ```
 
-### Quick Sort (퀵 정렬)
+#### 백준 문제 풀이
 
-
-#### 구현 방법 
-
-1. 
-
-#### 코드
-
-```
-
-```
+[1838번 버블 정렬](https://www.acmicpc.net/problem/1838)   
+이름은 버블 정렬이라고 적혀있지만 합병 정렬 혹은 퀵 정렬을 반드시 사용해야하는 문제이다.   
+게다가 버블정렬을 확실하게 파악하지 못하였다면 해결하기 힘들 수 있다.   
+깃허브 풀이 링크 : https://github.com/ii200400/algorithm/blob/master/Baekjoon/kotlin/src/1838.kt
+백준 풀이 공유 링크 : http://boj.kr/924fd08cd40c43cda9125313816e5157
 
 ### Topological Sort (위상 정렬)
 
@@ -202,6 +270,7 @@ fun insertSort(A: Array<Int>){
 divide(분할) : 정렬되지 않은 리스트를 절반으로 잘라 비슷한 크기의 두 부분 리스트로 나눈다.
 conquer(정복) : 각 부분 리스트를 재귀적으로 합병 정렬을 이용해 정렬한다.
 combine(결합) : 두 부분 리스트를 다시 하나의 정렬된 리스트로 합병한다. 이때 정렬 결과가 임시배열에 저장된다.
+
 
 
 ## Sieve of Eratosthenes
