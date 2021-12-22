@@ -269,6 +269,6 @@ Collection(콜렉션)은 코틀린 라이브러리 중 하나이며 코틀린 �
 
 ## inline
 
-<https://www.w3schools.com/java/java_wrapper_classes.asp>
-<https://wooooooak.github.io/kotlin/2021/01/03/inline_class/>
-<https://skyblue300a.tistory.com/19>
+<https://www.w3schools.com/java/java_wrapper_classes.asp>   
+<https://wooooooak.github.io/kotlin/2021/01/03/inline_class/>   
+<https://skyblue300a.tistory.com/19>   
