@@ -4,6 +4,7 @@
   + 자료형
     + 기본 자료형
     + 자료형 확인 & 캐스트
+  + classes and objects
 + Iterable
 + Collection
 + Annotation
@@ -265,3 +266,9 @@ Collection(콜렉션)은 코틀린 라이브러리 중 하나이며 코틀린 �
 + [kotlinlang.org/docs](https://kotlinlang.org/docs/collections-overview.html)
 + [Kotlin의 Collection 함수](https://medium.com/hongbeomi-dev/kotlin-collection-%ED%95%A8%EC%88%98-7a4b1290bce4)
 + 코틀린 내부 라이브러리 주석들
+
+## inline
+
+<https://www.w3schools.com/java/java_wrapper_classes.asp>
+<https://wooooooak.github.io/kotlin/2021/01/03/inline_class/>
+<https://skyblue300a.tistory.com/19>
