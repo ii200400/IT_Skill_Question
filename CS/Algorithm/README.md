@@ -198,6 +198,17 @@ fun mergeSort(A: Array<Int>, tempA: Array<Int>, low: Int, high: Int){
 
 위의 2-way 탑다운(top-down)방법 이외에도 많은 구현 방법이 있다.   
 
+
+#### 백준 문제 풀이
+
+[1838번 버블 정렬](https://www.acmicpc.net/problem/1838)     
+깃허브 풀이 링크 : https://github.com/ii200400/algorithm/blob/master/Baekjoon/kotlin/src/1838.kt   
+백준 풀이 공유 링크 : http://boj.kr/924fd08cd40c43cda9125313816e5157
+
+이름은 버블 정렬이라고 적혀있지만 합병 정렬과 버블 정렬의 작동 원리를 확실히 알고 있어야 해결할 수 있는 문제이다.   
+문제 해결을 위한 코드 생성보다 코드 생성을 위한 해결 방법을 고안하는 쪽이 훨씬 더 어려운 문제이다.   
+필자는 문제 해결에 좀 많이 해매었지만 성취감도 있었고 기초를 확실히 다지는 문제같아 개인적으로는 좋은 문제라고 생각한다!👍
+
 ### Quick Sort (퀵 정렬)
 
 [분할 정복 알고리즘](https://github.com/ii200400/IT_Skill_Question/tree/master/CS/DataStructure#Divide-&-Conquer)을 활용하는 정렬 알고리즘이다. 사용자가 지정한 임의의 pivot을 기준으로 큰 값과 작은 값들을 분할하여 정렬을 진행하는 방식이다.   
@@ -241,14 +252,6 @@ fun quickSort(A: Array<Int>, start: Int, end: Int){
     if (end - right > 2) quickSort(A, right+1, end)
 }
 ```
-
-#### 백준 문제 풀이
-
-[1838번 버블 정렬](https://www.acmicpc.net/problem/1838)   
-이름은 버블 정렬이라고 적혀있지만 합병 정렬 혹은 퀵 정렬을 반드시 사용해야하는 문제이다.   
-게다가 버블정렬을 확실하게 파악하지 못하였다면 해결하기 힘들 수 있다.   
-깃허브 풀이 링크 : https://github.com/ii200400/algorithm/blob/master/Baekjoon/kotlin/src/1838.kt
-백준 풀이 공유 링크 : http://boj.kr/924fd08cd40c43cda9125313816e5157
 
 ### Topological Sort (위상 정렬)
 
