@@ -6,6 +6,7 @@
   + Insert Sort
   + Merge Sort
   + Quick Sort
+  + Heap Sort
   + Topological Sort
 + Sieve of Eratosthenes
 + Two Pointer
