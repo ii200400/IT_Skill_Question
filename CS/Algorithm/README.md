@@ -7,14 +7,20 @@
   + Merge Sort
   + Quick Sort
   + Topological Sort
-+ Divide & Conquer
 + Sieve of Eratosthenes
++ Two Pointer
++ Sliding Window
 + Binary Search
++ Dynamic Programming
+  + Knapsack
+  + LCS(Longest Common Subsequence)
+  + LIS(Longest Increasing Subsequence)
+  + Edit Distance
+  + Matrix Chain Multiplication
++ Divide & Conquer
 + Graph Search
   + DFS(Depth-First Search)
   + BFS(Breadth-First Search)
-+ Dynamic Programming
-  + Knapsack
 
 ## Sort (정렬)
 
