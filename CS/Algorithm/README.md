@@ -29,6 +29,8 @@ n개의 서로 다른 수를 오름차순 혹은 내림차순으로 만드는 �
 
 정렬 알고리즘은 크게 시간복잡도가 O(n^2)인 것과 O(nlogn)인 것으로 나눌 수 있는데 실질적으로 전자의 알고리즘은 사용하지 않는다.
 
+정렬 알고리즘은 따로 알고리즘 문제가 있지는 않아 필자는 하나의 정렬 문제에 다양한 알고리즘을 적용시켜 잘 돌아가는지 확인하고 넘어갔다.
+
 ### Bubble Sort (거품 정렬)
 
 순서대로 자신과 인접한 숫자와 비교를 하고 자리를 바꿔 나가면서 정렬하는 방식, 한 번의 사이클마다 (오름차순이라면)가장 큰 숫자가 가장 마지막 자리에 있는 것을 확인할 수 있다.   
@@ -260,7 +262,34 @@ fun quickSort(A: Array<Int>, start: Int, end: Int){
 }
 ```
 
+#### 활용
+
+정렬에도 쓰이지만 특정 원소를 기준으로 큰 값과 작은 값을 나눈다는 특징을 활용하여 n개의 데이터 중에서 k번째 원소를 찾는데 해당 알고리즘이 좋은 방안이 되기도 한다.
+
+### Heap Sort (힙 정렬)
+
+최소 힙(min heap) 혹은 최대 힙(max heap)을 활용한 정렬 알고리즘   
+[자료구조의 힙](https://github.com/ii200400/IT_Skill_Question/tree/master/CS/DataStructure#heap)을 숙지하고만 있다면 바로 적용할 수 있는 알고리즘이다.
+
+힙의 특징을 그대로 이어받아 비어있는 힙에 원소를 삽입하고 하나씩 원소를 빼면서 생기는 heapify를 진행하는 시간복잡도 O(nlogn)을 가진다.   
+
+로그를 계산하는 계산법에 의해서 O(nlogn)이 나온다고 하는데 이해를 못해서 필자는 단순히 n개의 데이터를 삽입/삭제하는데 O(logn)의 수행시간이 걸리는 최대/최소 힙을 활용하므로 O(nlogn) 시간복잡도라고 단순하게 생각하였다.
+
+#### 구현 방법 
+
+힙만 구현할 수 있다면 별도로 필요한 알고리즘은 없다.
+
+#### 코드
+
+```
+// heapSort with kotlin
+
+
+```
+
 ### Topological Sort (위상 정렬)
+
+
 
 #### 구현 방법 
 
@@ -269,6 +298,8 @@ fun quickSort(A: Array<Int>, start: Int, end: Int){
 #### 코드
 
 ```
+// topologicalSort with kotlin
+
 
 ```
 
@@ -277,14 +308,29 @@ fun quickSort(A: Array<Int>, start: Int, end: Int){
 문제를 작은 문제들로 나누어 해결하는 알고리즘 기법이다.   
 세 가지 과정으로 나누는데 다음과 같다.
 
-divide(분할) : 정렬되지 않은 리스트를 절반으로 잘라 비슷한 크기의 두 부분 리스트로 나눈다.
-conquer(정복) : 각 부분 리스트를 재귀적으로 합병 정렬을 이용해 정렬한다.
-combine(결합) : 두 부분 리스트를 다시 하나의 정렬된 리스트로 합병한다. 이때 정렬 결과가 임시배열에 저장된다.
+divide(분할) : 비슷하지만 더 작은 문제들로 나눈다.
+conquer(정복) : 작은 문제들을 해결한다.
+combine(결합) : 작은 문제들의 답을 활용하여 더 큰 문제를 해결한다.
 
-
+분할정복 알고리즘은 단순히 문제를 나눠서 해결하자는 개념에 가까운 알고리즘이여서 해당 알고리즘을 직접 활용하여 문제를 해결하기 보다는 다른 알고리즘 기법에 적용되어 문제를 해결하는 모습을 보인다. 대표적인 분할정복을 활용하는 알고리즘의 예는 [퀵 정렬](https://github.com/ii200400/IT_Skill_Question/tree/master/CS/Algorithm#quick-sort-%ED%80%B5-%EC%A0%95%EB%A0%AC), [합병 정렬](https://github.com/ii200400/IT_Skill_Question/tree/master/CS/Algorithm#merge-sort%ED%95%A9%EB%B3%91-%EC%A0%95%EB%A0%AC), 고속 푸리에 변환 등이 있다.
 
 ## Sieve of Eratosthenes
 
+
+
+## Two Pointer
+
+
+
+## Sliding Window
+
+
+
+## Binary Search
+
+
+
+## Dynamic Programming
 
 
 
