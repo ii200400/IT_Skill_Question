@@ -242,7 +242,7 @@ ex) 공포게임 사일런트 힐에서는 마을 구현에만 메모리가 터�
 6. Underflow(언더플로우) : 큐에 저장된 데이터가 없어서 데이터를 가져올 수 없는 상태
 
 > <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Data_Queue.svg/450px-Data_Queue.svg.png" width="300">   
-> 위키백과에 있던 큐를 표현한 그림
+위키백과에 있던 큐를 표현한 그림
 
 #### 특징
 
@@ -380,7 +380,13 @@ NxN BooleanMatrix(일반적으로 2차원 배열로 구현)을 만든 뒤 행렬
 
 </br>
 
-이렇게 표현이 자유로운 [그래프를 탐색하는 알고리즘](https://github.com/ii200400/IT_Skill_Question/blob/master/CS/Algorithm/README.md#graph-search)은 알고리즘 글에 따로 정리를 해놓았으니 참고하자.
+#### 그래프 알고리즘 관련 링크
+
++ [그래프를 탐색하는 알고리즘](https://github.com/ii200400/IT_Skill_Question/blob/master/CS/Algorithm/README.md#graph-search)
++ [그래프의 특정 간선만을 선택하여 비용이 가장 작은 트리를 만드는 알고리즘](https://github.com/ii200400/IT_Skill_Question/blob/master/CS/Algorithm/README.md#minimum-spanning-tree-mst-%EC%B5%9C%EC%86%8C-%EC%8B%A0%EC%9E%A5-%ED%8A%B8%EB%A6%AC)
++ [노드에서 노드까지 가는데 가장 적은 비용을 찾는 알고리즘](https://github.com/ii200400/IT_Skill_Question/blob/master/CS/Algorithm/README.md#%EA%B7%B8%EB%9E%98%ED%94%84-%EC%B5%9C%EB%8B%A8-%EA%B2%BD%EB%A1%9C-%EB%AC%B8%EC%A0%9C) 
+
+</br>
 
 ## Tree
 
