@@ -303,17 +303,6 @@ fun quickSort(A: Array<Int>, start: Int, end: Int){
 
 ```
 
-## Divide & Conquer
- 
-문제를 작은 문제들로 나누어 해결하는 알고리즘 기법이다.   
-세 가지 과정으로 나누는데 다음과 같다.
-
-divide(분할) : 비슷하지만 더 작은 문제들로 나눈다.
-conquer(정복) : 작은 문제들을 해결한다.
-combine(결합) : 작은 문제들의 답을 활용하여 더 큰 문제를 해결한다.
-
-분할정복 알고리즘은 단순히 문제를 나눠서 해결하자는 개념에 가까운 알고리즘이여서 해당 알고리즘을 직접 활용하여 문제를 해결하기 보다는 다른 알고리즘 기법에 적용되어 문제를 해결하는 모습을 보인다. 대표적인 분할정복을 활용하는 알고리즘의 예는 [퀵 정렬](https://github.com/ii200400/IT_Skill_Question/tree/master/CS/Algorithm#quick-sort-%ED%80%B5-%EC%A0%95%EB%A0%AC), [합병 정렬](https://github.com/ii200400/IT_Skill_Question/tree/master/CS/Algorithm#merge-sort%ED%95%A9%EB%B3%91-%EC%A0%95%EB%A0%AC), 고속 푸리에 변환 등이 있다.
-
 ## Sieve of Eratosthenes
 
 
@@ -334,5 +323,39 @@ combine(결합) : 작은 문제들의 답을 활용하여 더 큰 문제를 해�
 
 
 
+## Divide & Conquer
+ 
+문제를 작은 문제들로 나누어 해결하는 알고리즘 기법이다.   
+세 가지 과정으로 나누는데 다음과 같다.
 
+divide(분할) : 비슷하지만 더 작은 문제들로 나눈다.
+conquer(정복) : 작은 문제들을 해결한다.
+combine(결합) : 작은 문제들의 답을 활용하여 더 큰 문제를 해결한다.
+
+분할정복 알고리즘은 단순히 문제를 나눠서 해결하자는 개념에 가까운 알고리즘이여서 해당 알고리즘을 직접 활용하여 문제를 해결하기 보다는 다른 알고리즘 기법에 적용되어 문제를 해결하는 모습을 보인다. 대표적인 분할정복을 활용하는 알고리즘의 예는 [퀵 정렬](https://github.com/ii200400/IT_Skill_Question/tree/master/CS/Algorithm#quick-sort-%ED%80%B5-%EC%A0%95%EB%A0%AC), [합병 정렬](https://github.com/ii200400/IT_Skill_Question/tree/master/CS/Algorithm#merge-sort%ED%95%A9%EB%B3%91-%EC%A0%95%EB%A0%AC), 고속 푸리에 변환 등이 있다.
+
+## Graph Search
+
+그래프는 기본적으로 노드와 간선에 대한 순서나 규칙이 없다.   
+때문에 그래프를 탐색할 때에는 모든 노드를 살펴야 하는 경우가 매우 많은데 그 방법은 아래의 두 알고리즘(DFS, BFS)을 기반으로 한다.
+
+### DFS(Depth-First Search)
+  
+깊이 우선 탐색으로 불리며 stack을 사용하여 구현한다.   
+시간 복잡도는 모든 노드와 간선을 조사하므로 O(V+E)이다.   
+공간 복잡도는 각 노드에 방문 여부를 채크할 변수 크기 즉, O(V)이다.
+
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7f/Depth-First-Search.gif/330px-Depth-First-Search.gif" width="200">
+위키백과에 있던 깊이 우선 탐색 애니메이션 예시
+  
+### BFS(Breadth-First Search)
+
+너비우선탐색이라고 불리며 깊이우선탐색과 마찬가지의 이유로 시간 복잡도는 O(V+E), 공간 복잡도는 O(V)이다.
+
+시작 노드와 목표로 하는 노드를 정하고 시작 노드부터 너비 우선 탐색을 진행하였을 때   
+**너비 우선 탐색을 적용하여 찾은 두 노드의 경로는 항상 최단거리이다.**
+
+<img src="https://upload.wikimedia.org/wikipedia/commons/4/46/Animated_BFS.gif" width="200">
+
+</br>
 
