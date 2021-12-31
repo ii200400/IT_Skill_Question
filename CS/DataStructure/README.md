@@ -202,14 +202,13 @@ ex) 공포게임 사일런트 힐에서는 마을 구현에만 메모리가 터�
 1. push : 스택에서 값을 삽입하는 메소드
 2. pop : 스택에 값을 빼내는 메소드
 
+> <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b4/Lifo_stack.png/525px-Lifo_stack.png" width="300">   
+위키백과에 있던 스택의 pop과 push 처리를 표현한 사진
+
 #### 특징
 
 1. LIFO(Last in First Out)
    먼저 들어간 원소가 나중에 온다는 의미, 접시를 차곡차곡 쌓아올리고 위에서부터 쓰는 것을 상상하면 된다.
-
-#### 예시
-
-![Stack1](../image/1.1%20Stack1.png)
 
 #### 백준 문제 풀이
 
@@ -242,6 +241,9 @@ ex) 공포게임 사일런트 힐에서는 마을 구현에만 메모리가 터�
 5. Overflow(오버플로우) : 더 이상 큐에 데이터를 저장할 수 없는 상태
 6. Underflow(언더플로우) : 큐에 저장된 데이터가 없어서 데이터를 가져올 수 없는 상태
 
+> <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Data_Queue.svg/450px-Data_Queue.svg.png" width="300">   
+> 위키백과에 있던 큐를 표현한 그림
+
 #### 특징
 
 1. FIFO(First In First Out / 선입선출)   
@@ -252,26 +254,16 @@ ex) 공포게임 사일런트 힐에서는 마을 구현에만 메모리가 터�
 1. Queue   
 가장 일반적인 큐
 
-</br>
-
 2. Circular Queue(환형 큐)   
 배열로 큐를 구현할 때 앞의 남는 저장 공간을 활용하기 위해 환형 배열로 구현한 큐
-
-![Queue2](https://user-images.githubusercontent.com/19484971/146133406-ae2924a7-acc3-4dab-a796-cc3458e1cd96.png)   
-**환형 배열로 구현한 큐의 dequeue**
-
-![Queue3](https://user-images.githubusercontent.com/19484971/146133848-5bbe0ad6-6ffd-4591-9cce-85036665e8b4.png)   
-**환형 배열로 구현한 큐의 enqueue**
-
-</br>
 
 3. Linked Queue   
 LinkedList를 이용해서 만든 큐이다. 오버플로우가 발생하지 않는 것이 특징이다.
 그런데 필자는 Linked Queue 라고 부른 적은 없고 그냥 Queue라고 한다. 상관이 없는 것인지는 모르겠다.
 
-![Queue3](../image/1.1%20Queue3.jpg)
-
 </br>
+
+#### 
 
 #### 백준 문제 풀이
 
