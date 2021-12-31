@@ -388,32 +388,7 @@ NxN BooleanMatrix(일반적으로 2차원 배열로 구현)을 만든 뒤 행렬
 
 </br>
 
-### 그래프 탐색
-
-그래프는 기본적으로 노드와 간선에 대한 순서나 규칙이 없다.   
-때문에 그래프를 탐색할 때에는 모든 노드를 살펴야 하는 경우가 매우 많은데 그 방법은 아래의 두 알고리즘(DFS, BFS)을 기반으로 한다.
-
-#### 1. 깊이 우선 탐색(Depth First Search: DFS)
-
-글로 설명하기 어려우니 그냥 그림을 보자..   
-stack을 사용하여 구현한다.   
-시간 복잡도는 모든 노드와 간선을 조사하므로 O(V+E)이다.   
-공간 복잡도는 각 노드에 방문 여부를 채크할 변수 크기 즉, O(V)이다.
-
-<img src="../image/1.1%20Graph8.PNG" width="40%" height="40%"> <img src="../image/1.1%20Graph9.PNG" width="40%" height="40%">
-
-#### 2. 너비 우선 탐색(Breadth First Search: BFS)
-
-마찬가지로 글로는 설명이 어렵다 그림을 보자..
-깊이우선탐색과 마찬가지의 이유로 시간 복잡도는 O(V+E),   
-공간 복잡도는 O(V)이다.
-
-시작 노드와 목표로 하는 노드를 정하고 시작 노드부터 너비 우선 탐색을 진행하였을 때   
-**너비 우선 탐색을 적용하여 찾은 두 노드의 경로는 항상 최단거리이다.**
-
-<img src="../image/1.1%20Graph10.PNG" width="40%" height="40%">
-
-</br>
+이렇게 표현이 자유로운 [그래프를 탐색하는 알고리즘](https://github.com/ii200400/IT_Skill_Question/blob/master/CS/Algorithm/README.md#graph-search)은 알고리즘 글에 따로 정리를 해놓았으니 참고하자.
 
 ### 최소 신장 트리 (Minimum Spanning Tree)
 
