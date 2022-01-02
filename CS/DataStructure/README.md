@@ -443,7 +443,7 @@ NxN BooleanMatrix(일반적으로 2차원 배열로 구현)을 만든 뒤 행렬
 
 모든 노드의 최대 자식 수가 2인 트리, 트리를 대표하는 가장 기본적인 트리 중 하나이다.
 
-### 순회
+### 트리 순회
 
 부모 노드의 방문 순서에 따라서 이름이 바뀐다. 또한 왼쪽 자식 노드을 오른쪽 자식 노드보다 항상 먼저 방문하도록 한다.
 
@@ -483,12 +483,14 @@ perfect는 포화, complete는 완전, full은 전 으로 해석되어버려 개
 ### 백준 문제 풀이
 
 [1991번 트리 순회](https://www.acmicpc.net/problem/1991)   
-깃허브 풀이 링크 : https://github.com/ii200400/algorithm/blob/master/Baekjoon/kotlin/src/1991.kt
-백준 풀이 공유 링크 : http://boj.kr/e29052fb5ff44b208b7d5d818d246449
+트리 순회를 코드로 구현해보는 간단한 문제   
+깃허브 풀이 링크 : https://github.com/ii200400/algorithm/blob/master/Baekjoon/kotlin/src/1991.kt   
+백준 풀이 공유 링크 : http://boj.kr/e29052fb5ff44b208b7d5d818d246449   
 
-[4256번 트리](https://www.acmicpc.net/problem/4256)
-깃허브 풀이 링크 : 
-백준 풀이 공유 링크 : 
+[4256번 트리](https://www.acmicpc.net/problem/4256)   
+전위/중위 순회를 입력하면 후위순회를 출력하는 문제
+깃허브 풀이 링크 : https://github.com/ii200400/algorithm/blob/master/Baekjoon/kotlin/src/4256.kt   
+백준 풀이 공유 링크 : http://boj.kr/71af77b8d2c94f4fbccc52d222b536e0   
 
 ## Heap
 
