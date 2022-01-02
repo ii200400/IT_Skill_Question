@@ -6,6 +6,7 @@
 + Priority Queue
 + Graph
 + Tree
++ Binary Tree
 + heap
 + Hash
 
@@ -346,7 +347,7 @@ LinkedList를 이용해서 만든 큐이다. 오버플로우가 발생하지 않
 
 NxN BooleanMatrix(일반적으로 2차원 배열로 구현)을 만든 뒤 행렬에 간선의 유무를 저장하는 방식이다.
 
-> <img src="../image/1.1%20Graph7.png" width="35%" height="35%">
+[구글 이미지를 참고하자](https://www.google.com/search?q=%EC%9D%B8%EC%A0%91%ED%96%89%EB%A0%AC&newwindow=1&sxsrf=AOaemvIRzepLRYD9TlsKcC6u6YB5h-Lwlw:1641110027079&source=lnms&tbm=isch&sa=X&ved=2ahUKEwjz4M2hy5L1AhXTc94KHYKHCK4Q_AUoAXoECAgQAw&biw=1536&bih=722&dpr=1.25)
 
 + 특정 노드와 노드 사이의 간선의 유무는 O(1)로 파악할 수 있다. 
 + 특정 노드에서 인접한 모든 노드를 찾는 속도는 O(|V|)로 느린편이다. 
@@ -358,7 +359,7 @@ NxN BooleanMatrix(일반적으로 2차원 배열로 구현)을 만든 뒤 행렬
 
 각 정점과 인접한 정점들을 연결 리스트를 사용하여 표현한는 방법이다.
 
-> <img src="../image/1.1%20Graph6.png" width="40%" height="40%">
+[구글 이미지를 참고하자](https://www.google.com/search?q=%EC%9D%B8%EC%A0%91%EB%A6%AC%EC%8A%A4%ED%8A%B8&tbm=isch&ved=2ahUKEwjUq5miy5L1AhVBXZQKHWWSCtQQ2-cCegQIABAA&oq=%EC%9D%B8%EC%A0%91%EB%A6%AC%EC%8A%A4%ED%8A%B8&gs_lcp=CgNpbWcQAzIFCAAQgAQyBQgAEIAEMgUIABCABDIGCAAQBRAeMgQIABAYMgQIABAYMgQIABAYMgQIABAYMgYIABAFEB4yBggAEAUQHjoHCCMQ7wMQJzoGCAAQBxAeUKZBWJZFYJtGaANwAHgCgAGfAYgB7AeSAQMwLjiYAQCgAQGqAQtnd3Mtd2l6LWltZ8ABAQ&sclient=img&ei=DFrRYdT1EsG60QTlpKqgDQ&bih=722&biw=1536)
 
 + 간선의 유무는 해당 노드의 차수만큼의 시간이 걸린다, 최악의 경우 O(V)   
 + 특정 노드에 인접한 모든 노드를 찾는 속도 또한 해당 노드의 차수만큼의 시간이 걸린다.
@@ -367,14 +368,6 @@ NxN BooleanMatrix(일반적으로 2차원 배열로 구현)을 만든 뒤 행렬
 + Sparse graph를 표현할 때, 정점 수가 많을 때 사용하기 좋다.
 
 개인적으로 공간 복잡도가 O(|V|+|E|)이라고 생각했는데.. 왜 O(|E|)인지 잘 모르겠다.
-
-+ 무/유향 그래프에서의 그래프 표현
-
-<img src="../image/1.1%20Graph2.PNG" width="40%" height="40%"> <img src="../image/1.1%20Graph3.PNG" width="40%" height="40%">
-
-+ 가중 무/유향 그래프에서의 그래프 표현
-
-<img src="../image/1.1%20Graph4.PNG" width="40%" height="40%"> <img src="../image/1.1%20Graph5.PNG" width="40%" height="40%">
 
 </br>
 
@@ -396,6 +389,7 @@ NxN BooleanMatrix(일반적으로 2차원 배열로 구현)을 만든 뒤 행렬
 위키백과에 있던 트리 사진
 
 ### 용어
+
   + Node (노드) : 트리를 구성하고 있는 각각의 요소
   + Edge (간선) : 트리를 구성하기 위해 노드와 노드를 연결하는 선
   + Root Node (루트 노드) : 트리 구조에서 최상위에 있는 노드, 유일하게 부모가 없는 노드
@@ -475,8 +469,6 @@ perfect는 포화, complete는 완전, full은 전 으로 해석되어버려 개
   + Perfect Binary Tree (포화 이진 트리) : 모든 리프 노드의 높이가 같은 트리
   + Binary Search Tree (이진 탐색 트리) : 모든 노드가 아래의 조건을 충족하는 트리   
     "왼쪽 자식 노드의 데이터 값 <= 부모 노드의 데이터 값 < 오른쪽 자식 노드의 데이터 값"
-    
-  <img src="../image/1.1%20Graph19.PNG" width="50%" height="50%">
   
 </br>
 
@@ -499,24 +491,28 @@ perfect는 포화, complete는 완전, full은 전 으로 해석되어버려 개
 
 ### 구현 방법
 
-  0. 일반적으로 (완전 이진 트리는) 배열로 간단히 구현 가능하므로 배열을 사용한다는 전제로 서술한다.
+배열을 사용한다는 전제로 서술하면..
+
   1. 인덱스 0은 비운 채로 1부터 노드의 데이터 값을 넣는다. (0부터 채워도 되지만 편의상)
-  2. 부모와 자식 간의 노드의 인덱스에는 다음과 같은 관계가 있다. heapify를 할 때 아래의 관계를 참고하여 구현한다.
-    + 왼쪽 자식의 인덱스 = (부모의 인덱스) * 2 (인덱스 0을 채울 경우 왼쪽 자식의 인덱스 = (부모의 인덱스) * 2 + 1)
-    + 오른쪽 자식의 인덱스 = (부모의 인덱스) * 2 + 1 (인덱스 0을 채울 경우 오른쪽 자식의 인덱스 = (부모의 인덱스) * 2 + 2)
-    + 부모의 인덱스 = (자식의 인덱스) / 2 (인덱스 0을 채울 경우 부모의 인덱스 = (자식의 인덱스 - 1)를 2로 나눴을 때의 )
-    
-     > <img src="../image/1.1%20Graph20.png" width="60%" height="60%">
+  2. 부모와 자식 간의 노드의 인덱스에는 다음과 같은 관계가 있다. heapify를 할 때 아래의 관계를 참고하여 구현한다.   
+    - 왼쪽 자식의 인덱스 = (부모의 인덱스) * 2 (인덱스 0을 채울 경우 왼쪽 자식의 인덱스 = (부모의 인덱스) * 2 + 1)   
+    - 오른쪽 자식의 인덱스 = (부모의 인덱스) * 2 + 1 (인덱스 0을 채울 경우 오른쪽 자식의 인덱스 = (부모의 인덱스) * 2 + 2)   
+    - 부모의 인덱스 = (자식의 인덱스) / 2 (인덱스 0을 채울 경우 부모의 인덱스 = (자식의 인덱스 - 1) / 2)   
 
 ### heapify 과정
 
-  1. 노드를 삽입 했을 때 (최대 힙 기준)
+노드를 삽입 했을 때
   
-  > <img src="../image/1.1%20Graph21.png" width="60%" height="60%">
+1. 트리의 가장 마지막 부분에 데이터를 삽입한다.
+2. 부모 노드와 삽입 부분 노드의 대소 비교를 하여 힙의 규칙에 맞지 않는 경우 서로 자리를 바꾼다.   
+   (보통은 왼쪽 자식을 우선으로 바꾼다.)
+3. 새롭게 들어간 데이터가 힙의 규칙에 맞는 자리를 찾을 때까지 2번의 과정을 반복한다.
   
-  2. 노드를 삭제 했을 때 (최대 힙 기준)
+노드를 삭제 했을 때
   
-  > <img src="../image/1.1%20Graph22.png" width="60%" height="60%">
+1. 삭제할 원소를 삭제 한 후 트리의 가장 마지막 원소를 삭제된 데이터의 위치에 넣어준다.
+2. 두 개의 자식 노드와 대체로 들어간 원소의 대소 비교를 하여 힙의 규칙에 맞지 않는 경우 서로 자리를 바꾼다. (세 노드 중 가장 큰 값이 부모 노드가 되도록 자리를 바꾼다.)   
+3. 데이터가 힙의 규칙에 맞는 자리를 찾을 때까지 2번의 과정을 반복한다.
 
 ### 특징
 
@@ -529,6 +525,23 @@ perfect는 포화, complete는 완전, full은 전 으로 해석되어버려 개
 
   + Max Heap (최대 힙) : 부모 노드가 자식노드보다 크거나 같은 값을 가지는 조건을 가진 완전 이진 트리
   + Min Heap (최소 힙) : 부모 노드가 자식노드보다 작거나 같은 값을 가지는 조건을 가진 완전 이진 트리
+
+### 백준 문제 풀이
+
+[1927번 최소 힙](https://www.acmicpc.net/problem/1927)   
+단순하게 최소 힙을 구현하는 문제   
+깃허브 풀이 링크 : https://github.com/ii200400/algorithm/blob/master/Baekjoon/kotlin/src/1927.kt   
+백준 풀이 공유 링크 : http://boj.kr/ca51b177328f494c8ea742e2bc991c4f   
+
+[2220번 힙 정렬](https://www.acmicpc.net/problem/2220)   
+heapify 과정을  알고 있어야 해결이 가능한 문제
+깃허브 풀이 링크 : https://github.com/ii200400/algorithm/blob/master/Baekjoon/kotlin/src/2220.kt
+백준 풀이 공유 링크 : http://boj.kr/de1d077d0ba8473c9a118579410136f4
+
+
+### 참고
+
+[자바 [JAVA] - 힙 정렬 (Heap Sort)](https://st-lab.tistory.com/225)
 
 </br>
 
