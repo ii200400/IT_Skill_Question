@@ -677,7 +677,7 @@ f(k) -> f`(k) -> f``(k) -> ...
 각 버킷을 연결리스트(Linked List)로 만들어 Collision 이 발생하면 해당 버킷의 연결리스트에 추가하는 방식이다.   
 버킷을 그대로 사용하는 Open Address 방식에 비해 테이블의 확장을 늦출 수 있다.
 
-<img src="../image/1.1%20Graph28.png" width="350">
+<img src="../image/1.1%20Graph28.png" width="550">
 
 ##### 2-2. 트리를 이용하는 방식 (Red-Black Tree)
 
@@ -705,9 +705,9 @@ Red-Black Tree는 노드별로 색상을 지정하는 메모리도 추가로 필
 ### 백준 문제 풀이
 
 [15829번 Hashing](https://www.acmicpc.net/problem/15829)   
-
-깃허브 풀이 링크 : 
-백준 풀이 공유 링크 : 
+해시 문제보다는 문제 지문이 유용하다! 꼭 전문 잘 읽자!
+깃허브 풀이 링크 : https://github.com/ii200400/algorithm/blob/master/Baekjoon/kotlin/src/15829.kt
+백준 풀이 공유 링크 : http://boj.kr/89e681190d9641bb9f6f8eb33fbfa76a
 
 ### 참조
 
