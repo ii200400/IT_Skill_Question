@@ -1,17 +1,17 @@
 # 2-1. Kotlin
 
-+ 개념
-  + 자료형
-    + 기본 자료형
-    + 자료형 확인 & 캐스트
-  + classes and objects
 + Iterable
 + Collection
++ High-order functions
++ Lambda
++ KeyWords
+  + Final
+  + Inline
++ Class
+  + Abstract
+  + Interface
 + Annotation
 + Generic
-+ KeyWords
-  + final
-  + inline
 + Overriding vs Overloading
 + Visibility Modifier (Access Modifier in Java)
 + JVM과 GC 원리
@@ -266,6 +266,14 @@ Collection(콜렉션)은 코틀린 라이브러리 중 하나이며 코틀린 �
 + [kotlinlang.org/docs](https://kotlinlang.org/docs/collections-overview.html)
 + [Kotlin의 Collection 함수](https://medium.com/hongbeomi-dev/kotlin-collection-%ED%95%A8%EC%88%98-7a4b1290bce4)
 + 코틀린 내부 라이브러리 주석들
+
+</br>
+
+## High-order functions (고차함수)
+
+
+
+## Lambda
 
 ## inline
 
