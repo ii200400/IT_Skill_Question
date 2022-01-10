@@ -60,10 +60,59 @@
 코틀린이 어떻게 쓰이는 언어이고 어떤 기능이 있는 언어인지 간결하게 확인하기 위해서는 [kotlinlang.org 다큐먼트의 Basics](https://kotlinlang.org/docs/basic-syntax.html)를 둘러보는 것을 추천한다. 물론 영어로 쓰여있기는 하나 친절하고 간결하게 쓰여있어 필자는 잘 이해하였다.   
 만일 자바와의 차이점을 먼저 보고 싶다면 [kotlinlang.org 다큐먼트의 Platforms-JVM](https://kotlinlang.org/docs/basic-syntax.html)을 참고하자!
 
-
 ##### 참고
 
 + https://velog.io/@beargu2/Kotlin-%ED%8A%B9%EC%A7%95
+
+</br>
+
+## Type
+
+코틀린은 numbers(Byte, Short, Int, Long, Float, Double), character 그리고 boolean 자료형들을 원시타입으로 분류하고 arrays, strings, classes, interfaces 등은 참조 혹은 객체타입으로 분류한다.
+
+이 둘을 구별하는 것은 코딩할 때도 중요해서 몇가지 특징을 정리해보려고 한다.
+
+### Primitive Data Type
+
+원시타입 자료형은 스택영역에 저장이 된다.   
+해당 타입의 자료형들은 복사를 할 때 값 자체를 복사하기 때문에 복사한 값에 변동이 있어도 원래 값에는 영향을 끼치지 않는다.
+
+    // 원시타입으로 분류되는 자료형들은 함수에 값을 넘길 때
+    // 가지고 있는 값을 그대로 복사한다.
+    fun plus(num: Int) {
+        num + 1
+    }
+
+    val alwaysOne = 1
+    println("before : $alwaysOne")
+    plus(alwaysOne)
+    println("after : $alwaysOne")
+    ------------------------------------------------------
+    before : 1
+    after : 1
+
+### Object Data Type
+
+객체타입 자료형은 비원시(Non-primitive) 혹은 참조 데이터 타입(Reference Data Type)이라고 부르기도 한다. 변수에 저장되어있는 값이 다른 객체를 참조하는 주소값을 저장하기 때문이다.   
+
+참조타입 변수가 생성되면 객체의 주소값을 저장하는 변수는 스택에 저장되고 실재 데이터가 저장되는 객체 부분은 힙영역에 저장된다. 해당 타입의 변수를 얕은복사를 하게되면 스택의 주소값만을 복사하여 실재 데이터인 객체 부분에 영향이 간다는 특징이 있다.
+
+    // 배열 초기화
+    val array1 = Array(5){ 1 }
+
+    // 참조타입이기 때문에 얕은 복사에 주의해야 한다.
+    // 참조타입의 특징 상 함수 내에서 일어난 일이 함수 밖에서도 영향을 끼치기 때문이다.
+    fun arrayPlus(array: Array<Int>) { array[0] += 1 }
+    println("array1 defore fun: ${array1.contentDeepToString()}")
+    arrayPlus(array1)
+    println("array1 after fun: ${array1.contentDeepToString()}")
+    ------------------------------------------------------
+    array1 defore fun: [1, 1, 1, 1, 1]
+    array1 after fun: [2, 1, 1, 1, 1]
+
+### 참고
+
++ (Primitive data type vs. Object data type in Java with Examples)[https://www.geeksforgeeks.org/primitive-data-type-vs-object-data-type-in-java-with-examples/]
 
 </br>
 
