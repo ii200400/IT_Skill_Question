@@ -15,6 +15,7 @@
   + Git WorkFlow
   + Git 명령어
   + Git Strategy (미완)
++ package와 import
 
 ## 객체 지향 프로그래밍 (Object Oriented Programming - OOP)
 
@@ -639,3 +640,14 @@ option에는 command에 맞는 옵션들이 선택사항으로 들어갈 수 있
 
 + [깃, 깃허브 이건 알고 사용하자](https://www.youtube.com/watch?v=lPrxhA4PLoA&t=0s&ab_channel=%EB%93%9C%EB%A6%BC%EC%BD%94%EB%94%A9by%EC%97%98%EB%A6%AC)
 + [깃, 깃허브 제대로 배우기 (기본 마스터편, 실무에서 꿀리지 말자)](https://www.youtube.com/watch?v=Z9dvM7qgN9s&ab_channel=%EB%93%9C%EB%A6%BC%EC%BD%94%EB%94%A9by%EC%97%98%EB%A6%AC)
+
+## Package와 Import
+
+파일을 관리하기 위해서 폴더를 사용하는 것 처럼 프로그램의 클래스들을 관리하기 위해서 패키지를 사용한다.
+
+의미있는 이름을 `.` 을 통해 계
+... 3일차 내용이다 빠르게 설명하고 넘어갔으니 정리 따로 하자.
+클래스의 작성 방식은 클래스에 따로 써놓자.
+둘 모두 작성 방법이 다 있다.
+
+
