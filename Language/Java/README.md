@@ -127,6 +127,8 @@ C언어의 call-by-reference와 비슷하지만 자바는 해당 기능을 지�
 
 [객체지향 프로그래밍에 대한 간략한 설명](https://github.com/ii200400/IT_Skill_Question/blob/master/CS/Development_common_sense/README.md#%EA%B0%9D%EC%B2%B4-%EC%A7%80%ED%96%A5-%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D-object-oriented-programming---oop)은 따로 작성하였고 이곳에는 자바에서 객체지향 프로그래밍이 어떻게 작동되는지 서술하겠다.
 
+이에 관한 [실습 내용 추가 요망]()
+
 ### JVM 메모리 구조
 
 간단히 클래스 영역, 스택 영역, 힙 영역 3개의 영역으로 나눌 수 있다.
@@ -203,7 +205,42 @@ day4
 다양한 타입의 객체를 다루는 메서드 및 컬렉션 클래스에서 컴파일 시에 타입을 체크한다.   
 미리 사용할 타입을 명시해서 객체 타입에 대한 안전성 증대 및 형 변환 번거로움 감소시키는 효과를 준다.
 
-## 표현
+### 표현
 
 
+## Exception
 
+어떤 원인에 의해 오동작 하거나 비정상적으로 종료되는 경우(Error or exception)를 
+
+이러한 예외 클래스도 구조화하여 계층을 이루고 있다.
+런타임에 일어나면 런타임exception, 컴파일때 일어나면 .. 등등 다양한 예외가 있다.
+
+[실습 5일차 링크 추가요망]()
+
+## Collection
+
+java.util라는 많은 데이터를 편리하게 처리할 수 있도록 다양한 기능을 제공하는 패키지 내에 있다.   
+아래와 같은 상속관계를 가진다.
+
++ iterable
+  + collection
+    + List   
+      순서가 있는 데이터의 집합
+      ex) ArrayList, LinkedList
+    + Set
+      순서를 유지하지 않는 데이터의 집합 순서가 없으며 중복을 허용하지 않는다.
+      ex) HashSet, TreeSet
+    + Map
+      key와 value의 쌍으로 데이터를 관리하는 집합, key는 중복이 불가능하고 value는 가능하다.
+      ex) HashMap, TreeMap
+
+기본적으로 collection은 아래의 기능을 기본으로 가진다.
+
+|분류|collection 메소드|
+|---|-----|
+|추가|add(E e)<br>addAll(Collection<?extendsE c>)|
+|조회| |
+
+등등..
+
+[실습 5일차 링크 추가요망]()
