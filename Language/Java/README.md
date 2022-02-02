@@ -308,7 +308,7 @@ ex) ClassName`<String>` generic = new ClassName`<String>`();
 ### 타입 파라미터 제한
 
 필요하다면 `extends` 키워드로 타입 파라미터에 제한을 줄 수 있다.   
-제한에는 클래스나 인터페이스를 사용할 수 있으며 여러 개의 제약 조건을 넣을 수도 있다.
+제한에는 클래스나 인터페이스를 사용할 수 있으며 여러 개의 제약 조건을 넣을 수도 있다.   
 ex) class NumberBox`<T extends Number & Cloneable>` {}   
     => T 에는 Number 이면서 Cloneable인 클래스만을 받는다.   
     class NumberBox`<T super Person>` {}   
