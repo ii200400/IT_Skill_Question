@@ -294,12 +294,12 @@ class 대신에 interface를 선언하여 인터페이스 클래스를 만들 �
 
 ### 표현
 
-클래스 또는 인터페이스 선언 시에 사용할 때에는 <>에 파라미터 타입을 표시하여 사용한다.   
+클래스 또는 인터페이스 선언 시에 사용할 때에는 <>에 파라미터 타입을 표시하여 사용한다.    
 ex) public class ClassName`<T>`{}, public interface InterfaceName`<T>`{}
 
 객체를 생성할 때는 생성쪽과 같은 타입을 넣어주거나 생략해주면 된다.   
-ex) ClassName`<String>` generic = new ClassName`<String>`();   
-    ClassName`<String>` generic = new ClassName`<>`();
+ex) ClassName`<String>` generic = new ClassName`<String>`();    
+    ClassName`<String>` generic = new ClassName`<>`();   
     ClassName`<String>` generic = new ClassName(); // 이렇게는 안된다.
 
 위에서 사용하는 타입 파라미터(T)는 특별한 알파벳이 아니고 임의의 참조형 타입을 의미한다.   
@@ -310,7 +310,7 @@ ex) ClassName`<String>` generic = new ClassName`<String>`();
 필요하다면 `extends` 키워드로 타입 파라미터에 제한을 줄 수 있다.   
 제한에는 클래스나 인터페이스를 사용할 수 있으며 여러 개의 제약 조건을 넣을 수도 있다.
 ex) class NumberBox`<T extends Number & Cloneable>` {}   
-    => T 에는 Number 이면서 Cloneable인 클래스만을 받는다.
+    => T 에는 Number 이면서 Cloneable인 클래스만을 받는다.   
     class NumberBox`<T super Person>` {}   
     => T 에는 Person과 Person의 조상 클래스만을 받는다.
 
@@ -335,7 +335,7 @@ ex) class NumberBox`<T extends Number & Cloneable>` {}
 public `<P>` void method (P p){}
 
 호출시에는 아래와 같이 작성한다.   
-instance.method(10);
+instance.method(10);   
 instance.`<Integer>`method(10);
 
 ## Exception
