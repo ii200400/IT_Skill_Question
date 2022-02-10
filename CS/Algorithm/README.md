@@ -1,5 +1,9 @@
 # 1-2 알고리즘
 
++ Brute-Force Search
+  + Permutation
+  + Combination
+  + SubSet
 + Sort
   + Bubble Sort
   + Selection Sort
@@ -29,6 +33,28 @@
   + Dijkstra Algorithm
   + Bellman-Ford Algorithm
   + Floyd-Warshall Algorithm
+
+## 개요
+
+알고리즘의 정의나 개념은 잘 모르겠지만 스스로는 `컴퓨터 명령문으로 작성하는 문제해결 방법` 이라고 생각한다. 몇 만개가 넘는 문제들이라도 몇 십개의 알고리즘 방법을 통해서 해결하는 경우가 많으며 개인적으로 코딩 테스트에서 가장 자주 등장하는 유형의 알고리즘은 완전탐색, 그리디, 그래프 탐색이었다.
+
+배열, 해시, 재귀함수 등.. 스스로가 생각하기에 알고리즘보다는 컴퓨터 언어 코딩이나 자료구조에 가까운 문제들은 생략하고 작성할 것이다.
+
+## Brute-Force Search (완전탐색)
+
+8일차 실습 정리 필요
+
+### Permutation (순열)
+
+
+
+### Combination (조합)
+
+
+
+### SubSet
+
+
 
 ## Sort (정렬)
 
