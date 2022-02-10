@@ -397,8 +397,7 @@ try-catch문으로 예외 처리를 하는 것 대신에 해당 예외를 호출
 
 ## Collection
 
-java.util라는 많은 데이터를 편리하게 처리할 수 있도록 다양한 기능을 제공하는 패키지 내에 있다.   
-아래와 같은 상속관계를 가진다.
+java.util 이라는 패키지 내에 있으며 데이터를 편리하게 처리할 수 있도록 다양한 기능을 제공한다. 아래와 같은 상속관계를 가진다.
 
 + iterable
   + collection
@@ -408,20 +407,24 @@ java.util라는 많은 데이터를 편리하게 처리할 수 있도록 다양�
     + Set
       순서를 유지하지 않는 데이터의 집합 순서가 없으며 중복을 허용하지 않는다.
       ex) HashSet, TreeSet
-    + Map
-      key와 value의 쌍으로 데이터를 관리하는 집합, key는 중복이 불가능하고 value는 가능하다.
-      ex) HashMap, TreeMap
++ Map
+  key와 value의 쌍으로 데이터를 관리하는 집합, key는 중복이 불가능하고 value는 가능하다.
+  Collection 클래스를 상속받지는 않지만 Collection Framework를 구성하는 3대 주요 인터페이스이다.
+  ex) HashMap, TreeMap
 
-기본적으로 collection은 아래의 기능을 기본으로 가진다.
-
-| 분류 | collection 메소드 |
-|--------|--------|
-|추가|add(E e)<br/>addAll(Collection`<?extendsE c>`)|
-|조회|   |
-
-등등..
+각 클래스에 따라 존재하는 메서드는 ctrl+click으로 찾아 볼 수 있는 파일과 설명으로 확인하자.   
+영문으로 적혀있지만 대체적으로는 어렵지 않게 설명이 쓰여있고 공식 설명이다.
 
 [실습 5일차 링크 추가요망]()
+
+### 클래스 관계도
+
+![image](https://user-images.githubusercontent.com/19484971/153369753-335da5ad-82bd-4755-9a60-6e1ce0d8fdc3.png)
+
+개인적으로 Stack과 Queue가 LinkedList를 상속할 줄 알았는데 전혀 아니라서 놀랐다...   
+Stack은 관계가 없고 오히려 LinkedList가 Queue를 상속한다;
+
+
 
 ## lambda
 
