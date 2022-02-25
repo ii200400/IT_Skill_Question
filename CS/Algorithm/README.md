@@ -1,10 +1,10 @@
 # 1-2 알고리즘
 
-+ Divide & Conquer
 + Brute-Force Search
   + Permutation
   + Combination
   + SubSet
++ Divide & Conquer
 + Sort
   + Bubble Sort
   + Selection Sort
@@ -128,6 +128,12 @@ conquer(정복) : 작은 문제들을 해결한다.
 combine(결합) : 작은 문제들의 답을 활용하여(혹은 모아서) 더 큰 문제를 해결한다.
 
 분할정복 알고리즘은 단순히 문제를 나눠서 해결하자는 개념에 가까운 알고리즘이여서 해당 알고리즘을 직접 활용하여 문제를 해결하기 보다는 다른 알고리즘 기법에 적용되어 문제를 해결하는 모습을 보인다. 대표적인 분할정복을 활용하는 알고리즘의 예는 [퀵 정렬](https://github.com/ii200400/IT_Skill_Question/tree/master/CS/Algorithm#quick-sort-%ED%80%B5-%EC%A0%95%EB%A0%AC), [합병 정렬](https://github.com/ii200400/IT_Skill_Question/tree/master/CS/Algorithm#merge-sort%ED%95%A9%EB%B3%91-%EC%A0%95%EB%A0%AC), 고속 푸리에 변환 등이 있다.
+
+### 백준 문제 풀이
+
+[1780번 종이의 개수](https://www.acmicpc.net/problem/1780)   
+깃허브 풀이 링크 : https://github.com/ii200400/algorithm/blob/master/Baekjoon/kotlin/src/com/baekjoon/problem/java1780/Main.java   
+백준 풀이 공유 링크 : http://boj.kr/f4d19fb0deec4bf6b6405baa6b0bd33e
 
 ## Sort (정렬)
 
