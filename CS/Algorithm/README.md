@@ -83,6 +83,67 @@ n이 10개인 경우 순열의 갯수는 360만, 11인 경우에는 3990만, 12�
 
 일반적으로 순열을 구하는 문제는 11 이하의 수를 나열하라고 주어지는데 그 이상의 수가 주어진다면 다른 알고리즘(DP의 TSP)으로 풀어야 하는 문제이다.
 
+```
+// Permutation with Java
+
+// nPr로 표현되는 순열을 구현하기 위해 사용하는 코드
+// r=2로 고정되어다면 단순히 이중 for문을 사용하는 것이 연산과 구현이 더 빠르다.
+// 그렇지 않으면 재귀함수를 사용하는 것이 좋다.
+
+public class Permutation {
+
+    static int N, R;
+    static int[] input, numbers;
+    static boolean[] v;
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        N = sc.nextInt();   // 전체 숫자 개수
+        R = sc.nextInt();   // 고를 숫자의 개수
+        input = new int[N]; // 입력 받은 N개의 숫자 배열
+        numbers = new int[R];   // 선택한 R개의 숫자 배열 (순열)
+        v = new boolean[N];     // 선택 여부
+
+        //input data 입력 받기
+        for(int i = 0; i < N; i++) {
+            input[i] = sc.nextInt();
+        }
+
+        //순열 생성
+        perm(0);
+    }
+
+    // 순열 만들기
+    static void perm(int idx) { //idx 현재 자리
+        // R개를 선택했다면 선택한 숫자 출력
+        if(idx == R) {
+            System.out.println(Arrays.toString(numbers));
+            return;
+        }
+
+        // 모든 자리의 수를 선택해 보는데
+        for(int i =0; i < N; i++) {
+
+            // 이미 해당 수를 선택했다면 다음 수를 탐색한다.
+            if(v[i]) {
+                continue;
+            }
+
+            // 현재 자리의 숫자를 선택함
+            numbers[idx] = input[i];
+            v[i] = true;
+
+            // 다음 수 뽑으러 가기
+            perm(idx + 1);
+
+            // 이번에는 선택하지 않고 진행해본다.
+            v[i] = false; // 백트래킹에서 원상 복구
+        }
+    }
+}
+```
+
 ### Combination (조합)
 
 **서로 다른** 것들 중 몇 개를 **순서를 고려하지 않고** 선택하는 것
@@ -92,12 +153,103 @@ n이 10개인 경우 순열의 갯수는 360만, 11인 경우에는 3990만, 12�
 
 조합은 위의 특징으로 n개 중 n/2개의 조합을 찾는 것이 가장 조합의 수가 많은데, n = 30 이고 r = 15일 때 1.5억 정도가 나오며 이 때문에 조합 문제들은 일반적으로 n이 30 이하의 수를 가진다고 한다.
 
+```
+// Combination with Java
+
+public class Combination {
+
+    static int N,R;
+    static int[] input, numbers;
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        N = sc.nextInt();   // 전체 숫자 개수
+        R = sc.nextInt();   // 고를 숫자의 개수
+        input = new int[N]; // 입력 받은 N개의 숫자 배열
+        numbers = new int[R];   // 선택한 R개의 숫자 배열 (조합)
+
+        //input data 입력 받기
+        for(int i = 0; i<N; i++){
+            input[i] = sc.nextInt();
+        }
+        
+        // 조합 시작
+        combination(0, 0);
+    }
+
+    // 조합 만들기
+    static void combination(int cnt, int start){
+        // R개를 선택했다면 선택한 숫자 출력
+        if (cnt == R){
+            System.out.println(Arrays.toString(numbers));
+            return;
+        }
+
+        // 이전에 선택한 숫자를 기준으로 탐색 재개
+        for (int i = start; i<N; i++){
+            // i번째 숫자를 선택하고
+            numbers[cnt] = input[i];
+            // i+1번째부터 다음 숫자를 선택하는 것을 진행한다.
+            combination(cnt+1, i+1);
+        }
+    }
+}
+```
+
 ### SubSet (부분 집합)
 
 집합에 있는 원소들 중 일부를 선택해서 집합을 만드는 것   
 집합의 원소가 n개일 때, 공집합을 포함한 부분 집합의 수는 2^n개 이다. (각 원소가 포함되는 경우와 포함되지 않는 경우가 있으므로)
 
 n이 30개 정도가 되면 10억정도의 수가 되므로 30개에 대해 부분집합을 해결하는 것은 피하자;
+
+```
+// SubSet with Java
+
+public class SubSet {
+
+    static int N;
+    static int[] input;
+    static boolean[] isSelected;
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        // 초기화
+        N = sc.nextInt();   // 집합의 원소 수
+        input = new int[N];   // 부분 집합 배열
+        isSelected = new boolean[N];    // 부분집합 선택 여부
+        for (int i = 0; i<N; i++){
+            input[i] = sc.nextInt();
+        }
+
+        // 부분 집합 시작
+        generateSubset(0);
+    }
+
+    // 부분 집합 만들기
+    static void generateSubset(int cnt){ // 집합의 인덱스
+        // 부분 집합을 완성했다면
+        if (cnt == N){
+            // 부분집합 출력
+            for (int i = 0; i<N; i++){
+                System.out.print( isSelected[i]? input[i] + " " : "");
+            }
+            System.out.println();
+            return;
+        }
+
+        // cnt 인덱스의 요소를 선택하고 다음 요소로 넘어가는 경우와
+        isSelected[cnt] = true;
+        generateSubset(cnt+1);
+
+        // 선택하지 않고 다음 요소로 넘어가는 경우를 탐색
+        isSelected[cnt] = false;
+        generateSubset(cnt+1);
+    }
+}
+```
 
 ## Backtracking (백트래킹)
 
