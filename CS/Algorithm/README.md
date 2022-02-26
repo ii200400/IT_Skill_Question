@@ -70,7 +70,15 @@ ex) O(3n+2) -> O(3n) -> O(n)
 가장 자주 출제되는 문제 유형 중 하나로 종류가 다양하지만 비슷하게 구현한다.   
 가장 기본적으로 고려해야 하는 방법으로 해당 방법으로 시간초과가 일어날 것 같으면 다른 알고리즘을 고려하는 것이 알고리즘 문제 해결방법의 순서이다.
 
-[8일차 실습 정리 필요]()
+### 문제 풀이
+
+[백준 2563번 색종이](https://www.acmicpc.net/problem/2563)   
+깃허브 풀이 링크 : https://github.com/ii200400/algorithm/blob/master/Baekjoon/kotlin/src/com/baekjoon/problem/java2563/Main.java     
+백준 풀이 공유 링크 : http://boj.kr/af6571d60d8a440886a3b67d11d98bc7
+
+[백준 2567번 색종이 - 2](https://www.acmicpc.net/problem/2567)   
+깃허브 풀이 링크 : https://github.com/ii200400/algorithm/blob/master/Baekjoon/kotlin/src/com/baekjoon/problem/java2567/Main.java     
+백준 풀이 공유 링크 : http://boj.kr/1bf00512f7d64d869651ac3568de7f05
 
 ### Permutation (순열)
 
@@ -146,6 +154,14 @@ public class Permutation {
 }
 ```
 
+#### 문제 풀이
+
+[SWEA 1247. [S/W 문제해결 응용] 3일차 - 최적 경로](https://swexpertacademy.com/main/code/problem/problemDetail.do?contestProbId=AV15OZ4qAPICFAYD)   
+깃허브 풀이 링크 : https://github.com/ii200400/algorithm/blob/master/Baekjoon/kotlin/src/com/ssafy/swea/java1247/Solution.java
+
+[SWEA 6808. 규영이와 인영이의 카드게임](https://swexpertacademy.com/main/code/problem/problemDetail.do?contestProbId=AWgv9va6HnkDFAW0)   
+깃허브 풀이 링크 : https://github.com/ii200400/algorithm/blob/master/Baekjoon/kotlin/src/com/ssafy/swea/java6808/Solution.java
+
 ### Combination (조합)
 
 **서로 다른** 것들 중 몇 개를 **순서를 고려하지 않고** 선택하는 것
@@ -200,6 +216,12 @@ public class Combination {
     }
 }
 ```
+
+#### 문제 풀이
+
+[백준 2798번 블랙잭](https://www.acmicpc.net/problem/2798)   
+깃허브 풀이 링크 : https://github.com/ii200400/algorithm/blob/master/Baekjoon/kotlin/src/com/baekjoon/problem/java2798/Main.java   
+백준 풀이 공유 링크 : http://boj.kr/c35d1dc92c564dfbae9be314a1aefa5d
 
 ### SubSet (부분 집합)
 
@@ -256,6 +278,18 @@ public class SubSet {
     }
 }
 ```
+
+#### 문제 풀이
+
+로또문제의 경우 필자와 다른 방법으로 푸는 것이 사실 더 좋다. 오답은 아니지만..
+
+[백준 6603번 로또](https://www.acmicpc.net/problem/6603)   
+깃허브 풀이 링크 : https://github.com/ii200400/algorithm/blob/master/Baekjoon/kotlin/src/com/baekjoon/problem/java6603/Main.java   
+백준 풀이 공유 링크 : http://boj.kr/ccacac93ef504da980811f35076be12a
+
+[백준 1961번 도영이가 만든 맛있는 음식](https://www.acmicpc.net/problem/2961)   
+깃허브 풀이 링크 : https://github.com/ii200400/algorithm/blob/master/Baekjoon/kotlin/src/com/baekjoon/problem/java2961/Main.java   
+백준 풀이 공유 링크 : http://boj.kr/6c2fa4c2698f45bf8291952721c04d8a
 
 ## BitMask (비트마스크)
 
@@ -330,15 +364,25 @@ public class NextPermutation {
 }
 ```
 
+### 문제 풀이
+
+비트 연산자를 연습하는 아주 대표적인 문제라고 한다.
+
+[백준 11723번 집합](https://www.acmicpc.net/problem/11723)   
+깃허브 풀이 링크 : https://github.com/ii200400/algorithm/blob/master/Baekjoon/kotlin/src/com/baekjoon/problem/java11723/Main.java     
+백준 풀이 공유 링크 : http://boj.kr/cdb1567dd484488fba707a6bd407343e
+
 ## Backtracking (백트래킹)
 
 가능한 방식을 모두 살펴보면서 문제의 해를 살펴나가는데 해가 되지 않을 것이라고 판명되면 해당 방식에서 파생되는 방식은 모두 생략하고 다른 방식을 탐색해 나가는 기법이다.
 
 본인은 완전탐색에서 파생되거나 완전탐색에 포함된 알고리즘 방식이라고 생각하고 있다. 그저 조건에 따라서 탐색하는 경우가 많이 생략되냐 아니냐의 차이정도밖에 보이지 않는다;   
 
-완전탐색과는 다르게 백트래킹은 가지치기라고 불리는 탐색을 생략하는 조건을 잘 넣지 않으면 시간초과가 날 수 있을 정도로 탐색이 생략되는 부분이 크다.
+완전탐색과는 다르게 백트래킹은 탐색을 생략하는 조건을 잘 넣지 않으면 시간초과가 날 수 있을 정도로 탐색을 생략할 수 있는 부분이 크다.
 
 대표적으로 백준의 N-Queen문제 시리즈가 있다.
+
+<br/>
 
 ## Greedy (탐욕법)
 
@@ -357,6 +401,11 @@ public class NextPermutation {
 
 [정올 1828번 냉장고](http://jungol.co.kr/bbs/board.php?bo_table=pbank&wr_id=1101&sca=99&sfl=wr_hit&stx=1828)   
 깃허브 풀이 링크 : https://github.com/ii200400/algorithm/blob/master/Baekjoon/kotlin/src/com/jungol/java1828/Main.java
+
+[백준 3109번 빵집](https://www.acmicpc.net/problem/3109)   
+깃허브 풀이 링크 : https://github.com/ii200400/algorithm/blob/master/Baekjoon/kotlin/src/com/baekjoon/problem/java3109/Main.java     
+백준 풀이 공유 링크 : http://boj.kr/f6a5ee7e9edd40f7a871935e7f393143
+
 
 ## Divide & Conquer
  
@@ -697,6 +746,16 @@ fun quickSort(A: Array<Int>, start: Int, end: Int){
 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7f/Depth-First-Search.gif/330px-Depth-First-Search.gif" width="200">
 위키백과에 있던 깊이 우선 탐색 애니메이션 예시
   
+#### 문제 풀이
+
+[백준 1987번 알파벳](https://www.acmicpc.net/problem/1987)   
+깃허브 풀이 링크 : https://github.com/ii200400/algorithm/blob/master/Baekjoon/kotlin/src/com/baekjoon/problem/java1987/Main.java   
+백준 풀이 공유 링크 (방법1) : http://boj.kr/8bb0dbda81524da2891ade56501530cd
+
+[백준 10026번 적록색약](https://www.acmicpc.net/problem/10026)    
+깃허브 풀이 링크 : https://github.com/ii200400/algorithm/blob/master/Baekjoon/kotlin/src/com/baekjoon/problem/java10026/Main.java   
+백준 풀이 공유 링크 : http://boj.kr/3f0fbd26355e4a72ba2428ab283ee6f6
+
 ### BFS(Breadth-First Search)
 
 한 노드에서 시작하여 현재 노드에서 접근할 수 있는 노드들을 우선으로 방문한 뒤에 방문했던 노드들에서 또 다시 접근할 수 있는 노드를 다시 차례로 방문하는 방식, 너비우선탐색이라고 불리며 큐로 구현한다.
@@ -708,17 +767,29 @@ fun quickSort(A: Array<Int>, start: Int, end: Int){
 
 <img src="https://upload.wikimedia.org/wikipedia/commons/4/46/Animated_BFS.gif" width="200">
 
+#### 문제 풀이
+
+[백준 2644번 촌수계산](https://www.acmicpc.net/problem/2644)    
+깃허브 풀이 링크 : https://github.com/ii200400/algorithm/blob/master/Baekjoon/kotlin/src/com/baekjoon/problem/java2644/Main.java   
+백준 풀이 공유 링크 : http://boj.kr/70616841a85a425eb8cdbd2dabe812a3
+
+[SWEA 1238. [S/W 문제해결 기본] 10일차 - Contact](https://swexpertacademy.com/main/code/problem/problemDetail.do?contestProbId=AV15B1cKAKwCFAYD)   
+깃허브 풀이 링크 : https://github.com/ii200400/algorithm/blob/master/Baekjoon/kotlin/src/com/ssafy/swea/java1238/Solution.java   
+
 </br>
 
 ## Minimum Spanning Tree, MST (최소 신장 트리)
 
-그래프가 가진 간선의 일부 혹은 전체를 이용하여 그 그래프의 모든 노드를 잇는 트리(**비순환** 유향 그래프)를 <code>신장 트리(Spanning Tree)</code>라고 한다.\
-가중치 그래프에서 **만들 수 있는 신장 트리 중 사용한 간선의 가중치 합이 가장 적은 것**를 최소 신장 트리라고 한다.\
-간선의 가중치가 이 최소 신장 트리를 만드는 알고리즘은 대표적으로 2개가 있는데 아래와 같다.
+그래프가 가진 간선의 일부 혹은 전체를 이용하여 그 그래프의 모든 노드를 잇는 트리(**비순환** 유향 그래프)를 <code>신장 트리(Spanning Tree)</code>라고 한다.   
+가중치 그래프에서 **만들 수 있는 신장 트리 중 사용한 간선의 가중치 합이 가장 적은 것**를 최소 신장 트리라고 한다.   
+
+간선의 가중치가 이 최소 신장 트리를 만드는 알고리즘은 대표적으로 2개가 있는데 두 가지 모두 탐욕법(Greedy) 알고리즘을 기본으로 하면서 사이클이 만들어 지지 않도록 간선을 선택해 나가는 방법이다.   
+원래 탐욕법은 당장에는 최적이지만, 전체적인 관점에서 최적이라는 보장이 없기 때문에 반드시 검증해야 하지만...   
+다행히 Prim, Kruskal 알고리즘은 최적의 해답을 주는 것으로 증명되어 있다고 한다.
 
 ### 1. Prim Algorithm (프림 알고리즘)
 
-그래프에서 만들 수 있는 작은 트리를 점차 확장시켜 결국에는 최소 신장 트리를 만드는 방법
+그래프에서 만들 수 있는 작은 트리(정점 1개)에서 인접한 정점들을 잇는 간선 중 가장 적은 가중치를 가지는 간선을 추가시켜나가 점차 확장시켜 결국에는 최소 신장 트리를 만드는 방법
 
 #### 동작 방식
 
@@ -730,6 +801,7 @@ fun quickSort(A: Array<Int>, start: Int, end: Int){
 #### 특징
 
 1. 인접행렬로 구현시 시간 복잡도 O(V^2)를 가지며 힙을 사용하면 O(E log V)의 시간 복잡도를 가진다.
+2. 가까운 간선들만을 비교하기 때문에 크루스칼 알고리즘과 비교하여 간선이 많은 그래프일수록 빠르다.
 
 #### 예시 사진
 
@@ -738,11 +810,9 @@ fun quickSort(A: Array<Int>, start: Int, end: Int){
 
 ### 2. Kruskal Algorithm (크루스칼 알고리즘)
 
-탐욕법(Greedy) 알고리즘을 기본으로 하면서 사이클이 만들어 지지 않도록 조건을 두어 간선을 선택해 나가는 방법   
-원래 탐욕법은 당장에는 최적이지만, 전체적인 관점에서 최적이라는 보장이 없기 때문에 반드시 검증해야 하지만   
-다행히 Kruskal 알고리즘은 최적의 해답을 주는 것으로 증명되어 있다고 한다.
+그래프 전체에서 사이클이 생기지 않는 가장 가중치가 작은 간선을 선택해 최소 신장 트리를 만드는 방법
 
-해당 알고리즘을 사용할 때 반드시 사이클 여부를 확인하는 Disjoint-set(Union-Find) 알고리즘이 부가적으로 필요하다.   
+알고리즘을 사용할 때 반드시 사이클 여부를 확인하는 Disjoint-set(Union-Find) 알고리즘이 부가적으로 필요하다.   
 간단히 설명하자면 각 노드에 id를 부여하여 같은 트리에 속하는지 아닌지 파악하고   
 간선이 생겨 두 트리가 연결될 때 빠르게 id를 통합시키는 알고리즘이다.
 
@@ -758,10 +828,28 @@ fun quickSort(A: Array<Int>, start: Int, end: Int){
 #### 특징
 
 1. 시간복잡도는 O(E log V) 혹은 O(E log E)이다. (위키백과에 증명이 되어있지만 너무 어려워서 외우기만..)
+2. 전체 간선들을 가중치 기준으로 정렬을 하고 시작하기 때문에 프림 알고리즘과 비교하여 간선이 적을수록 빠르다.
 
 #### 예시 사진
 
 <img src="../image/1.1%20Graph13.PNG" width="70%" height="70%">
+
+#### 문제 풀이
+
+일반적으로 최소 신장 트리 문제라면 다익스트라든 프림이든 문제가 되지 않는다.   
+하지만 알고리즘 특징 상 간선이 많으면 프림, 간선이 적으면 크루스칼이 유리하다.
+
+[백준 2644번 촌수계산](https://www.acmicpc.net/problem/2644)    
+깃허브 풀이 링크 : https://github.com/ii200400/algorithm/blob/master/Baekjoon/kotlin/src/com/baekjoon/problem/java2644/Main.java   
+백준 풀이 공유 링크 : http://boj.kr/70616841a85a425eb8cdbd2dabe812a3
+
+[SWEA 3124. 최소 스패닝 트리](https://swexpertacademy.com/main/code/problem/problemDetail.do?contestProbId=AV_mSnmKUckDFAWb)    
+깃허브 풀이 링크 : https://github.com/ii200400/algorithm/blob/master/Baekjoon/kotlin/src/com/ssafy/swea/java3124/Solution.java   
+
++ 유니온 파인드 참고 문제
+
+[SWEA 7465. 창용 마을 무리의 개수](https://swexpertacademy.com/main/code/problem/problemDetail.do?contestProbId=AWngfZVa9XwDFAQU)    
+깃허브 풀이 링크 : https://github.com/ii200400/algorithm/blob/master/Baekjoon/kotlin/src/com/ssafy/swea/java7465/Solution.java   
 
 #### 참고
 
@@ -811,6 +899,12 @@ fun quickSort(A: Array<Int>, start: Int, end: Int){
 1. 네비게이션 길찾기
 2. 지하철 최단거리
 3. 네트워크 경로찾기
+
+#### 문제 풀이
+
+[백준 1753번 최단경로](https://www.acmicpc.net/problem/1753)    
+깃허브 풀이 링크 : https://github.com/ii200400/algorithm/blob/master/Baekjoon/kotlin/src/com/baekjoon/problem/java1753/Main.java   
+백준 풀이 공유 링크 : http://boj.kr/e4577836dc65419382588a5460bb76a4
 
 </br>
 
