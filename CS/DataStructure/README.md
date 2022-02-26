@@ -226,6 +226,10 @@ ex) 공포게임 사일런트 힐에서는 마을 구현에만 메모리가 터�
 깃허브 풀이 링크 : https://github.com/ii200400/algorithm/blob/master/Baekjoon/kotlin/src/9012.kt
 백준 풀이 공유 링크 : http://boj.kr/ecdf3d7fc35f49ec9bcfe37017345092
 
+[2493번 탑](https://www.acmicpc.net/problem/2493)   
+깃허브 풀이 링크 : https://github.com/ii200400/algorithm/blob/master/Baekjoon/kotlin/src/com/baekjoon/problem/java2493/Main.java   
+백준 풀이 공유 링크 : http://boj.kr/a0312fd9a6cb4673b3285164d6534922
+
 [더 많은 스택 문제!](https://www.acmicpc.net/problemset?sort=ac_desc&algo=71)
 
 #### 활용 예시
