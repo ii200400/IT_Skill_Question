@@ -83,6 +83,8 @@ n이 10개인 경우 순열의 갯수는 360만, 11인 경우에는 3990만, 12�
 
 일반적으로 순열을 구하는 문제는 11 이하의 수를 나열하라고 주어지는데 그 이상의 수가 주어진다면 다른 알고리즘(DP의 TSP)으로 풀어야 하는 문제이다.
 
+#### 코드
+
 ```
 // Permutation with Java
 
@@ -153,6 +155,8 @@ public class Permutation {
 
 조합은 위의 특징으로 n개 중 n/2개의 조합을 찾는 것이 가장 조합의 수가 많은데, n = 30 이고 r = 15일 때 1.5억 정도가 나오며 이 때문에 조합 문제들은 일반적으로 n이 30 이하의 수를 가진다고 한다.
 
+#### 코드
+
 ```
 // Combination with Java
 
@@ -204,6 +208,8 @@ public class Combination {
 
 n이 30개 정도가 되면 10억정도의 수가 되므로 30개에 대해 부분집합을 해결하는 것은 피하자;
 
+#### 코드
+
 ```
 // SubSet with Java
 
@@ -251,6 +257,79 @@ public class SubSet {
 }
 ```
 
+## BitMask (비트마스크)
+
+비트 연산자를 알고리즘에 활용하는 기술이다.   
+
+단순히 boolean 배열을 대체하는 정도라면 크게 도움이 되지 않지만 특정 연산에서는 큰 도움이 된다고 한다. 바이너리 카운팅 혹은 NextPermutation 등의 알고리즘 기법에 활용된다.
+
+### 코드 (Next Permutation)
+
+```
+// NP with Java
+
+public class NextPermutation {
+    static int[] input;
+    static int N;
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        N = sc.nextInt();
+        input = new int[N];
+
+        for (int i = 0; i<N; i++){
+            input[i] = sc.nextInt();
+        }
+
+        // 0. 오름차순 정렬
+        Arrays.sort(input);  //제일 작은 순열이 무조건 하나 만들어짐
+
+        long start = System.nanoTime();
+        do {
+            // 순열 하나씩 출력
+           System.out.println(Arrays.toString(input));
+        }while (np());
+        long end = System.nanoTime();
+
+        System.out.println(end-start);
+    }
+
+    private static boolean np(){
+
+        // 1. 교환 위치 찾기 (역순 탐색)
+        int i = N-1;
+        while(i>0 && input[i-1] >= input[i])
+            --i;
+
+        //맨 앞에까지 왔거나, 마지막 순열까지 다 구한상태
+        if(i == 0)
+            return false;
+
+        // 2. 교환 위치에 교환할 값 찾기 (역순 탐색)
+        int j = N-1;
+        while(input[i-1] >= input[j])
+            --j;
+
+        // 3. 교환 위치와 교환할 값 교환하기
+        swap(i-1, j);
+
+        // 4. 교환위치 뒤(꼭대기)부터 맨 뒤까지 만들 수 있는 가장 작은 순열 생성(오름차순 정렬)
+        int k = N-1;
+        while (i<k) {
+            swap(i++, k--);
+        }
+
+        return true;
+    }
+
+    static void swap(int i, int j){
+        int temp = input[i];
+        input[i] = input[j];
+        input[j] = temp;
+    }
+}
+```
+
 ## Backtracking (백트래킹)
 
 가능한 방식을 모두 살펴보면서 문제의 해를 살펴나가는데 해가 되지 않을 것이라고 판명되면 해당 방식에서 파생되는 방식은 모두 생략하고 다른 방식을 탐색해 나가는 기법이다.
@@ -269,6 +348,15 @@ public class SubSet {
 또한 정렬된 입력값을 주거나 그렇지 않다면 탐욕법의 기준이 되는 값으로 정렬을 하고 진행하는 것이 일반적이다.
 
 어렵게 만들면 탐욕법으로 해결하는 문제인지 알지도 못할 수 있을 정도로 어려울수록 문제 파악과 검증이 의외로 힘든 알고리즘이다. 하지만 이렇게 어려운 문제는 코테에서는 나오지 않는다고 말할 수 있을 정도로 출제되지는 않는다.
+
+### 문제 풀이
+
+[백준 1931번 회의실 배정](https://www.acmicpc.net/problem/1931)   
+깃허브 풀이 링크 : https://github.com/ii200400/algorithm/blob/master/Baekjoon/kotlin/src/com/baekjoon/problem/java1931/Main.java     
+백준 풀이 공유 링크 : http://boj.kr/9c5e70cc7094473c86c4f4915c96c32a
+
+[정올 1828번 냉장고](http://jungol.co.kr/bbs/board.php?bo_table=pbank&wr_id=1101&sca=99&sfl=wr_hit&stx=1828)   
+깃허브 풀이 링크 : https://github.com/ii200400/algorithm/blob/master/Baekjoon/kotlin/src/com/jungol/java1828/Main.java
 
 ## Divide & Conquer
  
