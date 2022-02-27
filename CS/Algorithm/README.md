@@ -382,6 +382,12 @@ public class NextPermutation {
 
 대표적으로 백준의 N-Queen문제 시리즈가 있다.
 
+### 문제 풀이
+
+[백준 9663번 N-Queen](https://www.acmicpc.net/problem/9663)   
+깃허브 풀이 링크 : https://github.com/ii200400/algorithm/blob/master/Baekjoon/kotlin/src/com/baekjoon/problem/java9663/Main.java     
+백준 풀이 공유 링크 : http://boj.kr/8c1c595d74c54c3e946b622a60251c6a
+
 <br/>
 
 ## Greedy (탐욕법)
