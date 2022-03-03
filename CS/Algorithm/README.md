@@ -1055,12 +1055,14 @@ order에 적힌 순서로 간선을 탐색한다.
 |---|---|---|---|---|---|
 | 4 | 3 | 2 | 1 | 5 | 5 |
 
+```
     *             *
-melorwater  => melorwater  => 스킵 배열의 r 문자에 대응하는 숫자는 5이므로.. 5칸 건너뛴다.
+melorwater  => melorwater  => 스킵 배열의 r 문자에 대응하는 숫자는 5이므로.. 5칸 건너뛴다.   
 water       => water       => 
-         *             *             *             *             *
-melorwater  => melorwater  => melorwater  => melorwater  => melorwater  => 패턴 문자 찾음!
-     water  =>      water  =>      water  =>      water  =>      water  => 끝!
+         *             *             *             *             *   
+melorwater  => melorwater  => melorwater  => melorwater  => melorwater  => 패턴 문자 찾음!   
+     water  =>      water  =>      water  =>      water  =>      water  => 끝!   
+```
 
 좀 더 잘 설명하고 싶은데.. 그림 그릴 시간까지 투자하기 힘들어서;; 일단 글로 짧게 예시를 들었다.
 
@@ -1074,8 +1076,6 @@ melorwater  => melorwater  => melorwater  => melorwater  => melorwater  => 패�
 KMP 알고리즘 거의 모든 상황에 대해서 평균적으로 더 빠르다고 하지만 현실에서는 패턴 문자열의 내부에 반복되는 문자열이 있는 경우가 많이 없기 때문에 실질적으로는 KMP보다는 보이어-무어를 더 널리 사용한다고 한다.
 
 [16일 알고리즘 실습 추가 요망]()
-
-<br>
 
 ### KMP
 
