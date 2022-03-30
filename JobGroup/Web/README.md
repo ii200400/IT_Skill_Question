@@ -320,4 +320,16 @@ HttpSession session = request.getSession();
 아래는 기존의 세션이 존재하면 해당 세션을 반환하고 그렇지 않으면.. null을 준다고 한다;
 HttpSession session = request.getSession(false);
 
+## BackEnd
+
+### MVC 패턴
+
+일반적으로는 DTO, jsp, Servlet을 mvc 역할을 두어 프로그램을 만드는 프로그래밍 방법
+
+### Front Controller
+
+command 디자인패턴이라고도 한다.
+controller를 두 역할로 나누어 관리하는 방법을 의미한다
+하나는 경로를 지정하는 controller, 다른 하나는 비즈니스 로직을 관리하는 controller로 나뉜다.
+
 
