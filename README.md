@@ -14,6 +14,7 @@
   + [개발 상식](https://github.com/ii200400/IT_Skill_Question/tree/master/CS/Development_common_sense)
   
 + Part 2. Language
+  + [Java](https://github.com/ii200400/IT_Skill_Question/tree/master/Language/Java)
   + [Kotlin](https://github.com/ii200400/IT_Skill_Question/tree/master/Language/Kotlin)
   
 + Part 3. 분야별 정리(Job Group)
