@@ -535,9 +535,9 @@ JSP에서 사용이 가능한 객체를 지칭하는 용어이다. (빌더 형�
 
 이러한 차이점을 표로 정리해보면 아래와 같다.
 
-| -- | forward(request, response) | sendRedirect(location) |
-|  | -- | -- |
-| 사용 방법 | RequestDispatcher dispatcher = request.getRequestDispatcher(path);<br>dispatcher.forward(request, response); | response.sendRedirect(location);
+|  | forward(request, response) | sendRedirect(location) |
+| -- | -- | -- |
+| 사용 방법 | RequestDispatcher dispatcher = request.getRequestDispatcher(path);<br>dispatcher.forward(request, response); | response.sendRedirect(location); |
 | 이동 범위 | 동일 서버(project)내 경로 | 동일 서버 포함, 타 URL 가능. |
 | location bar | 기존 URL 유지<br>(실재 이동되는 주소 확인 불가) | 이동하는 page로 주소가 갱신 |
 | 객체 | 기존의 request와 response가 그대로 전달 | 기존의 request와 response는 소멸, 새로운 request와 response가 생성. |
