@@ -1042,21 +1042,57 @@ order에 적힌 순서로 간선을 탐색한다.
 
 그냥.. 메모리와 시간을 등가교환하는 방법으로만 알고 있었는데 해당 방식에 대한 용어가 있었는지는 몰랐다;; 메모이제이션을 직역하면 `메모리에 넣기` 라고 한다.
 
+#### 문제 풀이
+
+[백준 2579번 계단 오르기](https://www.acmicpc.net/problem/2579)   
+깃허브 풀이 링크 : https://github.com/ii200400/algorithm/blob/master/Baekjoon/kotlin/src/com/baekjoon/problem/java2579/Main.java
+백준 풀이 공유 링크 : http://boj.kr/e41a636640e046c68efbdf0144ecd63d
+
+[백준 2133번 타일 채우기](https://www.acmicpc.net/problem/2579)   
+깃허브 풀이 링크 : https://github.com/ii200400/algorithm/blob/master/Baekjoon/kotlin/src/com/baekjoon/problem/java2133/Main.java
+백준 풀이 공유 링크 : http://boj.kr/8581607c75ab46ccb5802a788a71ad32
+
+[백준 9184번 신나는 함수 실행](https://www.acmicpc.net/problem/9184)   
+깃허브 풀이 링크 : https://github.com/ii200400/algorithm/blob/master/Baekjoon/kotlin/src/com/baekjoon/problem/java9184/Main.java
+백준 풀이 공유 링크 : http://boj.kr/f0b7684d044d4e2ab8ac9ac807aaa63d
+
 <br/>
 
 ### knapsack (배낭)
 
-DP를 활용하여 해결하는 대표적인 __문제__ 중 하나로, 무게 제한이 K인 배낭과 무게와 가치가 정해진 N개의 물건이 있을 때 가치의 총합이 가장 크도록 배낭을 싸는 문제를 의미한다.   
+DP를 활용하여 해결하는 대표적인 문제 중 하나로, 무게 제한이 K인 배낭과 무게와 가치가 정해진 N개의 물건이 있을 때 가치의 총합이 가장 크도록 배낭을 싸는 **문제**를 의미한다.   
 
 이때 지문에는 보통 각 물건은 하나씩만 존재하며 나누어 넣을 수 없다는 조건이 있어서 각 물건은 배낭에 넣거나, 넣지 않거나 둘 중 하나의 경우만을 가지는 특징이 있다. 
 이러한 조건으로 부분집합을 써도 되지만.. 일반적인 냅섹 문제는 부분집합으로 푸는 경우 시간초과가 나도록 만들기 때문에 물건의 종류가 너무 많으면 냅섹 문제임을 고려하자!
 
 메모이제이션을 활용할 때 이중배열을 사용한다는 특징이 있는데.. 나중에 보니 설명을 위해서 이중배열을 사용하는 것일뿐 단일배열로도 가능하다.
 
+#### 문제 풀이
+
+[백준 1535번 안녕](https://www.acmicpc.net/problem/1535)   
+깃허브 풀이 링크 : https://github.com/ii200400/algorithm/blob/master/Baekjoon/kotlin/src/com/baekjoon/problem/java1535/Main.java
+백준 풀이 공유 링크 : http://boj.kr/a74618fd9e0c423ba143a7f59df97b0a
+
+### LIS(Longest Increasing Subsequence, 최장 증가 수열)
+
+왼쪽에서 오른쪽으로 나열된 어떤 수열의 순서를 유지하면서 크기가 점진적으로 커지는 가장 긴 부분 수열을 구하는 문제를 의미한다.
+
+DP문제 특성상 완전탐색을 활용하면 O(2^N)으로 시간초과가 일어나기 때문에 DP로 해결하는 것이 좋다.
+
+#### 이진탐색 활용
+
+배열과 이진탐색을 활용하면 조금 더 빠르게 해결이 가능하다.
+
+#### 문제 풀이
+
+[백준 11053번 가장 긴 증가하는 부분 수열](https://www.acmicpc.net/problem/11053)   
+깃허브 풀이 링크 : https://github.com/ii200400/algorithm/blob/master/Baekjoon/kotlin/src/com/baekjoon/problem/java11053/Main.java
+백준 풀이 공유 링크 : http://boj.kr/427e13b63f0b49b385c0431ff3be0301
+
+[SWEA 3307. 최장 증가 부분 수열](https://swexpertacademy.com/main/code/problem/problemDetail.do?contestProbId=AWBOKg-a6l0DFAWr)   
+깃허브 풀이 링크 : https://github.com/ii200400/algorithm/blob/master/Baekjoon/kotlin/src/com/ssafy/swea/java3307/Solution.java
+
 ### LCS(Longest Common Subsequence)
-
-
-### LIS(Longest Increasing Subsequence)
 
 
 ### Edit Distance
@@ -1065,18 +1101,6 @@ DP를 활용하여 해결하는 대표적인 __문제__ 중 하나로, 무게 �
 ### Matrix Chain Multiplication
 
 
-#### 문제 풀이
-
-[백준 0000번 --]()   
-깃허브 풀이 링크 :   
-백준 풀이 공유 링크 : 
-
-[SWEA 0000. --]()   
-깃허브 풀이 링크 : 
-
-그리디로 풀리지 않는데 DP로 풀리는 문제 (그.. 1원 4원 6원 거스름돈 최소 문제.. 같은거..)
-혹은 이항계수/파스칼의 삼각형 문제
-[백준 문제 추가 요망]()
 
 ## Pattern Matching (문자열 패턴 매칭)
 
