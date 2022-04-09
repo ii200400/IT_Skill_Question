@@ -4,6 +4,7 @@
   + Permutation
   + Combination
   + SubSet
+  + BitMask + NP
 + Divide & Conquer
 + Sort
   + Bubble Sort
