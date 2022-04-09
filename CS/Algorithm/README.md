@@ -81,6 +81,8 @@ ex) O(3n+2) -> O(3n) -> O(n)
 가장 자주 출제되는 문제 유형 중 하나로 종류가 다양하지만 비슷하게 구현한다.   
 가장 기본적으로 고려해야 하는 방법으로 해당 방법으로 시간초과가 일어날 것 같으면 다른 알고리즘을 고려하는 것이 알고리즘 문제 해결방법의 순서이다.
 
+완전탐색이라고 하면 대표적으로 순열, 조합, 부분집합을 구하는 알고리즘이 있는데 필자는 그것을 정리할 예정이다.
+
 ### 문제 풀이
 
 [백준 2563번 색종이](https://www.acmicpc.net/problem/2563)   
@@ -95,12 +97,16 @@ ex) O(3n+2) -> O(3n) -> O(n)
 
 **서로 다른** 것들 중 몇 개를 **순서를 고려**하여 선택하는 것
 
-서로다른 n개 중 r개를 선택하는 순열을 nPr이라고 표현한다.   
-nPn = n! 로 표기하며 Factorial(팩토리얼)이라고 말한다.
+서로다른 n개 중 r개를 선택하는 순열을 nPr이라고 표현한다. 식으로 표현하면 아래와 같다.   
+nPr = n * (n - 1) * … * (n - r + 1) = n! / (n - r)!
 
-n이 10개인 경우 순열의 갯수는 360만, 11인 경우에는 3990만, 12인 경우에는 4억 7천만으로, 시간초과가 생길 수 있음을 고려해서 풀어야 한다.   
+여기에서 r이 n이라면 nPn = n! 로 표기하며 n-Factorial(팩토리얼)이라고 말한다.   
+n과 r이 10개인 경우 순열의 개수는 360만, 11인 경우에는 3990만, 12인 경우에는 4억 7천만으로, 시간초과가 생길 수 있음을 고려해서 풀어야 한다.   
 
 일반적으로 순열을 구하는 문제는 11 이하의 수를 나열하라고 주어지는데 그 이상의 수가 주어진다면 다른 알고리즘(DP의 TSP)으로 풀어야 하는 문제이다.
+
+순열은 아래와 같이 재귀를 활용하여 해결하는 것이 일반적이며 r의 값이 매우 작다면(3이하) for문으로 해결하는 것도 방법이다.   
+이미 선택한 값도 자주 방문하게 되기 때문에 방문체크를 할 배열이 꼭 필요한 것을 잊지 말자.
 
 #### 코드
 
@@ -167,6 +173,10 @@ public class Permutation {
 
 #### 문제 풀이
 
+[백준 15654번 N과 M (5)](https://www.acmicpc.net/problem/15654)   
+깃허브 풀이 링크 : https://github.com/ii200400/algorithm/blob/master/Baekjoon/kotlin/src/com/baekjoon/problem/java15654/Main.java   
+백준 풀이 공유 링크 : http://boj.kr/f8f284fee352495cabc463ffa7aed3b0
+
 [SWEA 1247. [S/W 문제해결 응용] 3일차 - 최적 경로](https://swexpertacademy.com/main/code/problem/problemDetail.do?contestProbId=AV15OZ4qAPICFAYD)   
 깃허브 풀이 링크 : https://github.com/ii200400/algorithm/blob/master/Baekjoon/kotlin/src/com/ssafy/swea/java1247/Solution.java
 
@@ -177,10 +187,12 @@ public class Permutation {
 
 **서로 다른** 것들 중 몇 개를 **순서를 고려하지 않고** 선택하는 것
 
-서로 다른 n개 중 r개를 선택하는 조합을 nCr이라고 표현한다. 서로 다른 n개 중 사용하지 않을 n-r개를 선택하는 것으로도 볼 수 있기 때문에 nCr = nCn-r이라는 특징이 있다!   
-알고리즘을 작성할 때는 r이나 n-r 중 더 적은 수를 선택하는 쪽으로 구현하는 것이 더 빠르다!
+서로 다른 n개 중 r개를 선택하는 조합을 nCr이라고 표현한다. 서로 다른 n개 중 사용하지 않을 n-r개를 선택하는 것으로도 볼 수 있기 때문에 nCr = nCn-r이라는 특징이 있다! 이러한 특징으로 알고리즘을 작성할 때는 r이나 n-r 중 더 적은 수를 선택하는 쪽으로 구현하는 것이 더 빠르다!
 
-조합은 위의 특징으로 n개 중 n/2개의 조합을 찾는 것이 가장 조합의 수가 많은데, n = 30 이고 r = 15일 때 1.5억 정도가 나오며 이 때문에 조합 문제들은 일반적으로 n이 30 이하의 수를 가진다고 한다.
+같은 이유로 n개 중 n/2개의 조합을 찾는 것이 가장 조합의 수가 많은데, n = 30 이고 r = 15일 때 1.5억 정도가 나오며 이 때문에 조합 문제들은 일반적으로 n이 30 이하의 수를 가진다고 한다.
+
+순열과 마찬가지로 같이 재귀를 활용하여 해결하는 것이 일반적이며 r의 값이 매우 작다면(3이하) for문으로 해결하는 것도 좋다.   
+하지만 순열과는 다르게, 이미 선택한 값에 방문하지 않기 때문에 방문체크를 할 배열을 사용하지 않는다.
 
 #### 코드
 
@@ -230,6 +242,10 @@ public class Combination {
 
 #### 문제 풀이
 
+[백준 15655번 N과 M (6)](https://www.acmicpc.net/problem/15655)   
+깃허브 풀이 링크 : https://github.com/ii200400/algorithm/blob/master/Baekjoon/kotlin/src/com/baekjoon/problem/java15654/Main.java   
+백준 풀이 공유 링크 : http://boj.kr/953d1a6be3a346389ecf0a9a186b0335
+
 [백준 2798번 블랙잭](https://www.acmicpc.net/problem/2798)   
 깃허브 풀이 링크 : https://github.com/ii200400/algorithm/blob/master/Baekjoon/kotlin/src/com/baekjoon/problem/java2798/Main.java   
 백준 풀이 공유 링크 : http://boj.kr/c35d1dc92c564dfbae9be314a1aefa5d
@@ -237,9 +253,10 @@ public class Combination {
 ### SubSet (부분 집합)
 
 집합에 있는 원소들 중 일부를 선택해서 집합을 만드는 것   
-집합의 원소가 n개일 때, 공집합을 포함한 부분 집합의 수는 2^n개 이다. (각 원소가 포함되는 경우와 포함되지 않는 경우가 있으므로)
-
+집합의 원소가 n개일 때, 공집합을 포함한 부분 집합의 수는 2^n개 이다. (각 원소가 포함되는 경우와 포함되지 않는 경우가 있으므로)   
 n이 30개 정도가 되면 10억정도의 수가 되므로 30개에 대해 부분집합을 해결하는 것은 피하자;
+
+순열, 조합과 같이 재귀로 아래와 같이 구현한다.
 
 #### 코드
 
@@ -292,12 +309,6 @@ public class SubSet {
 
 #### 문제 풀이
 
-로또문제의 경우 필자와 다른 방법으로 푸는 것이 사실 더 좋다. 오답은 아니지만..
-
-[백준 6603번 로또](https://www.acmicpc.net/problem/6603)   
-깃허브 풀이 링크 : https://github.com/ii200400/algorithm/blob/master/Baekjoon/kotlin/src/com/baekjoon/problem/java6603/Main.java   
-백준 풀이 공유 링크 : http://boj.kr/ccacac93ef504da980811f35076be12a
-
 [백준 1961번 도영이가 만든 맛있는 음식](https://www.acmicpc.net/problem/2961)   
 깃허브 풀이 링크 : https://github.com/ii200400/algorithm/blob/master/Baekjoon/kotlin/src/com/baekjoon/problem/java2961/Main.java   
 백준 풀이 공유 링크 : http://boj.kr/6c2fa4c2698f45bf8291952721c04d8a
@@ -307,6 +318,8 @@ public class SubSet {
 비트 연산자를 알고리즘에 활용하는 기술이다.   
 
 단순히 boolean 배열을 대체하는 정도라면 크게 도움이 되지 않지만 특정 연산에서는 큰 도움이 된다고 한다. 바이너리 카운팅 혹은 NextPermutation 등의 알고리즘 기법에 활용된다.
+
+NP, NC(NextPermutation, NextCombination)는 순열 및 조합을 생성할 때 재귀적으로 구현하지 않고 각 인덱스 값을 비교하여 수를 선택하는 모든 경우 수를 찾는 알고리즘이다. 재귀로 구현하는 방식보다 빠르다는 특징이 있으나 상대적으로 이해하기 힘들다는 단점이 있다.
 
 ### 코드 (Next Permutation)
 
@@ -327,7 +340,7 @@ public class NextPermutation {
         }
 
         // 0. 오름차순 정렬
-        Arrays.sort(input);  //제일 작은 순열이 무조건 하나 만들어짐
+        Arrays.sort(input);  //제일 작은 순열이 무조건 하나 만들어진다.
 
         long start = System.nanoTime();
         do {
@@ -341,7 +354,7 @@ public class NextPermutation {
 
     private static boolean np(){
 
-        // 1. 교환 위치 찾기 (역순 탐색)
+        // 1. 교환할 숫자의 위치 찾기 (역순 탐색)
         int i = N-1;
         while(i>0 && input[i-1] >= input[i])
             --i;
@@ -350,15 +363,15 @@ public class NextPermutation {
         if(i == 0)
             return false;
 
-        // 2. 교환 위치에 교환할 값 찾기 (역순 탐색)
+        // 2. 다른 교환할 숫자의 위치 찾기 (역순 탐색)
         int j = N-1;
         while(input[i-1] >= input[j])
             --j;
 
-        // 3. 교환 위치와 교환할 값 교환하기
+        // 3. 교환하기
         swap(i-1, j);
 
-        // 4. 교환위치 뒤(꼭대기)부터 맨 뒤까지 만들 수 있는 가장 작은 순열 생성(오름차순 정렬)
+        // 4. 첫번째로 선택한 위치(i)부터 맨 뒤까지 만들 수 있는 가장 작은 순열 생성(오름차순 정렬)
         int k = N-1;
         while (i<k) {
             swap(i++, k--);
@@ -628,7 +641,7 @@ fun mergeSort(A: Array<Int>, tempA: Array<Int>, low: Int, high: Int){
 
 #### 백준 문제 풀이
 
-[1838번 버블 정렬](https://www.acmicpc.net/problem/1838)     
+[1838번 버블 정렬](https://www.acmicpc.net/problem/1838)    
 깃허브 풀이 링크 : https://github.com/ii200400/algorithm/blob/master/Baekjoon/kotlin/src/1838.kt   
 백준 풀이 공유 링크 : http://boj.kr/924fd08cd40c43cda9125313816e5157
 
@@ -1054,15 +1067,15 @@ order에 적힌 순서로 간선을 탐색한다.
 #### 문제 풀이
 
 [백준 2579번 계단 오르기](https://www.acmicpc.net/problem/2579)   
-깃허브 풀이 링크 : https://github.com/ii200400/algorithm/blob/master/Baekjoon/kotlin/src/com/baekjoon/problem/java2579/Main.java
+깃허브 풀이 링크 : https://github.com/ii200400/algorithm/blob/master/Baekjoon/kotlin/src/com/baekjoon/problem/java2579/Main.java   
 백준 풀이 공유 링크 : http://boj.kr/e41a636640e046c68efbdf0144ecd63d
 
 [백준 2133번 타일 채우기](https://www.acmicpc.net/problem/2579)   
-깃허브 풀이 링크 : https://github.com/ii200400/algorithm/blob/master/Baekjoon/kotlin/src/com/baekjoon/problem/java2133/Main.java
+깃허브 풀이 링크 : https://github.com/ii200400/algorithm/blob/master/Baekjoon/kotlin/src/com/baekjoon/problem/java2133/Main.java   
 백준 풀이 공유 링크 : http://boj.kr/8581607c75ab46ccb5802a788a71ad32
 
 [백준 9184번 신나는 함수 실행](https://www.acmicpc.net/problem/9184)   
-깃허브 풀이 링크 : https://github.com/ii200400/algorithm/blob/master/Baekjoon/kotlin/src/com/baekjoon/problem/java9184/Main.java
+깃허브 풀이 링크 : https://github.com/ii200400/algorithm/blob/master/Baekjoon/kotlin/src/com/baekjoon/problem/java9184/Main.java   
 백준 풀이 공유 링크 : http://boj.kr/f0b7684d044d4e2ab8ac9ac807aaa63d
 
 <br/>
@@ -1104,7 +1117,7 @@ DP를 활용하여 해결하는 대표적인 문제 중 하나로, 무게 제한
 #### 문제 풀이
 
 [백준 1535번 안녕](https://www.acmicpc.net/problem/1535)   
-깃허브 풀이 링크 : https://github.com/ii200400/algorithm/blob/master/Baekjoon/kotlin/src/com/baekjoon/problem/java1535/Main.java
+깃허브 풀이 링크 : https://github.com/ii200400/algorithm/blob/master/Baekjoon/kotlin/src/com/baekjoon/problem/java1535/Main.java   
 백준 풀이 공유 링크 : http://boj.kr/a74618fd9e0c423ba143a7f59df97b0a
 
 ### LIS(Longest Increasing Subsequence, 최장 증가 수열)
@@ -1163,11 +1176,11 @@ D에 저장되어있는 값들 중 A[i]보다 크면서 가장 작은 값에 A[i
 #### 문제 풀이
 
 [백준 11053번 가장 긴 증가하는 부분 수열](https://www.acmicpc.net/problem/11053)   
-깃허브 풀이 링크 : https://github.com/ii200400/algorithm/blob/master/Baekjoon/kotlin/src/com/baekjoon/problem/java11053/Main.java
+깃허브 풀이 링크 : https://github.com/ii200400/algorithm/blob/master/Baekjoon/kotlin/src/com/baekjoon/problem/java11053/Main.java   
 백준 풀이 공유 링크 : http://boj.kr/427e13b63f0b49b385c0431ff3be0301
 
 [백준 14002번 가장 긴 증가하는 부분 수열 4](https://www.acmicpc.net/problem/14002)   
-깃허브 풀이 링크 : https://github.com/ii200400/algorithm/blob/master/Baekjoon/kotlin/src/com/baekjoon/problem/java14002/Main.java
+깃허브 풀이 링크 : https://github.com/ii200400/algorithm/blob/master/Baekjoon/kotlin/src/com/baekjoon/problem/java14002/Main.java   
 백준 풀이 공유 링크 : http://boj.kr/d44edda18aa7445a93fd05bc3043ef10
 
 ### LCS(Longest Common Subsequence)
