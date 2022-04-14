@@ -15,11 +15,14 @@
   + 에라토스테네스 체
   + GCD, LCM
     + 유클리드 호제
+    + Bezout Identity (베주 항등식)
+    + RSA
 + 비트연산
   + 페르마의 소정리
 
-수치해석 문제 swea 1245 균형점, bj 7482 [상자 만들기](https://www.acmicpc.net/problem/7482)   
-확장 유클리드 호제 swea 7466 확장 유클리드, 백준 톰과제리   
+수치해석 문제(5) swea 1245 균형점, bj 7482 [상자 만들기](https://www.acmicpc.net/problem/7482)   
+유클리드 호제 swea 7466 확장 유클리드, 백준 톰과제리   
+베주항등식(3)
 진수 문제 swea 7985 Bit Shift, 진법 swea 7193, swea 12369 일련번호 붙이기   
 페르마의 소정리 swea 5607, swea 3238
 ?? bj10830 행렬제곱, 
