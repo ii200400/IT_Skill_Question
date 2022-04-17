@@ -9,6 +9,7 @@
 + [Http & Https](https://github.com/ii200400/IT_Skill_Question/tree/master/CS/Network#http--https)
   + [HTTP 문제점 및 HTTPS 보안성](https://github.com/ii200400/IT_Skill_Question/tree/master/CS/Network#http-%EB%AC%B8%EC%A0%9C%EC%A0%90-%EB%B0%8F-https-%EB%B3%B4%EC%95%88%EC%84%B1)
   + [Https 특징](https://github.com/ii200400/IT_Skill_Question/tree/master/CS/Network#https)
++ DNS(Domain Name System)
 
 </br>
 
@@ -406,3 +407,44 @@ HTTP에 비해서 보안성이 좋은 만큼 단점도 존재하는데 아래와
 + https://mangkyu.tistory.com/98
 
 </br>
+
+## DNS(Domain Name System)
+
++ 호스트 네임을 기계(라우터)가 알아 보기 쉬운 IP 주소로 변환히주는 서비스
+  + 호스트 네임(host name) : 호스트의 이름, 호스트의 식별자 중 하나
+  + 호스트(host) : 네트워크에 연결된 장치
+  + [참고 블로그](https://real-dongsoo7.tistory.com/122)
++ 계층 구조로 구현된 분산 데이터베이스로 구성된다.
++ 다른 애플리케이션 프로토콜들이 사용자로부터 입력받은 호스트 네임(혹은 메일)을 IP 주소로 변환할 때 주로 사용된다.
+
+### DNS가 수행되는 과정
+
+1. 사용자 컴퓨터의 브라우저가 DNS 애플리케이션의 클라이언트를 호출한다.
+2. 브라우저는 URL로 부터 호스트 네임(www.someschool.edu)를 추출하고 해당 호스트 네임을 DNS 애플리케이션 클라이언트에 넘긴다.
+3. DNS 클라이언트는 DNS 서버로 호스트 네임을 포함하는 쿼리문을 보낸다.
+4. DNS 클라이언트는 호스트 네임에 대한 IP 주소를 결과로 받는다.
+5. 브라우저가 DNS로부터 IP 주소를 받아 해당 IP 주소의 80번 포트에 위치하는 HTTP 서버로 연결을 초기화한다.
+
+위의 과정을 통해서 IP 주소를 변환하는 것 외 제공하는 서비스가 몇 가지 더 있다.
++ 호스트 엘리어싱(host aliasing)   
+  하나 이상의 호스트 네임을 가지는 경우 정식 호스트 네임과 별칭 호스트 네임으로 나뉘게 된다.   
+  이 때 별칭 호스트 네임을 정식 호스트 네임으로 바꾸는 서비스   
+  ex) enterprise.com -> relay1.west-coast.enterprise.com   
++ 메일 서버 엘리어싱(mail serer aliasing)   
+  정식 호스트 네임을 얻기위해 메일 애플리케이션에 제공되는 서비스
++ 부하 분산(load distribution)   
+  여러 IP 주소가 하나의 정식 호스트 네임과 매핑이 되어있을 때, IP 주소를 하나씩 돌아가면서 제공하는 서비스   
+  트레픽을 분산시키는 효과가 있다.
+
+### DNS 동작 원리
+
+DNS는 안전성, 속도, 유지관리, 확장성 등의 문제로 분산 계층 데이터 베이스로 이루어져 있다.   
+
+크게 3유형의 DNS 서버가 있다.
++ 루트 DNS 서버 (root DNS server)
+  적절한 최상위 도메인(TLD) 위치를 반환하는 서버
++ TLD DNS 서버 (top-level domain DNS server)   
+  com, org, net 같은 상위 레벨 도메인과 kr, uk, fr 등의 모든 국가의 상위 레벨 도메인에 대한 서버
++ 책임 DNS 서버 (authoritative DNS server)   
+  호스트 네임을 IP 주소로 매핑하는 DNS 레코드를 제공하는 서버
+
