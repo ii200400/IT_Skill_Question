@@ -34,3 +34,22 @@ Spring Framework의 모듈에는 아래와 같은 구성요소가 있다.
 + Spring DI Container
   + Spring DI Container가 관리하는 객체를 빈(Bean)이라 한다.
   + 빈들의 생명주기(Life-Cycle)를 관리하는 의미로 빈 팩토리(BeanFactory)라고 한다.
+
+## Spring Boot
+
+Spring의 경우 Application을 개발하려면 사전에 많은 작업(라이브러리 추가, dependency 설정 등)이 필요하다.   
+이러한 번거로운 작업을 빠르고 쉽게 처리하기 위해 생겼다.
+
+mybatis와 다르게 REST api를 구현하기 위해 만드는지 뷰나 설정파일 등을 담는 src 파일이 텅텅 비어있다.
+
+장점
++ project에 따라 자주 사용되는 라이브러리들이 미리 조합되어있어 선택만 하면된다.
++ 복잡한 설정을 자동으로 처리
++ 내장 서버를 포함해 톰캣 등의 WAS를 추가로 설치하지 않아도 개발 가능
++ WAS에 배포하지 않고 실행할 수 있는 JAR파일로 웹 애플리케이션 개발 가능
+
+[Spring Boot](https://spring.io/projects/spring-boot)
+
+
+
+
