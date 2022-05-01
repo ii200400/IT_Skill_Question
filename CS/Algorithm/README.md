@@ -775,7 +775,21 @@ fun quickSort(A: Array<Int>, start: Int, end: Int){
 
 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7f/Depth-First-Search.gif/330px-Depth-First-Search.gif" width="200">
 위키백과에 있던 깊이 우선 탐색 애니메이션 예시
-  
+
+```
+// 인접 행렬 DFS
+static void dfs(int[][] adjMatrix, boolean[] visited, int current){
+    visited[current] = true;
+    System.out.print(current + " ");
+
+    for (int i = 0; i<N; i++){
+        if (!visited[i] && adjMatrix[current][i] != 0){
+            dfs(adjMatrix, visited, i);
+        }
+    }
+}
+```
+
 #### 문제 풀이
 
 [백준 1987번 알파벳](https://www.acmicpc.net/problem/1987)   
@@ -796,6 +810,34 @@ fun quickSort(A: Array<Int>, start: Int, end: Int){
 **너비 우선 탐색을 적용하여 찾은 두 노드의 경로는 항상 최단거리이다.**
 
 <img src="https://upload.wikimedia.org/wikipedia/commons/4/46/Animated_BFS.gif" width="200">
+
+```
+// 인접행렬의 BFS
+static void bfs(int[][] adjMatrix, int start){
+    Queue<Integer> queue = new LinkedList<>();
+    boolean[] visited = new boolean[N];
+
+    // 시작 지점을 큐에 넣고 방문 처리를 하여 초기화를 하고
+    queue.offer(start);
+    visited[start] = true;
+
+    // 너비우선탐색을 진행한다.
+    while (!queue.isEmpty()){
+        int current = queue.poll();
+        System.out.print(current + " ");
+
+        // 인접 행렬의 경우
+        for (int i = 0; i<N; i++){
+            // current 정점에서 인접하면서 방문하지 않은 정점을
+            if (!visited[i] && adjMatrix[current][i] != 0){
+                // 큐에 넣는다.
+                queue.offer(i);
+                visited[i] = true;
+            }
+        }
+    }
+}
+```
 
 #### 문제 풀이
 
