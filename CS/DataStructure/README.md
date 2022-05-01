@@ -366,6 +366,17 @@ NxN BooleanMatrix(일반적으로 2차원 배열로 구현)을 만든 뒤 행렬
 + 공간 복잡도는 O(|V|^2)이다.
 + Dense graph를 표현할 때, 정점 간의 연결 유무 참고가 많을 때 사용하기 좋다.
 
+```
+// 1. 인접 행렬
+int[][] map = new int[V][V];
+for (int i = 0; i<E; i++){
+    int from = sc.nextInt();
+    int to = sc.nextInt();
+    map[from][to] = 1;  // 유향 그래프 입력
+    map[to][from] = 1;  // 무향 그래프의 경우 해당 줄을 추가한다.
+}
+```
+
 #### 2. 인접 리스트(adjacent list) - 연결 리스트 사용
 
 각 정점과 인접한 정점들을 연결 리스트를 사용하여 표현한는 방법이다.
@@ -379,6 +390,23 @@ NxN BooleanMatrix(일반적으로 2차원 배열로 구현)을 만든 뒤 행렬
 + Sparse graph를 표현할 때, 정점 수가 많을 때 사용하기 좋다.
 
 개인적으로 공간 복잡도가 O(|V|+|E|)이라고 생각했는데.. 왜 O(|E|)인지 잘 모르겠다.
+
+```
+// 2. 인접리스트
+ArrayList<Integer>[] map2 = new ArrayList[V];
+// 아래줄을 쓰면 모든 인덱스에 한 ArrayList 참조값으로 채워진다... 쓰지말자.
+// Arrays.fill(map2, new ArrayList<Integer>());
+for(int i =0; i < V; i++) {
+    map2[i] = new ArrayList<>();
+}
+
+for (int i = 0; i<E; i++){
+    int from = sc.nextInt();
+    int to = sc.nextInt();
+    map2[from].add(to); // 유향 그래프 입력
+    map2[to].add(from); // 무향 그래프의 경우 해당 줄을 추가한다.
+}
+```
 
 </br>
 
