@@ -347,7 +347,7 @@ Join도 설명을 해야하나 내용이 너무 많아 아래쪽에 따로 정�
   + commit : 실행한 Query를 최종적으로 적용
   + rollback : 실행한 Query를 마지막 commit 전으로 취소시켜 데이터를 복구
 
-DDL 이나 DML의 모든 질의문은 무조건 commit이 진행된다.
+DDL 이나 DCL의 모든 질의문은 무조건 commit이 진행된다.
 
 ### Join
 
