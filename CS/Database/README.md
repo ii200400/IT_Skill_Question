@@ -21,11 +21,19 @@
 해당 글은 본인이 듣고 있는 강의와 데이터베이스 개론 3판(김연희 저자)를 참고하여 작성하였음을 밝힌다.   
 또한, 강의에서 MySQL을 사용하였기 때문에 해당 프로그램을 기준으로 작성할 예정이다.
 
+미정리 내용들(언제 정리하니 )
+
 용어 정리
 
 + 엔티티(Entity) : 현실에서 가치가 있는 사물이나 사람
 + 스키마(Schema) : 데이터베이스에 저장되는 데이터 구조와 제약조건을 정의한 것
 + 인스턴스(객체, instance) : 스키마의 정의를 기반으로 데이터베이스에 실제로 저장된 값
+
+강의 중간에 index(색인, 목차)에 대한 설명도 조금 하셨다.   
+
++ 특정 데이터의 위치를 저장하여 검색 속도를 빠르게 하기 위해 사용한다.
++ 목차를 저장할 메모리 공간이 별도로 필요하다.
++ 데이터의 추가/삭제가 빈번히 일어나는 경우 목차의 수정에 걸리는 시간이 늘어나 오히려 비효율적일 수 있다.
 
 ## ER Diagram (Entity-Relation Diagram)
 
@@ -105,7 +113,7 @@
 
 참고로 데이터베이스에는 사진, 음악이나 영화도 저장할 수 있기는 하다.
 
-### DDL (Data Control Language)
+### DDL (Data Definition Language)
 
 + 데이터 정의어
   + 데이터베이스 객체의 구조를 정의
@@ -311,7 +319,7 @@ FROM table_name;
   + select와 from은 필수적인 절이다.
   + where, group by, having, order by 등의 구문을 활용하여 다양한 기능을 줄 수 있다.
 
-select문 예시들이 너무 많도 생략하기에도 어려워서 [다른 곳]()에 정리를 하였다;
+select문 예시들이 너무 많도 생략하기에도 어려워서 [다른 곳](https://github.com/ii200400/IT_Skill_Question/tree/master/CS/Database/select)에 정리를 하였다;
 
 데이터베이스에서 논리연산시 Null이 포함되어 있다면 에러가나는 일반 언어와는 다르게 에러 대신 다른 값이 나올 수도 있다.
 
@@ -319,7 +327,7 @@ select문 예시들이 너무 많도 생략하기에도 어려워서 [다른 곳
 
 Join도 설명을 해야하나 내용이 너무 많아 아래쪽에 따로 정리를 하였다.
 
-### DCL (Data Definition Language)
+### DCL (Data Control Language)
 
 + 데이터 제어어
   + DB, Table의 접근 권한이나 CRUD 권한을 정의
@@ -354,11 +362,14 @@ DDL 이나 DML의 모든 질의문은 무조건 commit이 진행된다.
 	+ OUTER JOIN
 		+ LEFT OUTER JOIN
 		+ RIGHT OUTER JOIN
-
-+ 조건의 명시에 따른 구분
-	+ NATURAL JOIN
-	+ CROSS JOIN(FULL JOIN, CARTESIAN JOIN)
-
+	+ 조건 명시에 따른 구분
+	  + NATURAL JOIN
+		+ CROSS JOIN(FULL JOIN, CARTESIAN JOIN)
+	+ SELF JOIN
+	+ None - Equi JOIN
+	
+여기서 `NATURAL JOIN`과 `CROSS JOIN`은 단순히 조건을 명시하는 방식이 다른 것 뿐 기본적으로 각각 INNER JOIN, OUTER JOIN이다. 특별한 기능이 추가되는 것은 아니다.
+	
 + 주의사항
 	+ 어느 테이블을 먼저 읽을지를 결정하는 것이 중요하다
 		+ 처리할 작업량이 크게 달라질 수도 있기 때문이다.
@@ -366,6 +377,141 @@ DDL 이나 DML의 모든 질의문은 무조건 commit이 진행된다.
 		+ 위의 기능을 옵티마이저라고 한다.
 	+ INNER JOIN : 어느 테이블을 먼저 읽어도 결과가 달라지지 않아 MYSQL 옵티마이저가 조인의 순서를 조절해서 다양한 방법으로 최적화를 수행할 수 있다.
 	+ OUTER JOIN : 반드시 OUTER가 되는 테이블을 먼저 읽어야 하므로 옵티마이저가 조인 순서를 선택할 수 없다.
+
+```
+-- 사번이 100인 사원의 사번, 이름, 급여, 부서이름 (alias 사용)
+select employee_id 사번, first_name 이름, salary 급여, department_name 부서이름
+from employees e,  departments d
+where e.department_id = d.department_id and employee_id = 100;
+```
+
+#### INNER JOIN
+
++ 가장 일반적으로 사용되는 JOIN의 종류 
+	+ 위의 예시도 INNER JOIN이다.
+	+ 단순히 JOIN이라고 해도 INNER JOIN으로 판단한다.
++ 동등 조인(Equi-join)이라고도 하며, N개의 테이블 조인 시 N-1개의 조인 조건을 사용한다.
+	+ 조인 조건은 두 테이블이 공통으로 가지는 컬럼을 사용한다.
+	+ using절을 이용하면 조금 더 편하게 조인 조건을 만들 수 있다.
+	+ natural join을 사용하면 두 테이블이 가지는 동일한 컬럼명들을 기준으로 자동으로 조인을 해준다.
+		+ 하지만 원치않는 조인 조건이 포함되버릴 수도 있기 때문에 주의해주어야 한다.
++ on은 join이 실행되기 전에, where는 join이 실행된 후 실행된다.
+	+ 때문에 join조건은 on절에, 일반조건은 where절에 작성하여 구분한다.
+
+```
+-- inner join (위의 join 예시와 이 예시는 실질적으로 같다.)
+select employee_id 사번, first_name 이름, salary 급여, department_name 부서이름
+from employees e inner join departments d
+on e.department_id = d.department_id 
+where employee_id = 100;
+
+-- 사번이 100인 사원의 사번, 이름, 급여, 부서이름, 근무하는 도시 이름
+select employee_id 사번, first_name 이름, salary 급여, department_name 부서이름, city
+from employees e,  departments d, locations l
+where e.department_id = d.department_id 
+and d.location_id = l.location_id
+and	employee_id = 100;
+
+-- 위와 같은 내용
+select employee_id 사번, first_name 이름, salary 급여, department_name 부서이름, city
+from employees e inner join departments d inner join locations l
+on e.department_id = d.department_id 
+and d.location_id = l.location_id
+where employee_id = 100;
+
+-- 가독성을 생각하여 아래와 같이 쓰는 방법도 있다, 속도와 의미는 동일하다.
+select e.employee_id 사번, e.first_name 이름, e.salary 급여, department_name 부서이름, city
+from employees e inner join departments d 
+on e.department_id = d.department_id 
+inner join locations l
+on d.location_id = l.location_id
+where employee_id = 100;
+
+-- using
+-- 조인 조건를 편리하게 작성할 수 한다. 
+-- employees의 department_id나 departments의 department_id나 같은 값이기 때문에 둘 중 아무거나 사용해도 상관없으니 만들어진 듯 하다.
+-- using e.departent_id 와 같이 쓰면 오히려 에러가 난다.
+select e.employee_id 사번, e.first_name 이름, e.salary 급여, d.department_id, d.department_name 부서이름
+from employees e inner join departments d
+using (department_id) 
+where employee_id = 100;
+```
+
+#### OUTER JOIN
+
+어느 한쪽 테이블에는 해당 데이터가 존재하는데 다른 쪽 테이블에는 존재하지 않을 경우 해당 데이터가 검색되지 않는 문제를 해결하기 위해 사용한다.
+
++ 종류
+	+ LEFT OUTER JOIN
+	+ RIGHT OUTER JOIN
+	+ FULL OUTER JOIN (MySQL에는 없다.)
+
+```
+-- 회사에 근무하는 모든 사원의 사번, 이름, 부서이름
+-- 106명 >> 문제 발생.. 1명이 없다;
+select e.employee_id, e.first_name, ifnull(d.department_name, '승진발령')
+from employees e join departments d
+on e.department_id = d.department_id;
+
+-- left outer join 사용
+-- 조건에 만족은 하지 않지만 왼쪽 테이블의 데이터는 출력하도록 한다.
+-- 부서가 없는(부서번호가 null) 사원 검색
+-- 107명
+select employee_id 사번, first_name 이름, ifnull(department_name, '승진 발령') 부서이름
+from employees e left outer join departments d
+on e.department_id = d.department_id;
+
+-- 사원이 없는 부서의 정보는 출력이 안된다.
+select department_id, department_name, employee_id, first_name
+from employees e join departments d
+using (department_id);
+
+-- right outer join 사용
+-- 조건에 만족은 하지 않지만 오른쪽 테이블의 데이터도 출력하도록 한다.
+select department_id, department_name, employee_id, first_name
+from employees e right outer join departments d
+using (department_id);
+
+-- union 두 컬럼을 더한다.(합집합의 개념) 단, 두 컬럼의 컬럼은 순서대로 매칭되어야 한다. 
+-- full outer join과 같은 효과, mysql에는 full outer join이 없어 union으로 구현;
+-- union all을 하면 중복되는 (교집합)부분을 그대로 한번 더 출력한다.
+select ifnull(d.department_name, '승진발령'), e.employee_id, e.first_name
+from employees e left outer join departments d
+on e.department_id = d.department_id
+union
+select department_name, employee_id, first_name
+from employees e right outer join departments d
+using (department_id);
+
+```
+
+#### SELF JOIN
+
+같은 테이블끼리 하는 join
+
+```
+-- self join 사용
+-- 매니저는 사원이기도 하므로 employees이 스스로를 join할 필요가 있다.
+-- 사장님의 경우 매니저가 없으므로 left outer join을 활용하여 출력할 수 있도록 한다.
+-- 모든 사원의 사번, 이름, 매니저사번, 매니저이름(!)
+select e.employee_id, e.first_name, e.manager_id, ifnull(m.first_name, '사장님이당')
+from employees e left outer join employees m
+on e.manager_id = m.employee_id;
+```
+
+#### None - Equi JOIN
+
+테이블의 PK, FK가 아닌 일반 컬럼을 조인 조건으로 지정하는 join
++ 같지 않다가 아니라 단순히 equi이 아닌 비교문들 >, <= 같은 것들을 의미한다.
+
+```
+-- None-Equi join
+-- 급여등급을 구하기 위해서는 salgrades의 losal과 hisal의 등급별 범위 내에 있어야 하므로 join 조건이 범위형식을 취하게 된다.
+-- 모든 사원의 사번, 이름, 급여, 급여등급(!)
+select e.employee_id, e.first_name, e.salary, s.grade
+from employees e join salgrades s
+on e.salary between s.losal and s.hisal;
+```
 
 ### 모델링
 
