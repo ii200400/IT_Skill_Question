@@ -27,6 +27,11 @@
 + 스키마(Schema) : 데이터베이스에 저장되는 데이터 구조와 제약조건을 정의한 것
 + 인스턴스(객체, instance) : 스키마의 정의를 기반으로 데이터베이스에 실제로 저장된 값
 
+## ER Diagram (Entity-Relation Diagram)
+
+현실 세계의 물건이나 관계를 개체(entity)와 개체 사이의 관계로 표현하는 방법
+
+
 
 ## RDBMS (관계형(Relational) 데이터베이스 시스템)
 
@@ -79,19 +84,95 @@
 + 모든 DBMS에서 사용이 가능하다.
 + 크게 DCL, DDL, DML로 나눠진다.
 
+### Data type
+
+데이터베이스에서 사용하는 데이터 타입 중 기본적이고 자주 쓰이는 것만 간단하게 정리하겠다.
+
++ CHAR[M] : 고정 길이를 갖는 문자열, 최대 크기 2^8-1
++ VARCHAR[M] : 가변길이를 갖는 문자열, 최대크기 2^16-1
++ TEXT[] : 길이제한을 명시하지 않는 문자열, 최대 2^16-1
+  + CHAR[20]과 VARCHAR[20]에 10자만 저장하면 
+    CHAR의 경우는 20의 공간을 모두 사용하지만 
+    VARCHAR의 경우 10자 만큼의 공간만 사용한다. 
+    대신 varchar가 조금 더 느리다
++ INT[M] : 숫자형 데이터
+  + 4byte의 크기를 가진다.
++ DATETIME : 날짜형 데이터를 표현하는 문자열
++ TIMESTAMP[M] : 날짜형 데이터를 표현하는 숫자 데이터
+  + 둘 모두 YYYY-MM-DD HH:MM:SS의 형식을 가진다.
+  + TIMESTAMP의 경우 추가적으로 ms이하까지도 표현이 가능하다. 
+    YYYY-MM-DD HH:MM:SS.FFFFFF
+
+참고로 데이터베이스에는 사진, 음악이나 영화도 저장할 수 있기는 하다.
+
 ### DDL (Data Control Language)
 
 + 데이터 정의어
   + 데이터베이스 객체의 구조를 정의
-  + 테이블 생성, 컬럼 추가, 타입변경, 제약조건 지정/수정 등
+  + 테이블/스키마/데이터베이스 생성, 컬럼 추가, 타입변경, 제약조건 지정/수정 등
 
 + 종류
   + create : 데이터베이스 객체를 생성
+  + use: 데이터베이스 사용
   + drop : 데이터베이스 객체를 삭제
   + alter : 기존에 존재하는 데이터베이스 객체를 수정
 
-그룹함수를 사용하면 항상 한 줄로만 결과값이 나온다, 다른 일반 레코드 값을 사용해도 한 줄만 나온다.
-DDL 이나 DML은 무조건 commit이 진행된다.
+명확하지 않지만 강의에서 교수님이 스키마와 테이블을 데이터베이스라고 설명하신 것 같다.
+
+#### create
+
+데이터베이스를 생성한다.
+
+```
+-- 데이터베이스 생성 (인코딩 방식 utf-8, 이모지 입력 불가능) 
+create database dbtest
+default character set utf8mb3 collate utf8mb3_general_ci;
+
+-- 데이터베이스 생성 (인코딩 방식 utf-8, 이모지 입력 가능) 
+create database dbtest
+default character set utf8mb4 collate utf8mb4_general_ci;
+
+-- ssafydb에 테이블 명이 ssafy_member인 테이블 생성
+-- 회원 정보 table
+create table ssafy_member(
+	  idx			int			auto_increment,
+    userid		varchar(16)	not null,
+    username		varchar(20),
+    userpwd		varchar(16),
+    emailid		varchar(20),
+    emaildomain	varchar(50),
+    joindate		timestamp	default	current_timestamp,
+    primary key (idx)
+);
+ ```
+ 
+#### use
+
+사용할 데이터베이스를 선택한다.
+
+```
+-- ssafydb를 선택한다.
+use ssafydb;
+```
+
+#### alter
+
+데이터베이스 변경한다.
+
+```
+-- 데이터베이스 변경
+alter database dbtest
+default character set utf8mb4 collate utf8mb4_general_ci;
+```
+
+#### drop
+
+데이터베이스나 스키마, 테이블을 삭제한다.
+
+```
+-- 데이터베이스 삭제
+drop database dbtest;
+```
 
 ### DML (Data Manipulation Language)
 
@@ -105,6 +186,116 @@ DDL 이나 DML은 무조건 commit이 진행된다.
   + select(R) : 데이터베이스 객체에 데이터를 조회
   + update(U) : 데이터베이스 객체에 데이터를 수정
   + delete(D) : 데이터베이스 객체에 데이터를 삭제
+
+그룹함수를 사용하면 항상 한 줄로만 결과값이 나온다, 다른 일반 레코드 값을 사용해도 한 줄만 나온다.
+
+#### insert
+
+테이블에 레코드를 할 수 있다.
+
+```
+INSERT INTO table_name(col_name1, col_name2, ..., col_nameN)   
+VALUES(col_val1, col_val2, ..., col_valN),
+      (col_val1-2, col_val2-2, ..., col_valN-2)
+```
+
+컬럼은 생략이 가능한 경우도 있다.
+1. NULL이 허용된 컬럼
+2. DEFAULT가 설정된 컬럼
+3. AUTO INCREMENT가 설정된 컬럼
+
+```
+-- 회원 정보 등록
+-- 'kimssafy', '김싸피', '1234', 'kimssafy', 'ssafy.com', 등록시간 (id 생략)
+insert into ssafy_member (userid, username, userpwd, emailid, emaildomain, joindate)
+values('kimssafy', '김싸피', '1234', 'kimssafy', 'ssafy.com', now());
+
+-- '김싸피', 'kimssafy', '1234' (id, emailid, emaildomain, joindate 생략)
+insert into ssafy_member (username, userid, userpwd)
+values('김싸피', 'kimssafy', '1234');
+
+-- '이싸피', 'leessafy', '1234'
+-- '박싸피', 'parkssafy', '9876'
+insert into ssafy_member (username, userid, userpwd)
+values('이싸피', 'leessafy', '1234'),
+	('박싸피', 'parkssafy', '9876');
+  
+-- 모든 필드 값을 지정하는 경우 컬럼명 생략 가능
+insert into ssafy_member
+values(5, 'leessafy', '김싸피', '1234', 'leessafy', 'ssafy.com', now());
+```
+
+#### update
+
+테이블에 레코드를 수정할 수 있다.
+
+```
+UPDATE table_name
+SET col_name1 = col_val1[, col_name2 = col_val2, ..., col_nameN = col_valN]
+WHERE conditions;
+```
+
++ where절의 조건에 만족하는 레코드 값을 변경한다
+  + 단! where절을 생략하면 모든 레코드의 값이 변경된다!!
+  + mysql은 Edit - preferences - SQL Editor - Safe Updates 의 체크를 해제해야 레코드의 수정과 삭제가 가능하다.
+
+```
+-- userid가 kimssafy인 회원의 비번을 9876, 이메일 도메인을 ssafy.com으로 변경.
+update ssafy_member
+set userpwd = '9876', emaildomain = 'ssafy.co.kr'
+where userid = 'kimssafy';
+
+-- 모든 회원의 비번을 9876, 이메일 도메인을 ssafy.com으로 변경.
+update ssafy_member
+set userpwd = '9876', emaildomain = 'ssafy.co.kr';
+```
+
+#### Delete
+
+테이블에 레코드를 삭제할 수 있다.
+
+```
+DELETE FROM table_name
+WHERE conditions;
+```
+
++ where절의 조건에 만족하는 레코드 값을 삭제한다.
+  + 단! where절을 생략하면 모든 레코드의 값이 삭제된다!!
+  + mysql은 Edit - preferences - SQL Editor - Safe Updates 의 체크를 해제해야 레코드의 수정과 삭제가 가능하다.
+
+```
+-- userid가 kimssafy 회원 탈퇴
+delete from ssafy_member
+where userid='kimssafy';
+
+-- 모든 회원 탈퇴
+delete from ssafy_member;
+```
+
+삭제나 수정같은 일을 할 때에는 TCL의 commit과 rollback을 잘 활용하여 안정적으로 수정과 삭제를 진행할 수 있다. 만약 사용한다면 Query - Auto-Commit Rtansaction 설정이 끄는 것을 잊지 말자;
+
+#### select
+
+테이블의 레코드를 선택할 수 있다.
+
+```
+SELECT *
+FROM table_name;
+```
+
++ select절에 다양한 옵션을 넣어줄 수 있다.
+  + All : 선택된 모든 행을 반환, 기본값
+  + DISTICT : 선택된 레코드 중 중복되는 것들은 제거
+  + column : FROM절에 나열된 테이블에서 원하는 열을 선택, * 은 모든 컬럼을 의미한다.
+  + expression : 표현식
+  + alias : 컬럼이나 테이블의 별칭
++ 특히 아주 다양한 절이 있다.
+  + select와 from은 필수적인 절이다.
+  + where, group by, having, order by 등의 구문을 활용하여 다양한 기능을 줄 수 있다.
+
+```
+
+```
 
 ### DCL (Data Definition Language)
 
@@ -126,10 +317,14 @@ DDL 이나 DML은 무조건 commit이 진행된다.
   + commit : 실행한 Query를 최종적으로 적용
   + rollback : 실행한 Query를 마지막 commit 전으로 취소시켜 데이터를 복구
 
+DDL 이나 DML의 모든 질의문은 무조건 commit이 진행된다.
 
+### 모델링
 
+정규화 내용 조금만 정리, 이해가 조금;;
 
-
-
+중복되는 데이터를 모아 다른 테이블로 분리 시키는 것을 제 1 정규화   
+이미 기본키이거나 복합키에 속한 속성이 다른 속성을 포괄할 때 (예를 들어 회원id와 회원명이나 회원 등급 의 관계)해당 속성들 끼리 테이블을 새로 만드는 것은 제 2 정규화
+일반키인 속성이 다른 속성을 포괄할 때 위와 같이 새로 테이블을 만드는 것은 제 3 정규화   
 
 
