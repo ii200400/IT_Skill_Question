@@ -117,6 +117,22 @@
   + drop : 데이터베이스 객체를 삭제
   + alter : 기존에 존재하는 데이터베이스 객체를 수정
 
++ 제약조건
+	+ 컬럼에 저장될 데이터의 조건을 설정하는 것
+	+ 제약조건에 위배되는 데이터는 저장이 불가하다.
+	+ 테이블 생성 시에 조건을 지정하거나, ALTER로 설정이 가능하다.
+	+ 종류
+		+ NOT NULL : 컬럼에 NULL 값 저장 불가능
+		+ UNIQUE : 컬럼에 중복된 값 저장 불가능, NULL 저장 가능
+		+ PRIMARY KEY (기본키)   
+		  NOT NULL + UNIQUE, NULL값 저장 불가능 및 중복 불가능
+		+ FOREIGN KEY (참조키, 외래키)   
+			특정 테이블의 PK 컬럼에 저장되어있는 값만 저장 가능, NULL 저장 가능
+			references를 이용하여 어떤 컬럼의 어떤 데이터를 참조하는지 반드시 지정
+		+ DEFAULT : NULL 값이 들어올 경우 기본으로 설정된 값으로 변경해서 저장
+		+ CHECK : 값의 범위나 종류를 지정
+		+ AUTO INCREMENT : 새 레코드가 추가될 때마다 필드 값을 자동으로 1 증가하여 저장
+
 명확하지 않지만 강의에서 교수님이 스키마와 테이블을 데이터베이스라고 설명하신 것 같다.
 
 #### create
@@ -285,7 +301,9 @@ FROM table_name;
 
 + select절에 다양한 옵션을 넣어줄 수 있다.
   + All : 선택된 모든 행을 반환, 기본값
-  + DISTICT : 선택된 레코드 중 중복되는 것들은 제거
+  + DISTICT : 선택된 레코드 중 중복되는 레코드는 제거
+  	+ 레코드의 표기되는 모든 값들이 중복되어야 제거가 된다.
+  	+ 10, 20 과 10, 30 의 두 레코드가 있다면 10 이 겹친 것으로만 중복되었다고 판단하지 않는다.
   + column : FROM절에 나열된 테이블에서 원하는 열을 선택, * 은 모든 컬럼을 의미한다.
   + expression : 표현식
   + alias : 컬럼이나 테이블의 별칭
@@ -293,9 +311,103 @@ FROM table_name;
   + select와 from은 필수적인 절이다.
   + where, group by, having, order by 등의 구문을 활용하여 다양한 기능을 줄 수 있다.
 
+아-주 다양한 select문 예시들
+```
+-- 모든 사원의 모든 정보 검색.
+select *
+from employees;
+
+-- 사원이 근무하는 부서의 부서번호 검색.
+select department_id
+from employees;
+
+-- 사원이 근무하는 부서의 부서번호 검색.(중복제거)
+-- 회사에 존재하는 모든 부서번호가 아님에 주의
+select distinct department_id
+from employees;
+
+-- 모든 사원의 사번, 이름, 급여, 급여 * 12 (연봉) 검색.
+-- as키워드로 alias를 사용할 수 있다. 키워드는 생략이 가능하며 띄어쓰기나 특수문자가 들어간 경우 "로 감싸주어야 한다.
+-- 사칙연산을 넣어 필드 값을 조정할 수 있다.
+select employee_id 사번, first_name "이 름", salary as 급여, salary * 12
+from employees;
+
+-- 모든 사원의 사번, 이름, 급여, 급여 * 12 (연봉), 커미션, 커미션포함 연봉 검색.
+-- ifnull은 null이면 두번째 파라미터를 반환하는 함수
+select employee_id 사번, first_name "이 름", salary as 급여, salary * 12,
+commission_pct, salary * (1 + ifnull(commission_pct, 0)) * 12 "커미션포함연봉"
+from employees;
+
+-- 모든 사원의 사번, 이름, 급여, 급여에 따른 등급표시 검색.
+-- 급여에 따른 등급
+--   15000 이상 “고액연봉“      
+--   8000 이상 “평균연봉”      
+--   8000 미만 “저액연봉＂
+
+select employee_id, first_name, salary,
+	case when salary >= 15000 then '고액연봉'
+		when salary >= 8000 then '평균연봉'
+		else '저액연봉'
+  end 등급
+from employees;
+
+
+-- 근무 부서번호가 50 혹은 60 혹은 70에 근무하는 사원의 사번, 이름, 부서번호
+select employee_id, first_name, salary, department_id
+from employees
+where department_id = 50 or department_id = 60 or department_id = 70;
+
+select employee_id, first_name, salary, department_id
+from employees
+where department_id in (50, 60, 70);
+
+-- 급여가 6000이상 10000이하인 사원의 사번, 이름, 급여
+select employee_id, first_name, salary, department_id
+from employees
+where salary >= 6000 and salary <= 10000;
+
+select employee_id, first_name, salary, department_id
+from employees
+where salary between 6000 and 10000;
+
+-- 근무 부서가 지정되지 않은(알 수 없는) 사원의 사번, 이름, 부서번호 검색.
+-- null은 is를 통해서 비교를 진행해야 한다.
+select employee_id, first_name, salary, department_id
+from employees
+where department_id is null;
+
+-- 이름에 'x'가 들어간 사원의 사번, 이름
+-- %는 크기가 0 이상의 문자열을 대표한다.
+select employee_id, first_name, salary, department_id
+from employees
+where first_name like '%x%';
+
+-- 이름의 끝에서 3번째 자리에 'x'가 들어간 사원의 사번, 이름
+-- _는 문자 1개를 대표한다.
+select employee_id, first_name, salary, department_id
+from employees
+where first_name like '%x__';
+
+-- 모든 사원의 사번, 이름, 급여
+-- 단 급여순 정렬(내림차순)
+-- asc 오름차순, desc 내림차순
+select employee_id, first_name, salary, department_id
+from employees
+order by salary desc;
+
+-- 50, 60, 70에 근무하는 사원의 사번, 이름, 부서번호, 급여
+-- 단, 부서별 정렬(오름차순) 후 급여순(내림차순) 검색
+select employee_id, first_name, salary, department_id
+from employees
+where department_id in (50, 60, 70)
+order by department_id, salary desc;
 ```
 
-```
+데이터베이스에서 논리연산시 Null이 포함되어 있다면 에러가나는 일반 언어와는 다르게 에러 대신 다른 값이 나올 수도 있다.
+
+![image](https://user-images.githubusercontent.com/19484971/167288402-1680c4f9-b5cd-43be-b726-5d2ea2865df0.png)
+
+Join도 설명을 해야하나 내용이 너무 많아 아래쪽에 따로 정리를 하였다.
 
 ### DCL (Data Definition Language)
 
@@ -318,6 +430,26 @@ FROM table_name;
   + rollback : 실행한 Query를 마지막 commit 전으로 취소시켜 데이터를 복구
 
 DDL 이나 DML의 모든 질의문은 무조건 commit이 진행된다.
+
+### Join
+
+원래는 select절에 같이 있어야 하나 내용과 종류가 많아 따로 작성한다.   
+
++ 서로 관련이 있는 둘 이상의 테이블에서 데이터가 필요한 경우에 사용한다.
++ 일반적으로 조인조건을 포함하는 WHERE절을 (테이블 수 - 1)개를 사용한다.
++ 조인조건은 일반적으로 각 테이블의 PK 혹은 FK를 사용한다.
+
++ 종류
+	+ INNER JOIN
+	+ OUTER JOIN
+		+ LEFT OUTER JOIN
+		+ RIGHT OUTER JOIN
+
++ 조건의 명시에 따른 구분
+	+ NATURAL JOIN
+	+ CROSS JOIN(FULL JOIN, CARTESIAN JOIN)
+
+
 
 ### 모델링
 
