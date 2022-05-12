@@ -200,3 +200,81 @@ v-text="message" : el 안에  message를 뿌려준다. el 안에 있던 다른 �
 
 {{  javascript 문법 사용 가능 }}
 
+## Component
+
+아파서 정리 못했다;;
+
+## Router
+
+위와 동문;
+
+## NodeJS
+
+자바 스크립트를 브라우저 밖에서 application처럼 실행시킬 수 있게 만들어주는 툴
+
+NodeJS 를 설치하면서 NPM을 같이 설치하고 NPM을 통해서 @vue/cil를 설치할 예정이다.
+
+[NodeJS LTS](https://nodejs.org/ko/)를 설치하여서 필자는 NodeJS(v16.15.0)과 NPM(8.5.5)을 설치하고 진행하였다.
+
+
+## NPM (Node Package Manager)
+
++ Command 에서 써드파티 모듈을 설치하고 관리하는 툴
++ 패키지 매니저, 스프링의 maven, 파이썬의 pip 과 비슷한 역할을 수행한다.
++ [npm 사이트](https://www.npmjs.com/)에서 모튤 검색이 가능하다.
+  + $ npm init   
+    새로운 프로젝트나 패키지를 만들 때 사용 (package.json 생성)
+  + $ npm install package   
+    생성되는 위치에서만 사용 가능한 패키지로 설치
+  + $ npm install -g package   
+    글로벌 패키지에 추가, 모든 프로젝트에서 사용 가능한 패키지로 설치
+  + 일반적으로 npm 모듈 소개 페이지에서 추천하는 방식으로 사용한다.   
+    -g을 추천하면 넣고 사용하지 않으면 넣지 않고 설치한다.
+
+## SFC (Single File Component)
+
++ 확장자가 `.vue`인 파일
++ `.vue` = template(html) + script + style   
+  + Html JavaScript CSS 세 가지의 파일을 하나의 파일로 관리한다.
+  + .vue 파일들은 실행시 모여 index.html 파일 하나로 변환된다. 이 때문에 SFC라고 불린다.
++ 구문 강조가 가능
++ 컴포넌트에만 CSS의 범위를 제한할 수 있음
++ 전처리기를 사용해 기능의 확장이 가능
+
+## @vue/cil (Command Line Interface)
+
++ vue 개발을 위해 공식적으로 제공되는 CLI 기반의 스캐폴딩 도구
+  + 스캐폴딩 : 개발을 쉽게 시작할 수 있도록 기본 구조(인터페이스 등)를 미리 만들어 제공해주는 것
++ [vue cli 공식 사이트](https://cli.vuejs.org/)
+
+설치 및 실행
++ $ npm install -g @vue/cli 으로 npm을 통해 설치한다.
++ $ vue create project-name 으로 @vue/cil 프로젝트를 생성한다.
++ 원하는 설정을 고르고 진행한다, 필자의 설정은 아래의 그림을 참고하자.
++ 터미널 창에서 프로젝트가 생성된 폴더로 이동하고 npm run serve를 실행시킨다.
++ localhost:8080에서 결과를 확인한다.
+  
+강의를 따라 아래와 같이 설정하였다.
+
+![image](https://user-images.githubusercontent.com/19484971/167975026-cebd3f16-59f1-4cf7-aa8a-ed3aba2d41b1.png)
+
+prettier 에러 해결 과정
+
++ Vue는 컴포넌트 이름에 합성어를 사용해야 한다
+  + 단순히 Login.vue라고 하면 안되고 LoginView.vue의 최소 두 단어를 포함한 이름을 사용한다.
++ Vue는 end line CRLF를 지원하지 않는다. LF 사용하기 (윈도우)
+  + package.json → eslineConfig → rule 추가
+    ``` 
+    "rules": {
+      "prettier/prettier": ["error", { "endOfLine": "auto" }]
+    } 
+    ```
++ vue는 tab space size 2만 지원한다.
+  + vscode → ctrl + , → prettier Tab Width : 2
+  + 에러가 생기는 파일로 가서 우클릭 - Fromat Document With.. - Prettier 로 정렬해준다.
+  + 필자는 Extension에서 ExtionPrettier - Code formatter 를 사용하고 있는데 영향이 있는지 모르겠다;
++ 프로젝트를 껐다가 다시 켜준다. (npm run serve)
+
+### 프로젝트 구조
+
+package.json과 package-lock.json의 차이점도.. 알아야할 수도 있다.
