@@ -234,9 +234,12 @@ NodeJS 를 설치하면서 NPM을 같이 설치하고 NPM을 통해서 @vue/cil�
 ## SFC (Single File Component)
 
 + 확장자가 `.vue`인 파일
-+ `.vue` = template(html) + script + style   
-  + Html JavaScript CSS 세 가지의 파일을 하나의 파일로 관리한다.
-  + .vue 파일들은 실행시 모여 index.html 파일 하나로 변환된다. 이 때문에 SFC라고 불린다.
++ `.vue` = template(html) + script + style 세 가지의 파일을 하나의 파일로 관리한다.
+  + template : html을 기본 언어로 하며 vue 파일 마다 최대 하나의 template 블록을 가진다.
+  + script : js를 기본언어로 하며 vue 파일 마다 최대 하나의 script 블록을 가진다.
+    s는 ES6를 지원하며 import와 export를 사용할 수 있다.
+  + style : css를 기본 언어로 하며 vue 파일마다 여러개의 style 블록을 가질 수 있다.
+  + .vue 파일들은 실행시 모여 index.html 파일 하나로 변환된다.
 + 구문 강조가 가능
 + 컴포넌트에만 CSS의 범위를 제한할 수 있음
 + 전처리기를 사용해 기능의 확장이 가능
@@ -277,4 +280,7 @@ prettier 에러 해결 과정
 
 ### 프로젝트 구조
 
-package.json과 package-lock.json의 차이점도.. 알아야할 수도 있다.
+
+
+[dependency 버전 설정](https://blog.outsider.ne.kr/1041)
+[package.json과 package-lock.json의 차이점](https://velog.io/@songyouhyun/Package.json%EA%B3%BC-Package-lock.json%EC%9D%98-%EC%B0%A8%EC%9D%B4)
