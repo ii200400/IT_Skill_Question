@@ -233,13 +233,21 @@ NodeJS 를 설치하면서 NPM을 같이 설치하고 NPM을 통해서 @vue/cil�
 
 ## SFC (Single File Component)
 
+뷰 컴포넌트를 구성하는 template, logic, style을 한 파일에 구현하는 특정한 형식의 파일이다.   
+SPA(Single Page Application)를 제작하는데 필요한 요소(컴포넌트)이다.
+
+SPA는 웹 사이트의 전체 페이지를 하나의 페이지에 담아 동적으로 화면을 바꿔가며 표현하는 애플리케이션을 의미한다.
+
 + 확장자가 `.vue`인 파일
 + `.vue` = template(html) + script + style 세 가지의 파일을 하나의 파일로 관리한다.
   + template : html을 기본 언어로 하며 vue 파일 마다 최대 하나의 template 블록을 가진다.
+    + template 태그 내에는 단 하나의 태그만 사용해야만 한다.
   + script : js를 기본언어로 하며 vue 파일 마다 최대 하나의 script 블록을 가진다.
-    s는 ES6를 지원하며 import와 export를 사용할 수 있다.
-  + style : css를 기본 언어로 하며 vue 파일마다 여러개의 style 블록을 가질 수 있다.
+    + js는 ES6를 지원하며 import와 export를 사용할 수 있다.
+  + style : css를 기본 언어로 하며 vue 파일마다 여러 개의 style 블록을 가질 수 있다.
+    + 해당 파일에만 적용되는 style을 만들고 싶다면 scoped를 사용해야 한다.
   + .vue 파일들은 실행시 모여 index.html 파일 하나로 변환된다.
+  + 위의 이유로 SPA(Single Page Application) 구현이 가능하게 된다.
 + 구문 강조가 가능
 + 컴포넌트에만 CSS의 범위를 제한할 수 있음
 + 전처리기를 사용해 기능의 확장이 가능
@@ -261,7 +269,7 @@ NodeJS 를 설치하면서 NPM을 같이 설치하고 NPM을 통해서 @vue/cil�
 
 ![image](https://user-images.githubusercontent.com/19484971/167975026-cebd3f16-59f1-4cf7-aa8a-ed3aba2d41b1.png)
 
-prettier 에러 해결 과정
+### prettier 에러 해결 과정
 
 + Vue는 컴포넌트 이름에 합성어를 사용해야 한다
   + 단순히 Login.vue라고 하면 안되고 LoginView.vue의 최소 두 단어를 포함한 이름을 사용한다.
@@ -269,18 +277,72 @@ prettier 에러 해결 과정
   + package.json → eslineConfig → rule 추가
     ``` 
     "rules": {
-      "prettier/prettier": ["error", { "endOfLine": "auto" }]
+      "prettier/prettier": ["error", { "endOfLine": "auto"}]
     } 
     ```
+  + 싱글쿼테이션? 에러가 생기는 경우도 있다는데 필자는 생기지 않아서 잘 모르겠다;   
+    위의 경우에는 'quotes': \['off', 'single'\]을 사용하면 된다는 말을 들었다.
 + vue는 tab space size 2만 지원한다.
-  + vscode → ctrl + , → prettier Tab Width : 2
+  + vscode 설정에서 (ctrl + ,) prettier Tab Width : 2 로 바꾼다.
   + 에러가 생기는 파일로 가서 우클릭 - Fromat Document With.. - Prettier 로 정렬해준다.
+    + 이후 Alt+Shift+F를 사용하면 prettier 포맷으로 정렬된다.
+    + 설정의 Editer: Format On Save를 활용하면 위의 단축키 없어 저장할 때마다 정렬된다.
   + 필자는 Extension에서 ExtionPrettier - Code formatter 를 사용하고 있는데 영향이 있는지 모르겠다;
 + 프로젝트를 껐다가 다시 켜준다. (npm run serve)
 
 ### 프로젝트 구조
 
+정확히는 모르겠으므로 아는대로 작성해보겠다.
 
++ node_modules : 설치한 라이브러리들이 있는 파일
++ public
+  + favicon.ico : 브라우저의 탭에 나타나는 이미지
+  + index.html : SPA의 결과물이 되는 html 파일   
+    기본적으로 app을 id로 하는 div 하나를 포함하고 있다.
++ scr
+  + assets : 정적 파일들이 저장되는 파일
+  + components : 컴포넌트(.vue)가 들어가는 파일
+    + HelloWorld.vue : 기본적으로 제공되는 컴포넌트
+  + router : vue 생성시 features에서 Router를 선택했다면 존재하는 파일
+    + index.js : 라우터 역할을 하는 js 파일   
+      경로에 대해 어떤 컴포넌트들을 활용하여 화면을 표시할지 결정한다. (.. 맞나..?)
+      맞지 않는 경로를 요청받아도 에러가 생기지는 않는다;
+  + views
+  + App.vue : 가장 먼저 불리는 컴포넌트, components 파일 내의 컴포넌트 파일을 활용(import)한다.
+  + main.js : App.vue에 사용될 기본 객체를 정의한다.   
+    객체는 mount시에 app을 id로 하는 태그에 등록되어 화면이 구현된다.   
+    참고로 $mount("#app")는 el: "#app"와 같은 효과라고 한다.
++ jsconfig.json : 
++ babel.config.js : 
++ package-lock.json : 
++ package.json : 해당 프로젝트의 정보(이름, 버전, 활용 라이브러리 등)를 담고있는 파일
+  뷰와 부트스트랩이 충돌하는지 잘 작동하지 않는 기능이 있다면 4.5.3으로 다운그래이드 하라고 하였다.
++ .gitignore : git 버전관리에 해당 파일들이 포함되지 않게된다.
+  
+
+음.. App.vue가 components들을 import 하고     
+main.js가 App.vue를 import해서 화면이 구현된다.
+
+여러 컴포넌트들을 잘 조합하여 화면(Dom)으로 표현해 주는 역할이 render라고 한다. (잘 모르겠다;)
+
+
+router/index.js에 없는 라우팅을 요구해도 에러는 나지 않는다.
+
+package.json의 파일내 아래의 줄 정도는 이해하는것이 좋을 것 같다.
+
+"serve": "vue-cli-service serve",
+"build": "vue-cli-service build",
+"lint": "vue-cli-service lint"
 
 [dependency 버전 설정](https://blog.outsider.ne.kr/1041)
 [package.json과 package-lock.json의 차이점](https://velog.io/@songyouhyun/Package.json%EA%B3%BC-Package-lock.json%EC%9D%98-%EC%B0%A8%EC%9D%B4)
+
+## Bootstrap Vue
+
+뷰에서 부트스트랩을 사용하는 실습을 해보았다.
+
+터미널을 통해 프로젝트에 `npm install vue bootstrap bootstrap-vue` 명령어로 3가지 종류의 패키지들을 설치하고 app.js 혹은 main.js에 특정 코드를 추가해주어야지 사용이 가능하다고 했다. 내용은 공식 홈페이지를 참고하자!
+
+[공식 홈페이지](https://bootstrap-vue.org/)
+
+[template 페이지](https://bootstrap-vue.org/docs/reference/starter-templates)
