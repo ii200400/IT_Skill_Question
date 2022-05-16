@@ -347,8 +347,9 @@ package.json의 파일내 아래의 줄 정도는 이해하는것이 좋을 것 
 + 컴포넌트들은 vuex에 접근하여 데이터에 접근이 가능하도록 한다.
   + 컴포넌트가 직접 상태(데이터)를 바꾸는 것은 지양한다.
   + 하나의 저장소에 여러 컴포넌트들이 직접 연결된 단일 상태 트리 (Single State Tree)가 된다.
-+ State, Getter, Mutation, 
++ State, Actions, Mutation, Getter 로 나뉘어 데이터 관리를 한다.
 
+작동 과정
 1. 뷰의 컴포넌트에서 dispatch를 통해 vuex의 Actions를 호출한다.
 2. Actions는 가지고 있는 메서드들 중에서 적절한 것을 사용한다. 
   + 메서드들은 대부분 서버 통신을 처리하기 위해 비동기로 작동된다.
@@ -381,7 +382,7 @@ vuex 홈페이지에 있던 Vuex 작동 방식(State Management Pattern)
 + 항상 context가 인자로 넘어온다.
   + store.js 파일 내에 있는 모든 요소의 변경 및 호출 가능..
   + 하지만 state를 직접 변경하는 것은 권장하지 않는다.
-+ Mutations에 정의되어있는 메서드들을 commit() 메서드를 통해 호출 가능
++ Mutations에 정의되어있는 메서드들을 context.commit() 메서드를 통해 호출 가능
   + Mustaions의 메서드에서만 State를 변경하도록 조작한다.
 
 ### Mustations
@@ -396,6 +397,14 @@ vuex 홈페이지에 있던 Vuex 작동 방식(State Management Pattern)
 + Computed 와 유사하다.
   + State를 변경하지 않고 활용하여 계산을 수행하는 특징이 있기 때문
   + Getter 자체는 state를 변경시키지 않는다!
+
+### Devtools
+
+개발자가 제작한 프로그램이 생성, 테스트, 디버깅이 용이하도록 돕는 소프트웨어이다.
+
+브라우저에서 F12키를 누르고 Vue탭에서 vuex의 작동을 자세히 확인할 수 있는데, 어느 시점에 어떤 함수가 불려 어떻게 값이 바뀌었는지 한 눈에 볼 수 있어 작업 흐름을 확인하거나 디버깅에 용이하다.
+
+Vuex에 포함된 부분은 아니지만, 사용을 권장하는지 Vuex 공식 홈페이지에서도 Vuex가 해당 툴과 통합되어 있다는 언급이 있다.
 
 ## Bootstrap Vue
 
