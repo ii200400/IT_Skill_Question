@@ -290,7 +290,7 @@ SPA는 웹 사이트의 전체 페이지를 하나의 페이지에 담아 동적
   + 필자는 Extension에서 ExtionPrettier - Code formatter 를 사용하고 있는데 영향이 있는지 모르겠다;
 + 프로젝트를 껐다가 다시 켜준다. (npm run serve)
 
-### 프로젝트 구조
+### vue-cil 프로젝트 구조
 
 정확히는 모르겠으므로 아는대로 작성해보겠다.
 
@@ -307,6 +307,8 @@ SPA는 웹 사이트의 전체 페이지를 하나의 페이지에 담아 동적
     + index.js : 라우터 역할을 하는 js 파일   
       경로에 대해 어떤 컴포넌트들을 활용하여 화면을 표시할지 결정한다. (.. 맞나..?)
       맞지 않는 경로를 요청받아도 에러가 생기지는 않는다;
+  + store : vue 생성시 features에서 vuex를 선택했다면 존재하는 파일
+    + index.js : vuex를 적용시키는 js 파일, vuex 설명은 해당 주제 바로 다음에 있다.
   + views
   + App.vue : 가장 먼저 불리는 컴포넌트, components 파일 내의 컴포넌트 파일을 활용(import)한다.
   + main.js : App.vue에 사용될 기본 객체를 정의한다.   
@@ -336,6 +338,64 @@ package.json의 파일내 아래의 줄 정도는 이해하는것이 좋을 것 
 
 [dependency 버전 설정](https://blog.outsider.ne.kr/1041)
 [package.json과 package-lock.json의 차이점](https://velog.io/@songyouhyun/Package.json%EA%B3%BC-Package-lock.json%EC%9D%98-%EC%B0%A8%EC%9D%B4)
+
+## Vuex
+
++ Vue.js 애플리케이션에 대한 상태관리패턴 + 라이브러리
++ 애플리케이션의 모든 컴포넌트들의 중앙 저장소와 데이터 관리의 역할을 가진다.
+  + 상위(부모)와 하위(자식)의 컴포넌트의 관계가 복잡해지고 애플리케이션의 구성요소가 더욱 다양해지면서 데이터 전달과 공유 부분이 너무 복잡해지는 문제가 발생함에 따라 등장하였다.
++ 컴포넌트들은 vuex에 접근하여 데이터에 접근이 가능하도록 한다.
+  + 컴포넌트가 직접 상태(데이터)를 바꾸는 것은 지양한다.
+  + 하나의 저장소에 여러 컴포넌트들이 직접 연결된 단일 상태 트리 (Single State Tree)가 된다.
++ State, Getter, Mutation, 
+
+1. 뷰의 컴포넌트에서 dispatch를 통해 vuex의 Actions를 호출한다.
+2. Actions는 가지고 있는 메서드들 중에서 적절한 것을 사용한다. 
+  + 메서드들은 대부분 서버 통신을 처리하기 위해 비동기로 작동된다.
+3. 작업이 완료되면 commit을 통해 Mutation을 호출한다.
+4. Mutations는 가지고 있는 메서드들 중에서 적절한 것을 사용한다. 
+  + 메서드들은 State의 상태를 변경시키는 작업을 하기 때문에 동기로 작동된다.
+  + 모든 메서드는 state를 인자로 가진다.
+6. State의 상태가 변경되고 Render가 진행되어 
+
+[공식 vuex 3.0 홈페이지](https://v3.vuex.vuejs.org/)
+
+![image](https://user-images.githubusercontent.com/19484971/168512579-75c46e16-c106-4a5b-b9f9-d38e514c56ea.png)   
+vuex 홈페이지에 있던 Vuex 작동 방식(State Management Pattern)
+
+### State
+
++ 중앙에서 관리하는 모든 상태정보(data)를 관리
+  + 상태정보는 여러 컴포넌트 내부에 있는 특정 데이터를 의미한다.
+  + Vuex를 사용하기 이전에는 각 컴포넌트에서 데이터를 직접 확인했었다.
+  + Vuex를 사용하면 Vuex Stroe에서 컴포넌트들이 사용하는 state를 한 눈에 파악할 수 있다.
++ Mutations의 method에 의해 변경됨
++ State가 변경되면 해당 state를 공유하는 모든 컴포넌트의 DOM이 자동 렌더링됨
++ 모든 Vue 컴포넌트는 Vuex Store에서 state 정보를 참조하여 사용
+
+### Actions
+
++ 컴포넌트에서 dispatch() 메소드에 의해 호출됨
++ 주로 백엔드 API와 통신하여 Data Fetching 등의 작업을 수행
+  + 때문에 메서드들은 대부분은 서버 통신을 처리하기 위해 비동기로 작동된다.
++ 항상 context가 인자로 넘어온다.
+  + store.js 파일 내에 있는 모든 요소의 변경 및 호출 가능..
+  + 하지만 state를 직접 변경하는 것은 권장하지 않는다.
++ Mutations에 정의되어있는 메서드들을 commit() 메서드를 통해 호출 가능
+  + Mustaions의 메서드에서만 State를 변경하도록 조작한다.
+
+### Mustations
+
++ Actions의 commit() 메서드에 의해 호출된다.
++ Actions의 메서드의 첫 번째 인자는 state이다.
+  + 주로 state를 변경하는 작업을 하기 때문이다.
+  + state의 변화 시점을 명확히 하기 위해 동기 작업만을 한다.
+
+### Getters
+
++ Computed 와 유사하다.
+  + State를 변경하지 않고 활용하여 계산을 수행하는 특징이 있기 때문
+  + Getter 자체는 state를 변경시키지 않는다!
 
 ## Bootstrap Vue
 
