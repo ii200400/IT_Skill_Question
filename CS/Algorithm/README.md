@@ -870,8 +870,6 @@ static void bfs(int[][] adjMatrix, int start){
 3. 모든 노드와 이어질 때까지 2번을 반복한다.
 4. 반복이 끝났을 때 그려진 트리가 최소 신장 트리이다.
 
-[15일 알고리즘 실습 추가 요망]()
-
 #### 특징
 
 1. 인접행렬로 구현시 시간 복잡도 O(V^2)를 가지며 힙을 사용하면 O(E log V)의 시간 복잡도를 가진다.
@@ -879,8 +877,7 @@ static void bfs(int[][] adjMatrix, int start){
 
 #### 예시 사진
 
-<img src="../image/1.1%20Graph11.PNG" width="45%" height="60%">
-<img src="../image/1.1%20Graph12.PNG" width="60%" height="60%">
+추가예정
 
 ### 2. Kruskal Algorithm (크루스칼 알고리즘)
 
@@ -897,8 +894,6 @@ static void bfs(int[][] adjMatrix, int start){
    이때, 사이클 여부는 Disjoint-set 알고리즘으로 확인한다.
 3. 간선의 개수가 '노드의 개수 - 1'이 될 때까지 위를 반복한다.
 
-[15일 알고리즘 실습 추가 요망]()
-
 #### 특징
 
 1. 시간복잡도는 O(E log V) 혹은 O(E log E)이다. (위키백과에 증명이 되어있지만 너무 어려워서 외우기만..)
@@ -906,7 +901,7 @@ static void bfs(int[][] adjMatrix, int start){
 
 #### 예시 사진
 
-<img src="../image/1.1%20Graph13.PNG" width="70%" height="70%">
+추가예정
 
 #### Disjoint-set (서로소 집합)
 
@@ -930,8 +925,6 @@ static void bfs(int[][] adjMatrix, int start){
    대표자를 찾는 과정에서 만나는 모든 노드들이 대표자 노드를 직접 가리키도록 포인터를 바꾸는 방법
 
 두 방법 중 본인은 두 번째 방법을 선호한다.
-
-[15일 알고리즘 실습 추가 요망]()
 
 #### 문제 풀이
 
@@ -976,8 +969,6 @@ static void bfs(int[][] adjMatrix, int start){
 4. A의 상태를 **탐색한 노드**로 바꾼다.
 5. 목표 노드가 "방문 완료" 상태가 되거나 더 이상 미방문 상태의 노드를 선택할 수 없을 때까지 2~4의 과정을 반복한다.
 
-[16일 알고리즘 실습 추가 요망]()
-
 #### 특징
 
 1. 가장 작은 값을 가진 노드를 가져올 때   
@@ -992,8 +983,6 @@ static void bfs(int[][] adjMatrix, int start){
 #### 예시 사진
 
 <img src="../image/1.1%20Graph14.gif" width="40%" height="40%">
-
-*마지막에 노드 4의 값(20)과 '5-4 간선+노드 5의 값'(26)을 비교해야 할 것 같은데 안하는 것으로 보아 목표노드가 5인것 같다.*
 
 #### 활용 예시
 
