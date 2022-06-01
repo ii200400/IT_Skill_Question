@@ -982,7 +982,8 @@ static void bfs(int[][] adjMatrix, int start){
 
 #### 예시 사진
 
-<img src="../image/1.1%20Graph14.gif" width="40%" height="40%">
+![Dijkstra_Animation](https://user-images.githubusercontent.com/19484971/171373359-6b5368ab-ba50-4fde-ae34-136bc2832e1e.gif)   
+출처 : [위키백과](https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm)
 
 #### 활용 예시
 
