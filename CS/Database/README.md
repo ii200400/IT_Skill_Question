@@ -1,6 +1,12 @@
 # 1-4. 데이터 베이스
 
++ ER Diagram (Entity-Relation Diagram 미완)
 + RDBMS (관계형(Relational) 데이터베이스 시스템)
++ SQL
+	+ DDL
+	+ DML
+	+ DCL
+	+ Join
 + 정규화
   + 필요성
   + 종류
@@ -21,7 +27,11 @@
 해당 글은 본인이 듣고 있는 강의와 데이터베이스 개론 3판(김연희 저자)를 참고하여 작성하였음을 밝힌다.   
 또한, 강의에서 MySQL을 사용하였기 때문에 해당 프로그램을 기준으로 작성할 예정이다.
 
-미정리 내용들(언제 정리하니 )
+강의 진행을 위해 교수님이 오라클에서 기본적으로 제공하는 더미 데이터를 MySQL에 맞춰 만든 것을 제공받아 사용했는데 그 파일을 그대로 올리면 저작권에 문제가 될 것 같아 올리지 않았다; 개인적으로 부분적으로 올리는 쿼리문만해도 신경이 많이 쓰인다.   
+
+[w3schools](https://www.w3schools.com/mysql/default.asp)에서 쿼리문의 예시를 제공하고 있으니 필요하다면 참고하자.
+
+미정리 내용들(언제 정리하니..)
 
 용어 정리
 
@@ -39,7 +49,7 @@
 
 현실 세계의 물건이나 관계를 개체(entity)와 개체 사이의 관계로 표현하는 방법
 
-
+실선과 점선 등의 테이블 사이의 관계를 표현할 때 사용하는 방식과 의미는 추후 정리
 
 ## RDBMS (관계형(Relational) 데이터베이스 시스템)
 
@@ -351,39 +361,69 @@ DDL 이나 DCL의 모든 질의문은 무조건 commit이 진행된다.
 
 ### Join
 
-원래는 select절에 같이 있어야 하나 내용과 종류가 많아 따로 작성한다.   
+원래는 DML의 select절에 같이 있어야 하나 내용과 종류가 많아 따로 작성한다.   
 
 + 서로 관련이 있는 둘 이상의 테이블에서 데이터가 필요한 경우에 사용한다.
 + 일반적으로 조인조건을 포함하는 WHERE절을 (테이블 수 - 1)개를 사용한다.
 + 조인조건은 일반적으로 각 테이블의 PK 혹은 FK를 사용한다.
 
 + 종류
+	+ CROSS JOIN(CARTESIAN JOIN)
 	+ INNER JOIN
+		+ Equi JOIN
+			+ NATURAL JOIN
+		+ None - Equi JOIN
 	+ OUTER JOIN
 		+ LEFT OUTER JOIN
 		+ RIGHT OUTER JOIN
-	+ 조건 명시에 따른 구분
-	  + NATURAL JOIN
-		+ CROSS JOIN(FULL JOIN, CARTESIAN JOIN)
+		+ FULL OUTER JOIN (MySQL에는 없다.)
 	+ SELF JOIN
-	+ None - Equi JOIN
-	
-여기서 `NATURAL JOIN`과 `CROSS JOIN`은 단순히 조건을 명시하는 방식이 다른 것 뿐 기본적으로 각각 INNER JOIN, OUTER JOIN이다. 특별한 기능이 추가되는 것은 아니다.
 	
 + 주의사항
 	+ 어느 테이블을 먼저 읽을지를 결정하는 것이 중요하다
 		+ 처리할 작업량이 크게 달라질 수도 있기 때문이다.
 		+ 하지만 버전(5.5 이후)이 올라가면서 프로그램이 자동으로 최적화를 진행해준다고 한다.
-		+ 위의 기능을 옵티마이저라고 한다.
+		+ 위의 기능을 수행하는 DBMS 핵심엔진을 옵티마이저라고 한다.
 	+ INNER JOIN : 어느 테이블을 먼저 읽어도 결과가 달라지지 않아 MYSQL 옵티마이저가 조인의 순서를 조절해서 다양한 방법으로 최적화를 수행할 수 있다.
-	+ OUTER JOIN : 반드시 OUTER가 되는 테이블을 먼저 읽어야 하므로 옵티마이저가 조인 순서를 선택할 수 없다.
+	+ OUTER JOIN : 반드시 OUTER가 되는 테이블을 먼저 읽어야 하므로 옵티마이저가 조인 순서를 선택할 수 없다. 즉, 테이블 순서에 유의해야 한다. 
+
+이곳저곳 살펴 보니 분류방법이 공식적으로 정해져 있지 않은지 분류하는 방법이 사람마다 다른 경우도 많았다. 위의 분류는 위키백과의 분류체계를 가져온 것이다.
+
+간단하게 이해하기 좋은 이미지가 있어서 가져왔다.
+
+![image](https://user-images.githubusercontent.com/19484971/171563387-d057bf46-e38d-4cbe-994c-ec1cba6e0043.png)
+
+출처 : [wikiwebpedia](https://wikiwebpedia.com/join-in-microsoft-sql)
+
+</br>
+
+#### CROSS JOIN(CARTESIAN JOIN, 교차조인)
+
+일반적으로 `CARTESIAN JOIN`보다는 `CARTESIAN PROJECT`라고 작성하는 것 같은데 필자는 수학의 곱집합과 영문명이 완전 똑같은 것에 햇갈려서 `CARTESIAN JOIN`라고 작성하였다. 조인 조건이 없거나 조건을 부적절하게 작성할 경우 일어나는 조인이다.
+
+이름에서 유추할 수 있듯이 두 테이블의 행을 곱해서 (테이블A의 행 수)\*(테이블B의 행 수)의 행을 가지는 테이블이 만들어지는데, 거의 안쓰인다고 한다. ~~이거 쓰면 오히려 테이블 잘못 작성했다는 합리적 의심을 한다고 언급하셨다..~~
+
+##### 예시
+
+아래의 두 테이블을 교차조인을 하면
+
+![image](https://user-images.githubusercontent.com/19484971/171558050-f26a3eef-5f21-4f27-a080-2c8d0ea6087b.png)
 
 ```
--- 사번이 100인 사원의 사번, 이름, 급여, 부서이름 (alias 사용)
-select employee_id 사번, first_name 이름, salary 급여, department_name 부서이름
-from employees e,  departments d
-where e.department_id = d.department_id and employee_id = 100;
+SELECT *
+FROM employee CROSS JOIN department;
+
+-- 교차조인을 암묵적으로 아래와 같이 사용할 수도 있다.
+
+SELECT *
+FROM employee, department;
 ```
+
+아래와 같은 결과가 나온다.
+
+![image](https://user-images.githubusercontent.com/19484971/171558093-be98d4f8-d809-454c-b4a7-3481a59630f7.png)
+
+출처 : [위키백과](https://ko.wikipedia.org/wiki/Join_(SQL))
 
 #### INNER JOIN
 
@@ -398,8 +438,11 @@ where e.department_id = d.department_id and employee_id = 100;
 + on은 join이 실행되기 전에, where는 join이 실행된 후 실행된다.
 	+ 때문에 join조건은 on절에, 일반조건은 where절에 작성하여 구분한다.
 
+##### 예시
+
 ```
--- inner join (위의 join 예시와 이 예시는 실질적으로 같다.)
+-- 사번이 100인 사원의 사번, 이름, 급여, 부서이름
+-- inner join
 select employee_id 사번, first_name 이름, salary 급여, department_name 부서이름
 from employees e inner join departments d
 on e.department_id = d.department_id 
@@ -407,7 +450,7 @@ where employee_id = 100;
 
 -- 사번이 100인 사원의 사번, 이름, 급여, 부서이름, 근무하는 도시 이름
 select employee_id 사번, first_name 이름, salary 급여, department_name 부서이름, city
-from employees e,  departments d, locations l
+from employees e, departments d, locations l
 where e.department_id = d.department_id 
 and d.location_id = l.location_id
 and	employee_id = 100;
@@ -427,9 +470,9 @@ inner join locations l
 on d.location_id = l.location_id
 where employee_id = 100;
 
--- using
+-- using 절
 -- 조인 조건를 편리하게 작성할 수 한다. 
--- employees의 department_id나 departments의 department_id나 같은 값이기 때문에 둘 중 아무거나 사용해도 상관없으니 만들어진 듯 하다.
+-- employees의 department_id나 departments의 department_id나 같은 컬럼명이기 때문에 둘 중 아무거나 사용해도 상관없으니 만들어진 듯 하다.
 -- using e.departent_id 와 같이 쓰면 오히려 에러가 난다.
 select e.employee_id 사번, e.first_name 이름, e.salary 급여, d.department_id, d.department_name 부서이름
 from employees e inner join departments d
@@ -444,7 +487,7 @@ where employee_id = 100;
 + 종류
 	+ LEFT OUTER JOIN
 	+ RIGHT OUTER JOIN
-	+ FULL OUTER JOIN (MySQL에는 없다.)
+	+ FULL OUTER JOIN
 
 ```
 -- 회사에 근무하는 모든 사원의 사번, 이름, 부서이름
@@ -454,7 +497,7 @@ from employees e join departments d
 on e.department_id = d.department_id;
 
 -- left outer join 사용
--- 조건에 만족은 하지 않지만 왼쪽 테이블의 데이터는 출력하도록 한다.
+-- 조건에 만족은 하지 않지만 왼쪽(사원) 테이블의 데이터는 출력하도록 한다.
 -- 부서가 없는(부서번호가 null) 사원 검색
 -- 107명
 select employee_id 사번, first_name 이름, ifnull(department_name, '승진 발령') 부서이름
