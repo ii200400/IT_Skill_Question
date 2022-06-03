@@ -102,6 +102,9 @@
 + 모든 DBMS에서 사용이 가능하다.
 + 크게 DCL, DDL, DML로 나눠진다.
 
+필자가 듣는 강의에서 MySQL을 사용하였기 때문에 해당 프로그램을 기준으로 작성함의 유의하자!   
+또한, 모든 SQL을 다루는 것이 아니라 강의에서 다룬 것들을 중점으로 작성할 것이므로 다양한 SQL문을 확인학 싶다면 [w3schools](https://www.w3schools.com/sql/sql_alter.asp)를 참고하자!
+
 ### Data type
 
 데이터베이스에서 사용하는 데이터 타입 중 기본적이고 자주 쓰이는 것만 간단하게 정리하겠다.
@@ -121,7 +124,7 @@
   + TIMESTAMP의 경우 추가적으로 ms이하까지도 표현이 가능하다. 
     YYYY-MM-DD HH:MM:SS.FFFFFF
 
-참고로 데이터베이스에는 사진, 음악이나 영화도 저장할 수 있기는 하다.
+참고로 데이터베이스에는 사진, 음악이나 영화도 저장할 수 있기는.. 하다. (너무 크기가 크기 때문에 보통은 저장하지 않는다.)
 
 ### DDL (Data Definition Language)
 
@@ -157,7 +160,19 @@
 
 데이터베이스를 생성한다.
 
++ 기본 형식
+
 ```
+-- 데이터베이스 생성
+CREATE DATABASE 데이터베이스_이름;
+```
+
++ 예시
+
+```
+-- 데이터베이스 생성
+create database dbtest
+
 -- 데이터베이스 생성 (인코딩 방식 utf-8, 이모지 입력 불가능) 
 create database dbtest
 default character set utf8mb3 collate utf8mb3_general_ci;
@@ -165,24 +180,102 @@ default character set utf8mb3 collate utf8mb3_general_ci;
 -- 데이터베이스 생성 (인코딩 방식 utf-8, 이모지 입력 가능) 
 create database dbtest
 default character set utf8mb4 collate utf8mb4_general_ci;
+```
+ 
++ 제약 조건 6가지
+	+ NN(not null)
+		+ 컬럼 레벨의 설정으로만 적용 가능
+		+ null 허용하지 않음(반드시 값이 입력되어야 한다.)
+	+ UK : unique
+		+ 입력되는 값이 고유해야 한다.
+		+ **null값은 허용한다!**
+	+ PK(primary key)
+		+ 테이블당 하나만 설정 가능
+		+ (테이블 레벨 설정을 통해) 여러 개의 컬럼을 조합해서 생성이 가능
+		+ 데이터(행)를 구분하는 역할
+		+ not null + unique
+	+ CK : check
+		+ 입력되는 값의 조건 유효성 확인
+	+ FK : foreign key
+		+ 다른 테이블의 컬럼의 값을 참조
+		+ 또는 자기 테이블의 다른 컬럼을 참조
+		+ 부모(참조되는쪽)와 자식(참조하는쪽) 테이블의 관계
+	+ default 
+		+ 컬럼 정의시 별도로 지정하지 않으면 null을 지정한다.
+		+ 형식> 컬럼 default 지정할값
+		+ 컬럼의 값이 입력되지 않으면 디폴트로 설정된 값이 자동입력
+ 
++ 제약 조건 형식
 
--- ssafydb에 테이블 명이 ssafy_member인 테이블 생성
--- 회원 정보 table
-create table ssafy_member(
-	  idx			int			auto_increment,
-    userid		varchar(16)	not null,
-    username		varchar(20),
-    userpwd		varchar(16),
-    emailid		varchar(20),
-    emaildomain	varchar(50),
-    joindate		timestamp	default	current_timestamp,
-    primary key (idx)
+```
+-- 제약조건을 넣은 데이터베이스 생성
+-- 1. 컬럼레벨 방식 (not null은 컬럼 레벨만 가능)
+CREATE TABLE 테이블_이름(
+	컬럼 제약조건,
+	컬럼 제약조건,
+	....
+);
+
+-- 2. 테이블레벨 방식 (primary key를 다중 컬럼으로 설정하는 경우 주로 사용)
+CREATE TABLE 테이블_이름(
+	컬럼 ,
+	컬럼 ,
+	....
+	제약조건,
+	제약조건
+);
+```
+
++ 예시
+
+```
+-- 컬럼 레벨 설정 
+create table book (
+	id int primary key,
+	name varchar(20) not null,
+	price int check(price > 0),
+	isbn varchar(14) unique,
+	pubDate timestamp default current_timestamp
+);
+
+-- 테이블 레벨 제약조건 설정방식
+create table book (
+	id int,
+	name varchar(20) not null,
+	price int,
+	isbn varchar(14),
+	pubDate timestamp default current_timestamp,
+#	not null(name),	에러가 생긴다!
+	primary key(id),
+	check(price > 0),
+	unique(isbn)
+);
+
+-- constraint 이름을 설정하는 경우
+create table book (
+	id int,
+	name varchar(20) not null,
+	price int,
+	isbn varchar(14),
+	pubDate timestamp default current_timestamp,
+	#not null(name),	에러
+	constraint book_id_pk primary key(id),
+	constraint book_price_ck check(price > 0),
+	constraint book_isbn_uk unique(isbn)
 );
  ```
  
 #### use
 
 사용할 데이터베이스를 선택한다.
+
++ 기본 형식
+
+```
+use 데이터베이스_이름;
+```
+
++ 예시
 
 ```
 -- ssafydb를 선택한다.
@@ -191,21 +284,166 @@ use ssafydb;
 
 #### alter
 
-데이터베이스 변경한다.
+데이터베이스 혹은 테이블을 변경한다.   
+
+
++ 기본 형식
+
+```
+-- 데이터베이스의 문자 집합 변경
+ALTER DATABASE 데이터베이스_이름 
+CHARACTER SET=문자_집합_이름
+
+-- 테이블에 컬럼을 추가할 때
+ALTER TABLE 테이블_이름
+ADD 컬럼_이름 데이터타입;
+
+-- 테이블의 컬럼을 수정할 때
+ALTER TABLE 테이블_이름
+MODIFY 컬럼_이름 데이터타입;
+
+-- 테이블의 컬럼을 삭제할 때
+ALTER TABLE 테이블_이름
+DROP 컬럼명;
+
+-- 제약조건 추가하기
+ALTER TABLE 테이블_이름
+ADD CONSTRANINT 제약조건명 제약조건타입(컬럼명);
+
+-- 제약조건 삭제하기
+ALTER TABLE 테이블_이름
+DROP 제약조건명;
+
+-- 등등..
+
+```
+
++ 예시
 
 ```
 -- 데이터베이스 변경
 alter database dbtest
 default character set utf8mb4 collate utf8mb4_general_ci;
+
+-- email 컬럼 추가하기
+alter table tb_alter 
+add email varchar(20) default 'ssafy';
+
+-- email 컬럼 삭제
+alter table tb_alter
+drop email;
+
+-- 제약조건 추가하기
+alter table book
+add constraint book_isbn_uk unique(isbn);
+
+-- 제약조건 삭제하기
+alter table book
+drop book_isbn_uk;
+
+-- 부모(참조 컬럼)가 데이터를 삭제할때 자식들(외래키 컬럼)의 데이터도 동시에 제거하기 (cascade)
+alter table comment 
+add constraint comment_no_fk foreign key(no) references board(no) on delete cascade;
 ```
 
 #### drop
 
-데이터베이스나 스키마, 테이블을 삭제한다.
+데이터베이스나 스키마, 테이블을 삭제한다.   
+단, Foregn key 제약조건이 있는 테이블은 제약조건이나 외래키 테이블을 먼저 삭제한 후에 삭제가 가능하다!
+
++ 기본 형식
 
 ```
 -- 데이터베이스 삭제
+DROP DATABASE 데이터베이스_이름;
+
+-- 테이블 삭제
+DROP TABLE 테이블_이름;
+```
+
++ 예시
+
+```
+-- dbtest 데이터베이스 삭제
 drop database dbtest;
+
+-- book 테이블 삭제
+drop table book;
+```
+
+#### View
+
+쿼리문의 결과를 기반으로 생성된 **가상의 테이블**
+
++ 특정 조건의 테이블을 쉽게 접근할 수 있도록 한다.
++ 테이블이 하나 더 생성되는 것은 아니다.
+
++ 기본 형식
+
+```
+-- 뷰 생성
+CREATE VIEW [OR REPLACE] view_name AS
+SELECT col_name1, col_name2, ..., col_nameN
+FROM table_name
+WHERE condition;
+```
+
++ 예시
+
+```
+-- employeedeptno50 뷰를 employees 테이블을 통해 생성
+create or replace view employeedeptno50 as
+select employee_id, first_name, job_id, salary, department_id
+from employees
+where department_id = 50;
+ 
+-- 뷰를 사용할 때에는 다른 데이터 베이스와 비슷하게 작성하면 된다.
+select *
+from employeedeptno50;
+
+-- 뷰 삭제
+drop view employeedeptno50;
+```
+
+#### index
+
+데이터베이스에서 빠르게 데이터를 검색하기 위해 사용하는 책의 목차와 같은 기능
+
+- 테이블 데이터와 별개의 공간으로 관리된다.
+- 기본 정렬된 데이터로 관리한다.
+- 테이블의 조회 속도를 높이기 위해서 사용한다.
+- primary key, unique, foreign key의 제약조건 들은 자동으로 인덱스를 생성한다.
+- 자주 수정되는(insert, update, delete) 컬럼은 작업은 오버헤드를 불러 일으킬 수 있다.
+
+간단히 수정이 많은 테이블에서는 인덱스가 없는 테이블이 있는 테이블보다 빠르다는 것만 보고 넘어가서 실재로 어떻게 사용되는지 감이 잘 오지 않는다. 개인적으로는 데이터베이스의 목차라고 생각하고 있다.
+
++ 기본 형식
+
+```
+-- 인덱스 생성
+CREATE INDEX index_name
+ON table_name (col_name1, col_name2, ..., col_nameN);
+
+-- 테이블의 인덱스 조회
+SHOW index_name 
+FROM table_name;
+
+-- 인덱스 삭제, 수정은 별도로 지원하지 않아 삭제 후 다시 생성해야 한다.
+ALTER TABLE table_name DROP INDEX index_name;
+```
+
++ 예시
+
+```
+-- 인덱스 idx_emp 생성
+create index idx_emp 
+on employees(employee_id);
+  
+-- 테이블 employees의 인덱스 조회
+show index from employees;
+
+-- 테이블 employees의 인덱스 idx_emp 삭제
+alter table employees drop index idx_emp;
 ```
 
 ### DML (Data Manipulation Language)
@@ -227,16 +465,27 @@ drop database dbtest;
 
 테이블에 레코드를 할 수 있다.
 
-```
-INSERT INTO table_name(col_name1, col_name2, ..., col_nameN)   
-VALUES(col_val1, col_val2, ..., col_valN),
-      (col_val1-2, col_val2-2, ..., col_valN-2)
-```
-
 컬럼은 생략이 가능한 경우도 있다.
 1. NULL이 허용된 컬럼
 2. DEFAULT가 설정된 컬럼
 3. AUTO INCREMENT가 설정된 컬럼
+
+
++ 기본 형식
+
+```
+-- 1. 특정 컬럼에 대한 값만 추가할 때
+INSERT INTO table_name (col_name1, col_name2, ..., col_nameN)
+VALUES (col_val1, col_val2, ..., col_valN)
+			 (col_val1-2, col_val2-2, ..., col_valN-2);
+
+-- 2. 모든 컬럼에 대한 값을 추가할 때
+INSERT INTO table_name
+VALUES (value1, value2, value3, ..., valueN)
+			 (value1-2, value2-2, ..., valueN-2);
+```
+
++ 예시
 
 ```
 -- 회원 정보 등록
@@ -265,15 +514,19 @@ join은 내용이 너무 길어 [별도의 파일로 정리](https://github.com/
 
 테이블에 레코드를 수정할 수 있다.
 
++ where절의 조건에 만족하는 레코드 값을 변경한다
+  + **where절을 생략하면 모든 레코드의 값이 변경된다!!**
+  + mysql은 Edit - preferences - SQL Editor - Safe Updates 의 체크를 해제해야 레코드의 수정과 삭제가 가능하다.
+
++ 기본 형식
+
 ```
 UPDATE table_name
 SET col_name1 = col_val1[, col_name2 = col_val2, ..., col_nameN = col_valN]
 WHERE conditions;
 ```
 
-+ where절의 조건에 만족하는 레코드 값을 변경한다
-  + 단! where절을 생략하면 모든 레코드의 값이 변경된다!!
-  + mysql은 Edit - preferences - SQL Editor - Safe Updates 의 체크를 해제해야 레코드의 수정과 삭제가 가능하다.
++ 예시
 
 ```
 -- userid가 kimssafy인 회원의 비번을 9876, 이메일 도메인을 ssafy.com으로 변경.
@@ -290,14 +543,19 @@ set userpwd = '9876', emaildomain = 'ssafy.co.kr';
 
 테이블에 레코드를 삭제할 수 있다.
 
++ where절의 조건에 만족하는 레코드 값을 삭제한다.
+  + 단! where절을 생략하면 모든 레코드의 값이 삭제된다!!
+  + mysql은 Edit - preferences - SQL Editor - Safe Updates 의 체크를 해제해야 레코드의 수정과 삭제가 가능하다.
+
+
++ 기본 형식
+
 ```
 DELETE FROM table_name
 WHERE conditions;
 ```
 
-+ where절의 조건에 만족하는 레코드 값을 삭제한다.
-  + 단! where절을 생략하면 모든 레코드의 값이 삭제된다!!
-  + mysql은 Edit - preferences - SQL Editor - Safe Updates 의 체크를 해제해야 레코드의 수정과 삭제가 가능하다.
++ 예시
 
 ```
 -- userid가 kimssafy 회원 탈퇴
@@ -315,6 +573,11 @@ delete from ssafy_member;
 테이블의 레코드를 선택할 수 있다.
 
 ```
+-- 1. 특정 컬럼에 대한 데이터만 선택할 때
+SELECT col_name1, col_name2, ..., col_nameN
+FROM table_name;
+
+-- 2. 모든 컬럼에 대한 데이터를 선택할 때
 SELECT *
 FROM table_name;
 ```
@@ -330,10 +593,14 @@ FROM table_name;
 + 특히 아주 다양한 절이 있다.
   + select와 from은 필수적인 절이다.
   + where, group by, having, order by 등의 구문을 활용하여 다양한 기능을 줄 수 있다.
++ 논리연산시 Null이 포함되어 있다면 에러가나는 일반 언어와는 다르게 에러 대신 다른 값이 나올 수도 있다.
 
-select문 예시들이 너무 많도 생략하기에도 어려워서 [다른 곳](https://github.com/ii200400/IT_Skill_Question/tree/master/CS/Database/select)에 정리를 하였다;
+mysql document에서 select문을 다음의 사진과 같이 정리하고 있었다.
 
-데이터베이스에서 논리연산시 Null이 포함되어 있다면 에러가나는 일반 언어와는 다르게 에러 대신 다른 값이 나올 수도 있다.
+![image](https://user-images.githubusercontent.com/19484971/171914787-eff7a45e-3c01-4ad5-bc55-de9f8fca8e40.png)
+
+좀.. 많다..!   
+select문 예시들이 너무 많아서 [다른 곳](https://github.com/ii200400/IT_Skill_Question/tree/master/CS/Database/select)에 정리를 하였다; 
 
 ![image](https://user-images.githubusercontent.com/19484971/167288402-1680c4f9-b5cd-43be-b726-5d2ea2865df0.png)
 
@@ -349,6 +616,9 @@ Join도 설명을 해야하나 내용이 너무 많아 아래쪽에 따로 정�
   + grant : 데이터베이스 객체에 권한을 부여
   + revoke : 데이터베이스 객체 권한 취소
 
+테스트용 사용자를 만들었을 때 이외에는 사용하지 않았다.   
+유추하기를, DB 관리자가 자주 쓰는 것 같다.
+
 ### TCL (Transaction Control Language)
 
 + 트랜잭션 제어어
@@ -357,9 +627,10 @@ Join도 설명을 해야하나 내용이 너무 많아 아래쪽에 따로 정�
 
 + 종류
   + commit : 실행한 Query를 최종적으로 적용
+  	+ DDL 이나 DCL의 모든 질의문은 무조건 commit이 진행된다.
   + rollback : 실행한 Query를 마지막 commit 전으로 취소시켜 데이터를 복구
 
-DDL 이나 DCL의 모든 질의문은 무조건 commit이 진행된다.
+
 
 ### 모델링
 
