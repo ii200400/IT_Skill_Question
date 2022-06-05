@@ -595,17 +595,16 @@ FROM table_name;
   + select와 from은 필수적인 절이다.
   + where, group by, having, order by 등의 구문을 활용하여 다양한 기능을 줄 수 있다.
 + 논리연산시 Null이 포함되어 있다면 에러가나는 일반 언어와는 다르게 에러 대신 다른 값이 나올 수도 있다.
+	+ <img src="https://user-images.githubusercontent.com/19484971/167288402-1680c4f9-b5cd-43be-b726-5d2ea2865df0.png"  width="300"/>
 
 mysql document에서 select문을 다음의 사진과 같이 정리하고 있었다.
 
-![image](https://user-images.githubusercontent.com/19484971/171914787-eff7a45e-3c01-4ad5-bc55-de9f8fca8e40.png)
+<img src="https://user-images.githubusercontent.com/19484971/171914787-eff7a45e-3c01-4ad5-bc55-de9f8fca8e40.png"  width="500"/>
 
-좀.. 많다..!   
-select문 예시들이 너무 많아서 [다른 곳](https://github.com/ii200400/IT_Skill_Question/tree/master/CS/Database/select)에 정리를 하였다; 
+으어어..!@,.@ 좀.. 많다..!   
+select문 예시들이 너무 많아서 [다른 곳](https://github.com/ii200400/IT_Skill_Question/tree/master/CS/Database/select)에 정리를 하였다;
 
-![image](https://user-images.githubusercontent.com/19484971/167288402-1680c4f9-b5cd-43be-b726-5d2ea2865df0.png)
-
-Join도 설명을 해야하나 내용이 너무 많아 아래쪽에 따로 정리를 하였다.
+Join도 설명을 해야하나 이것도 내용이 너무 많아 [또 다른 곳](https://github.com/ii200400/IT_Skill_Question/tree/master/CS/Database/join#join)에 따로 정리를 하였다.
 
 ### DCL (Data Control Language)
 
