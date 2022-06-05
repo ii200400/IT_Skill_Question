@@ -349,7 +349,7 @@ from dual;
 
 ### replace
 
-+ 문자열에서 특정 문자열을 다른 문자열로 대체하는 함수
++ 특정 문자열을 다른 문자열로 대체하는 함수
 	+ 해당 특정 문자열이 여러 번 들어가 있다면 모두 대체한다.
 ```
 select replace('helloabcabc!!!', 'abc', ' world ')
@@ -357,66 +357,150 @@ from dual;
 ```
 ![image](https://user-images.githubusercontent.com/19484971/172044964-6e3c2732-67c6-47f3-801b-319ac6ce2a1f.png)
 
+### instr
 
++ 특정 문자열의 시작 위치를 찾는 함수
+	+ 문자열이 여러 개 들어가 있어도 첫번째 문자열의 시작 위치만 반환한다.
+	+ mysql에서는 인덱스가 1부터 시작하는 것 잊지말자;
 ```
--- 7
-select instr('hello ssafy !!!', 'ssafy')
+select instr('hello world world!!!', 'world')
 from dual;
+```
+![image](https://user-images.githubusercontent.com/19484971/172062406-ac6405d9-6502-4497-a37f-007300cbadf9.png)
 
--- ssafy
-select mid('hello ssafy !!!', 7, 5), substring('hello ssafy !!!', 7, 5)
+### mid & substring
+
++ 특정 위치부터 특정 개수의 문자열을 반환하는 함수
+```
+select mid('hello world !!!', 7, 5), substring('hello world !!!', 7, 5)
 from dual;
+```
+![image](https://user-images.githubusercontent.com/19484971/172062430-6241b0e0-8a4a-4858-a622-b919bb128e65.png)
 
--- hello ssafy !!!
-select reverse('!!! yfass olleh')
+### reverse
+
++ 문자열을 역순으로 바꾸는 함수
+```
+select reverse('!!! dlrow olleh')
 from dual;
+```
+![image](https://user-images.githubusercontent.com/19484971/172063104-060fd37c-adbf-4247-9fc2-fe3068af652c.png)
 
--- hello ssafy !!!  hello ssafy !!!
-select lower('hELlo SsaFy !!!'), lcase('hELlo SsaFy !!!')
+### lower & lcase
+
++ 문자열의 모든 문자를 소문자로 바꾸는 함수
+```
+select lower('hELlo World !!!'), lcase('hELlo WorLd !!!')
 from dual;
+```
+![image](https://user-images.githubusercontent.com/19484971/172063202-c81b1936-dd93-4851-9b32-fbd059f03af2.png)
 
--- HELLO SSAFY !!!  HELLO SSAFY !!!
-select upper('hELlo SsaFy !!!'), ucase('hELlo SsaFy !!!')
+### upper & ucase
+
++ 문자열의 모든 문자를 대문자로 바꾸는 함수
+```
+select upper('hELlo World !!!'), ucase('hELlo World !!!')
 from dual;
+```
+![image](https://user-images.githubusercontent.com/19484971/172063213-529df17f-798c-40e6-a649-b221f3b611a1.png)
 
--- hello  fy !!!
-select left('hello ssafy !!!', 5), right('hello ssafy !!!', 6)
+### left & right
+
++ 왼쪽/오른쪽의 특정 문자 수만을 잘라내는 함수
+```
+select left('hello world !!!', 5), right('hello world !!!', 6)
 from dual;
+```
+![image](https://user-images.githubusercontent.com/19484971/172063299-12e76262-600d-439c-bda9-d47284fdd9c4.png)
 
--- ------------------- 날짜 관련 함수 ----------------------
--- 2020-08-01 23:17:11  2020-08-01 23:17:11  2020-08-01 23:17:11
+### now
+
++ 현재 시간을 초 단위까지 보여주는 함수
+	+ sysdate과 current_timestamp도 같은.. 기능을 하는 함수인가 보다. (그럼 왜 여러 개가 있을까?)
+```
 select now(), sysdate(), current_timestamp()
 from dual;
+```
+![image](https://user-images.githubusercontent.com/19484971/172063352-46767060-587b-4a56-95ef-1798dc420d94.png)
 
--- 2020-08-01  2020-08-01  23:18:33  23:18:33
+### curdate & curtime
+
++ 각각 현재 날짜와 시간만을 보여주는 함수
+	+ 각각 current_date와 current_time로 대체가 가능하다.
+```
 select curdate(), current_date(), curtime(), current_time()
 from dual;
+```
+![image](https://user-images.githubusercontent.com/19484971/172063479-444dd4ca-90f0-48c8-a559-c6d20cdd51a2.png)
 
--- 2020-08-01 23:23:19	2020-08-01 23:23:24	2020-08-02 04:23:19	2020-08-06 23:23:19
-select now() 현재시간, date_add(now(), interval 5 second) 5초후,
-	   date_add(now(), interval 5 hour) 5시간후, date_add(now(), interval 5 day) 5일후
+### date_add
+
++ 특정 시간으로부터 이후의 시간을 계산하여 반환하는 함수
+	+ 참고로 음수도 입력 가능해서 5시간 전과 같은 시간 연산도 가능하다.
+```
+select now() 현재시간, date_add(now(), interval 5 second) 5초후, date_add(now(), interval 5 hour) 5시간후, date_add(now(), interval 5 day) 5일후
+from dual;
+```
+![image](https://user-images.githubusercontent.com/19484971/172063532-281bd1fe-6fa4-49ce-b577-b27f66f7a856.png)
+
+### 날짜 함수들
+
++ 주어진 시간에서 다음과 같은 정보를 반환한다.
+	+ year(date) : 연도
+	+ month(date) : 월(숫자)
+	+ monthname(date) : 월(영문)
+	+ dayname(date) : 일(영문)
+	+ dayofmonth(date) : 월
+	+ dayofweek(date) : 일(숫자)
+	+ weekday(date) : 해당 월의 몇 번째 주 인지
+	+ dayofyear(date) : 해당 연도의 몇 번째 일 인지
+	+ week(date) : 해당 연도의 몇 번째 주 인지
++ 참고로 날짜는 0부터 시작하며, 월요일을 0으로 일요일을 6으로 치환한다.
+```
+select now(), year(now()), month(now()), monthname(now()), dayname(now())
 from dual;
 
--- 2020	8	August	Saturday	1	7	5	214	30
-select year(now()), month(now()), monthname(now()), 
-       dayname(now()), dayofmonth(now()), dayofweek(now()), 
-	   weekday(now()), dayofyear(now()), week(now())
+select dayofmonth(now()), dayofweek(now()), weekday(now()), dayofyear(now()), week(now())
 from dual;
+```
+![image](https://user-images.githubusercontent.com/19484971/172063677-e4586006-0cdc-411f-ac01-c4098ab70f4f.png)
+![image](https://user-images.githubusercontent.com/19484971/172063697-e087f2d7-67a0-4edd-9a3e-829cf3ec6537.png)
 
--- 2020-08-02 00:21:50  2020 August 2 AM 12 21 50  20-08-02 00:21:50  20.08.02 Sunday  00시21분50초
+### date_format
+
++ date format 형식으로 날짜 표현 방식을 설정하여 표시하는 함수
+	+ date format 형식은 [이곳](https://www.w3schools.com/mysql/func_mysql_date_format.asp)에서 확인
+```
 select now(), date_format(now(), '%Y %M %e %p %l %i %S'), date_format(now(), '%y-%m-%d %H:%i:%s'),
 	   date_format(now(), '%y.%m.%d %W'), date_format(now(), '%H시%i분%s초')
 from dual;
+```
+![image](https://user-images.githubusercontent.com/19484971/172064424-04dff326-8162-4fb9-bfc2-6df7f21e9452.png)
+![image](https://user-images.githubusercontent.com/19484971/172064430-ce477d41-49a3-4dde-b405-b55e9753f016.png)
 
--- ------------------- 논리 관련 함수 ----------------------
--- 크다  작다  3  b  a
-select if(3 > 2, '크다', '작다'), if(3 > 5, '크다', '작다'), 
-       nullif(3, 3), nullif(3, 5), 
-	   ifnull(null, 'b'), ifnull('a', 'b')
+### 조건 함수
+
++ 조건문의 특징을 가지는 함수들이다.
+	+ if : 삼항연산자를 생각하자.
+	+ nullif : 두 매개변수가 같다면 null, 그렇지 않다면 첫 번째 매개변수를 반환
+	+ ifnull : 첫 번째 매개변수가 null이라면 두 번째 매개변수를, 그렇지 않다면 첫 번째 매개변수를 반환
+```
+select if(3 > 2, '크다', '작다'), if(3 > 5, '크다', '작다'), nullif(3, 3), nullif(3, 5), ifnull(null, 'b'), ifnull('a', 'b')
 from dual;
+```
+![image](https://user-images.githubusercontent.com/19484971/172064496-db8f1629-1ced-4af3-9fb1-a5fc193f69a1.png)
 
--- ------------------- 집계 함수 ----------------------
--- 사원의 총수, 급여의 합, 급여의 평균, 최고급여, 최저급여
+### 집계 함수
+
++ 데이터의 수나 합, 평균 등을 구하는 함수들
+	+ count : 데이터의 수
+	+ sum : 데이터의 합
+	+ avg : 데이터의 평균
+	+ max : 데이터의 최대값
+	+ min : 데이터의 최소값
++ 임의로 사원 테이블을 사용하였다.
+```
 select count(employee_id), sum(salary), avg(salary), max(salary), min(salary)
 from employees;
 ```
+![image](https://user-images.githubusercontent.com/19484971/172064785-55e6917b-71e0-4779-9610-f69077f14d83.png)
