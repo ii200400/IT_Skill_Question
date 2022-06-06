@@ -626,11 +626,54 @@ Join도 설명을 해야하나 이것도 내용이 너무 많아 [또 다른 곳
     + Transaction : 데이터베이스 논리적 연산 단위
 
 + 종류
+	+ start transaction : COMMIT, ROLLBACK이 나올 때까지 실행되는 모든 Query를 추적
   + commit : 실행한 Query를 최종적으로 적용
   	+ DDL 이나 DCL의 모든 질의문은 무조건 commit이 진행된다.
-  + rollback : 실행한 Query를 마지막 commit 전으로 취소시켜 데이터를 복구
+  + rollback : 실행한 Query를 마지막 commit 으로 취소시켜 데이터를 복구
+  + savepoint : Query 중간에 특정 포인트를 만든다.
+  	+ rollback을 사용하여 해당 포인트로 되돌아갈 수 있다.
+  	+ commit을 하면 해당 포인트는 사라진다.
 
+```
+-- 현재의 autocommit 속성을 확인한다.
+select @@autocommit;
 
+-- 만약 위의 조회 결과가 1(true) 이면 false 로 변경 후 처리한다.
+set autocommit=false;
+
+-- 임의의 테이블
+create table tc_test
+(
+	val varchar(10)
+);
+
+start transaction;
+
+insert into tc_test
+values ('a');
+
+-- 데이터가 'a'가 사라진다.
+rollback;
+
+insert into tc_test
+values ('b');
+
+-- 데이터가 'b'가 보존된다.
+-- 이후 rollback을 진행해도 데이터는 사라지지 않는다.
+commit;
+
+insert into tc_test
+values ('c');
+
+-- 세이브 포인트 f1으로 명명하여 지정
+savepoint f1;
+
+insert into tc_test
+values ('d');
+
+-- 데이터 'b'와 'c'는 남아있지만, 'd'가 사라진다.
+rollback to f1;
+```
 
 ### 모델링
 
