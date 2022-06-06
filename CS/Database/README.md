@@ -183,24 +183,24 @@ default character set utf8mb4 collate utf8mb4_general_ci;
 ```
  
 + 제약 조건 6가지
-	+ NN(not null)
+	+ Not Null(NN)
 		+ 컬럼 레벨의 설정으로만 적용 가능
 		+ null 허용하지 않음(반드시 값이 입력되어야 한다.)
-	+ UK : unique
+	+ Unique(UK) 
 		+ 입력되는 값이 고유해야 한다.
 		+ **null값은 허용한다!**
-	+ PK(primary key)
+	+ Primary Key(PK)
 		+ 테이블당 하나만 설정 가능
 		+ (테이블 레벨 설정을 통해) 여러 개의 컬럼을 조합해서 생성이 가능
 		+ 데이터(행)를 구분하는 역할
 		+ not null + unique
-	+ CK : check
+	+ check(CK)
 		+ 입력되는 값의 조건 유효성 확인
-	+ FK : foreign key
+	+ Foreign Key(FK)
 		+ 다른 테이블의 컬럼의 값을 참조
 		+ 또는 자기 테이블의 다른 컬럼을 참조
 		+ 부모(참조되는쪽)와 자식(참조하는쪽) 테이블의 관계
-	+ default 
+	+ Default 
 		+ 컬럼 정의시 별도로 지정하지 않으면 null을 지정한다.
 		+ 형식> 컬럼 default 지정할값
 		+ 컬럼의 값이 입력되지 않으면 디폴트로 설정된 값이 자동입력
@@ -211,15 +211,15 @@ default character set utf8mb4 collate utf8mb4_general_ci;
 -- 제약조건을 넣은 데이터베이스 생성
 -- 1. 컬럼레벨 방식 (not null은 컬럼 레벨만 가능)
 CREATE TABLE 테이블_이름(
-	컬럼 제약조건,
-	컬럼 제약조건,
+	컬럼명 제약조건,
+	컬럼명 제약조건,
 	....
 );
 
 -- 2. 테이블레벨 방식 (primary key를 다중 컬럼으로 설정하는 경우 주로 사용)
 CREATE TABLE 테이블_이름(
-	컬럼 ,
-	컬럼 ,
+	컬럼명 ,
+	컬럼명 ,
 	....
 	제약조건,
 	제약조건
