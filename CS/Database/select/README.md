@@ -1,6 +1,7 @@
 # select절 실습 내용
 
-실습 내용을 그대로 옮겨 작성하면서 내용을 상기하려고 작성한 페이지이다. 읽는 것은 원활하지만, 작성은.. 자신없다. 하하하하!
+실습 내용을 그대로 옮겨 작성하면서 내용을 상기하려고 작성한 페이지이다. 읽는 것은 원활하지만, 작성은.. 자신없다. 하하하하!   
+내용이 부족한 부분은 웹 공부할 때 항상 그렇듯이 w3schools 홈페이지(혹은 영문 위키)를 참고하였다.
 
 ## keywords
 
@@ -189,54 +190,6 @@ where department_id in (50, 60, 70)
 order by department_id, salary desc;
 ```
 ![image](https://user-images.githubusercontent.com/19484971/172042707-608f1556-8bab-4602-b235-779869f10317.png)
-
-## Group By
-
-```
--- 부서 번호, 부서별 급여의 총합, 평균급여
-
--- select department_id, sum(salary), avg(salary)
--- from employees;
-
-select department_id, sum(salary), avg(salary)
-from employees
-where department_id is not null
-group by department_id
-order by department_id;
-
--- 각 부서별 최고 급여와 최저 급여
-
-select department_id, max(salary), min(salary)
-from employees
-group by department_id;
-
--- 부서별 평균 급여가 7000이상인 부서 번호, 평균 급여
--- select department_id, avg(salary)
--- from employees
--- where avg(salary) > 7000
--- group by department_id;
-
-select department_id, avg(salary)
-from employees
-group by department_id
-having avg(salary) > 7000;
-
--- 40, 50, 60번 부서에서 근무하는 사원들 중 job_id별 급여 합이 50000보다 큰 job_id별 평균 급여
--- 평균급여를 내림차순으로 정렬
-select job_id, avg(salary)
-from employees
-where department_id in (40, 50, 80)
-group by job_id
-having sum(salary) > 50000
-order by avg(salary) desc;
-
--- 입사 년도별 인원수와 평균 급여를 구하여라
-
-select year(hire_date) hd, count(*), avg(salary)
-from employees
-group by hd
-order by hd desc;
-```
 
 ## Function
 
@@ -504,3 +457,69 @@ select count(employee_id), sum(salary), avg(salary), max(salary), min(salary)
 from employees;
 ```
 ![image](https://user-images.githubusercontent.com/19484971/172064785-55e6917b-71e0-4779-9610-f69077f14d83.png)
+
+## Group By
+
++ 사원들의 부서 번호, 부서별 급여의 총합, 평균급여
+	+ 부서가 지정되지 않은 사원데이터가 있어 not null 을 사용
+	+ 부서별로 묶기 위해서 group by 사용
+		+ group by를 사용한 상태로 집계함수를 사용하면 특정 집합의 평균이나 총합을 구할 수 있다.
+	+ 시각적 편의성을 위해서 order by 사용
+```
+select department_id, sum(salary), avg(salary)
+from employees
+where department_id is not null
+group by department_id
+order by department_id;
+```
+![image](https://user-images.githubusercontent.com/19484971/172086169-1cbf355f-f769-4869-b448-82b69ba44a43.png)
+
++ 각 부서별 최고 급여와 최저 급여
+```
+select department_id, max(salary), min(salary)
+from employees
+group by department_id;
+```
+![image](https://user-images.githubusercontent.com/19484971/172086643-c8f2e1ff-bd75-4848-bf10-f19ba1d200b8.png)
+
++ 부서별 평균 급여가 7000이상인 부서 번호, 평균 급여
+	+ group by에 대한 조건문을 넣으려면 having을 사용해야 한다.
+	+ where 절에 집계함수를 넣으면 Invalid use of group function 이라는 에러가 생긴다.
+```
+-- 에러가 난다.
+-- select department_id, avg(salary)
+-- from employees
+-- where avg(salary) > 7000
+-- group by department_id;
+
+select department_id, avg(salary)
+from employees
+group by department_id
+having avg(salary) > 7000;
+```
+![image](https://user-images.githubusercontent.com/19484971/172087114-f5954f4c-5f9b-4ac5-8414-faf914325986.png)
+![image](https://user-images.githubusercontent.com/19484971/172087129-880389ab-fe03-4685-b3d1-43e5fcf27b55.png)
+
++ 40, 50, 60번 부서에서 근무하는 사원들 중 job_id별 급여 합이 50000보다 큰 job_id별 평균 급여
+	+ order by에는 집계함수가 사용 가능하다.
+	+ 적절하게 where절을 사용해야 한다.
+```
+select job_id, avg(salary)
+from employees
+where department_id in (40, 50, 80)
+group by job_id
+having sum(salary) > 50000
+order by avg(salary) desc;
+```
+![image](https://user-images.githubusercontent.com/19484971/172087410-c51c89e4-5267-4046-af5c-c4824402ea60.png)
+
++ 입사 년도별 인원수와 평균 급여
+	+ 테이블의 컬럼이 아닌 값으로도 그룹으로 묶을 수 있다.
+```
+select year(hire_date) hd, count(*), avg(salary)
+from employees
+group by hd
+order by hd desc;
+```
+![image](https://user-images.githubusercontent.com/19484971/172087622-29189350-590d-4fd5-90af-47286ed03193.png)
+
