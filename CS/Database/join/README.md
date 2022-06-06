@@ -267,6 +267,7 @@ mysql에서는 full outer join이 따로 없다. 때문에 left/right outer join
 + mysql에는 full outer join이 없어 union으로 full outer join 구현
 	+ union은 두 컬럼을 더한다.(합집합의 개념) 단, 두 컬럼의 컬럼은 순서대로 매칭되어야 한다. 
 	+ union all을 하면 중복되는 (교집합)부분을 그대로 한번 더 출력한다.
+	+ union하는 두 테이블의 컬럼은 같아야 한다.
 ```
 -- 부서의 모든 사원의 부서명, 사원id, 이름을 출력한다.
 -- 단, 부서가 없는 사원과 사원이 없는 부서도 출력해야 한다.
