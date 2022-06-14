@@ -491,10 +491,8 @@ drop view employeedeptno50;
 - primary key, unique, foreign key의 제약조건 들은 자동으로 인덱스를 생성한다.
 - 자주 수정되는(insert, update, delete) 컬럼은 작업은 오버헤드를 불러 일으켜 오히려 비효율적일 수 있다.  
 + B+Tree 자료구조를 사용한다.
-+ explain 을 사용하면 index를 사용하고 있는지 확인할 수 있다.
-	+ ``` explain select * from table where condition="condition"```
-	+ type 이 ALL이고 possible_keys와 key가 빈 칸이면 사용하지 않는 것
-	+ type 이 ref이고 possible_keys와 key가 빈 칸이 아니면 사용하고 있는 것
++ show index 를 사용하면 특정 테이블에서 index를 사용하고 있는지 확인할 수 있다.
+	+ `SHOW INDEX FROM table`
 
 간단히 수정이 많은 테이블에서는 인덱스가 없는 테이블이 있는 테이블보다 빠르다는 것만 보고 넘어가서 실재로 어떻게 사용되는지 감이 잘 오지 않는다. 개인적으로는 데이터베이스의 목차라고 생각하고 있다.
 
