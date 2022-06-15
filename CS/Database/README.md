@@ -769,10 +769,10 @@ rollback to f1;
 DELIMITER //
 
 CREATE PROCEDURE procedure_name(
-		[proc_parameter[,...]]
+	[proc_parameter[,...]]
 )   
 BEGIN   
-		qureys
+	qureys
 END //
 
 DELIMITER ;
