@@ -1,8 +1,10 @@
 # 1-4. 데이터 베이스
 
++ DB(데이터베이스)
 + RDBMS (관계형(Relational) 데이터베이스 시스템)
 + ER Diagram (Entity-Relation Diagram 미완)
 + SQL
+	+ Data Type
 	+ DDL
 	+ DML
 	+ DCL
@@ -29,7 +31,7 @@
 
 강의 진행을 위해 교수님이 오라클에서 기본적으로 제공하는 더미 데이터를 MySQL에 맞춰 만든 것을 제공받아 사용했는데 그 파일을 그대로 올리면 저작권에 문제가 될 것 같아 올리지 않았다; 개인적으로 부분적으로 올리는 쿼리문만해도 신경이 많이 쓰인다.   
 
-## 데이터베이스
+## DB(데이터베이스)
 
 여러 응용시스템(사용자)들이 공유해서 사용할 수 있는 통합 저장된 운영 데이터의 집합   
 조금 더 풀어쓰면 여러 사람들이 다같이 사용할 수 있도록 중복 데이터를 최소화하여 필수 데이터를 저장한 집합
@@ -165,6 +167,9 @@
 
 [w3schools](https://www.w3schools.com/mysql/default.asp)에서 쿼리문의 예시를 제공하고 있으니 필요하다면 참고하자.
 
++ 참고
+	+ https://www.erdcloud.com/
+
 ## SQL (Structured Query Language)
 
 + Database에 있는 정보를 관리하는 프로그램인 DBMS를 조작할 수 있도록 지원하는 언어
@@ -178,9 +183,7 @@
 필자가 듣는 강의에서 MySQL을 사용하였기 때문에 해당 프로그램을 기준으로 작성함의 유의하자!   
 또한, 모든 SQL을 다루는 것이 아니라 강의에서 다룬 것들을 중점으로 작성할 것이므로 다양한 SQL문을 확인학 싶다면 [w3schools](https://www.w3schools.com/sql/sql_alter.asp)를 참고하자!
 
-
-
-### Data type
+### Data Type
 
 데이터베이스에서 사용하는 데이터 타입 중 기본적이고 자주 쓰이는 것만 간단하게 정리하겠다.
 
@@ -753,7 +756,61 @@ values ('d');
 rollback to f1;
 ```
 
-### 모델링
+### Procedure(프로시저)
+
+특정한 작업을 저장했다가 원할 때 호출해서 사용하는 기능   
+일반적으로 함수와 비슷한 기능을 한다고 설명한다. 실재로 공식 홈페이지에서도 이러한 작업을 stored procedure 혹은 function 이라고 언급한다.
+
++ 기본 형식
+
+```
+-- 1)
+-- mysql 기본문법에는 없지만 써주어야 프로시저 사용이 가능하다.
+DELIMITER //
+
+CREATE PROCEDURE procedure_name(
+		[proc_parameter[,...]]
+)   
+BEGIN   
+		qureys
+END //
+
+DELIMITER ;
+```
+
+#### 구분자 변경
+
+DELIMITER는 꼭 같이 사용해주어야 된다, 기본 문법에 적혀있지 않아서 모르고 안 사용했다가 에러가 계속 발생해서 머리가 아팠는데 다른 사람들은 그러지 말기를..   
+이유는 begin-end 내에 들어가는 쿼리문에 구분자`;`가 들어가기 때문이다. 그래서 구분자를 잠시 `//`로 바꿔주었다가 프로시저를 서버에 선언해준 뒤에 다시 구분자를 `;`로 돌려놓아 mysql이 작업을 재대로 파악할 수 있도록 한다. 물론 문제가 안 된다면 `//`가 아니라 다른 임의의 구분자로 선언해도 된다.
+
++ 예시
+
+```
+DELIMITER //
+create procedure proc_user_insert(
+	id varchar(30),
+	name varchar(20),
+	campus varchar(10),
+	class int,
+	gi int
+)
+begin
+	insert into user(id, name, campus, class, gi)
+    values (id, name, campus, class, gi);
+END//
+DELIMITER ;
+
+-- proc_user_insert 프로시저 호출
+call proc_user_insert("dudtjs972", "임영선", "구미", 2, 7);
+call proc_user_insert("dudtjs972@", "임영선", "구미", 2, 7);
+```
+
+![image](https://user-images.githubusercontent.com/19484971/173720538-783323f7-30c0-4965-bec9-9f640fd7c68c.png)
+
++ 참고
+	+ https://dev.mysql.com/doc/refman/8.0/en/create-procedure.html
+
+## 모델링
 
 정규화 내용 조금만 정리, 이해가 조금;;
 
