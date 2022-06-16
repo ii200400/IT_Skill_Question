@@ -528,6 +528,8 @@ show index from employees;
 alter table employees drop index idx_emp;
 ```
 
+[블로그](https://coding-factory.tistory.com/746)와 [공식 홈페이지](https://dev.mysql.com/doc/refman/8.0/en/optimization-indexes.html)를 참고해서 조금 더 서술요망!
+
 ### DML (Data Manipulation Language)
 
 + 데이터 조작어
