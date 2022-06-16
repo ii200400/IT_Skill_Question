@@ -16,6 +16,7 @@
   + Git 명령어
   + Git Strategy (미완)
 + package와 import
++ CI/CD
 
 ## 객체 지향 프로그래밍 (Object Oriented Programming - OOP)
 
@@ -680,4 +681,17 @@ java.util.List list = new java.util.ArrayList();
 임포트를 하지 않아도 기본적으로 추가되는 패키지가 하나 있다.   
 java.lang.* 
 
-## 
+## CI/CD
+
+지속적인 통합(Continuous Integration)과 Continuous Delivery(지속적인 서비스제공) 혹은 Continuous Deployment(지속적인 배포)의 약자.
+
+애플리케이션 개발 단계를 자동화하여 개발 주기를 보다 짧게, 서비스를 고객에게 빠르게 제공하는 방법으로 새로운 코드 통합으로 인해 개발 및 운영팀에서 발생하는 일명 통합지옥(Integration hell)을 해결하는 솔루션 중 하나이다.
+
+CI/CD은 애플리케이션 통합, 테스트, 제공, 배포 과정을 가지는 라이프사이클 전체에 걸쳐서 지속적인 자동화와 모니터링을 제공하는데 이러한 구축사례를 CI/CD 파이프라인이라고 부른다.
+
+이러한 CI/CD 툴로 실무에서 가장 널리 쓰이는 Jenkins를 Doker로 설치하고 사용하는 시간을 가졌는데..
+설치때문에 머리가 아프다.. 설치하고 다시 작성하겠다;
+
+
+
+
