@@ -288,7 +288,7 @@ jdbc를 어디에 넣어야 할지 모르겠네;; 아이고난;;
 요청에 대한 처리를 요청시마다 반복해서 진행하다가   
 제거(단 한번)된다.
 
-[서블릿 라이프 사이클 사진 필요]()
+![image](https://user-images.githubusercontent.com/19484971/174528543-c4205936-0edc-46a9-b28a-b7451442302a.png)
 
 | method | description |
 | --- | --- |
