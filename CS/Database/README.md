@@ -500,6 +500,7 @@ drop view employeedeptno50;
 간단히 수정이 많은 테이블에서는 인덱스가 없는 테이블이 있는 테이블보다 빠르다는 것만 보고 넘어가서 실재로 어떻게 사용되는지 감이 잘 오지 않는다. 개인적으로는 데이터베이스의 목차라고 생각하고 있다.
 
 + 기본 형식
+.. 수정이 안된다고 봤었는데 업데이트되서 기능이 추가된 것인지, 글쓴이가 오해한 것인지, 내가 오해한 것인지;;
 
 ```
 -- 인덱스 생성
@@ -510,7 +511,10 @@ ON table_name (col_name1, col_name2, ..., col_nameN);
 SHOW index_name 
 FROM table_name;
 
--- 인덱스 삭제, 수정은 별도로 지원하지 않아 삭제 후 다시 생성해야 한다.
+-- 인덱스 수정
+ALTER TABLE table_name ADD INDEX index_name (col_name);
+
+-- 인덱스 삭제
 ALTER TABLE table_name DROP INDEX index_name;
 ```
 
@@ -526,9 +530,18 @@ show index from employees;
 
 -- 테이블 employees의 인덱스 idx_emp 삭제
 alter table employees drop index idx_emp;
+
+-- 쿼리문에서 index를 사용하는지 확인
+explain select *
+from employees
+where employee_id = 100;
 ```
 
-[블로그](https://coding-factory.tistory.com/746)와 [공식 홈페이지](https://dev.mysql.com/doc/refman/8.0/en/optimization-indexes.html)를 참고해서 조금 더 서술요망!
+간단하게만 정리하신 것 같다. 더 자세하게 알고 싶다면 더 찾아봐야할 것 같다.
+
++ 참고
+	+ [블로그](https://coding-factory.tistory.com/746)
+	+ [공식 홈페이지](https://dev.mysql.com/doc/refman/8.0/en/optimization-indexes.html)
 
 ### DML (Data Manipulation Language)
 
