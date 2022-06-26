@@ -281,6 +281,7 @@ using (department_id);
 ```
 ![image](https://user-images.githubusercontent.com/19484971/172208168-0d9c5af2-25b5-4187-b505-ca7949152364.png)
 ![image](https://user-images.githubusercontent.com/19484971/172208210-55d7a97c-f24f-464a-b68c-3c00ccbe8dfa.png)
+
 두 테이블의 조건에 맞지 않는 데이터가 보이는 것을 확인할 수 있다.
 
 ## SELF JOIN
@@ -348,6 +349,8 @@ FROM 테이블_이름1, 테이블_이름2;
 
 ## quiz
 
+DB구조를 잘 알아야지만 작성이 가능하다, 맨 위의 테이블 구조를 꼭 참고하자.
+
 ```
 -- 사번이 101인 사원의 근무 이력.
 -- 근무 당시의 정보를 아래를 참고하여 출력.
@@ -361,8 +364,14 @@ on jh.department_id = d.department_id
 join jobs j
 on j.job_id = jh.job_id
 where employee_id = 101;
+```
 
--- 위의 정보를 출력 하였다면 위의 정보에 현재의 정보를 출력.
+![image](https://user-images.githubusercontent.com/19484971/175812386-06a61a3b-fd3f-4ff9-bcad-bf41f59c218e.png)
+
+근무자 기준으로 조인을 하는 것이 아니라 근무이력을 기준으로 조인하는 것이 중요하다.
+
+```
+-- 위의 정보를 출력 하였다면 위의 정보에 현재 근무이력 정보를 출력.
 -- 현재 근무이력의 시작일은 이전 근무이력의 종료일 + 1일로 설정.
 -- 종료일은 null로 설정.
 select employee_id, first_name, department_name, job_title, date_format(start_date, '%y.%m.%d') 시작일, date_format(end_date, '%y.%m.%d') 종료일
@@ -386,3 +395,7 @@ on j.job_id = e.job_id
 where e.employee_id = 101
 order by 시작일 desc; -- 이쁘게 시작일 내림차순 실시
 ```
+
+![image](https://user-images.githubusercontent.com/19484971/175812365-f379f24c-8f3b-46b9-80ef-81b7725909e1.png)
+
+위의 내용에서 현재 근무이력을 union해주면 원하는 결과를 볼 수 있다.
