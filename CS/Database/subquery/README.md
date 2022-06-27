@@ -262,3 +262,87 @@ from employees e
 where department_id = 60;
 ```
 ![image](https://user-images.githubusercontent.com/19484971/175826983-22afb0a2-1de6-460b-9945-003a93f7d575.png)
+
+```
+-- 현재 시간, 60번 부서 평균, 50 부서 총 급여
+select 
+	(select now() from dual) currtime,
+	(select avg(salary) from employees where department_id = 60) avg60,
+	(select sum(salary) from employees where department_id = 50) sum50
+from dual;
+```
+![image](https://user-images.githubusercontent.com/19484971/175839452-9a860367-b5fd-4880-b41b-90918478edb9.png)
+
+```
+-- 부서번호가 50인 부서의 총급여, 60인 부서의 평균급여, 90인 부서의 최고급여, 90인 부서의 최저급여
+select 
+	(select sum(salary) from employees where department_id = 50) sum50,
+	(select avg(salary) from employees where department_id = 60) avg60,
+	(select max(salary) from employees where department_id = 90) max90,
+	(select min(salary) from employees where department_id = 90) min90
+from dual;
+```
+![image](https://user-images.githubusercontent.com/19484971/175858591-ff9502bf-1415-4efe-8d2d-358c73e17355.png)
+
+## Subquery 활용
+
+서브쿼리가 View와 같이 동적인 테이블이라는 점을 활용하여 다양한 상황에서 사용이 가능하다.
+
+### create 예시
+
+```
+-- 서브쿼리를 활용한 create.
+-- employees table을 emp_copy라는 이름으로 복사. (컬럼 이름은 동일)
+create table emp_copy
+select *
+from employees;
+
+-- employees table의 `구조만` emp_blank라는 이름으로 생성(컬럼 이름 동일).
+create table emp_blank
+select *
+from employees
+where 1=0;
+
+-- 50번 부서의 사번(eid), 이름(name), 급여(sal), 부서번호(did)만 emp50이라는 이름으로 생성.
+create table emp50
+select employee_id eid, first_name name, salary sal, department_id did
+from employees
+where department_id = 50;
+```
+
+### insert 예시
+
+```
+-- 서브쿼리를 이용한 insert.
+-- employees table에서 부서번호가 80인 사원의 모든 정보를 emp_blank에 insert
+insert into emp_blank
+select * 
+from employees
+where department_id = 80;
+
+-- employees table에서 부서번호가 80인 사원의 모든 정보를 emp50에 insert
+insert into emp50
+select employee_id, first_name, salary, department_id
+from employees
+where department_id = 80;
+```
+
+### update 예시
+
+```
+-- 서브쿼리를 이용한 update.
+-- employees table의 모든 사원의 평균 급여보다 적게 받는 emp50 table의 사원의 급여를 500 인상.
+update emp50
+set sal = sal + 500
+where sal < (select avg(salary) from employees);
+```
+
+### delete 예시
+
+```
+-- 서브쿼리를 이용한 delete.
+-- employees table의 모든 사원의 평균 급여보다 적게 받는 emp50 table의 사원은 퇴사.
+delete from emp50
+where sal < (select avg(salary) from employees);
+```
+
