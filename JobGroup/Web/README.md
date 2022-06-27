@@ -6,10 +6,10 @@
 
 기본적으로 사용되는 HTML5 웹 문서는 3가지 구성요소가 있다.
 
-+ HTML5 (Hyper Text Markup Language)   
++ HTML5(Hyper Text Markup Language)   
   기본적인 Markup Language 에 링크의 기능을 추가한 마크업 언어.
   웹 페이지의 문서 구조 담당
-+ CSS   
++ CSS(Cascading Style Sheets)   
   웹 페이지의 디자인(표현)을 담당
 + JS(JavaScript)   
   웹 페이지의 이벤트 담당
@@ -49,6 +49,8 @@
    웹 페이지에서는 보이지 않지만 '소스보기'에서는 보이므로 주의하자. 
 
 elements(요소)에 대한 내용은 w3schools에 잘 정리되어있어서 자세히 서술하지 않을 예정이다. 아무리 정리해도 저 페이지보다 더 잘 정리 못하고 더 잘 정리 할 필요도 없다.
+
+교수님은 Emmet(에밋)을 활용해서 빠르게 작성하시곤 했는데 익숙하지 않아서 그런가? 잘 사용을 못 했다.
 
 ### 포맷팅 요소
 
@@ -307,26 +309,139 @@ Anchor를 뜻하는 a태그를 이용해서 다른 문서를 연결한다.
 
 [DTD Turotial](https://www.w3schools.com/xml/xml_dtd_intro.asp)을 참고하면 이해가 조금 더 쉽다.
 
-## CSS
+## CSS(Cascading Style Sheets)
 
 단순히 내용을 보여주는 HTML5의 표현 방식을 정하는 부분이다.   
+선택자(selector)와 선언(declaration)으로 구성된다.
++ 선택자 : 규칙이 적용되는 요소들
++ 선언 : 선택자에 적용될 스타일
 
-마지막 규칙 < 구체적인 규칙 < !important가 우선 적용.
-적용 우선순위를 잘 외워두지 않으면 피본다. (외워도 꼬이기만하면 피본다.)
+![image](https://www.w3schools.com/css/img_selector.gif)   
+출처 : [w3schools_css_syntax](https://www.w3schools.com/css/css_syntax.asp)
 
-구체적인 규칙이란..   
- 전체 선택자 < 타입 선택자 < 클래스 선택자 < ID 선택자
++ CSS의 적용 우선순위
+	+ 마지막 규칙 < 구체적인 규칙 < !important가 우선 적용.
+		+ 적용 우선순위를 잘 알지 못하면 적용이 안되는 상황을 이해하지 못할 수 있다.
+		+ 구체적인 규칙이란.. 전체 선택자 < 타입 선택자 < 클래스 선택자 < ID 선택자
+
+내용이 너무 많으므로 선택자만 정리하고 넘어가겠다.
+
+### CSS 적용 방법
+
+3가지 방법으로 CSS를 적용할 수 있다.   
+각각 외부 CSS(External CSS), 내부 CSS(Internal CSS), 인라인 CSS(Inline CSS)라고 한다.
+
+참고로 3가지 혼합해서 작성이 가능하다. 한 가지의 방법으로만 사용해야 하는 것은 아니다.
+
+```
+<!-- /css 폴더에 .css 파일을 작성하고 로딩하여 css를 적용하는 방법(외부 스타일 시트) -->
+<head>
+	...
+	<link rel="stylesheet" type="text/css" href="../css/4-1.css">
+</head>
+
+<!-- style 태그를 사용하여 css을 적용하는 방법(내부 스타일 시트) -->
+<head>
+	...
+	<style type="text/css" media="screen">
+		/* 아래와 같이 외부의 파일을 불러올 수도 있다. */
+		@import url("../css/4-1.css");	
+		/* @import "../css/4-1.css"; */
+
+		/* 이렇게 현재 파일에 직접 style을 작성할 수 있다. */
+		h2 {
+			background-color: orange;
+		}
+	</style>
+</head>
+
+<!-- style 속성을 직접 사용하여 스타일을 적용하는 방법(인라인 스타일 시트) -->
+<body>
+	<h2 style="color: magenta;">Inline Style Sheet</h2>
+	<p style="background-color: skyblue; color: purple;">Using Inline
+		Style Sheet !!!</p>
+</body>
+```
+
++ 참고
+	+ https://www.w3schools.com/css/css_syntax.asp
+
+### 선택자
+
+위에서 말했던 선언의 스타일이 적용될 요소들을 의미한다.   
+설명을 작성하려고는 했는데.. CSS Selector Reference에 너무 잘 정리 되어있어서 예시만 간단하게 추가하겠다;
+
+#### 예시
+
+CSS 우선순위까지 고려해야되어서 조금 복잡하지만 하나씩보면 이해가 간다.
+
+```
+<head>
+	<meta charset="UTF-8">
+	<title>Descendant Selector(하위선택자)</title>
+
+	<style type="text/css">
+		div div {
+			background: blue;
+			color: red;
+		}
+
+		div p {
+			background: lightgray;
+			color: skyblue;
+		}
+
+		div>div {
+			background: green;
+			color: orange;
+		}
+
+		div>p {
+			background: purple;
+			color: pink;
+		}
+	</style>
+</head>
+
+<body>
+	<div>div Descendant Selector div
+		<p>div > p Descendant Selector p</p>
+		<div>div div Descendant Selector
+			<span>
+				<div>
+					<ul>
+						<li>
+							<p>div p Descendant Selector</p>
+						</li>
+					</ul>
+				</div>
+			</span>
+		</div>
+		<div>div div Descendant Selector2
+		</div>
+	</div>
+</body>
+```
+![image](https://user-images.githubusercontent.com/19484971/176006370-b770042f-f483-4e95-8ec0-0553a3601c26.png)
+
+으어.. 예시가 복잡하다;;   
+어쨋든 위와 같은 느낌으로 마우스가 올라간 태그, 특정 속성을 가진 태그 등의 선택자 지정이 가능하다.
  
- 주제별 선택자 종류와 간단한 설명으로만 
-
++ 참고
+	+ https://www.w3schools.com/css/css_selectors.asp
+	+ https://www.w3schools.com/cssref/css_selectors.asp
+	
 ## JavaScript
 
 단순히 보면 다양한 코딩 언어 중 하나지만, 웹에서는 변칙적인 사용자들의 입력에 대응하여 웹 페이지가 다양한 반응을 보일 수 있도록 만들어준다.
 
 ### 1. 개요
 
-프로토타입 기반의 스크립트 프로그래밍 언어이자 인터프리터 언어로 객체지향 등의 여러 프로그래밍 패러다임을 지원한다.   
-기본적으로 ECMA(European Computer Manufacturers Association) Script 라는 유럽의 컴퓨터 제조 연합..?에서 채택한 기술 규격을 기본으로 발전하고 있다고 한다.
+프로토타입 기반의 스크립트 프로그래밍 언어이자 인터프리터 언어
+
++ 기본적으로 ECMA(European Computer Manufacturers Association) Script 라는 유럽의 컴퓨터 제조 연합..?에서 채택한 기술 규격을 기본으로 한다.
++ 특징
+	+ 객체지향 등의 여러 프로그래밍 패러다임을 지원
 
 HTML, CSS와 더불어 웹을 구성하는 요소 중 하나로 접하는 경우가 많으며 필자는 웹을 공부하면서 자바스크립트를 공부하고 정리할 것이기 때문에 바닐라 자바스크립트 보다는 웹에서의 자바스크립트 기준으로 서술할 것이다.
 
