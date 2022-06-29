@@ -435,64 +435,46 @@ CSS 우선순위까지 고려해야되어서 조금 복잡하지만 하나씩보
 
 단순히 보면 다양한 코딩 언어 중 하나지만, 웹에서는 변칙적인 사용자들의 입력에 대응하여 웹 페이지가 다양한 반응을 보일 수 있도록 만들어준다.
 
-### 1. 개요
+### 개요
 
 프로토타입 기반의 스크립트 프로그래밍 언어이자 인터프리터 언어
 
 + 기본적으로 ECMA(European Computer Manufacturers Association) Script 라는 유럽의 컴퓨터 제조 연합..?에서 채택한 기술 규격을 기본으로 한다.
-+ 특징
-	+ 객체지향 등의 여러 프로그래밍 패러다임을 지원
+	+ ES6이전과 이후의 자바스크립트 기능이 많이 달라졌다. ex) const, let
++ 웹 브라우저에서 동작하는 유일한 프로그래밍 언어
++ 객체지향 등의 여러 프로그래밍 패러다임을 지원
+	+ 명령형, 함수형 프로그래밍도 지원하는 멀티 패러다임 프로그래밍 언어
++ 별도의 컴파일 작업을 수행하지 않는다.
+	+ 각 브라우저는 인터프리터와 컴파일러의 장점을 결합하여 비교적 느린 인터프리터의 단점을 해결한다.
 
 HTML, CSS와 더불어 웹을 구성하는 요소 중 하나로 접하는 경우가 많으며 필자는 웹을 공부하면서 자바스크립트를 공부하고 정리할 것이기 때문에 바닐라 자바스크립트 보다는 웹에서의 자바스크립트 기준으로 서술할 것이다.
 
-### 2-1. JavaScript 선언
+### JavaScript 선언
 
 크게 아래의 두 가지 방법이 있다.
 
 + 1. `script` 태그를 이용해서 HTML문서 내부에 js를 넣는 방법
-+ 2. `script` 태그의 src 속성을 활용하여 외부 파일의 js를 불러오는 방법
-
-두 가지 방법을 모두 사용하는 경우에는 외부 파일이 HTML 내부에서 작성한 js를 덮어쓰게 되므로 꼭 하나의 방법만을 사용하여야 한다. 아래와 같이 사용하면 script 내부의 코드는 무시된다.   
++ 2. `script` 태그의 src 속성을 활용하여 외부 파일의 js를 불러오는 방법 
 		
 	<script src="hello.js" type="text/javascript">
 		console.log("1, " + x);
 		...
 	</script>
 
-`script`태그는 HTML문서 어디든 선언이 가능하나, 일반적으로 `head`나 `body` 내부에 작성한다. js로 인해 로딩이 늦게 되는 상황을 미연에 방지하기 위해 `body` 태그 내의 가장 끝부분에 작성하는 경우도 있다.
++ 두 가지 방법을 혼용한다면 외부 파일이 HTML 내부에서 작성한 js를 덮어쓰게 된다. 
++ `script`태그는 HTML문서 어디든 선언이 가능하다. 
+	+ 일반적으로 `head`나 `body` 내부에 작성한다. 
+	+ js로 인해 로딩이 늦게 되는 상황을 미연에 방지하기 위해 `body` 태그 내의 가장 끝부분에 작성하는 경우가 일반적이다.
+	+ 이 때문에 화면 로딩이 끝나면 호출되는 함수인 window.onload를 자주 사용하기도 한다.
 
-[2-1, 2-2 코드 링크 추가 요망]()
-
-### 3-1. 주석
+### 주석
 
 코드에 대한 부연설명을 작성하는 부분으로 한 줄 주석과 블록 주석이 있다.   
 전자는 `//`로 후자는 `/* */`로 표기한다.
 
-일반적으로 에디터에서는 `ctrl + /`으로 주석을 추가할 수 있다는 것이 더 좋은 정보이다.
+일반적으로 에디터에서는 `ctrl + /`으로 주석을 추가할 수 있는데 이것을 활용하는 것이 좋다.
 
-### 3-2. 변수
-
-자바 스크립트는 변수와 함수 이름이 혼동되지 않도록 변수에는 형용사/명사를, 함수에는 동사를 사용하도록 권장한다. 예를 들어 isSelected/getCount는 함수명으로 selected/count는 변수명으로 사용한다.   
-
-키워드, 공백 문자를 포함하지 않고 숫자로 시작하지 않고, \_와 \$을 포함이 가능한 이름이 가능하다. 또한 낙타 표기법(영어 소문자를 기본으로 작성하되 두번째 단어부터는 첫 알파벳을 대문자로 표기하는 방식)을 기본으로 사용한다. 
-
-#### var keyword & Dynamic Typing
-
-자바 스크립트는 변수를 선언할 때 타입을 명시하지 않으면서 어떤 타입이라도 사용 가능한 var 키워드가 (왜인지) 기본적으로 사용되며 다른 형의 자료형까지도 재선언 및 중복 선언이 가능하다.
-
-또한 동적 타이핑을 통해 서로 다른 형 끼리의 형 변환이 자유롭고 서로 다른 형끼리의 연산도 가능하므로 사용하고 있는 변수에 대한 숙지가 필수적이다.
-
-_때문에 무슨 타입인지 개발자도 모르는 경우가 발생한다._
-
-#### Variable Hoisting (변수 호이스팅)
-
-js에는 모든 선언(변수와 함수 선언)이 해당 Scope의 처음에 위치한 것 처럼 작동을 하는 특성을 의미한다.
-
-즉, 아래줄에 선언이 되어있어도 윗줄에서 출력이 가능하다, 물론 초기화가 되어있지 않기 때문에 undefined가 출력된다.
-
-[ 3-6 링크 추가 요망]()
-
-### 3-3 자료형
+### 자료형
 
 js에는 자료형을 크게 원시 타입(primitive type)과 객체 타입(object type)으로 분류한다. 원시 타입은 아래의 표에 적힌 5가지 자료형이고 이를 제외한 자료형들은 모두 객체 타입으로 분류된다.
 
@@ -506,22 +488,142 @@ js에는 자료형을 크게 원시 타입(primitive type)과 객체 타입(obje
 
 _왜.. null 자료형은 typeof 출력값이 object 인 것이냐.._
 
-+ 숫자형   
-	js는 정수만 표현하는 자료형은 존재하지 않는다, 무조건 실수이다.   
-	다른 언어와 다르게 0으로 나누는 연산에 대해 에러를 내뿜지 않는 대신 특별한 상수(Infinity, NaN)를 반환한다.   
+<hr>
 
-+ 문자열   
-	문자 하나를 나타내는 자료형은 없다.   
-	`'`와 `"`를 구분하지 않고 사용이 가능하다.
++ 숫자형
+	+ js는 정수만 표현하는 자료형은 존재하지 않는다, 무조건 8byte의 실수이다.   
+	+ 다른 언어와 다르게 0으로 나누는 연산에 대해 에러를 내뿜지 않는 대신 특별한 상수(Infinity)를 반환한다.  
+	+ parseInt('1A')와 같이 숫자가 섞여 있다면 문자가 나오기전까지의 숫자만을 변환한다. 이 예시에서는 1이 반환된다.
+	+ parseInt('1A')와 같이 문자만 들어가 있다면 NaN(Not A Number)를 반환한다.
+	+ 다른 언어와 같이 특정 소수점을 정확하게 표현하지 못한다.
+
+소수점 예시
+
+```
+var x = 0.3 - 0.2;
+var y = 0.2 - 0.1;
+console.log(x == y);	// false
+console.log(x);			// 0.09999999999999998
+console.log(y);			// 0.1
+
+var a = 0.3;
+var b = 0.2;
+
+var result = (a * 10 - b * 10) / 10;
+console.log(result);	// 0.1
+```
+
+Infinity, Nan 예시
+
+```
+// 언더플로우
+console.log(0 / 100);		// 0
+console.log(-0 / 100);		// -0
+
+// 오버플로우
+console.log(100 / 0);		// Infinity
+console.log(-100 / 0);		// -Infinity
+console.log(Infinity / 0);	// Infinity
+console.log(-Infinity / 0);	// -Infinity
+
+console.log(0 / 0);				// Nan
+console.log(parseInt('1A'));	// 1
+console.log(parseInt('A'));		// NaN
+
+console.log(new Number('1'));	// 1
+console.log(new Number('1A'));	// NaN
+```
+
+<hr>
+
++ 문자열
+	+ 16비트의 유니코드 문자를 사용한다.
+	+ 문자 하나를 나타내는 자료형은 없다.   
+	+ `'`와 `"`를 구분하지 않고 사용이 가능하다.
+		+ 단, 혼용은 불가능
+	+ 이스케이프 시퀸스`\` 사용이 가능하다.
+		+ `'`을 출력하려면 `\'`이라고 작성하면 된다.
+	+ 백틱 `\``을 활용한 문자열 표현이 가능하다.
+
+문자열 예시
+
+```
+console.log('문자열 안에 포함된 \'작은따옴표\' 표현');	
+// 문자열 안에 포함된 '작은따옴표' 표현
+console.log("특수문자 사용\n줄바꿈 했다.");			
+// 특수문자 사용
+// 줄바꿈 했다.
+
+// 당신의 이름은 임영선(26)입니다.
+var name = "임영선";
+var age = 26;
+var str1 = "당신의 이름은 " + name + "(" + age + ")입니다.";
+console.log(str1);
+
+// 당신의 이름은 임영선(26)입니다.
+var str2 = `당신의 이름은 ${name}(${age})입니다.`;
+console.log(str2);
+```
+
+<hr>
 
 + boolean
-  비교 연산에서 null, ''(빈 문자열), undefined, 0은 모두 false 취급을 받는다.
-	
-null과 undefined는 분명하게 다르므로 구분을 잘하자.
+	+ 비교 연산에서 null, ''(빈 문자열), undefined, 0은 모두 false 취급을 받는다.
+		+ null과 undefined는 분명하게 다르므로 구분을 잘하자.
 
-[3-2 ~ 3-5  링크 추가 요망]()
+#### 자동 형 변환
 
-### 3-4. const & let
++ Java나 C++과는 다르게 매우 느슨한 형 변환 규칙이 적용된다.
++ 함수에 어떤 자료형이라도 전달할 수 있고 그 값을 필요에 따라 변환한다.
+	+ 정확히는 모르겠지만 숫자 연산보다 문자 연산이 우선인 것 같다.
++ 서로 다른 자료형의 연산이 가능하다.
++ 모든 자료형을 var로만 선언하고 별도의 구분이 없기 때문에 혼란이 야기된다.
+
+```
+console.log("message : " + msg);		// undefined
+var msg = 40;
+
+console.log("message : " + msg);		// message 40
+msg = "hello javascript";	
+console.log(msg);						// hello javascript
+
+console.log("The message is " + 40);	// The message is 40
+console.log(40 + " is The message");	// 40 is The message
+
+console.log("40" - 5);					// 35
+console.log("40" + 5);					// 405
+console.log(5 + "40");					// 540
+
+console.log(parseInt("123.45") + 1);	// 124
+console.log(parseFloat("123.45") + 1);	// 124.45
+
+console.log("1.1" + "1.1");				// 1.11.1
+console.log((+"1.1") + (+"1.1"));		// 2.2
+```
+
+### 변수
+
+자바 스크립트는 변수와 함수 이름이 혼동되지 않도록 변수에는 형용사/명사를, 함수에는 동사를 사용하도록 권장한다. 예를 들어 isSelected/getCount는 함수명으로 selected/count는 변수명으로 사용한다.   
+
+키워드, 공백 문자를 포함하지 않고 숫자로 시작하지 않고, \_와 \$을 포함이 가능한 이름이 가능하다. 또한 낙타 표기법(영어 소문자를 기본으로 작성하되 두번째 단어부터는 첫 알파벳을 대문자로 표기하는 방식)을 기본으로 사용한다. 
+
+#### var keyword & Dynamic Typing
+
+자바 스크립트는 변수를 선언할 때 타입을 명시하지 않으면서 어떤 타입이라도 사용 가능한 var 키워드가 (왜인지) 기본적으로 사용되며 다른 자료형으로 재선언 및 중복 선언이 가능하다.
+
+또한 동적 타이핑을 통해 서로 다른 형 끼리의 형 변환이 자유롭고 서로 다른 형끼리의 연산도 가능하므로 사용하고 있는 변수에 대한 숙지가 필수적이다.
+
+_때문에 무슨 타입인지 개발자도 모르는 경우가 발생하기도 한다._
+
+#### Variable Hoisting (변수 호이스팅)
+
+js에는 모든 선언(변수와 함수 선언)이 해당 Scope의 처음에 위치한 것 처럼 작동을 하는 특성을 의미한다.
+
+즉, 아래줄에 선언이 되어있어도 윗줄에서 출력이 가능하다, 물론 초기화가 되어있지 않기 때문에 undefined가 출력된다.
+
+예시는 아래 const와 let과 같이 작성
+
+### const & let
 
 ECMA Script6부터 const와 let 키워드가 추가되어 상수를 사용할 수 있다고 한다.   
 
@@ -539,42 +641,222 @@ let은.. 명명 규칙은 var과 같고 여타 다른 언어의 변수와 같다
 | let | 변수 | 해당 스코프 | 불가능 |
 | const | 상수 | 해당 스코프 | 불가능 | 
 
++ 예시
+
+```
+console.log(`vr: ${vr}`); // vr: undefined
+// console.log(`vl: ${vl}`); // 에러
+// console.log(`con: ${con}`); // 에러
+
+var vr = "vr";
+let vl = "vl";
+const con = "con";
+console.log(`vr: ${vr}`); // vr: vr
+console.log(`vl: ${vl}`); // vl: vl
+console.log(`con: ${con}`); // con: con
+
+{
+	// 블록 사용
+	var vr = "vr2";
+	let vl = "vl2";
+	const con = "con2";
+	console.log(`vr: ${vr}`); // vr: vr2
+	console.log(`vl: ${vl}`); // vl: vl2
+	console.log(`con: ${con}`); // con: con2
+}
+
+console.log(`vr: ${vr}`); // vr: vr2
+console.log(`vl: ${vl}`); // vl: vl
+console.log(`con: ${con}`); // con: con
+
+var vr = 1;
+console.log(`vr: ${vr}`); // vr: 1
+
+function test() {
+	// 지역(함수) 스코프
+	var vr = "vr3";
+	let vl = "vl3";
+	const con = "con3";
+	console.log(`vr: ${vr}`); // vr: vr3
+	console.log(`vl: ${vl}`); // vl: vl3
+	console.log(`con: ${con}`); // con: con3
+}
+test();
+
+// 모두 변화 없음
+console.log(`vr: ${vr}`); // vr: 1
+console.log(`vl: ${vl}`); // vl: vl
+console.log(`con: ${con}`); // con: con
+```
+
 참고로 필자는 전역 스코프는 전역 변수,  해당 스코프는 지역 변수로 이해하고 넘어갔다. 
 
-[3-7, 3-8  링크 추가 요망]()
-
-### 3-5. 연산자
+### 연산자
 
 코틀린과 비슷한 부분이 많아서 본인은 쉽게 기억할 것 같다.
 
-for, if, switch 문은 생략한다.
++ 예시
 
-### 3-8 객체
+```
+var num1 = 10;
+var num2 = 20;
+var bool = true;		
 
-객체는 이름과 값으로 구성된 프로퍼티의 집합
-일급 객체
+console.log('num1++ : ' + num1++);				// 10
+console.log('num1 : ' + num1);					// 11
+console.log('--num1 : ' + --num1);				// 10
+console.log('!bool : ' + !bool);				// false
 
-객체 생성 3가지 방법
-객체 리터럴로 객체를 생성
-Object로 객체를 생성후 프로퍼티를 추가
-객체 생성 함수 구현
+console.log('typeof bool : ' + typeof bool);	// boolean
+console.log('typeof num1 : ' + typeof num1);	// number
 
-객체의 속성은 dot`.`이나 대괄호`[]`를 사용해서 접근한다.
+var num = 10;
+var str = "10";
+// 값 비교
+console.log('num == str : ' + (num == str));		// true
+// 타입을 포함하여 값 비교
+console.log('num === str : ' + (num === str));		// false
+```
 
-객체의 종류가 많은데
-가장 중요한 것은 DOM이라고 한다.
+등등 다양한 연산자가 있지만 생략한다. 더 많은 연산자를 확인하려면 역시 [w3schools_js_operator](https://www.w3schools.com/js/js_operators.asp)를 참고하자.
 
-3-9 함수
+for, if, switch, while, do-while 문은 Java나 C++과 너무 유사하여 생략한다.   
+그래도 for-of와 for-in은 한 번 살펴보자.
 
-var과 비슷하게 함수도 함수 호이스팅 기능이 있다.
-정확히 말하자면 자바 스크립트는 모든 선언에 대해서 호이스팅 기능을 제공한다고 한다.
+### 객체
 
-일급객체
-var 변수에 함수
++ 객체는 키(key)와 값(value)로 구성된 프로퍼티(property)의 집합
++ 문자열, 숫자, boolean, null, undefined를 제외한 모든 값은 객체
++ 전역 객체를 제외하고 객체에는 동적으로 프로퍼티를 추가하거나 삭제가 가능하다.
++ 프로토타입(prototype)이라는 특별한 프로퍼티를 포함한다.
++ 자바스크립트에서 함수는 일급 객체(first-class object)이므로 값으로 취급할 수 있다.
+	+ 눼..? 라고 생각한다면 [얄코동영상 링크](https://www.youtube.com/watch?v=jVG5jvOzu9Y&t=7s)를 넣을테니 참고하자.
 
-콜백함수는 특정 이벤트가 발생했을 때 시스템에 의해 호출되는 함수를 의미한다.
++ 객체 생성 3가지 방법
+	+ 가장 보편적인 방법, 객체 리터럴`{}`로 객체를 생성
+	+ Object 생성자 함수(new Object)로 빈 객체를 생성 후 프로퍼티를 추가
+	+ 생성자 함수를 사용하여 동일한 프로퍼티를 가지는 객체 생성
++ 객체의 속성은 dot`.`이나 대괄호`[]`를 사용해서 접근한다.
+	+ 객체의 속성은 변경이 가능하다, Mutable 하다고 한다.
++ 객체의 종류
+	+ 크게 사용자가 정의한 객체와 웹에서 미리 정의한 객체로 나뉘는데 이중에서 후자에 들어가는 DOM(Document Object Model) 객체가 가장 중요하다.
+
+```
+// 1. 객체 리터럴
+var student = {
+	name: '김씨',
+	area: '서울',
+	classNum: 7,
+	info: function () {
+		console.log(this.name + '은 ' + this.area + this.classNum + '반');
+	},
+};
+
+// 2. Object 생성자 함수
+var student = new Object(); // empty obejct
+// property 추가
+student.name = '김씨';
+student.area = '서울';
+student.classNum = 7;
+student.info = function () {
+	console.log(this.name + '는 ' + this.area + this.classNum + '반');
+};
+
+// 3. 생성자 함수
+function Student(name, area, classNum) {
+	this.name = name;
+	this.area = area;
+	this.classNum = classNum;
+	this.info = function () {
+		console.log(this.name + '은 ' + this.area + this.classNum + '반');
+	};
+}
+
+// 생성자 함수로 객체 생성.
+var student = new Student('김씨', '서울', 7);
+
+console.log(typeof student); // object
+console.log(student); // {name: "김씨", area: "서울", classNum: 7, info: f}
+student.info(); // 김씨는 서울7반
+
+var member = {
+		"user-name" : "홍길동",
+		age : 20,
+		city : "서울"
+};
+
+// 객체의 속성 접근
+console.log(member.age);			// 1. dot 표기법
+console.log(member["age"]);			// 2. [] 표기법
+
+// 속성명에 연산자가 포함된 경우 [] 표기법만 접근 가능.
+// - 를 감산 연산자로 취급해버리기 때문;
+console.log(member["user-name"]);	// 홍길동
+console.log(member.user-name);		// NaN
+```
+
+### 함수
+
++ 일급 객체(first-class object)로 취급한다.
+	+ 함수를 런타임 중 동적으로 생성 가능하고 콜백함수로 만들거나 리턴 값이 될 수 있다.
+		+ 콜백함수는 특정 이벤트가 발생했을 때 시스템에 의해 호출되는 함수
+	+ [얄코동영상 링크](https://www.youtube.com/watch?v=jVG5jvOzu9Y&t=7s) 참고..
++ 함수도 3가지의 정의 방법이 있다.
+	+ 함수 선언문, 함수 표현식, Function 생성자
++ var과 비슷하게 함수도 함수 호이스팅 기능이 있다. 
+	+ 자바 스크립트는 모든 선언에 대해서 호이스팅 기능을 제공한다고 한다.
+	+ 스크립트가 로딩이 되는 시점에 함수를 변수 객체에 저장하기 때문에 함수의 선언/초기화/할당이 한 번에 일어난다.
++ 함수를 호출할 때 정의된 매개변수와 전달인자의 수가 일치하지 않더라도 에러가 생기지 않는다.
+
+```
+// 1. 함수 선언문
+function sum1(num) {
+	var sum = 0;
+	for(var i=1;i<=num;i++) {
+		sum += i;
+	}
+	console.log(sum);	// 55
+}
+sum1(10);
+
+// 3. 함수 표현식
+var sum2 = function(num) {
+	var sum = 0;
+	for(var i=1;i<=num;i++) {
+		sum += i;
+	}
+	console.log(sum);	// 55
+}
+sum2(10);
+
+// 3. Function 생성자 함수
+var sum3 = new Function("num",
+	"var sum = 0;" + 
+	"for(var i=1;i<=num;i++) {" +
+	"	sum += i;" + 
+	"} " +
+	"console.log(sum);" );
+sum3(10);
+
+// 호이스팅
+var result = plus(5, 7);
+console.log(result); // 12
+
+function plus(num1, num2) {
+	return num1 + num2;
+}
+
+// 변수 호이스팅이 발생하여 에러가 생긴다.
+var result = plus(5, 7); // TypeError
+console.log(result);
+
+var plus = function (num1, num2) {
+	return num1 + num2;
+};
+```
+
 일반적으로는 콜백함수는 매개변수를 통해서 전달되고 이벤트에 따라 특정 시점에 실행된다.
-주로 비동기 처리에서 사용되는데, 콜백의 콜백이 사용되는 구조로 인해 콜백지옥이라는 말이 있다고 한다. 본인은 2중까지밖에 안해서 지옥까지 보지는 않았다.
+주로 비동기 처리에서 사용되는데, 콜백의 콜백이 사용되는 구조로 인해 콜백지옥이라는 말이 있다고 한다. 본인은 2중(맞나?)까지밖에 안해서 지옥까지 보지는 않았다.
 
 4-2 window 객체
 
