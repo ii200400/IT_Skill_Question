@@ -855,20 +855,291 @@ var plus = function (num1, num2) {
 };
 ```
 
-일반적으로는 콜백함수는 매개변수를 통해서 전달되고 이벤트에 따라 특정 시점에 실행된다.
-주로 비동기 처리에서 사용되는데, 콜백의 콜백이 사용되는 구조로 인해 콜백지옥이라는 말이 있다고 한다. 본인은 2중(맞나?)까지밖에 안해서 지옥까지 보지는 않았다.
+#### 콜백함수
 
-4-2 window 객체
++ 특정 이벤트가 발생했을 때 시스템에 의해 호출되는 함수
++ 일반적으로는 매개변수를 통해서 전달되고 이벤트에 따라 특정 시점에 실행된다.
++ 주로 비동기 처리에서 사용된다. 
+	+ 콜백에서 콜백이 사용되는 구조로 인해 콜백지옥이라는 말이 있다.
 
-브라우저에서 창을 띄우는 방법이 있지만 요즘에는 모달 창을 더 많이 이용한다고 한다.
+```
+// 이벤트 콜백함수1
+<button id="btn">click!!</button>
+<script type="text/javascript">
+	// id가 btn인 요소를
+	var btn = document.getElementById('btn');
+	// 클릭하면 로그가 찍히도록 만든다.
+	btn.addEventListener('click', function () {
+		console.log('안녕하세요 여러분!!');
+	});
+</script>
 
-4-3 새 창 열기
+// 이벤트 콜백함수2
+<script type="text/javascript">
+	setTimeout(function () {
+		console.log('3초후 실행됩니다.');
+	}, 3000);
+</script>
+```
 
-창 
+콜백함수를 매개변수로 넘겨줄 때 주의할 코딩!
 
-5-2 문서 객체 만들기
+```
+// 버그
+<input type="text" id="test" value="테스트" />
+<button id="btn">click!!</button>
+<script type="text/javascript">
+	// 이벤트 등록시에 바로 함수가 작동되고 이벤트 매개변수로 null이 들어간다..
+	btn.addEventListener('click', view(document.getElementById("test").value));
+	function view(val) {
+		console.log('안녕하세요!!');
+	}
+</script>
 
-아따 진짜 설명 엄청 많네..
+// 해결
+<input type="text" id="test" value="테스트" />
+<button id="btn">click!!</button>
+<script type="text/javascript">
+	// 함수를 가리키는 변수를 만들어서 넣어준다.
+	// 위의 예시처럼 바로 function() { ... }를 넣어주어도 된다.
+	var callback = function view() {
+		console.log(document.getElementById("test").value);
+	};
+	btn.addEventListener("click", callback);
+</script>
+```
+
+### window 객체
+
++ 웹 브라우저에서 작동하는 JS의 최상위 전역객체
+	+ 브라우저와 관련된 다양한 객체와 속성, 함수가 구비되어있다.
+	+ 기본으로 제공되는 자료형(Number 등)이나 함수(setInterval() 등)가 여기에 포함된다.
++ BOM(Browser Object Model)로 불리기도 한다.
++ 자세히 알고 싶다면 역시 [w3schools](https://www.w3schools.com/jsref/obj_window.asp)
+
+![image](https://user-images.githubusercontent.com/19484971/176583820-778383fa-23c9-41b3-9e09-50592f9847bd.png)
+
+브라우저 내장객체 (출처 : https://kssong.tistory.com/29)
+
+#### alert, confirm, prompt(새 창 열기)
+
++ 브라우저에서 기본적으로 제공하는 창을 여는 함수가 있다.
+	+ alert(), confirm(), prompt()가 대표적
+	+ 하지만 요즘에는 모달 창을 더 많이 이용한다고 한다.
+
+```
+...
+<script type="text/javascript">
+
+function openAlert() {
+	alert("알림창입니다.");
+}
+
+function openConfirm() {
+	if(confirm("확인입니까?")) {
+		console.log("확인 눌렀네요.");
+	} else {
+		console.log("취소 눌렀네요.");
+	}
+}
+
+function openPrompt() {
+	var txt = prompt("문자열 입력", "사용자입력");
+	console.log(txt);
+}
+
+</script>
+</head>
+<body>
+<input type="button" value="알림창" onclick="javascript:openAlert();">
+<input type="button" value="확인창" onclick="javascript:openConfirm();">
+<input type="button" value="입력창" onclick="javascript:openPrompt();">
+</body>
+...
+```
+![image](https://user-images.githubusercontent.com/19484971/176585248-2f4ac0ab-319f-482c-b7bc-e920a6253687.png)
+![image](https://user-images.githubusercontent.com/19484971/176585271-b55b9a45-d513-4690-bea2-824622479b9a.png)
+![image](https://user-images.githubusercontent.com/19484971/176585304-ec557eb6-ade6-4ad3-90c2-272c980348f0.png)
+
+#### navigator
+
++ 브라우저의 정보가 내장된 객체
+	+ 브라우저 별로 다르게 처리하고 싶은 작업이 있을 때 사용한다.
+	+ html5에서는 위치정보를 알려주는 역할로서 기능하기도 한다.
+
+```
+<script type="text/javascript">
+
+console.log("Browser CodeName 	: " + navigator.appCodeName);
+console.log("Browser Name 		: " + navigator.appName);
+console.log("Browser Version 	: " + navigator.appVersion);
+console.log("Browser Enabled 	: " + navigator.cookieEnabled);
+console.log("Platform 		: " + navigator.platform);
+console.log("User-Agent header 	: " + navigator.userAgent);
+
+</script>
+```
+![image](https://user-images.githubusercontent.com/19484971/176585848-f557db83-11d5-4e65-bef7-c2da201345f1.png)
+
+#### location
+
++ 현재 페이지 주소(URL)과 관련된 정보를 알 수 있다.
+	+ location.href : 프로퍼티에 값을 할당하면 해당 URL로 이동, 그렇지 않으면 현재 URL 반환
+	+ location.reload() : 현재 페이지를 새로고침
+
+```
+console.log(location);
+console.log(location.href);
+// location.href = "http://www.naver.com";
+```
+![image](https://user-images.githubusercontent.com/19484971/176586449-53d912c4-71b1-4957-ab10-e0d66435767e.png)
+
+#### history
+
++ 현재 페이지 주소(URL)과 관련된 정보를 알 수 있다.
+	+ history.back() / history.forward() : 뒤로가기 / 앞으로 가기 버튼과 같은 기능
+
+#### open, close
+
++ 새 창을 열고 현재 창을 닫게 하는 함수
+
+```
+// 4-4.html
+<button onclick="javascript:windowOpen();">
+	버튼 창열기
+</button>
+<a href="javascript:windowOpen();">링크 창열기</a>
+<script>
+	function windowOpen() {
+		// 이름을 설정해주지 않으면 같은 창이 클릭할 때마다 계속 생성된다.
+		window.open('./4-5.html', 'winname', 'width=300,height=500,top=100,left=100');
+	}
+</script>
+```
+
+```
+// 4-5.html
+<button onclick="javascript:windowClose();">
+	함수 이용해서 닫기
+</button>
+<a href="javascript:window.close();">
+	메소드 이용해서 닫기
+</a>
+<script>
+	function windowClose() {
+		// window.close();
+		self.close();
+	}
+</script>
+
+<input type="text" name="test" id="test">
+<button onclick="send();">전송</button>
+<script>
+	function send() {
+		// 부모 창(해당 창을 호출한 화면)으로 메시지를 보낼 수 있다.
+		var msg = document.getElementById("test").value;
+		opener.document.getElementById("view").innerHTML = msg;
+		// 입력한 내용을 네이버 검색창에 검색한 화면이 부모 창에 뜨도록 만들 수 있다.
+		// opener.location.href = "https://search.naver.com/search.naver?query=" + msg;
+		self.close();
+	}
+</script>
+```
+
+#### onload
+
++ html 문서의 로딩이 끝나면 호출된다.
++ 일반적으로 script가 요소보다 먼저 작성되어있는데 요소를 참조하는 경우 많이 사용한다.
+
+### DOM(Document Object Model)
+
++ HTML과 xml문서의 구조를 정의하는 API를 제공
+	+ 문서 요소(element) 집합을 트리 형태의 계층구조로 HTML을 표현한다.
+	+ HTML 태그나 요소들을 표현하는 노드와 문자열을 표현하는 노드가 있다.
+	+ HTML에 접근하여 페이지를 조작할 때 사용한다.
+	+ DOM의 다양한 함수는 역시 [w3schools](https://www.w3schools.com/js/js_htmldom_document.asp)에서 확인하자.
+
+![image](https://user-images.githubusercontent.com/19484971/176592604-a088ed95-8930-4e8e-8f8b-af68546e8e94.png)
+
+(출처: https://en.wikipedia.org/wiki/Document_Object_Model)
+
+```
+// JS 만을 활용하여 웹 페이지에 텍스트를 추가할 수 있다.
+<script type="text/javascript">
+	window.onload = function () {
+		// 변수를 선언하고 element node와 text node 생성.
+		var title = document.createElement('h2');
+		var msg = document.createTextNode('Hello!!!');
+
+		// text node를 element node에 추가.
+		title.appendChild(msg);
+		document.body.appendChild(title);
+	};
+</script>
+```
+
+#### 문서 객체 만들기
+
++ DOM 구조를 파악하고 적절한 함수를 통해서 문서의 구조(요소)와 속성를 수정할 수 있다.
+	+ 다양한 함수가 많이 있으니 꼭 [w3schools](https://www.w3schools.com/js/js_htmldom_document.asp)참고 하는 것을 잊지말자.
+
+요소를 만들고 요소의 속성을 지정한 후 문서에 추가하는 방법
+```
+// 방법 1
+<script type="text/javascript">
+	window.onload = function () {
+		var profile = document.createElement("img");
+		// 작성은 편하지만, 웹 브라우저가 지원하는 속성만 설정 가능
+		profile.src = "profile.png";
+		profile.width = 150;
+		profile.height = 200;
+
+		document.body.appendChild(profile);
+	};
+</script>
+
+// 방법 2
+<script type="text/javascript">
+	window.onload = function () {
+		var profile = document.createElement("img");
+		// 작성은 불편하지만, 웹 브라우저가 지원하는 속성이 아닌것도 설정가능
+		profile.setAttribute("src", "profile.png");
+		profile.setAttribute("width", 150);
+		profile.setAttribute("height", 200);
+
+		profile.setAttribute("data-content", "내사진");
+
+		document.body.appendChild(profile);
+	};
+</script>
+```
+아.. 사진을 삭제해서 깨진화면만 나와서 캡쳐를 못하겠다 ^ㅠ^;
+
+#### 문서 객체 가져오기
+
++ 문서의 객체에서 원하는 조건의 요소를 가져올 수 있도록 하는 함수가 많이 있다.
+	+ 함수명에 Element이 포함되면 요소 하나를, Elements가 포함되면 요소들의 배열을 반환한다는 공통점이 있다.
+	+ querySelector, querySelectorAll은 선택자를 매개변수로 넣어주어야 한다. ex) ".id", "#class"
+
+문자열로 요소를 만들고 Id를 통해 문서의 요소를 찾아 해당 요소에 내용을 추가하는 방법
+```
+ // 1. id 속성으로 찾기
+document.getElementById("idName");
+// 2. tagName으로 찾기 (배열 반환)
+document.getElementsByTagName("tagName");
+// 3. name 속성으로 찾기 (배열 반환)
+document.getElementsByName("idName");
+// 4. className으로 찾기 (배열 반환)
+document.getElementsByClassName("className");
+// 5. 선택자로 찾기
+document.querySelector("selector");
+// 6. 선택자로 찾기 (배열 반환)
+document.querySelectorAll("selector");
+// 등등..
+```
+![image](https://user-images.githubusercontent.com/19484971/176619117-54aff8f8-57eb-4a0f-800c-16288187496b.png)
+
+
 6-4 이벤트 핸들러 등록
 
 인라인 이벤트 핸들러 방식은 점차 사용하지 않는 추세였지만, 간단한 이벤트의 경우에는 아직 해당 방식으로 처리하고 있다고 한다.
