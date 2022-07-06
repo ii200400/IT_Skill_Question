@@ -1144,27 +1144,147 @@ document.querySelectorAll("selector");
 + 웹 페이지에서 여러 종류의 상호작용이 있을 때 마다 하는 작업을 위해서 사용
 	+ 마우스를 누를 때, 눌렀다가 때었을 때, 키보드를 누를 때 등등 다양한 이벤트 처리 가능
 	+ DOM에서 발생하는 이벤트를 감지하여 여러 작업을 수행
-+ 이벤트는 일반적으로 함수와 연결이 되고 이벤트가 발생시에 해당 함수가 실행되는 방식으로 코드를 작성
-	+ 음.. 이벤트 핸들러 또는 이벤트 리스너라고 불리는 녀석이 객체인것인지 콜백함수인 것인지..
++ 특정 이벤트로 불리는 콜백 함수를 이벤트 핸들러 또는 이벤트 리스너라고 부른다.
++ 자주 쓰이는 이벤트 정보는 [w3schools](https://www.w3schools.com/js/js_events.asp)에서 확인할 수 있다.
 
++ 키보드 이벤트
+	+ 운영체제에 영향을 받아 특정 키가 이벤트 핸들러에게 전달되지 않을 수 있다.
+	+ `onkeypress`은 아스키 코드를 기준으로, `onkeydown`은 키 코드 기준으로 호출되는데 키 코드는 항상 있지만 아스키 코드는 키보드와 매칭되는 것이 없을 수도 있다.
++ 폼 이벤트
+	+ 웹 초기부터 지원되어 여러 웹 브라우저에서 가장 안정적으로 동작하는 이벤트
+	+ 대표적으로 `onsubmit`이 있다.
 
-인라인 이벤트 핸들러 방식은 점차 사용하지 않는 추세였지만, 간단한 이벤트의 경우에는 아직 해당 방식으로 처리하고 있다고 한다.
+#### 이벤트 핸들러
 
-7 web storage (웹 스토리지)
+1. 인라인 이벤트 핸들러
+	+ 화면의 구조를 담당하는 `html`에 동적인 요소를 만들어주는 `JS`가 침범한다는 문제가 있다.
+	+ CBD(Component Based Development) 방식의 Anglar / React / Vue.js 등의 프래임워크나 라이브러리에서는 해당 방식으로 이벤트를 처리한다. (MVC 등의 관점으로 html, css, js 를 묶어 View로 취급하기 때문)
 
-데이터를 사용자 로컬에 보존하는 방식으로, 자바스크립트만을 통해서 조작이 가능하다.
-기본적으로 key-value 세트로 저장이 되며 도메인과 브라우저 별로 문자열 형식으로 저장이 된다.
+```
+<head>
+	<meta charset="UTF-8" />
+	<title>Insert title here</title>
+	<script type="text/javascript">
+		var msg1 = function () {
+			alert("안녕하세요!!");
+		};
+		var msg2 = function () {
+			var msg = document.querySelector("#div1");
+			msg.style.color = "purple";
+			msg.style.fontSize = "30px";
+			msg.style.fontWeight = "bold";
+		};
+	</script>
+</head>
+<body>
+	<!-- 인라인 이벤트 방식 1 -->
+  <div onclick="alert('안녕하세요');">클릭해보세요</div>
+	
+	<!-- 인라인 이벤트 방식 2 -->
+	<div id="div1" onclick="msg1(); msg2();">클릭해보세요</div>
+</body>
+```
 
-쿠키와 다른점은..   
-유효기간이 없고 영구적으로 이용이 가능하며   
-브라우저에 따라 다르지만 5MB까지 사용이 가능하다.   
-또한 네트워크 요청 시 서버로 전송이 되지 않으며.. 어쩌구
+2. 이벤트 핸들러 프로퍼티
+	+ JS에서 이벤트 핸들러를 등록하는 방식
+	+ 이벤트 핸들러를 여러 개 설정하고 싶다면 addEventListener를 활용하자.
+		+ addEventListener는 캡쳐린과 버블링을 지원하며 모든 DOM(HTML, XML, SVG)에 대해서도 동작한다.
 
-localStorage는..
+```
+<!-- 이벤트 핸들러가 하나만 등록된다. -->
+<button id="btn">클릭해보세요</button>
+<script type="text/javascript">
+	const btn = document.querySelector('#btn');
+	// 첫번째 바인딩된 이벤트 핸들러 ==> 실행되지 않는다.
+	btn.onclick = function () {
+		alert('안녕하세요!!');
+	};
+	// 두번째 바인딩된 이벤트 핸들러
+	btn.onclick = function () {
+		btn.style.color = 'purple';
+		btn.style.fontSize = '30px';
+		btn.style.fontWeight = 'bold';
+	};
+</script>
 
-sessionStorage는
-저장되는 위치만 달라질 뿐 위와 같은데 같은 세션에서만 사용가능하다.   
-여기서 세션은 아마.. 서버와 통신할 때 사용하는 무언가로 기억한다, 통신 때마다 값이 달라져서 현재 통신 때만 사용이 가능하다는 의미 같다.
+<!-- 이벤트 핸들러를 여러 개 등록한다. -->
+<button id="btn">클릭해보세요</button>
+<script type="text/javascript">
+	const btn = document.querySelector('#btn');
+	// 첫번째 바인딩된 이벤트 핸들러
+	btn.addEventListener('click', function () {
+		alert('안녕하세요!!');
+	});
+	// 두번째 바인딩된 이벤트 핸들러
+	btn.addEventListener('click', function () {
+		btn.style.color = 'purple';
+		btn.style.fontSize = '30px';
+		btn.style.fontWeight = 'bold';
+	});
+</script>
+```
+
++ 추가 (이벤트 핸들러 내부에 인수를 전달하고 싶은 경우)
+
+```
+const MIN_ID_LENGTH = 8;
+const input = document.querySelector('input[type=text]');
+const msg = document.querySelector('.message');
+
+function checkVal(len) {
+	if (input.value.length < len) {
+		msg.innerHTML = '값은 ' + len + '자 이상 입력해 주세요';
+	} else {
+		msg.innerHTML = '';
+	}
+}
+
+input.addEventListener('blur', function () {
+	// 이벤트 핸들러 내부에서 함수를 호출하면서 인수를 전달.
+	// 예시로 상수를 사용하였지만 변수인 경우에도 사용 가능
+	checkVal(MIN_ID_LENGTH);
+});
+```
+
+### Web Storage (웹 스토리지)
+
++ 영구으로 데이터를 저장하기 위해 사용하는 저장소
++ key-value 세트로 저장이 되며 도메인과 브라우저 별로 문자열 형식으로 저장이 된다.
++ 웹 스토리지에 대한 함수는 [w3schools](https://www.w3schools.com/js/js_api_web_storage.asp)를 참고하자.
+
++ Local Storage
+	+ 데이터를 사용자 로컬에 보존하는 방식
+	+ JS로 기본적인 데이터 저장, 삭제 등의 조작 가능 (모바일에서도 사용 가능)
+	+ 쿠키와 다르게   
+		+ 유효기간이 없고 영구적으로 이용이 가능
+		+ 쿠키에 비해 많은 데이터 저장 가능 (storage는 5mb 정도, cookie는 4kb 정도)
+		+ 네트워크 요청 시 서버로 전송이 되지 않아 서버가 조작 불가함
+		+ origin(프로토콜, 도메인, 포트)가 다르면 접근 불가
++ Session Storage
+	+ 저장되는 위치만 달라질 뿐 위와 같은데 같은 세션에서만 사용가능하다. (사용하는 함수도 같다.)   
+	+ 즉, 현재 탭에서만 데이터가 유지되고 새로고침 등의 이유로 탭에서 벗어나면(새로운 응답을 받으면) 사라진다.
+
+```
+function init() {
+	//localStorage 데이터 추가 방법 3가지
+	localStorage.Test = 'Sample';
+	// localStorage["Test"] = "Sample";
+	// localStorage.setItem("Test", "Sample");
+	
+	//LocalStorage 데이터 취득 방법 3가지
+	var val = localStorage.Test;
+	// var val = localStorage["Test"];
+	// var val = localStorage.getItem("Test");
+	
+	//localStorage 데이터 삭제
+	localStorage.removeItem("Test");
+	
+	//localStorage 모든 데이터 삭제
+	localStorage.clear();
+}
+```
+
+F12(개발자 모드)의 로컬/세션 스토리지에서 저장된 데이터를 확인할 수 있다.
 
 ## DB (데이터 베이스)
 
@@ -1433,7 +1553,7 @@ JSP에서 사용이 가능한 객체를 지칭하는 용어이다. (빌더 형�
 
 동작순서
 
-### session
+### Session
 
 클라이언트가 웹 서버에 연결되어 있는 상태를 의미한다.   
 WAS는 메모리에 객체 형태로 세션을 관리하며 메모리가 허용되는한 제한없이 저장이 가능하다.
