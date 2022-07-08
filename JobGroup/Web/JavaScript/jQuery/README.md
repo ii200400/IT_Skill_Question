@@ -16,6 +16,7 @@
   + CDN은 `<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.x.x/jquery.min.js"></script>`와 같이 작성하여 적용시킨다. 필자는 3.5.1버전을 사용하였다.
   + CDN은 지리적 제약 없이 전 세계 사용자에게 빠르고 안전하게 콘텐츠를 전송할 수 있는 콘텐츠 전송 기술을 의미한다는데.. 아직 잘 모르겠고 클라우드 공부시에 같이 해야겠다;
   + [w3schools](https://www.w3schools.com/jquery/default.asp)에도 jQuery에 대한 설명이 있으니 참고하자.
++ 일반 .js파일에서는 자동완성을 활용할 수 없어서 임의로 nodejs를 설치하고 터미널에서 `npm install @types/jquery --save`을 입력하여 jquery 를 npm으로 설치하여 임시적으로 .js파일에서도 자동완성이 작동하도록 했다.
 
 ## DOM 요소 선택
 
