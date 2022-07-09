@@ -16,6 +16,7 @@
 
 + Bootstrap CDN은 아래와 같이 적용하였다.
   + 위에서부터 CSS, jQuery, Popper Js, JS에 대한 CDN이다.
+  + 물론 w3schools에 있는 CDN을 써도 무방하다. (아마 업데이트를 자주 하는 곳이니 더 좋을 것이다.)
 ```
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
