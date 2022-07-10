@@ -5,7 +5,7 @@
 3. [JavaScript](./JavaScript)
 4. [BootStrap](./bootstrap)
 5. [DB](https://github.com/ii200400/IT_Skill_Question/tree/master/CS/Database)
-6. [BackEnd](./backend)
+6. [JSP](./JSP)
 7. [Spring](./spring)
 8. [Vue](./vue)
 
