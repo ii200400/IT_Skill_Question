@@ -1,6 +1,13 @@
 # 3-3 Web
 
-+ 미생성
+1. [HTML](./html)
+2. [CSS](./css)
+3. [JavaScript](./JavaScript)
+4. [BootStrap](./bootstrap)
+5. [DB](https://github.com/ii200400/IT_Skill_Question/tree/master/CS/Database)
+6. [BackEnd](./backend)
+7. [Spring](./spring)
+8. [Vue](./vue)
 
 ## 개요
 
@@ -14,14 +21,8 @@
 + JS(JavaScript)   
   웹 페이지의 이벤트 담당
 
-## DB (데이터 베이스)
-
-자세한 DB이론은 [이곳에서](https://github.com/ii200400/IT_Skill_Question/tree/master/CS/Database) 다룰 것이고 여기에서는 웹에서 디비가 어떤 역할을 맡고 어떻게 활용되고 있는지를 중점으로 서술하겠다.
-
-웹에서는 요청에 대한 응답에 필요한 데이터나 사용자가 작성한 데이터를 저장하기 위해 사용한다.
-
 jdbc를 어디에 넣어야 할지 모르겠네;; 아이고난;;
-자바로 디비를 컨트롤하는 기능..? 이라고 생각하고 있다.
+자바로 디비를 컨트롤하는 기능이라고 생각하고 있다.
 
 ## cookie session
 
@@ -52,6 +53,8 @@ jdbc를 어디에 넣어야 할지 모르겠네;; 아이고난;;
 WAS는 메모리에 객체 형태로 세션을 관리하며 메모리가 허용되는한 제한없이 저장이 가능하다.
 
 일반적으로는 서버에서 클라이언트의 정보를 일정기간 저장하기 위해 사용하며 대표적으로는 로그인 유지나 장바구니 품목 관리에 쓰인다.
+
+## Web Architecture
 
 
 
