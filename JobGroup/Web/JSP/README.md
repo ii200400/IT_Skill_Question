@@ -1,8 +1,27 @@
-# JSP
+# Servlet & JSP
+
++ 웹 서버를 자바 파일로 구현할 때 사용하는 파일들
+
++ 현재는 많이 사용하는 기술은 아니지만, 현재 널리 사용하는 Spring의 기초가 되는 내용이 있다.
++ 실습 코드가 많이 길어서 해당 파일에는 이론적인 부분만 남길 것이다.
 
 ## Servlet
 
-백엔드에서 사용하는 자바파일의 일종, 해당 파일만으로는 웹 페이지를 구현하기 크게 힘들어서 아래의 jsp와 같이 활용한다.
++ 백엔드의 web 환경에서 웹 페이지를 동적으로 생성하기 위한 자바 프로그램 또는 사양(?)을 의미한다.
+	+ 자바 클래스의 일종으로 server + applet(어플리케이션과 유사 단어)을 합친 단어
+	+ http 프로토콜 상에서 요청에 대해 응답을 해주는 역할
+	+ JSP가 HTML 문서에 Java 코드를 포함하고 있다면 서블릿은 자바 코드 안에 HTML을 포함한다는 차이점이 있다.
+	+ 해당 파일만으로는 웹 페이지를 구현하기 크게 힘들어서 아래의 jsp와 같이 활용한다.
++ [javaee-spec/javadocs](https://javaee.github.io/javaee-spec/javadocs/)에서 관련 api를 찾아볼 수 있다.
+
++ 필자의 경우 eclipse를 통해 작업을 진행하였으며 CSS, HTML, JSP encoding을 모두 UTF-8로 설정하고 코딩을 하였다.   
++ Dynamic Web Project을 선택한 후, 프로젝트 명을 작성하고 Apache.org에서 다운로드 받은 Tomcat v9.0을 runtime 환경으로 설정하여 진행하였다.
+	+ 서버를 설정할 일이 자주 있지는 않아서 runtime 환경을 다시 설정하려고 하면 어떻게 했는지 까먹었다;
++ context root를 설정하고 마치면 된다.
+	+ context root는 특정 주소를 통해 해당 프로젝트를 찾아가는데 사용하는 이름으로 다른 프로젝트와 겹치면 안된다.
+	+ content directory는 html, css, js, img등의 정적인 파일들이 들어가는 파일을 의미한다.
+	+ Java 파일(Servlet, JSP, 라이브러리 등)은 Java Resource/src에 넣게 된다.
++ 이후 Servlet 파일을 생성하여 프로젝트를 진행한다.
 
 ## Servlet LifeCycle
 
