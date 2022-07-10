@@ -111,9 +111,12 @@ CSS 우선순위까지 고려해야되어서 조금 복잡하지만 하나씩보
 ```
 ![image](https://user-images.githubusercontent.com/19484971/176006370-b770042f-f483-4e95-8ec0-0553a3601c26.png)
 
-으어.. 예시가 복잡하다;;   
 어쨋든 위와 같은 느낌으로 마우스가 올라간 태그, 특정 속성을 가진 태그 등의 선택자 지정이 가능하다.
  
 + 참고
 	+ https://www.w3schools.com/css/css_selectors.asp
 	+ https://www.w3schools.com/cssref/css_selectors.asp
+
+
+이상하다..? 내용을 이렇게 적게 쓰지 않은 것 같은데, 착각하고 있는 것인지 내용이 날라갔는지 잘 모르겠다.   
+확실한 것은 선택자, 복합선택자 등 선택자에 관한 내용만 잘 숙지하고 넘어가면 된다는 것은 확실하다. (이후 bootstrap 등의 기술을 사용하여 css를 직접 사용할 일이 적기 때문)
