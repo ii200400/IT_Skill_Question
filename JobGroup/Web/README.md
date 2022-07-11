@@ -1,11 +1,13 @@
 # 3-3 Web
 
++ 카테고리
+
 1. [HTML](./html)
 2. [CSS](./css)
 3. [JavaScript](./JavaScript)
 4. [BootStrap](./bootstrap)
 5. [DB](https://github.com/ii200400/IT_Skill_Question/tree/master/CS/Database)
-6. [JSP](./JSP)
+6. [Servlet & JSP](./JSP)
 7. [Spring](./spring)
 8. [Vue](./vue)
 
