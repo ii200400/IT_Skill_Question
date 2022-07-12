@@ -93,3 +93,10 @@ WAS는 메모리에 객체 형태로 세션을 관리하며 메모리가 허용�
 | 특징 | 전송되는 데이터가 URL 뒤에 Query String으로 전달<br>입력값이 적은 경우나 데이터 노출에 문제가 없는 경우에 사용한다. | URL과 별도로 HTTP header 뒤 body에 입력 스트림 데이터로 전송 |
 | 장점 | 간단한 데이터를 빠르게 전송.<br>form tag 뿐만 아니라 직접 URL에 입력하여 전송 가능. | 데이터의 제한이 없다.<br>최소한의 보안 유지 효과를 볼 수 있다. |
 | 단점 | URL에 쿼리 스트링 형식으로 전송할 수 있는 데이터 양에 제한이 있다. | 전달 데이터의 양이 같을 경우 GET 방식보다 느리다. |
+
+## URL(Uniform Resource Locator)
+
++ 네트워크 상에서 자원이 어디 있는지를 알려주기 위한 참조값을 의미한다.
+
+![image](https://user-images.githubusercontent.com/19484971/178305428-018036ac-b14f-4f83-953a-dbe1cfbb2a05.png)   
+(참조 [velog.io/@keywookim](https://velog.io/@keywookim/We.TIL-30-Django-%EC%BF%BC%EB%A6%AC%EC%8A%A4%ED%8A%B8%EB%A7%81-%EA%B0%84%EB%8B%A8-%EC%82%AC%EC%9A%A9%EB%B2%95))
