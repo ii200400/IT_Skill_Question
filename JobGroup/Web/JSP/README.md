@@ -14,35 +14,170 @@
 	+ 해당 파일만으로는 웹 페이지를 구현하기 크게 힘들어서 아래의 jsp와 같이 활용한다.
 + [javaee-spec/javadocs](https://javaee.github.io/javaee-spec/javadocs/)에서 관련 api를 찾아볼 수 있다.
 
+### 환경설정
+
 + 필자의 경우 eclipse를 통해 작업을 진행하였으며 CSS, HTML, JSP encoding을 모두 UTF-8로 설정하고 코딩을 하였다.   
 + Dynamic Web Project을 선택한 후, 프로젝트 명을 작성하고 Apache.org에서 다운로드 받은 Tomcat v9.0을 runtime 환경으로 설정하여 진행하였다.
 	+ 서버를 설정할 일이 자주 있지는 않아서 runtime 환경을 다시 설정하려고 하면 어떻게 했는지 까먹었다;
 + context root를 설정하고 마치면 된다.
 	+ context root는 특정 주소를 통해 해당 프로젝트를 찾아가는데 사용하는 이름으로 다른 프로젝트와 겹치면 안된다.
+	+ 예를 들어 context root를 helloservlet으로 설정하면 프로젝트의 기본 주소는 `http://localhost:8080/helloservlet` 가 된다.
 	+ content directory는 html, css, js, img등의 정적인 파일들이 들어가는 파일을 의미한다.
 	+ Java 파일(Servlet, JSP, 라이브러리 등)은 Java Resource/src에 넣게 된다.
+	+ 추후 바꾸고 싶다면 프로젝트 오른 클릭 - properties - web project settings 에서 변경해주면 된다.
+	+ 캐시나 서버 버그 등으로 인하여 위의 방법이 안된다면 Servers 파일의 servers.xml 최하단부의 context 태그의 path 속성을 변경하거나 Context 자체를 삭제해주면 확실하다.
 + 이후 Servlet 파일을 생성하여 프로젝트를 진행한다.
 
-## Servlet LifeCycle
+필자가 Servlet 작동 테스트를 위해 간단하게 작성한 자바코드
+```
+import java.io.IOException;
+import java.io.PrintWriter;
 
-라이프 사이클이란 한 객체가 생성되어서 실행되고 소멸되기까지의 과정을 의미한다. 즉, 서블릿에 관한 해당 과정을 의미한다.
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
-한 **종류**의 서블릿은 반드시 1개만 서버에 존재하고 서블릿은 ServletContainer(서블릿 컨테이너)가 관리한다. 때문에 서블릿의 라이프 사이클도 서블릿 컨테이너에 의해 관리된다.   
+/**
+ * Servlet implementation class HelloSsafy
+ */
 
-서블릿은 컨테이너에 의해   
-객체가 생성(단 한번)되고 초기화(단 한번)되며   
-요청에 대한 처리를 요청시마다 반복해서 진행하다가   
-제거(단 한번)된다.
+/*
+
+이렇게 servlet(서버에서 돌아가는 자바)을 간편하게 생성할 수 있다. 
+(아래보면 해당 파일의 클래스가 HttpServlet을 상속받은 것을 볼 수 있다.)
+이전에는 따로xml을 만들어서 구현했다고 한다.
+
+본인 프로젝트 기준으로 서버를 키고  http://localhost:8080/helloservlet/hs 라는 주소를 적어주면
+doGet 함수가 호출되어 결과를 볼 수 있다.
+
+일반적으로 하이퍼 텍스트의 링크나 주소창에 직접 주소를 적는것, form의 method를 Get으로 작성한 것들은 
+(사실상 form의 method를 Post으로 작성한 것들을 제외한 모든 것)
+모두 get 방식이므로 doGet이 호출되는 것이다.
+
+doGet(HttpServletRequest request, HttpServletResponse response)의
+request는 사용자의 입력 데이터가 저장되어있다. 
+response는 request의 데이터를 토대로 응답할 응답할 데이터를 저장한다. 
+물론 데이터는 서버에서 로직을 통한 연산 후 넣어준다.
+*/
+
+@WebServlet("/hs")
+
+// 서버가 하는 일은 대충 아래와 같다.
+// 1. (클라이언트가 보낸) 데이터를 doget(혹은 doPost) 함수로 받아와서 해서
+// 2. 비즈니스 로직을 진행하고
+// 3. 응답 페이지(적어도 html)를 만들고 응답한다. 
+public class HelloSsafy extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		
+		String name = "임영선";
+		// 사용하지 않으면 한글이 깨진다. (인코딩 문제)
+		// 텍스트 이지만 html로 인식하고 인코딩은 utf-8로 설정한다는 내용이다.
+		response.setContentType("text/html;charset=utf-8");
+		// request 인코딩을 설정한 후 PrintWriter를 생성해야 한글이 깨지지 않는다.
+		// 위의 코드를 먼저 작성하면 
+		PrintWriter out = response.getWriter();
+		
+		/*
+		Servlet으로만 응답페이지를 작성하면 아래와 같이 ""의 저주에 걸릴 수 밖에 없다.
+		이러한 불편함 때문에 이후에는 Jsp이 생겨났다.
+		
+		Jsp는 Servlet처럼 자바파일에 html을 넣는 것이 아니라
+		html에 자바를 조금씩 넣는 듯한 형식으로 코딩하게 된다.
+		
+		 * */ 
+		out.println("");
+		out.println("<html>");
+		out.println("	<body>");
+		out.println("		Hello!!!!<br>");
+		out.println("		안녕하세요 " + name + "!!!!");
+		out.println("	</body>");
+		out.println("</html>");
+	}
+}
+```
+![image](https://user-images.githubusercontent.com/19484971/178272912-85671e42-f3b2-4e3b-8370-05a0cc8c0147.png)
+
+### Servlet LifeCycle
+
++ 라이프사이클이란 한 객체가 생성되어서 실행되고 소멸되기까지의 과정을 의미한다. 
+  즉, 서블릿에 관한 라이프사이클을 의미한다.
+	+ 한 **종류**의 서블릿은 반드시 1개만 서버에 존재하고 서블릿은 ServletContainer(서블릿 컨테이너)가 관리한다.
+	+ 서블릿의 관리(라이프사이클)는 서블릿 컨테이너에 의해 일어난다.   
+
+1. 서블릿은 컨테이너에 의해 객체가 생성(단 한번)되고 
+2. 초기화(단 한번)되며   
+3. 요청에 대한 처리를 요청시마다 반복해서 진행하다가   
+4. 제거(단 한번)된다.
 
 ![image](https://user-images.githubusercontent.com/19484971/174528543-c4205936-0edc-46a9-b28a-b7451442302a.png)
 
 | method | description |
 | --- | --- |
 | init() | 서블릿이 메모리에 로드될 때 한 번 호출.<br>코드가 수정되면 새로운 코드 로드를 위해 기존 서블릿을 삭제 후 새로운 서블릿 객체로 해당 메서드 호출 |
-| doGet() | Get 방식으로 data 전송 시 호출 |
-| doPost() | Post 방식으로 전송시 호출 |
+| doGet() | Get 방식으로 data를 서버로 전송 시 호출 |
+| doPost() | Post 방식으로 data를 서버로 전송 시 호출 |
 | service() | 모든 요청이 service()를 통해서 doXX()메소드로 이동 |
-| destroy() | 서블릿이 메모리에서 해제될 때 호출<br>코드가 수정되었을 때도 새로운 코드 로드를 위해 기존 서블릿 삭제를 위해 호출 |
+| destroy() | 서블릿이 메모리에서 해제될 때(서버를 끄는 경우 등) 호출<br>코드가 수정되었을 때도 새로운 코드 로드를 위해 기존 서블릿 삭제를 위해 호출 |
+
+```
+import java.io.IOException;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+/*
+한 `종류`의 servlet은 반드시 1개만(클라이언트 수와 상관없이) 서버에 존재하고 
+서블릿은 ServletContainer(서블릿 컨테이너)가 관리한다.
+서블릿 컨테이너는 WAS에서 제공하는 서비스 중 한 종류로 현재 필자가 사용하고 있는 것은 tomecat이니 이것의 서비스가 된다.
+서블릿도 자바의 gc에 의해 수거될 수 있지만... 거의 수거되지 않는다.
+
+여러 사용자들의 요청을 받고 응답을 주기 위해서는 서버는 자연스럽게 Thread(쓰레드)를 활용하게 된다고 한다.
+
+어쨋든 서블릿은 컨테이너에 의해 
+객체가 생성(단 한번)되고 초기화(단 한번)되며
+요청에 대한 처리를 요청시마다 반복해서 진행하다가
+제거(단 한번)된다.
+이러한 과정을 라이프 사이클이라고 한다.
+라이프 사이클이란 한 객체가 생성되어서 실행되고 소멸되기까지의 과정을 의미한다.
+
+위와 같이 서블릿 라이프 사이클은 모두 컨테이너가 관리한다는 점을 기억하는 것이 중요하다.
+
+Servlet 내용 언급 도중 웹 응용 프로그램이라고 하면 filter listener servlet 세 가지를 의미하는 것 이라고 한다.
+*/
+
+@WebServlet("/lifecycle")
+public class LifeCycle extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+
+	@Override
+	public void init() throws ServletException {
+		System.out.println("init() method call!!!!");
+	}
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		System.out.println("doGet method call!!!!");
+	}
+
+	@Override
+	public void destroy() {
+		System.out.println("destroy() method call!!!!");
+		// 해제 (close) 함수들 넣기
+	} 
+}
+```
+최초 요청시, 파일을 수정하고 요청시 init()가, 요청마다 doGet()이, 파일 수정마다 destroy()가 호출되는 것을 볼 수 있다.
+![image](https://user-images.githubusercontent.com/19484971/178307486-f79ccb94-be29-4e57-9a30-eb9da74491cf.png)
 
 ## JSP (Java Server Pages)
 
