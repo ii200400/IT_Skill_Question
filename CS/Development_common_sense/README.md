@@ -574,6 +574,13 @@ Git의 특징을 나열해보면 다음과 같다.
 + 되돌리기(Undo) 기능
 + branchd와 merge를 활용한 쉽고 빠른 협업
 
+참고
+
++ [깃, 깃허브 이건 알고 사용하자](https://www.youtube.com/watch?v=lPrxhA4PLoA&t=0s&ab_channel=%EB%93%9C%EB%A6%BC%EC%BD%94%EB%94%A9by%EC%97%98%EB%A6%AC)
++ [깃, 깃허브 제대로 배우기 (기본 마스터편, 실무에서 꿀리지 말자)](https://www.youtube.com/watch?v=Z9dvM7qgN9s&ab_channel=%EB%93%9C%EB%A6%BC%EC%BD%94%EB%94%A9by%EC%97%98%EB%A6%AC)
++ [누구나 쉽게 이해할 수 있는 Git](https://backlog.com/git-tutorial/kr/)
++ [git 공식홈페이지](https://git-scm.com/book/en/v2)
+
 ### Git WorkFlow
 
 깃을 사용하기 위해서는 파일 상태와 저장소(레포지토리)에 대한 용어를 알고 넘어가는 것이 좋다고 생각하여   
@@ -637,6 +644,44 @@ option에는 command에 맞는 옵션들이 선택사항으로 들어갈 수 있
     "메시지"를 타이틀로하는 commit을 실행한다.
   + git commit -a -m "메시지" , git commit -am "메시지"   
     git add -a과 git commit -m "메시지"를 모두 실행시킨 것과 같다.
++ git log   
+  깃 커밋에 대한 로그를 확인한다.
+  + git log --oneline   
+    깃 커밋에 대한 로그를 한 줄로 간단히 확인한다.
+  + git log --all
+    깃 커밋에 대한 모든 브랜치의 로그를 확인한다.
+  + git log --graph
+    깃 커밋에 대한 로그를 간단한 UI를 통해 확인한다.
+
+### Git branch
+
++ 각자 독립적인 작업 영역(저장소) 안에서 여러 개발자들이 동시에 다양한 작업을 할 수 있게 만들어 주는 기능
+
+각 브랜치마다 고유한 역할을 두어 사용하는데 개발시에 공통적으로 사용하는 브랜치는 아래와 같다.
++ master   
+  배포에 사용하는 브랜치, 사용자에게 직접 영향이 가는 브랜치이기 때문에 신중하게 커밋해야 한다.
++ develop
++ feature
+
+#### git branch 명령어
+
++ git branch   
+  브랜치 목록을 확인한다.
++ git branch 브랜치명   
+  새로운 브랜치를 생성한다.
+  + git branch -d 브랜치명   
+    해당 브랜치를 삭제한다, 단 브랜치는 병합(merge)되어 있어야 가능하다.
+  + git branch -D 브랜치명   
+    해당 브랜치를 강제 삭제한다.
++ git switch 브랜치명   
+  다른 브랜치로 이동한다.
+  + git switch -c 브랜치명   
+  브랜치를 생성과 동시에 이동한다.
+
+#### git merge 명령어
+
++ git merge 브랜치명   
+  메인 브랜치와 병합한다, merge 하기 전에 해당 브랜치로 이동한 후 명령 가능하다.
 
 ### Git Strategy
 
@@ -644,11 +689,6 @@ option에는 command에 맞는 옵션들이 선택사항으로 들어갈 수 있
 기본적으로는 버전 관리를 위하여 적당한 수준의 기능별로 커밋을 진행해 나간다.
 
 해당 부분은 필자가 제대로 사용해본 경험이 없어서 정리를 늦게 진행할 예정이다.
-
-##### 참고
-
-+ [깃, 깃허브 이건 알고 사용하자](https://www.youtube.com/watch?v=lPrxhA4PLoA&t=0s&ab_channel=%EB%93%9C%EB%A6%BC%EC%BD%94%EB%94%A9by%EC%97%98%EB%A6%AC)
-+ [깃, 깃허브 제대로 배우기 (기본 마스터편, 실무에서 꿀리지 말자)](https://www.youtube.com/watch?v=Z9dvM7qgN9s&ab_channel=%EB%93%9C%EB%A6%BC%EC%BD%94%EB%94%A9by%EC%97%98%EB%A6%AC)
 
 ## Package와 Import
 
