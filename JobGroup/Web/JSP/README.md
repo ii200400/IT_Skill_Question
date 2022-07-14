@@ -185,7 +185,7 @@ public class LifeCycle extends HttpServlet {
 
 + JDBC를 활용하여 DB에 연동하는 예시 코드
 	+ 필자의 경우 mysql을 연동하였다.
-	+ `mysql-connector-java-8.0.24.jar` 과 같은 `jar`파일을 라이브러리 파일에 넣는 것도 잊지말자.
+	+ `mysql-connector-java-8.0.24.jar` 과 같은 `jar`파일을 `WEB-INF`의 `lib`에 넣는 것도 잊지말자.
 
 ```
 import java.io.IOException;
@@ -509,7 +509,8 @@ JSP에서 사용이 가능한 객체를 지칭하는 용어이다. (빌더 형�
 
 ## forward와 sendRedirect
 
-서버에서 페이지를 이동시킬 때 forward와 sendRedirect을 사용하여 이동하는 것이 기본적이다. 하지만, 페이지를 이동시킨다는 점만 같고 개인적으로는 오히려 차이점이 더 많다고 생각한다.   
++ 서버에서 페이지를 이동시킬 때 사용하는 forward와 sendRedirect의 차이점
+	+ 당연히 페이지를 이동시킨다는 점이 같고 여러 차이점이 존재한다.
 
 이러한 차이점을 표로 정리해보면 아래와 같다.
 
@@ -524,13 +525,17 @@ JSP에서 사용이 가능한 객체를 지칭하는 용어이다. (빌더 형�
 
 ## 웹 디자인 패턴
 
-JSP(혹은 서블릿)를 활용하여 구성할 수 있는 Web Application Architecture는 크게 model1과 model2로 나뉜다. 
++ JSP(혹은 서블릿)를 활용하여 구성할 수 있는 Web Application Architecture는 크게 model1과 model2로 나뉜다. 
+	+ model1은 JSP(혹은 서블릿)가 클라이언트의 요청에 대한 로직 처리와 응답 페이지(response page/view)에 대한 처리를 모두 하는 구조
+	+ Model2는 View는 JSP에서 Controller은 Servlet에서 처리하는 구조
 
-전자는 JSP(혹은 서블릿)가 클라이언트의 요청에 대한 로직 처리와 응답 페이지(response page/view)에 대한 처리를 모두 하는 것을, 후자는 JSP가 요청에 대한 응답 페이지에 대한 처리만 하는 것을 의미한다.
+![image](https://user-images.githubusercontent.com/19484971/178997491-5ca6af24-a775-4fd1-83bd-6ac283b659e5.png)
 
-필자가 이전에 BE에 올려두었던 아키텍쳐 사진들은 모두 모델1 방식의 아키택쳐이다. Servlet이나 JSP가 요청을 받고 (자바 빈즈를 활용하거나) DB의 데이터를 참고해서 응답 페이지를 만들고 응답해주는 형식인 것을 볼 수 있다.
+(MVC Model1)
 
-모델1에 대해서는 충분히 알아봤으니 이 아래부터는 MVC 패턴을 웹개발에 도입한 모델2에 대해 정리를 진행할 예정이다.
+![image](https://user-images.githubusercontent.com/19484971/178997512-290f796f-34c6-4f8a-9f7e-7361048f9a0a.png)
+
+(MVC Model2)
 
 ### 웹의 MVC 패턴 (Model 2)
 
@@ -539,7 +544,7 @@ Service/Dao/Java Beans(model), jsp(view), Servlet(controller)에 각 역할을 �
 + Model
 	+ 컨트롤러로부터 데이터를 받아 로직을 처리하고 결과를 반환하는 역할이다.
 	+ Service는 비즈니스 로직, DAO는 DB로직, Java Beans는 로직을 처리한 후 반환되는 객체를 저장하는 역할로 또 다시 나눠진다.
-	+ DAO는 Data Access Object의 줄임말로 데이터베이스의 data에 접근하기 위한 객체이다.
+		+ DAO는 Data Access Object의 줄임말로 데이터베이스의 data에 접근하기 위한 객체이다.
 	+ Java Beans는 DTO나 VO를 만드는데 활용되며 DTO(Data Transfer Object)는 로직을 가지지 않는 순수한 데이터 객체를, VO(Value Object)는.. DTO 객체의 값을 반환할 때 사용되는 객체.. 라고만 들었다. (잘 모르겠다.)
 + View
 	+ 화면 처리를 담당한다. 
@@ -549,17 +554,17 @@ Service/Dao/Java Beans(model), jsp(view), Servlet(controller)에 각 역할을 �
 	+ Servlet에서 담당하며 기본적으로 다른 자바파일을 호출하고 데이터를 관리하는 것이 중점이 되어있다.
 	+ 상황에 따라 redirect 또는 forward로 JSP를 호출하여 화면을 출력하도록 한다.
 
-그림을 그리면 아래와 같다.
-
-[바쁘다, 나중에 사진 추가 요망..]()
-
-위 사진의 과정은 다음과 같다.
+Model2 과정은 다음과 같다.
 1. 클라이언트가 데이터를 담아서 요청을 보낸다.
 2. 서블릿이 클라이언트의 요청을 받아서 처리가 가능한 모델의 메소드를 호출한다.
 3. 모델의 Service가 비즈니스 로직을, DAO가 비즈니스 로직 처리를 위한 DB 로직을, DataBase가 DB로직을 처리하기 위한 SQL문을 처리하고 결과를 (DTO 등으로) 만들어 반환한다.
-4. 서블릿은 모델에서 받은 반환값을 토대로 적절한 JSP을 호출한다.
+4. 서블릿은 모델에서 받은 반환값을 받아 적절한 JSP을 호출하고 반환값을 넘겨준다.
 5. JSP는 서블릿에서 받은 데이터를 토대로 화면을 만들어 서블릿에게 반환한다.
 6. 서블릿은 JSP에서 받은 화면을 클라이언트에게 전송하여 응답을 마친다.
+
+참고
++ https://velog.io/@ovan/MVC-Model1%EA%B3%BC-MVC-Model2
+	+ 강의에서 설명할 때 사용한 그림은 캡쳐하면 안 될 것 같아 대신 블로그에서 사진을 가져왔다;
 
 ### 모델의 장단점
 
@@ -570,18 +575,20 @@ Service/Dao/Java Beans(model), jsp(view), Servlet(controller)에 각 역할을 �
 	+ 개발 시간이 비교적 짧아 개발 비용이 감소한다.
 	+ 화면 출력을 위한 코드(FE)와 로직 처리를 위한 코드(BE)가 섞여있기 때문에 분업이 어렵다.
 	+ JSP코드가 복잡해지고 프로젝트 규모가 커지게되면 유지보수가 어려워진다.
+		+ 단순히 url 주소 하나를 바꾼다고 가정하면 많은 수정이 필요하다.
 	+ 확장성(신기술 도입, 새로운 Framework 적용)이 나쁘다.
 + 모델 2
 	+ 화면 출력을 위한 코드와 로직 처리를 위한 코드가 분리되어있기 때문에 분업이 용이하다.
 	+ JSP 코드가 모델 1에 비해 덜 복잡하다.
 	+ 기능에 따라 코드가 분리되어 유지보수가 쉽고 확장성이 늘어난다.
+		+ 단순히 url 주소 하나를 바꾼다고 한다면 담당 Servlet에서 연결된 주소 하나만 바꾸면 된다.
 	+ 구조가 복잡하여 초기 개발이 어렵고 따라서 초기 개발 비용도 증가한다.
 
 ## Front Controller
 
-command 디자인패턴이라고도 한다.
-controller를 두 역할로 나누어 관리하는 방법을 의미한다
-하나는 경로를 지정하는 controller, 다른 하나는 비즈니스 로직을 관리하는 controller로 나뉜다.
++ controller를 두 역할로 나누어 관리하는 방법
+	+ 하나는 경로를 지정하는 controller, 다른 하나는 비즈니스 로직을 관리하는 controller로 나뉜다.
++ command 디자인패턴이라고도 한다.
 
 ## EL (Expression Language)
 
