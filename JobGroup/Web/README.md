@@ -100,3 +100,9 @@ WAS는 메모리에 객체 형태로 세션을 관리하며 메모리가 허용�
 
 ![image](https://user-images.githubusercontent.com/19484971/178305428-018036ac-b14f-4f83-953a-dbe1cfbb2a05.png)   
 (참조 [velog.io/@keywookim](https://velog.io/@keywookim/We.TIL-30-Django-%EC%BF%BC%EB%A6%AC%EC%8A%A4%ED%8A%B8%EB%A7%81-%EA%B0%84%EB%8B%A8-%EC%82%AC%EC%9A%A9%EB%B2%95))
+
+추가로 정리
++ 프록시 서버
++ url에 주소를 입력했을 때 생기는 일
++ ![image](https://user-images.githubusercontent.com/19484971/178859256-4bd684fd-95fc-45a7-9761-fbd790a63500.png)
++ AWS
