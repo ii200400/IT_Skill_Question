@@ -537,7 +537,7 @@ JSP에서 사용이 가능한 객체를 지칭하는 용어이다. (빌더 형�
 
 (MVC Model2)
 
-### 웹의 MVC 패턴 (Model 2)
+### Model 2
 
 Service/Dao/Java Beans(model), jsp(view), Servlet(controller)에 각 역할을 나누어 웹 프로그램을 만드는 프로그래밍 방법이다.
 
@@ -592,5 +592,144 @@ Model2 과정은 다음과 같다.
 
 ## EL (Expression Language)
 
++ JSP 스크립트의 표현식`<%= %>`을 대신하여 속성값을 쉽게 출력하도록 고안된 언어
++ `${Map.key}` 혹은 `${Java Bean.property}`로 표현한다.
+	+ EL 표현식 도트 연산자 왼쪽은 반드시 java.util.Map 혹은 Java Bean 객체여야 한다.
+	+ EL 표현식 도트 연산자 오른쪽은 반드시 맵의 키이거나 Bean 속성명이여야 한다.
+	+ 도트 표기법 이외에도 `[]`연산자를 사용하여 객체 값에 접근할 수도 있다.
+		+ 일반적으로 `-` 등의 산술연산자 혹은 도트(프로퍼티명이 `student.name`)가 있다면 도트 표기법 대신 `[]`연산자를 사용한다.
+		+ 배열이나 리스트의 경우 `[]`연산자 내의 인덱스 값은 문자열이 들어가도 숫자로 자동치환되어 처리된다.   
+		  ex) `${array[1]}` 과 `${array["1"]}`은 같은 값을 가리킨다.
+
+EL에서 제공하는 주기능은 아래와 같다.
+1. JSP의 네가지 기본 객체가 제공하는 영역의 속성을 편리하게 사용
+2. 자바 클래스 메소드 호출 기능
+3. 표현 언어만의 기본객체 제공
+4. 수지, 관계 논리 연산 제공
+
++ 참고
+	+ [javatpoint.com](https://www.javatpoint.com/EL-expression-in-jsp)
+
+### EL 내장객체
+
+특이하게 pageContext를 제외하고 모두 Map이다.
+
+| category | identifier | type | description |
+| -- | -- | -- | -- |
+| JSP | pageContext | Java Bean | 현재 페이지의 pageContext instance |
+| scope | pageScope | Map | page 스코프에 저장된 객체 | 
+| scope | requestScope | Map | request 스코프에 저장된 객체 | 
+| scope | sessionScope | Map | session 스코프에 저장된 객체 | 
+| scope | applicationScope | Map | application 스코프에 저장된 객체 | 
+| 요청 매개변수 | param | Map | ServletRequest.getParameter(String)과 같은 객체 | 
+| 요청 매개변수 | paramValues | Map | ServletRequest.getParameterValues(String)과 같은 객체 |
+| 요청 헤더 | header | Map | HttpServletRequest.getHeader(String)과 같은 객체 |
+| 요청 헤더 | headerValues | Map | HttpServletRequest.getHeaders(String)과 같은 객체 |
+| 쿠키 | cookie | Map | HttpServletRequest.getCookies()과 같은 객체 |
+| 초기화 매개변수 | initParam | Map | ServletContext.getInitParameter(String)과 같은 객체 |
+
++ `request.setAttribute("userInfo", "임영선");` 을 JSP에 전송하였을 때 아래의 코드로 불러올 수 있다.
+	1. ${requestScope.userinfo}
+	2. ${pageContext.request.userinfo}
+	3. ${userinfo}
+		+ property 명만 작성할 경우 자동으로 pageScope - requestScope - sessionScope - applicationScope 순으로 객체를 찾는다.
++ url?name=임영선&fruit=사과&fruit=바나나
+	+ 이름을 가져오는 경우에는 ${param.name}
+	+ 과일을 가져오는 경우에는 ${paramValues.fruit[0]}
+
+### EL Operator
+
+대부분은 자바와 같다.
+
+| 카테로리 | 종류 |
+| -- | -- |
+| 객체 프로퍼티 | [], . |
+| 함수 | () |
+| 타당성 검사 | not, !, empty |
+| 산술 | +, -, \*, /(div), %(mod) |
+| 관계형 | <(lt), <=(le), >(gt), >=(ge), ==(eq), !=(ne) |
+| 논리 | &&(and), ||(or) |
+| 삼항 연산자 | 조건 ? 값1 : 값2 |
+
++ empty 연산자에서 true를 반환하는 경우는 아래와 같다.
+	+ 값이 null인 경우
+	+ 빈 문자열 `""`인 경우
+	+ 길이가 0인 배열인 경우
+	+ 빈 Map 객체인 경우
+	+ 빈 Collection 객체인 경우
+
++ 함수 호출
+	+ Java Bean 객체의 함수라면 get과 ()는 생략할 수 있다.
+		+ 예를 들어 `user` 객체에 `getName()` 이라는 함수가 있다면 ${user.name} 과 같이 작성하여 데이터를 불러올 수 있다.
 
 ## JSTL (JSP Standard Tag Library)
+
++ Java EE 기반의 웹 애플리케이션 개발 플랫폼을 위한 컴포넌트 모음
++ 개발자가 직접 태그를 작성할 수 있는 기능(custom tag)을 활용하여 만든 것들 중 가장 많이 사용되는 것을 모아 만든 규약 혹은 라이브러리
++ xml 데이터 처리, 조건문, 반복문, 데이터베이스 등의 처리를 할 수 있다.
+	+ 스크립트릿을 사용하지 않고 EL과 함께 코드를 더 간결하게 작성할 수 있다.
++ 자바 코드를 직접 사용하지 않고 로직을 내장하는 방법을 제공한다.
+	+ 덕분에 코드의 유지보수가 쉬워졌다.
+	+ 응용 소프트웨어 코드와 UI 코드를 나누어 관리하기 편해졌다.
++ JSP 2.1~2.2와 호환되는 JSTL 버전은 1.2으로 jstl에 대한 jar파일이 필요하다.
+	+ 필자는 [mvnrepository](https://mvnrepository.com/artifact/javax.servlet/jstl/1.2)에서 다운로드하였다.
+
++ 참고
+	+ https://docs.oracle.com/javaee/5/jstl/1.1/docs/tlddocs/
+	+ https://www.tutorialspoint.com/jsp/jsp_standard_tag_library.htm
+
+### JSTL Tag 선언
+
+프로젝트에 jstl관련 jar 파일을 넣었다면 파일에 선언을 하고 jstl을 사용할 수 있다.
+
+선언형식은 `<%@ taglib prefix="prefix" uri="uri" %>`이다.
+
+| library | prefix | function | URI | 
+| -- | -- | -- | -- |
+| core | c | 변수지원, 흐름제어, URL 처리 | http://java.sun.com/jsp/jstl/core |
+| XML | x | 변수지원, 흐름제어, URL 처리 | http://java.sun.com/jsp/jstl/core |
+| 국제화 | fmt | 변수지원, 흐름제어, URL 처리 | http://java.sun.com/jsp/jstl/core |
+| database | sql | 변수지원, 흐름제어, URL 처리 | http://java.sun.com/jsp/jstl/core |
+| 함수 |  | 변수지원, 흐름제어, URL 처리 | http://java.sun.com/jsp/jstl/core |
+
++ 위의 선언에 따라서 core를 선언하여 사용하려면`<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>`라고 작성하면 된다.
+	+ 필자는 사실 core 밖에 사용하지 않아서 다른 라이브러리는 언급하지 않을 것 이다.
+	+ `prefix`에는 꼭 `c`라고 적어야만 하는 것은 아니라서 원하는 값을 넣어도 되나, 통상적으로 `c`를 넣어 사용하기 때문에 가독성을 생각하면 다른 값을 넣는 것은 좋지 않다.
+
+### jstl core Tag
+
+시간이 없어서 정리를;;
+커스텀 태그를 액션이라고 서술한다.
+
++ 변수선언 <c:set>
+	+ 변수나 특정 객체의 프로퍼티에 값을 항당할 때 사용한다.
+	+ value 속성의 값이나 태그내의 body content로 값을 설정한다.
+	+ var 속성은 변수명을, 변수의 생존범위는 scope 속성(디폴트는 page)으로 설정한다.
+	+ 특정 객체의 프로퍼티에 값을 할당할 때는 target 속성에 객체를 성정하고 property에 프로퍼티명을 설정한다.
+
+![image](https://user-images.githubusercontent.com/19484971/179339332-68b45db6-9308-4227-8f5f-7171a20989b5.png)
+
++ 예외 <c:catch>
+	+ 기본적으로 JSP 페이지는 예외가 발생하면 지정된 오류페이지를 통해 처리한다.
+	+ 해당 액션은 JSP 페이지에서 예외가 발생하면 오류페이지로 넘지기 않고 직접 처리할 수 있도록 한다.
+	+ var 속성에는 방생한 예외를 담는 (생존범위가 page인) 변수를 지정한다.
+	+ <c:if>와 함께 사용하면 Java 코드의 try-catch와 같은 기능을 구현할 수 있다.
+
+![image](https://user-images.githubusercontent.com/19484971/179339401-4eb057a9-ca77-45fd-8c7a-fdd0eefc9031.png)
+
++ 조건문 <c:if>, <c:choose> <c:when> <c:otherwise>
+	+ test 속성에 지정된 표현식 결과가 true인 경우에 body에 담긴 컨텐츠를 수행한다.
+	+ <c:if> 의 var 속성은 표현식의 결과를 담는 변수이다.
+	+ <c:choose> <c:when> <c:otherwise>는 if-ifelse-else와 같이 처리할 수 있다.
+
+![image](https://user-images.githubusercontent.com/19484971/179339438-8fbaec68-1b3f-46d7-a76d-cf494de8ece5.png)
+
++ 반복문 <c:forEach>
+	+ java의 for문과 같은 액션이다.
+	+ items 속성에는 컬렉션을 지정하는데 이는 Array, Collection, Map 또는 콤마로 분리된 문자열을 의미한다.
+	+ var 속성에는 반복에 대한 현재 데이터를 담는 변수를 지정한다.
+	+ varStatus 속성을 통해 현재 반복에 대한 상태 정보를 가져올 수 있다.
+
+![image](https://user-images.githubusercontent.com/19484971/179339502-d13a1c08-da9e-4ca3-9fd2-4fbec84d940a.png)
+
+원래 사진을 직접 찍으려고 했는데 생략..! 프로젝트를 위해서 스프링 공부도 해야한다!
