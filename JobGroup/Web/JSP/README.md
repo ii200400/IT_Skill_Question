@@ -13,6 +13,7 @@
 	+ JSP가 HTML 문서에 Java 코드를 포함하고 있다면 서블릿은 자바 코드 안에 HTML을 포함한다는 차이점이 있다.
 	+ 해당 파일만으로는 웹 페이지를 구현하기 크게 힘들어서 아래의 jsp와 같이 활용한다.
 + [javaee-spec/javadocs](https://javaee.github.io/javaee-spec/javadocs/)에서 관련 api를 찾아볼 수 있다.
++ 시간이 된다면 servlet의 상속도에 대해서 찾아보자!
 
 ### 환경설정
 
