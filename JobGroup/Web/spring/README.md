@@ -11,6 +11,8 @@
 
 + 참고
   + [스프링 공식홈페이지](https://spring.io/projects/spring-framework)
+  + [스프링 도큐먼트 공식홈페이지](https://docs.spring.io/spring-framework/docs/current/reference/html/core.html)
+  + [spring library download](https://mvnrepository.com/artifact/org.springframework)
   + 그.. 강의
 
 ## 개요
@@ -52,6 +54,25 @@ POJO(Plain Old Java Object)는 아래와 같은 자바객체를 의미한다.
   + JEE(Java Enterprise Edition)는 자바를 이용한 서버측 개발을 위한 플랫폼 (위키백과)
 + DI(Dependency Injection)이나 AOP(Aspect Oriented Programming) 등의 기능 지원
 
+## Container
+
++ 스프링은 자바 객체를 담고 있는 컨테이너
+  + 언제든지 스프링 컨테이너로부터 필요한 자바 객체를 불러와 사용 가능
++ 스프링 컨테이너는 객체의 생성, 사용, 소멸에 해당하는 라이프사이클을 관리
+  + 라이프사이클을 기본으로 애플리케이션 사용에 유용한 기능을 제공
+
++ 기능
+  + 라이프사이클 관리
+  + Dependency 객체 제공
+  + Thread 관리
+  + 기타 애플리케이션 실행에 필요한 환경
+
++ 필요성
+  + 비즈니스 로직 외 부가적인 기능들이 독립적으로 관리되도록 하기 위함
+  + 서비스 look up 이나 Configuration에 대한 일관성을 갖기 위함
+    + look up은 언급상 서비스 탐색을 의미하는 것 같다.
+  + 서비스 객체를 사용하기 위해 개발자가 직접 Factory 또는 Singleton 패턴을 직접 구현하지 않아도 됨
+
 ## Spring Framework 구조
 
 + Spring Framework 구조는 Spring의 삼각형으로 설명할 수 있다.   
@@ -71,8 +92,9 @@ POJO(Plain Old Java Object)는 아래와 같은 자바객체를 의미한다.
   + 유연하게 확장 가능한 객체를 만들고 객체의 생성과 객체 간의 의존관계는 외부(컨테이너)에서 동적으로 설정
   + IoC
     + Servlet과 EJB가 나타나면서 객체의 생성 및 의존관계 제어권이 대부분이 Servlet 혹은 EJB Container에게 쥐어짐
-      + 그 전에는 개발자가 관리하였다고 한다.
+      + 그 전에는 개발자가 관리
     + 스프링에서도 객체의 생성과 생명주기를 관리하는 Spring Container 혹은 IoC Container 가 존재한다.
+    + IOC 구현 방법 중 하나가 DI이다.
   + DI
     + 객체가 의존하고 있는(has) 객체를 직접 생성하거나 검색하지 않아도 된다.
     + xml 설정 파일에서 Java bean으로 개발자가 클래스를 지정하거나 자바의 어노테이션을 활용하여 객체의 의존 관계를 설정하면 컨테이너가 의존관계를 설정한다.
@@ -105,27 +127,172 @@ POJO(Plain Old Java Object)는 아래와 같은 자바객체를 의미한다.
 
 몇 개는 무슨 말인지를 모르겠다;
 
-## Container
+### IoC(Inversion of Control, 제어의 반전)
 
-+ 스프링은 자바 객체를 담고 있는 컨테이너
-  + 언제든지 스프링 컨테이너로부터 필요한 자바 객체를 불러와 사용 가능
-+ 스프링 컨테이너는 객체의 생성, 사용, 소멸에 해당하는 라이프사이클을 관리
-  + 라이프사이클을 기본으로 애플리케이션 사용에 유용한 기능을 제공
+위에서는 스프링이 중점이 아니라서 조금 번잡하게 썼지만 이 부분부터는 스프링을 기준으로 서술할 예정   
+안 그러면 필자가 이해를 못한다;
 
-+ 기능
-  + 라이프사이클 관리
-  + 2
-  + 3
++ IoC
+  + 런타임시에 객체간의 연결관계를 동적으로 결정
+  + 객체 간의 관계가 느슨하게 연결된다.(loose coupling)
+    + 객체간 결합도가 높으면 유지보수 할 때 해당 클래스와 결합된 다른 클래스도 수정의 가능성이 높다.
+  + Dependency Lookup 방식과 Dependency Injection 방식이 있다.
+    + 전자는 컨테이너가 lookup context를 통해 필요한 Resource나 객체를 얻는 방식
+    + 후자는 컨테이너가 직접 의존구조를 객체에 설정할 수 있도록 지정하는 방식, 객체는 컨테이너의 존재 여부를 알 필요가 없다.
 
 + IoC Container
   + 오브젝트의 생성과 관계 설정, 사용, 제거 등의 작업을 애플리케이션 코드 대신 독립된 컨테이너가 담당
-  + 컨테이너가 코드 대신 오브젝트에 대한 제어권을 가지고 있어 IoC라고 호칭
-  + ...
-  + ...
+  + 컨테이너가 개발자 대신 객체 제어권을 가져 IoC라고 명명
+    + 위의 이유로 스프링 컨테이너를 IoC 컨테이너라고도 한다.
+  + 스프링에서 Ioc를 담당하는 컨테이너는 BeanFactory, ApplicationContext가 있다.
+
+어.. 뭔가.. interface인 빈팩토리랑 그것을 상속받는 다양한 객체들이 있는데.. 그것까지는 뭔지 모르겠다! ^오^   
+아무튼 applicationContext이 BeanFactory을 상속받고 있다는 정도만 알겠다.
+
+예시
+
+1. 팩토리 활용
+  + 각 서비스를 생성하여 반환하는 팩토리 사용
+  + 인터페이스만 알고 있다면 어떤 구현체가 어떻게 생성되는지 알 필요가 없다.
+  + 해당 패턴이 적용된 것이 Container이며 Container를 통해 제공하고자 하는 것이 IoC 모듈
+
+```
+public class HelloMain {
+
+	public static void main(String[] args) {
+		HelloMessage helloMessage = HelloMessageFactory.getHelloMessage("kor");
+//		HelloMessage helloMessage = HelloMessageFactory.getHelloMessage("eng");
+		
+		String greeting = helloMessage.hello("임영선");
+//		String greeting = helloMessage.hello("Im");
+
+    System.out.println(greeting);
+	}
+}
+```
+
+```
+public class HelloMessageFactory {
+
+	public static HelloMessage getHelloMessage(String lang) {
+		if("kor".equals(lang)) {
+			return new HelloMessageKor();
+		} else if("eng".equals(lang)) {
+			return new HelloMessageEng();
+		} else {
+			return null;
+		}
+	}
+	
+}
+```
+
+2. IoC 활용
+  + 위의 팩토리 패턴의 장점을 더하여 어떤 것에도 의존하지 않는 형태가 됨
+  + 런타임 시점에 클래스 간의 관계가 형성이 된다.
+  + 각 Service의 생명주기를 관리하는 Assembler를 활용한다.
+    + Spring Container가 조립기(Assembler) 역할
+
+```
+public class HelloMain {
+
+	public static void main(String[] args) {
+		ApplicationContext context = new ClassPathXmlApplicationContext("./application.xml");
+//		HelloMessage helloMessage = (HelloMessage) context.getBean("kor");
+		HelloMessage helloMessage = context.getBean("kor", HelloMessageKor.class);
+//		HelloMessage helloMessage = context.getBean("eng", HelloMessageEng.class);
+		
+		String greeting = helloMessage.hello("임영선");
+//		String greeting = helloMessage.hello("Im");
+		
+		System.out.println(greeting);
+		
+		System.out.println("----------------------------------------");
+		
+    // 싱글톤으로 만들어져 객체가 같음을 알 수 있다.
+		HelloMessage kor1 = context.getBean("kor", HelloMessageKor.class);
+		HelloMessage kor2 = context.getBean("kor", HelloMessageKor.class);
+		System.out.println(kor1 + " ::::: " + kor2);
+	}
+	
+}
+```
+
+application.xml 파일
+```
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+
+<!-- scope="prototype" 속성을 넣어주면 싱글톤 객체가 아니도록 만들 수도 있다. 
+	init-method를 사용하면 자동으로 초기화에 사용할 함수를 선택할 수 있다.
+  아래는 Spring DI의 설정정보(메타정보)
+  -->
+
+ 	<bean id="kor" class="com.hello.di4.HelloMessageKor"></bean>
+	<bean id="eng" class="com.hello.di4.HelloMessageEng"></bean>
+	
+  <!-- 
+		위의 방식 대신 어노테이션이 있는 객체를 탐색하여 빈에 추가하고 싶다면 아래의 컴포넌트 스캔을 사용한다.
+    <context:component-scan base-package="com.hello.di4"></context:component-scan>
+	-->
+
+</beans>
+```
+
+### DI(Dependency Injection, 의존성 주입)
 
 + Spring DI Container
-  + Spring DI Container가 관리하는 객체를 빈(Bean)이라 한다.
-  + 빈들의 생명주기(Life-Cycle)를 관리하는 의미로 빈 팩토리(BeanFactory)라고 한다.
+  + 이것이 관리하는 객체를 빈(Bean)이라 한다.
+  + 빈들의 생명주기(Life-Cycle)를 관리하는 의미로 빈 팩토리(BeanFactory)라고 부른다.
+  + 이 빈 팩토리에 여러 컨테이너 기능을 추가하여 applicationContext라고 한다.
+    + 일반적으로는 BeanFactory보다는 applicationContext를 활용
+    + 빈을 등록, 생성, 조회, 반환을 관리하는 등의 기본기능은 BeanFactory와 같다.
+    + 보통 BeanFactory라고 하면 빈의 관리를 중점으로, applicationContext을 언급하면 스프링이 제공하는 애플리케이션 지원기능을 포함하여 언급하는 것이다.
+
+DI를 설정하는데 메타정보의 표현 방식에 따라 크게 3가지 방법이 있다.
+1. XML 문서를 통한 빈 설정 메타정보 기술
+2. XML 문서와 자바 클래스에 Annotation을 통한 메타정보 표현
+3. 자바 파일과 Annotation을 통한 메타정보 표현
+
+본인의 코드를 올리고 싶지만.. 금기어가 너무 많아서 생략하겠다.   
+어차피 나만보는 글이니까! 하핳! 
+
+또한 xml을 통한 설정 방법은 넘어간다.. 솔직히 어노테이션 안 사용하는 쪽이 이상하다고 생각한다.   
+정말로 빈 등록 하나하나 하다가 에러나거나 꼬이는 것 생각하면 절대 어노테이션 사용해야 한다.
+
++ 빈 생성범위
+  + 기본적으로 싱글톤으로 만들어져 컨테이너가 제공하는 모든 빈의 인스턴스는 동일하다.
+  + 만약 새로운 인스턴스를 반환하게 만들고 싶다면 scope에 prototype이나 request 등 다른 설정을 넣어주면 된다.
+    + 어노테이션이라면 해당 객체 파일에 @scope()를 통해, xml 설정파일이라면 빈에 scope 속성을 넣어주면 된다.
+
++ 빈 설정 Annotation
+  + 빈을 자동등록할 수 있도록 하는 어노테이션은 다양하다.
+    + 계층별로 개발자가 빈의 특성이나 종류를 구분하기 위해
+    + AOP를 활용할 때 특정 어노테이션이 달린 클래스만 설정이 가능
+    + 특정 계층의 빈에 부가 기능 부여
+
+| 어노테이션 | 적용 대상 |
+| -- | -- |
+| @Repository | DAO 또는 Repository 클래스에 사용한다. AOP 적용 대상에 자주 선정된다. |
+| @Service | Service 클래스에 사용 |
+| @Controller | MVC Controller에 사용, 스프링 웹 서블릿에 의해 웹 요청을 처리하는 컨트롤러 빈으로 선정 |
+| @Component | 위의 그 어느곳에도 분류되지 않는 일반적인 경우 |
+
++ 빈 의존 관계 설정
+  + 멤버변수에 직접 정의하는 경우 setter method를 만들지 않아도 된다.
+
+| 어노테이션 | 적용 대상 |
+| -- | -- |
+| @Aurowired | 스프링 프레임워크에서 지원하는 의존성 정의 용도의 어노테이션<br>스프링에 종속적이나 정밀한 의존성 주입에 유용하다.<br>타입에 맞춰서 빈을 연결한다. |
+| @Resource | 특정 빈이 JNDI 리소스에 대한 injection을 필요로 하는 경우에 사용<br>타입에 맞춰서 빈을 연결한다. |
+| @Inject | 3.0버전부터 지원하는 어노테이션으로 특정 프레임워크에 종속하지 않은 애플리케이션을 구성하기 위해서 사용한다.<br>javax.inject-x.x.x.jar파일이 추가되어야 사용가능하다.<br>이름에 맞춰서 빈을 연결한다. |
+
++ 멤버변수, setter, constructor, 일반 method에 사용가능하지만 @Resourse만 일반 메소드에 사용하지 못한다.
++ 필자의 경우 일반적으로 @autowired 어노테이션을 사용하였다.
 
 ## Spring Boot
 
