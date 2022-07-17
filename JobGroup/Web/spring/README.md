@@ -285,6 +285,7 @@ DI를 설정하는데 메타정보의 표현 방식에 따라 크게 3가지 방
 + 빈 의존 관계 설정 Annotation
   + 멤버변수에 직접 정의하는 경우 setter method를 만들지 않아도 된다.
   + Spring Explorer나 Bean Graph에서 의존관계나 빈 등록 상태를 확인할 수 있다.
+  + 만일 동일 타입의 빈이 여러 개인데 @autowired를 사용하는 경우 @Qulifier("name")을 사용하면 된다.
 
 | 어노테이션 | 적용 대상 |
 | -- | -- |
@@ -365,12 +366,51 @@ public class GuestBookServiceImpl implements GuestBookService {
 
 필자는 기본적으로 필드 인젝션을 활용하였다.
 
+## AOP
+
+어우.. 이해는 가는데.. 정리를 어떻게 해야할지.. 어음..
+
 ## Spring MVC 모델
 
-pom.xml에서 라이브러리나 프로젝트 의존성을 추가한.. 것 같다.   
-220414(목) 코딩 Live 강의 Java 전공 트랙 오후 3 DI - Annotation 15분 전 내용들 확인
+### Controller
 
++ 클라이언트의 요청을 처리
++ @Controller와 @RequestMapping을 활용하여 컨트롤러와 함수 단위의 매핑 가능
+	+ @Controller는 클래스에만, @RequestMapping은 클래스와 함수에 적용 가능
+	+ 같은 URL요청이라도 HTTP method에 따라 서로 다른 메소드를 매핑
+	+ URL과 HTTP method에 따라 적절한 함수를 찾지 못하면 404에러
++ Controller 함수는 다양한 파라미터를 object로 받을 수 있다.
++ DefaultAnnotationHandlerMapping과 AnnotationHandlerAdapter를 사용
+	+ Spring 3.0부터는 기본 설정이 되어 별도의 추가없이 사용 가능
 
+컨트롤러의 모든 파라매터를 작성하기는 어려워서 자주 사용하는 것만 정리하면 아래와 같다. 
+| parameter Type | 설명 |
+| --- | --- |
+| @RequestParam annotation 적용 파라미터 |  |
+| @RequestBody annotation 적용 파라미터 | HTTP 요청의 body 내용에 접근할 때 사용 |
+| Map, Model, ModelMap | view에 전달할 model data를 설정할 때 사용 |
+| DTO |  |
+	
+컨트롤러의 return type 종류는 아래와 같다.
+| Return Type | 설명 |
+| --- | --- |
+| ModelAndView |  |
+
+### View
+
++ 클라이언트에 보낼 응답 페이지
++ 컨트롤러로부터 받은 논리적 View 데이터를 통해 JSP 파일 매핑
+	+ ViewResolver가 논리적 View에 접두사(prefix)와 접미사(suffix)를 붙여 컨트롤러에게 알려준다.
+	+ 예를 들어 논리 view가 list, 접두어가 /WEB-INF/views/board/, 접미사가 .jsp라면   
+	  뷰 리졸버는 /WEB-INF/views/board/list.jsp를 반환한다.
++ 컨트롤러는 ModelAndView 혹은 String 리턴 타입을 통해서 논리 view 데이터를 뷰에게 보낸다.
+	+ 컨트롤러가 Map이나 void를 반환하게 되는 경우 자동으로 해당 함수의 @RequestMapping의 문자열이 논리 view가 된다.
++ 논리 view 앞에 `redirect:`를 붙여주면 forward 되지 않고 redirect가 된다.
+
+### Model
+
++ View에 전달하는 데이터
++ Map, Model, ModelMap을 통해 생성이 가능
 
 ## Spring Boot
 
