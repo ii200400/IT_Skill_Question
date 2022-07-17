@@ -282,8 +282,9 @@ DI를 설정하는데 메타정보의 표현 방식에 따라 크게 3가지 방
 | @Controller | MVC Controller에 사용, 스프링 웹 서블릿에 의해 웹 요청을 처리하는 컨트롤러 빈으로 선정 |
 | @Component | 위의 그 어느곳에도 분류되지 않는 일반적인 경우 |
 
-+ 빈 의존 관계 설정
++ 빈 의존 관계 설정 Annotation
   + 멤버변수에 직접 정의하는 경우 setter method를 만들지 않아도 된다.
+  + Spring Explorer나 Bean Graph에서 의존관계나 빈 등록 상태를 확인할 수 있다.
 
 | 어노테이션 | 적용 대상 |
 | -- | -- |
@@ -293,6 +294,83 @@ DI를 설정하는데 메타정보의 표현 방식에 따라 크게 3가지 방
 
 + 멤버변수, setter, constructor, 일반 method에 사용가능하지만 @Resourse만 일반 메소드에 사용하지 못한다.
 + 필자의 경우 일반적으로 @autowired 어노테이션을 사용하였다.
+
+어노테이션을 활용하여 만든 xml 설정파일과 빈에 등록되는 클래스 파일 일부는 아래와 같다.
+
+`ApplicationConfig.xml`
+```
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:c="http://www.springframework.org/schema/c"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+
+<!-- context:component-scan base-package 내의 적절한 어노테이션이 붙은 클래스를 빈으로 등록한다.  -->
+	<context:component-scan base-package="com.ssafy.model"></context:component-scan>
+
+</beans>
+```
+
+`GuestBookMain.java`
+```
+public class GuestBookMain {
+
+	public static void main(String[] args) throws IOException {
+		
+		ApplicationContext context = new ClassPathXmlApplicationContext("com/ssafy/configuration/applicationContext.xml");
+		GuestBookService guestBookService = context.getBean(GuestBookServiceImpl.class);
+		
+		guestBookService.method();
+		
+		...
+		
+	}
+}
+```
+
+`GuestBookServiceImpl.java`
+```
+@Service()
+public class GuestBookServiceImpl implements GuestBookService {
+
+	@Autowired
+	private GuestBookDao guestBookDao;
+	
+	...business logic...
+}
+```
+
+다른 파일(guestBookDao이나 guestBookDao)은 생략한다.
+
+@Autowired 를 활용해서 의존 관계를 설정하는 방법은 아래와 같이 3가지가 있다.
+```
+// 필드 인젝션
+// @Autowired   
+// MyDao dao;
+	
+// setter 인젝션
+// @Autowired    
+// public void setDao(MyDao dao) {
+//     this.dao = dao;
+// }
+	
+// 생성자 인젝션
+// @Autowired  
+// public MyServiceImpl(MyDao dao) {
+//	   this.dao = dao;
+// }
+```
+
+필자는 기본적으로 필드 인젝션을 활용하였다.
+
+## Spring MVC 모델
+
+pom.xml에서 라이브러리나 프로젝트 의존성을 추가한.. 것 같다.   
+220414(목) 코딩 Live 강의 Java 전공 트랙 오후 3 DI - Annotation 15분 전 내용들 확인
+
+
 
 ## Spring Boot
 
