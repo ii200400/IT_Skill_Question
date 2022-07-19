@@ -430,5 +430,7 @@ mybatis와 다르게 REST api를 구현하기 위해 만드는지 뷰나 설정�
 [Spring Boot](https://spring.io/projects/spring-boot)
 
 
+### Lombok
 
-
+프로젝트에서 사용할 예정
+두 자바 빈이 @autowired로 서로 가리킨다면 문제가 되고 단위 테스트도 어려워서(?) 롬복을 사용한다고 함
