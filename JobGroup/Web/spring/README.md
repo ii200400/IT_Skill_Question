@@ -366,7 +366,7 @@ public class GuestBookServiceImpl implements GuestBookService {
 
 필자는 기본적으로 필드 인젝션을 활용하였다.
 
-## AOP
+## AOP(Aspect Oriented Programming, 관점지향 프로그래밍)
 
 어우.. 이해는 가는데.. 정리를 어떻게 해야할지.. 어음..
 
@@ -429,8 +429,17 @@ mybatis와 다르게 REST api를 구현하기 위해 만드는지 뷰나 설정�
 
 [Spring Boot](https://spring.io/projects/spring-boot)
 
+### mybatis
+
+정리 필요
 
 ### Lombok
 
 프로젝트에서 사용할 예정
 두 자바 빈이 @autowired로 서로 가리킨다면 문제가 되고 단위 테스트도 어려워서(?) 롬복을 사용한다고 함
+
+### Spring Security 와 OAuth 2.0 와 JWT
+
+언제 이해하지.. 하하;
+
+https://velog.io/@tmdgh0221/Spring-Security-%EC%99%80-OAuth-2.0-%EC%99%80-JWT-%EC%9D%98-%EC%BD%9C%EB%9D%BC%EB%B3%B4
