@@ -125,11 +125,13 @@ WAS는 메모리에 **객체 형태**로 세션을 관리하며 메모리가 허
 ![image](https://user-images.githubusercontent.com/19484971/178147676-51b16d81-ac5e-43c6-97df-2453a741515e.png)   
 (model 1 architecture)
 
-웹 서버는 언어를 이해할 수 없기 때문에 어플리케이션 서버에게 로직을 맡기곤 했는데 요즘의 백엔드는 두 기능을 모두 가지는 서버인 Web Application Server(WAS 일명 와스)를 가지는 경우도 있다고 많다고 한다.
+웹 서버는 언어를 이해할 수 없기 때문에 어플리케이션 서버에게 로직을 맡기곤 했는데 요즘의 백엔드는 두 기능을 모두 가지는 서버인 Web Application Server(WAS 일명 와스)를 가지는 경우도 있다고 많다.
 
 필자의 경우 교육과정에 따라 이클립스에서 Dymamic Web Project로 프로젝트(웹 어플리케이션)를 생성하고 무료 WAS인 Tomecat(톰캣) 9.0.60 버전을 사용하게 되었다.
 
 중간에 Dto(data transfer object)와 Vo(value of)에 대해서 추가로 설명해주셨는데, DTO는 작업을 처리하기 위해서 사용자로부터 받는 데이터 객체(일반적으로 DB 테이블 중 하나와 같은 것)이고 VO는 응답 데이터를 반환하기 위해서 DB로부터 받은 데이터 객체(DTO와 같을 수도 있고 JOIN을 통해 DB 테이블에 없는 객체일 수 있는 것)라고 설명해주셨다.
+
+조금 더 자세한 내용은 [JSP의 MVC](https://github.com/ii200400/IT_Skill_Question/tree/master/JobGroup/Web/JSP#%EC%9B%B9-%EB%94%94%EC%9E%90%EC%9D%B8-%ED%8C%A8%ED%84%B4)에 정리되어있다.
 
 ## Get vs Post
 
