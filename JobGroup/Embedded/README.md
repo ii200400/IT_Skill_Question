@@ -29,7 +29,44 @@
 
 - [라즈베리파이 GPIO 핀 번호](https://fishpoint.tistory.com/6181)
 
-## SSH
+## SSH를 통해 라즈베리파이 파일을 VisualStudio에서 확인하기
+
+그 강의에서 컨설턴트님이 환경설정에 대해 알려준 내용을 정리한 내용
+
+라즈베리파이의 SSH 설정을 켜주세요. (VNC 아니여도 raspi-config 명령어를 통해 설정 가능)  
+<img src="https://user-images.githubusercontent.com/19484971/181669292-722f7fc7-ce79-44bc-b296-47a20e180049.png"  width="400">
+
+VS에서 아래의 Extension을 설치합니다.  
+<img src="https://user-images.githubusercontent.com/19484971/181669335-ddf66546-fabe-4e3a-8e0b-d3c2cb86cb40.png"  width="400">
+
+Remote Explorer에 들어가서 ‘+’를 누릅니다.  
+<img src="https://user-images.githubusercontent.com/19484971/181669353-16db619e-4e85-4b9d-b020-e1dbaf18eded.png"  width="400">
+
+‘ssh 계정명@ip주소 -A’ 를 입력해줍니다.  
+<img src="https://user-images.githubusercontent.com/19484971/181669361-ddcbf029-3c01-4085-aef4-fc1153d17ab8.png"  width="600">
+
+기본 구성파일인 가장 위 선택지를 선택  
+<img src="https://user-images.githubusercontent.com/19484971/181669369-d2c490fa-e3c5-46c6-8664-9346b6cc701c.png"  width="600">
+
+왼쪽에 ssh가 추가된 것을 확인(안 생기면 조금 기다려보자)  
+해당 호스트로 접속하는 창 생성(이미 접속되었다면 아래와 같이 컴퓨터에 체크 표시가 생성된다.)  
+<img src="https://user-images.githubusercontent.com/19484971/181669383-2ac8cf69-6254-4b07-841b-89ee4decc47c.png"  width="400">
+
+계정에 대한 암호 입력  
+<img src="https://user-images.githubusercontent.com/19484971/181669397-086c78e5-32b6-488a-ae29-ada1b7ec0233.png"  width="400">
+
+explorer에서 아래의 버튼을 클릭하면  
+<img src="https://user-images.githubusercontent.com/19484971/181669429-fcf54054-5878-48f9-8ce2-93c5fb7a5acb.png"  width="400">
+
+원격으로 폴더를 확인할 수 있다.  
+<img src="https://user-images.githubusercontent.com/19484971/181669462-25086584-a8b4-4271-bb41-a91de47c32db.png"  width="400">
+
+편하게 VS에서 자신의 코드가 에러나는 것을 확인해보자!  
+<img src="https://user-images.githubusercontent.com/19484971/181669814-c98b9afa-259e-4bb5-82a2-e0350dfdd552.png"  width="800">
+
+참고
+
+- https://shshsh.tistory.com/163
 
 ## get-apt와 apt의 차이
 
