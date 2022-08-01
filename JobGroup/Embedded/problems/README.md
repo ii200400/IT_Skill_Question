@@ -3,13 +3,15 @@
 ## SHA 에러
 
 pip 설치 중에
+
 <img src='https://user-images.githubusercontent.com/19484971/182136005-d0bfacde-5591-491c-817e-8b2511313e82.png' width=600>
 
 위와 같은 에러가 생겼다면.. 그런데 그 에러가 `www.piwheels.org/simple` 이라는 곳에서 패키지를 가져오는 도중에 생긴 것이라면 아래의 글을 따라하는 것이 효과가 있을 수도 있다.
 원인은 위의 서버에서 제공하는 패키지들의 파일이.. 깨지거나 이상하다는 것..   
 필자가 sha까지 강제로 맞추면서 다운로드를 해주어도 zip 파일이 잘못되었다는 오류만 볼 수 있었다. (사진 찍어둘껄..)
 
-`pip config -v list` 를 입력하면 pip 설정파일을 볼 수 있다. 본인의 경우 아래와 같다.   
+`pip config -v list` 를 입력하면 pip 설정파일을 볼 수 있다. 본인의 경우 아래와 같다.
+
 <img src='https://user-images.githubusercontent.com/19484971/182135244-c1ec8067-3392-444e-8b86-6afa143f3f08.png' width=600>
 
 도중에 봤던 스택오버플로우(링크는 못 찾겠다)에 따르면 site – user - global 순으로 설정파일을 읽으며 설정이 겹친다면 뒤에 있는 파일에 의해서 덮어 씌워진다(override)고 하였다. 본인의 경우 `/etc/pip.conf` 에만 ‘extra-index-url=https://www.piwheels.org/simple’ 한 줄이 적혀 있었으므로 각자 파일을 확인하고 어떤 설정이 있는지 확인하고 설정을 변경해주자.
