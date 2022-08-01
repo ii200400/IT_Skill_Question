@@ -6,7 +6,17 @@
 
 - [경험한 에러를 정리한 페이지](./problems/README.md)
 
-## Raspberry pi
+## Raspberry pi 환경설정
+
+1. 고정 IP 설정 방법
+그 강의의 강의장은 와이파이를 통해 데이터를 주고 받는 것을 제한해 두었는데 이 때문에 특정한 IP를 사용하지 않으면 SSH나 VNC를 사용하지 못해서 아래의 블로그를 참고하였다.
+https://ansan-survivor.tistory.com/44 참고
+
+2. Raspberry pi 환경설정   
+https://sergeswin.com/1268/ 참고.. 하긴 했는데 나중에 보니   
+<img src="https://user-images.githubusercontent.com/19484971/182140581-762441bb-2ad3-4aa1-a3c8-dd497d1f3107.png"  width="400">   
+설치할 OS를 선택하고 언어와 wifi 자동연결 등 다양한 초기설정을 입력할 수 있는 설정 버튼이 있었다..!!   
+<img src="https://user-images.githubusercontent.com/19484971/182141611-fc3d5446-8fdd-4dc5-8cc8-332b26f79ffb.png"  width="400">
 
 ## GPIO(General Purpose Input/Output)
 
