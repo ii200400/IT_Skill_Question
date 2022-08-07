@@ -14,7 +14,5 @@ https://fritzing.org/ 에서 아두이노 회로도 작성 오픈소스 툴을 �
 
 [해당 포럼 링크](https://forum.fritzing.org/t/raspberry-pi-4-model-b/8622/5)
 
-
-
 + 참고 블로그
     + https://egeasy.tistory.com/entry/%EC%95%84%EB%91%90%EC%9D%B4%EB%85%B8-%EA%B0%9C%EB%B0%9C-%ED%99%98%EA%B2%BD%EC%86%8C%ED%94%84%ED%8A%B8%EC%9B%A8%EC%96%B4-%ED%9A%8C%EB%A1%9C%EB%8F%84-%EC%8B%9C%EB%AE%AC%EB%A0%88%EC%9D%B4%EC%85%98-%EA%B5%AC%EC%B6%95%ED%95%98%EA%B8%B0

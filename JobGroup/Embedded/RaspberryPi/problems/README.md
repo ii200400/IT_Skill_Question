@@ -59,6 +59,8 @@ no-cache-dir=true 설정의 경우에는 본인이 사용하고 싶어서 넣은
 
 [google assistant 서비스 공식 홈페이지](https://developers.google.com/assistant/sdk/guides/service/python/embed/setup?hardware=rpi)와 [참고하는 동영상](https://www.youtube.com/watch?v=wavlbH0M1Zg)을 보면서 라즈베리에 google assistant 서비스를 적용해보려고 했다.
 
+### 에러 1
+
 그런데 설치 중 `python -m pip install --upgrade google-assistant-sdk[samples]
 ` 명령어에 아래와 같은 버그가 발생하였다.
 
@@ -93,5 +95,17 @@ ERROR: Could not build wheels for cryptography, which is required to install pyp
 [cryptography 공식홈페이지의 FQA](https://cryptography.io/en/35.0.0/faq/#installing-cryptography-fails-with-error-can-not-find-rust-compiler)
 
 다양한 에러 중에서 원하던 키워드 `error: Can not find Rust compiler`을 찾을 수 있었고 안내하는 링크를 따라 Rust를 설치하여 해결하였다.
+
+### 에러 2
+
+대충 긴 에러가 나왔는데 중요한 부분은 아래의 에러였다.
+
+ImportError: /lib/arm-linux-gnueabihf/libc.so.6: version `GLIBC_2.33' not found
+
+구글링하다가 아래의 글을 봤는데 해결이 되어서 그대로 진행하였다.
+
+https://groups.google.com/g/grpc-io/c/T91EyO81c8I?pli=1
+
+참고로 numpy를 다운로드받거나 다른 것을 다운로드 받으라는 글도 있었는데, 그것들은 다운로드 받을 때 다른 에러가 났다;
 
 동영상은 16분인데.. 나는 왜 4시간이나.. ^ㅠ^
