@@ -16,3 +16,5 @@ Wemos D1 mini 보드에 초음파 센서가 작동하는지 확인하고 wifi로
 ## WebSocket 통신 고정 IP
 
 WebSocket에서 고정 IP를 설정할 수 있다고 많이 [작성](https://blog.naver.com/smserial/221310020331)되어있는데.. config하면 false만 반환되어 적용이 안되고 있다.
+
+[유투브 동영상](https://www.youtube.com/watch?v=1BrsD2fxSpc)을 참고해서 서브넷과 게이트웨이를 맞춰주었고 설정도 추가로 변경해보았지만 변경되지 않았다.
