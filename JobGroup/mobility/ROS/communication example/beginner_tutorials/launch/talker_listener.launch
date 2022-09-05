@@ -1,0 +1,6 @@
+<launch>
+    <!-- talker.py 실행 음.. 파일명을 넣는 type에는 확장자까지 작성해야 한다. name은 노드명을 의미한다. -->
+    <node pkg="beginner_tutorials" type="talker.py" name="talker" />
+    <!-- listener.py 실행, 터미널(screen)에 output 출력 -->
+    <node pkg="beginner_tutorials" type="listener.py" name="listener" output="screen" />
+</launch>
