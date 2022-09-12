@@ -37,6 +37,29 @@
 
 <img src="https://user-images.githubusercontent.com/19484971/188321971-693edcd8-8503-4d19-b2b0-2cb6c3e59058.png" width=600>
 
+- catkin_ws   
+작업공간
+    - devel   
+    빌드 된 메시지 파일 및 헤더 파일, 라이브러리 파일, 실행 파일들 존재
+    - build   
+    빌드 환경 파일들 존재
+    - src   
+    패키지 파일들 존재
+        - CMakeList.txt   
+        workspace에 대한 cmake 빌드 설정파일
+        - Package_name   
+        패키지 파일
+            - scripts   
+            파이썬 파일들 존재
+            - include   
+            패키지 헤더 파일들 존재
+            - package.xml
+            패키지의 메타 정보를 제공하는 파일
+            - Launch   
+            launch 파일들 존재
+            - CMakeList.txt   
+            패키지 cmake 빌드 설정파일
+
 - ROS 명령어
 
 <img src="https://user-images.githubusercontent.com/19484971/188322131-dca9cce9-dded-4a69-af47-cf3d7863ed40.png" width=600>

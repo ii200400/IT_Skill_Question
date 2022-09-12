@@ -4,8 +4,7 @@
 
 - proportional–integral–derivative controller (PID controller)의 약어
     - three-term controller 라고도 함
-- 다양한 제어 시스템에서 널리 사용되는 제어 메커니즘
-    - 피드백(feedback)을 사용하는 제어루프(control loop) 라고 언급함
+- 다양한 제어 시스템에서 널리 사용되는 자동 피드백 제어 방법
 
 ## 기본 연산
 
