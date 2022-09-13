@@ -107,36 +107,10 @@ UTM(Universal Transverse Mercator) 좌표계
 - 영국의 그리니치 천문대를 기준으로 동서로, 적도를 기준으로 남북으로 구분
     - 천문대가 지나는 위치를 경도 0˚으로 하며 해당 자오선은 본초자오선으로 표기
     - 우리나라는 UTM 좌표계에서 `S52`에 위치
+- 기본적으로 TM 좌표계와 거의 같고 매개변수 몇 가지만 다름
 
 <img src="https://user-images.githubusercontent.com/19484971/188798229-95918b42-cd64-45f5-ae16-4c9a7deb651e.png" width=500>
 
 <img src="https://user-images.githubusercontent.com/19484971/188798441-5cd20cd0-0fe5-4e3c-86fb-ee0747b3fce8.png" width=300>
 
 > 출처 : https://ko.wikipedia.org/wiki/UTM_%EC%A2%8C%ED%91%9C%EA%B3%84
-
-# Orientation
-
-[참고 블로그](https://hub1234.tistory.com/21)
-
-- 물체가 공간에서 얼마나 회전한 상태인지 표시하는 방식
-- 비슷한 용어로는 angular position, attitude
-- 대표적으로 오일러 각도(Euler Angle), Quaternion(쿼터니언)이 존재
-
-## Euler Angle
-
-- 물체의 자세를 Roll Pich Yaw 3축으로 표현
-- 짐벌락 현상이 존재
-    - 두 개 이상의 회전축이 겹쳐 특정 축으로 회전이 불가능해지는 현상
-
-<img src="https://upload.wikimedia.org/wikipedia/commons/4/49/Gimbal_Lock_Plane.gif" width=200>
-
-> 출처 : https://en.wikipedia.org/wiki/Gimbal_lock
-
-## Quaternion
-
-- 오일러 각도의 짐벌락 현상을 피하기 위해 고안된 방식
-- x, y, z 3개의 벡터와 w 하나의 스칼라 값으로 표현
-- 어떤 회전각이든 계산가능하며 빠른 연산이 가능
-- 사람이 이해하기 어려움
-    - 이 때문에 사람에게 보일때는 오일러 각도로 변환해서 보이기도 함
-    - 이미 만들어놓은 함수를 사용할 것을 강력히 권장할 정도로 이해가 어려움

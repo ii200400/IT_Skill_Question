@@ -11,7 +11,10 @@
 - [판단(Judgment)](./judgment/README.md)
 - [제어(Control)](./control/README.md)
 
+외부 페이지
+
 - 정보 공유를 위한 [노션](https://www.notion.so/5a5568486fbd4730ab43569cce17472c)
+- [MORAI SIM Standard User Manual](https://help-morai-sim-en.scrollhelp.site/morai-sim-standard-en/)
 
 ## 자율주행이란?
 
