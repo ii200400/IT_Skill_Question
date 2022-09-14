@@ -119,4 +119,70 @@ mgeo.py 실습 파일은 정밀도로지도 데이터만을 받아오는 실습�
 
 작은 흰색 점으로 보이는 것이 link에 들어가있던 points들이고 잘 안보이지만 초록 점으로 보이는 것이 node의 point이다.
 
-## 
+## 주행 경로 저장
+
+차량의 위치 데이터를 받아 txt 파일로 저장하는 실습(path_maker.py)을 진행한다. 저장한 txt 파일은 경로 계획에서 사용할 수 있다.
+
+과정은 다음과 같다.
+
+1. 원하는 경로의 txt 파일 생성 혹은 지정
+1. (gpsimu_parser.py 코드에서 Publish 하는) Odometry 메세지 데이터를 Subscrib
+1. Odometry 데이터의 조건이 맞으면 현재 위치의 좌표를 txt에 저장
+
+결과화면은 아래와 같다.
+
+<img src="https://user-images.githubusercontent.com/19484971/189822182-e30a2b43-42c1-4146-81a4-2b216dddabb2.png" width=500>
+
+path_maker.txt(혹은 원하는 txt파일)에 차량이 지나간 좌표가 저장된 것을 볼 수 있다.
+
+저번 실습도 `rosrun` 할 것이 많았는데(rosbridge까지 5개;) 이번에는 launch 파일로 한번에 실행해서 실습해보았다. 그런데 혼자서 rosbridge보다 roslaunch를 먼저하는 바람에 혼자서 해매었다;
+
+launch 파일은 다음과 같다. (실습 코드는 아니니 괜찮을 것 같아서 올렸다.)
+
+```
+<launch>
+    <node pkg="pkg_2" type="gpsimu_parser.py" name="gpsimu_parser" />
+    <node pkg="pkg_2" type="mgeo_pub.py" name="mgeo_pub"  />    
+    <node pkg="pkg_2" type="tf_pub.py" name="tf"  />
+    <node pkg="pkg_2" type="path_maker.py" name="path_maker"  />
+
+    <node pkg="rviz" type="rviz" name="rviz" args="-d $(find pkg_2)/rviz/kcity_rviz.rviz" />
+</launch>
+```
+
+마지막에 있는 rviz는 당연히 rviz를 키는 것이지만 args 내에 설정값이 있는 것인지 따로 설정을 하지 않아도 세팅이 이미 되어 있는 것을 볼 수 있었다.
+
+<img src="https://user-images.githubusercontent.com/19484971/189823939-bf091dee-eec4-441d-9855-9a5175262ffd.png" width=500>
+
+조작하지 않았던 display 설정과 topic 설정들이 이미 적용되어 있었다.
+
+## 간단한 경로 계획을 통한 주행
+
+global_path_pub.py 는 위에서 txt 파일에 저장한 Path 데이터를 global Path (전역경로) 로 읽어오는 실습코드, local_path_pub.py 는 global Path (전역경로) 데이터를 받아 Local Path (지역경로) 를 만드는 실습코드이다.
+
+Local Path(지역경로) 는 global Path(전역경로) 에서 차량과 가장 가까운 포인트를 시작으로 전역경로의 경로 일부로 만들어진다.
+
+의외인 것은 지역경로, 전역경로, txt의 Path 데이터 라고 말하지만 txt의 Path 데이터는 그냥 시뮬레이션 좌표계의 x, y, z을 String으로 저장한 것이고 지역경로와 전역경로는 Path라는 클래스에 txt의 데이터를 적절히 넣어 만든다.
+
+과정은 다음과 같다.
+
+1. 센서 데이터를 송신하는 실습 코드(gpsimu_parser.py)를 실행하여 Odometry 메세지 Publish
+1. 브로드캐스팅을 하는 실습 코드(tf_pub.py)를 실행하여 Odometry 메세지를 TF 브로드캐스팅
+1. MGeo 데이터를 가져와 Link와 Node 정보를 Point Cloud 형식 데이터로 변환하는 실습 코드(mgeo_pub.py)를 실행하여 Link와 Node 정보를 Publish
+1. txt 파일로 저장한 Path 데이터를 global Path (전역경로) 로 읽어 publish (global_path_pub.py)
+1. global Path와 Odometry 메세지를 subscribe 하여 얻은 데이터들로 Local Path 메세지 Publish (local_path_pub.py)
+
+결과화면은 아래와 같다.
+
+<img src="https://user-images.githubusercontent.com/19484971/189942288-bcfd85d4-e2f0-46a4-8c80-60124f6775b6.png" width=800>
+
+<img src="https://user-images.githubusercontent.com/19484971/189943485-d4080d00-2121-4319-8781-b83c0fc26510.png" width=800>
+
+초록색이 전역경로, 빨간색이 지역경로이다.
+
+객체의 객체의 객체의 속성을 찾고 알아보는 과정이 개인적으로는 귀찮았다. (Path의 PoseStamped의 Pose의 Position의 x, y, z 속성이라니..) 찾기 어렵지는 않았으나, ctrl+클릭을 모르고 주석을 읽는 습관이 없다면 진행이 매우 어려웠을 것 같다. 
+
+## dijkstra 알고리즘
+
+그래프 노드 간 최단 경로를 찾는 유명한 알고리즘인 dijkstra 알고리즘으로 Mgeo 데이터에서 시작 Node 와 목적지 Node의 전역경로를 만드는 실습
+
