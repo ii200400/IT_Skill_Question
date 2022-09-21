@@ -33,6 +33,10 @@
 1. topic이든 service든 시뮬레이션은 한번 명령을 받으면 그 다음 명령을 받을 때 까지 현 명령을 계속 수행한다.
 2. 위의 점 때문에 특정 명령을 유지할 시간(rate)를 잘 설정하지 않으면 너무 짧게 수행하거나 너무 오래 수행할 수 있다.
 
+- ROS 개발환경 구조
+
+<img src="https://user-images.githubusercontent.com/19484971/190839788-b1b1af62-c61b-41ea-939e-1823cfd7ae06.png" width=400>
+
 - ROS 패키지 구조
 
 <img src="https://user-images.githubusercontent.com/19484971/188321971-693edcd8-8503-4d19-b2b0-2cb6c3e59058.png" width=600>
@@ -65,3 +69,5 @@
 <img src="https://user-images.githubusercontent.com/19484971/188322131-dca9cce9-dded-4a69-af47-cf3d7863ed40.png" width=600>
 
 ros 명령어들은 터미널이 어느 위치에 있던지 ros 패키지 기준으로 바로 명령이 가능하다는 장점이 있다.
+
+이해는 되었지만 정리를 할 정도로 이해가 잘 된 상태는 아니다. 추후에 정리할 예정

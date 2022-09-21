@@ -186,3 +186,49 @@ Local Path(지역경로) 는 global Path(전역경로) 에서 차량과 가장 �
 
 그래프 노드 간 최단 경로를 찾는 유명한 알고리즘인 dijkstra 알고리즘으로 Mgeo 데이터에서 시작 Node 와 목적지 Node의 전역경로를 만드는 실습
 
+두 실습 코드가 있는데 mgeo_dijkstra_path_1.py는 dijkstra 알고리즘으로 코드에서 지정된 좌표의 최단 global path와 현재 차량 기준으로 local path를 만드는 실습이고
+
+mgeo_dijkstra_path_2.py는 Rviz의 화면 상단에서 2D Pose Estimate와 2D Nav Goal로 두 좌표를 지정하여 path를 만드는 실습이다.
+
+과정은.. 생략한다 바쁘다.
+
+명세서 2 실습 7 과정 추가 요망
+
+결과화면은 아래와 같다.
+
+mgeo_dijkstra_path_1.py 실습코드 적용 시 캡쳐화면
+
+<img src="https://user-images.githubusercontent.com/19484971/190154660-03d8e235-91b2-4bd1-8a2f-075e09edb201.png" width=800>
+
+mgeo_dijkstra_path_2.py 실습코드 적용 시 gif
+
+<img src="https://user-images.githubusercontent.com/19484971/190168388-e04e176a-6050-4b3f-8341-2ea3fd9b6ba7.gif" width=800>
+
+## pure pursuit
+
+핸들링 자동 조정
+차량의 차량의 횡 방향 제어 예제
+시간이 없어서 생략
+
+## pid control
+
+위 실습에서 속도 자동 조절이 추가
+차량의 차량의 종 횡 방향 제어 예제
+위와 동문
+
+## velocity planning
+
+위 실습에서 차량이 달리고 있는 도로의 곡률에 기반하여 계산하여 속도를 조절하는 기능이 추가된 실습
+
+위와 같이 차량의 차량의 종 횡 방향 제어 예제
+
+## advanced pure pursuit
+
+위 실습에서 말 그대로 핸들링을 조절하는 pure pursuit을 조금 더 효율적으로 고친 것, 바로 속도에 따라서 목표로 하는 Path를 지정하는 것이다.
+
+ ## adaptive cruise control
+
+ 위 실습에서 앞 차와의 간격을 유지를 위해서 속도를 조절하는 코드(acc)가 추가된 실습
+
+
+ 후욱.. pure pursuit 아래로는 거의 코드가 비슷해서 결과도 비슷한데 튜닝할 값이 너무 많아서 거의 차이가 없거나 잘 진행하지 못하고 있다.

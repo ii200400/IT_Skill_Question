@@ -32,6 +32,7 @@
         - 1차 함수 궤적보다 훨씬 적은 순각 각도 변화량으로 안정적으로 차량 변경이 가능하도록 한다.
         - <img src="https://user-images.githubusercontent.com/19484971/188302968-0469cdfd-cde3-4ab7-ac7d-1b6353ade3bd.jpg" width=300>
         > < 경로 생성 - 3차 함수 궤적 >
+    - 거의.. 유일한? [논문](https://d-nb.info/1108045847/34)을 구글링해서 찾을 수 있었는데 곡률이 있는 도로에서의 차선변경을 고안한 것이라서 너--무 어렵다.
 
 ### 경로 추적
 
@@ -45,6 +46,6 @@
     - 자세한 내용을 [MathWorks](https://kr.mathworks.com/help/robotics/ug/pure-pursuit-controller.html)에서 찾아볼 수 있다.
         - 대충 전방주시거리를 너무 멀리하면 조향이 느려지고 너무 가깝게 하면 과한 조향으로 궤적을 따라가지 못한다는 내용이 있다.
 
-<img src="https://user-images.githubusercontent.com/19484971/188305260-43d53167-2ddd-4693-8700-dab1fd65b501.png" width=400>
+<img src="https://user-images.githubusercontent.com/19484971/188305260-43d53167-2ddd-4693-8700-dab1fd65b501.png" width=600>
 
 `전방주시거리`라는 단어를 설명해주시지 않고 진행하셔서 처음에는 이미지의 변수가 어떤 의미인지 몰랐다;
