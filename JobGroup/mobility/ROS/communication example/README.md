@@ -41,6 +41,10 @@ $ sudo rosdep init
 $ rosdep update
 $ echo “source /opt/ros/melodic/setup.bash” >> ~/.bashrc
 
+# ros basic setting
+$ source ~/.bashrc
+$ sudo apt install python-rosinstall python-rosinstall-generator python-wstool build-essential
+$ sudo apt-get install ros-melodic-velodyne
 ```
 
 위의 명령어를 사용하면 잘 설치되었는지 확인이 가능하다.
