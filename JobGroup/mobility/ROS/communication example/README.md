@@ -29,7 +29,7 @@ $ sudo sh -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) ma
 
 # 여기서는 고정 IP 설정이 잘못되어있어 설치가 진행이 되지 않아 힘들었다... 네트워크 설정은 가장 아래에 정리하였다.
 $ sudo apt install curl
-$ curl -s https://raw.githubusercontent.com/ros/rosdistro/master/ros.asc | sudo apt-key add –
+$ curl -s https://raw.githubusercontent.com/ros/rosdistro/master/ros.asc | sudo apt-key add -
 
 # apt 업데이트 후 ros 설치!
 $ sudo apt update
@@ -313,3 +313,44 @@ morai 시뮬레이터 설정
 <img src="https://user-images.githubusercontent.com/19484971/187371029-77e065bc-fd05-4b98-826f-e472287d4b76.png" width=600>
 
 <img src="https://user-images.githubusercontent.com/19484971/187371155-eb55f97d-3bbb-49eb-a23f-c918124e5d9e.png" width=600>
+
+## remote pc 통신
+
+### 가상환경 우분투
+
+시뮬레이션과 ROS master를 한 컴퓨터에서 사용하니 테스트를 못 할 정도로 느려서 두 윈도우 컴퓨터 중 더 성능이 좋은 것을 시뮬레이션, 다른 하나를 ROS master를 담당하여 진행하기로 하였다.
+
+그런데.. ping부터 송수신이 안된다! 그래서 윈도우 방화벽을 해체하는 방법을 올린 [한 블로그](https://m.blog.naver.com/PostView.naver?isHttpsRedirect=true&blogId=rich0812&logNo=221466635613)의 글을 따라서 방화벽에 적용해보니 핑 테스트가 잘 진행되었다!
+
+찾아보니 [글](https://syuda.tistory.com/80)은 많았는데 검색 키워드를 잘 못 넣어서 잘 안찾아졌었다;
+
+블로그의 핵심 내용은 다음과 같다.
+
+<img src="https://user-images.githubusercontent.com/19484971/192696950-b8ffde92-cce4-4018-8f70-b295b5c5b703.png" width=500>
+
+그런데 한 가지 문제가 더 발생하였다. 윈도우끼리의 핑 테스트는 되었는데 시뮬레이션을 실행하는 윈도우 컴퓨터에서 ROS를 실행하는 윈도우 컴퓨터의 가상환경의 우분투로 핑 테스트가 안 된다. (살려줘..)
+
+즉, 아래와 같은 상황이다.
+
+- 시뮬레이션 windows <-> windows
+- 시뮬레이션 windows <- windows의 가상환경 우분투(ROS)
+
+이상하게도 시뮬 윈도우에서 보내는 핑을 ROS를 담당할 윈도우의 가상환경 우분투에서 받지 못하는 것 같았다.
+
+이 때 찾은 [한 블로그](https://dgblog.tistory.com/122)의 내용
+
+<img src="https://user-images.githubusercontent.com/19484971/192797509-cbf10b2d-8429-4b04-a8eb-00c66bcb9a20.png" width=400>
+
+... 명세서를 따라 치기만 할 때는 host-only라는 글을 봐도 정확한 이해도 못하고 그냥 실습하기만 급급 하였는데 다시보니 정말 깊은 의미가 있었다. host-only로 통신하려고 했는데 안되는게 맞았던 것!
+
+가상환경을 통한 우분투는 너무 느린 것 같아서 여기까지만 확인하고 멀티부팅으로 우분투 OS를 직접 설치해서 계속 진행하였다.
+
+## 멀티부팅 우분투
+
+우분투를 직접 설치한 후 ROS를 다시 설치하고 핑 테스트를 한 후(이미 방화벽을 위에서 해제하여서 잘 되었다.) 연결을 하니 잘 되었다.
+
+ROS를 설치하는 과정은 해당 페이지 가장 위의 부분과 똑같이 진행하였다.
+
+가장 어려운 것이 ROS를 다시 설치할때의 타이핑 실수였을 정도로 쉬웠다. 문제는 고정ip를 설정할 때마다 이유는 모르겠지만 네트워크 접속이 되지 않아서 ip가 바뀔때 마다 ROS ip를 바꿔주어야 한다는 점;
+
+시간이 되면 고정 ip로 바꾸어 ip를 변경하지 않아도 바로바로 시뮬을 통해서 실행할 수 있도록 하고 싶다.
