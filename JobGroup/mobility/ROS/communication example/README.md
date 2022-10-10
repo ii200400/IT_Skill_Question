@@ -152,7 +152,7 @@ $ chmod +x listener.py
 
 # 터미널 1 : 마스터 노드 실행
 $ roscd ./
-$roscore
+$ roscore
 
 # 터미널 2 : talker.py 실행
 $ rosrun beginner_tutorials talker.py

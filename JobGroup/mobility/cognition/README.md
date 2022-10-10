@@ -3,7 +3,9 @@
 카메라나 라이더(LiDar)와 같은 센서를 통해서 이미지나 각종 데이터를 입력받아 객체를 인식하고 객체가 무엇인지 분류하는 기술
 
 - [좌표계](./coordinate%20system/README.md)
+- [Orientation(강체의 방향)](./orientation/README.md)
 - [정밀도로지도](./precise%20road%20map/README.md)
+- [차선인지](./lane%20recognition/README.md)
 
 ## Deep learning object detection
 
@@ -242,3 +244,13 @@ LiDAR의 경우 채널에 따라서 최대 감지 거리가 변할 수 있다는
 또한 레이더의 경우 이론적으로는 확인하기 어려워 CAE라는 프로그램을 통해서 해석을 거쳐야 한다.
 
 <img src="https://user-images.githubusercontent.com/19484971/188318670-c0428d09-2408-4b73-9ae5-eff2ae4a33b4.jpg" width=600>
+
+## 라이더 클러스터
+
+센서파트의 라이다 부분을 맡게 되었다.
+
+클러스터라는 것을 군집화 작업을 해야 하는데 아래의 블로그를 참고하였다.
+
+esp라는 것이 높을수록 더 큰 영역을 하나의 군집으로, min_sample이라는 것이 높을수록 잡음 포인트로 간주한다.
+
+https://m.blog.naver.com/ssdyka/221273386455
