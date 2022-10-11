@@ -35,7 +35,7 @@
 
 - ROS 개발환경 구조
 
-<img src="https://user-images.githubusercontent.com/19484971/190839788-b1b1af62-c61b-41ea-939e-1823cfd7ae06.png" width=400>
+<img src="https://user-images.githubusercontent.com/19484971/194983568-b0835349-0e54-46d2-855b-a7a78648c945.PNG" width=300>
 
 - ROS 패키지 구조
 

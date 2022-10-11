@@ -1,5 +1,7 @@
 # ROS
 
+<img src="https://user-images.githubusercontent.com/19484971/194983568-b0835349-0e54-46d2-855b-a7a78648c945.PNG" width=300>
+
 그 강의 특화 프로젝트의 첫번째 명세서 내용을 기반으로 한다.
 
 ROS를 통해 topic과 service가 통신하는 예제를 진행하고 기록하기 위해 작성한다. morai 시뮬레이션과 연결하는 것이기 때문에 시뷸레이션이 없으면 ROS를 설치해도 진행을 할 수 없다.

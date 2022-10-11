@@ -61,7 +61,6 @@ GPS를 사용할 수 없는 터널 같은 구간이나 다른 센서를 활용�
 3차원 공간에 대한 정보 없이 단순 wraping시키는 것이기 때문에 정확한 좌표를 알 수 없어 LookUp table을 통해 특정 값으로 지정하거나 특정 함수를 활용하기도 한다.
 
 <img src="https://user-images.githubusercontent.com/19484971/194863338-4940f315-cfb3-4596-83d6-e29bc8d2f12d.png" width=600>
-![image]()
 
 ## Curve fitting
 
