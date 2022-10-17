@@ -6,6 +6,7 @@
 - [Orientation(강체의 방향)](./orientation/README.md)
 - [정밀도로지도](./precise%20road%20map/README.md)
 - [차선인지](./lane%20recognition/README.md)
+- [SVM(Surround View Monitor)](./SVM/README.md)
 
 ## Deep learning object detection
 
