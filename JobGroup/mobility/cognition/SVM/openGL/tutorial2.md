@@ -5,6 +5,7 @@
 아래는 이번 튜토리얼에서 알아두면 좋은 개념들이다. 어렵지 않으니 한번 쓱 읽어보자.
 
 - VAO(Vertex Array Object)
+	- 많은 양의 정점들을 GPU 메모리에 저장하기 위해 사용하는 객체
     - openGL에서 사용하는 객체 중 하나로 창이 생성되면(= OpenGL 컨텍스트 생성 후) 다른 OpenGL 호출 전에 해당 객체에 대한 작업을 먼저 진행한다.
     - 다른 튜토리얼에서 자세히 다루므로 이 튜토리얼에서는 단순히 정점을 배열로 저장하는 객체라고 생각하고 넘어가자.
 - 화면좌표(Screen Coordinates)
@@ -15,6 +16,22 @@
         - 편하게 오른손 법칙을 활용하면 X는 엄지손가락, Y는 검지손가락, Z는 가운데 손가락이라고 생각하자.
     - 화면의 중앙은 (0, 0, 0)이다.
         - 위에서 바라볼 때(z축 정보를 무시할 때), (-1,-1)은 화면의 왼쪽 하단 모서리이고 (1,-1)은 오른쪽 하단이고 (0,1)은 중간 상단이다.
+- 그래픽 파이프라인(graphics pipeline)
+	- 3D 좌표를 2D 좌표로 변환하는 작업과 2D 좌표를 색이 들어간 픽셀로 변환하는 작업을 한다.
+	- 여러 단계(작업)로 나뉘어 병렬로 실행될 수 있다.
+		- GPU를 통해 실행된다.
+		- 데이터를 빠르게 처리할 수 있고 수천 개의 작은 프로그램으로 나뉘기도 한다.
+		- 이 작은 프로그램들이라는 것은 **shaders**라고 불린다.
+		- 쉐이더는 OpenGL Shading Language (GLSL) 로 작성된다.
+	- 해당 작업은 커스텀이 가능하다.
+
+아래 사진은 그래픽 파이프라인의 모든 단계가 추상화된 모형이다. 파란색으로 칠해진 부분은 커스텀할 수 있는 쉐이더이다.
+
+<img src="https://user-images.githubusercontent.com/19484971/197345065-602c59c2-4fb5-4531-9469-0b6870386829.png" width=500>
+
+현대 OpenGL에서 최소한 vertex shader와 fragment shader는 직접 작성할 것을 요구하는데, 이는 GPU에 기본 vertex/fragment shader가 존재하지 않기 때문이라고 한다; 때문에 해당 튜토리얼은 시작하기 전에 알아두어야 할 것이 많은 것이다.
+
+위의 내용은.. 대부분의 내용을 생략한 것이고 자세한 과정을 알고 싶다면 [Learn OpenGL 번역] 2-4. 시작하기 - Hello Triangle](https://heinleinsgame.tistory.com/7?category=757483)를 참고하자.
 
 ## 삼각형 그리기
 
@@ -35,13 +52,15 @@ static const GLfloat g_vertex_buffer_data[] = {
 // vertex buffer 변수 생성
 GLuint vertexbuffer;
 // Generate 1 buffer, put the resulting identifier in vertexbuffer
-// 버퍼 1개를 생성해서 위의 변수의 포인터를 vertexbuffer에 넣는다. 등록시킨다는 것 같다.
+// 버퍼 1개를 생성하고 해당 버퍼의 ID(name이라고도 한다.)를 vertexbuffer에 저장한다.
 glGenBuffers(1, &vertexbuffer);
 // The following commands will talk about our 'vertexbuffer' buffer
-// 'vertexbuffer'를 buffer에 할당.. 하는 것 같다.
+// 'vertexbuffer'를 GL_ARRAY_BUFFER라는 유형의 버퍼에 `바인드` 한다. 
+// 바인딩(binding) : 프로그램에 사용된 구성 요소의 실제 값 또는 프로퍼티를 결정짓는 행위
 glBindBuffer(GL_ARRAY_BUFFER, vertexbuffer);
 // Give our vertices to OpenGL.
-// openGL에 vertex를 등록하는 것 같다.
+// openGL에 vertex 데이터를 전달
+// 미리 정의된 정점 데이터(g_vertex_buffer_data)를 버퍼의 메모리에 복사하는 것
 glBufferData(GL_ARRAY_BUFFER, sizeof(g_vertex_buffer_data), g_vertex_buffer_data, GL_STATIC_DRAW);
 ```
 
@@ -90,6 +109,8 @@ glDisableVertexAttribArray(0);
     - LoadShaders라는 함수에 두 개의 셰이더 코드 경로를 넣어주면 내부에서 알아서 작동된다.
         - 튜토리얼에서 LoadShaders 함수의 내부도 보여주었지만.. 생략한다..!
 	- 확장자는 관련이 없어(늬에..?) .txt 또는 .glsl 로 해도 된다.
+	- GLSL(OpenGL Shading Language)은  shader 언어이다, 튜토리얼에서도 사용한다. 
+		- C나 C++과 거의 비슷하게 보이는 것도 사실이다.
 
 ### 정점 셰이더(Vertex Shader)
 
@@ -98,7 +119,7 @@ glDisableVertexAttribArray(0);
 첫 번째 줄은 컴파일러에게 OpenGL3을 사용할 것임을 알려주고 두번째 줄은 입력 데이터를 선언한다.
 
 ```
-// 컴파일러에게 OpenGL 3의 구문을 사용할 것임을 알림
+// 컴파일러에게 OpenGL 3.3의 구문을 사용할 것임을 알림
 #version 330 core
 
 // Input vertex data, different for all executions of this shader.
@@ -118,8 +139,7 @@ layout(location = 0) in vec3 vertexPosition_modelspace;
     - 버퍼가 가진 버텍스의 데이터는 위치, 하나 또는 여러 색상, 하나 또는 여러 텍스처 좌표, 기타 많은 속성 등 수많은 속성(의미)을 가질 수 있다.
     - 값 "0"은 중요하지 않고 단순히 c++ 코드의 glVertexAttribPointer의 첫 번째 매개변수와 동일한 값으로 설정해야 한다.
 - "vertexPosition_modelspace"
-    - 다른 이름을 가질 수 있다. (확실하지 않으나 단순한 변수명이라는 의미같다.)
-    - 정점 셰이더의 각 실행(?)에 대한 정점 위치가 포함된다. (셰이더가 적용될 때 정점 위치를 저장하고 있다는 의미같다.)
+    - 변수명이다.
 - "in"
     - 단순히 입력 데이터임을 의미한다.
 
@@ -139,8 +159,11 @@ void main(){
 
 ### 프래그먼트 셰이더(Fragment Shader)
 
+Fragment shader는 픽셀의 출력 컬러 값을 계산하는 것에 관한 쉐이더이다.
+
 다행히도 정점 셰이더와는 다르게 설명할 것이 적다! 각 조각(이 튜토리얼에서는 삼각형)의 색상을 빨간색으로 설정하는 것이 끝이다!
 
+참고로 알파값까지 넣으려면 vec4를 활용하여 네 가지 수를 설정해주면 된다. `vec4(1.0f, 0.5f, 0.2f, 1.0f)` 이런식으로.
 ```
 #version 330 core
 
@@ -201,6 +224,7 @@ glUseProgram(programID);
 #include <stdlib.h>
 
 // Include GLEW
+// 아래의 라이브러리보다 꼭 먼저 include 해주어야 한다.
 #include <GL/glew.h>
 
 // Include GLFW
@@ -308,13 +332,15 @@ int main( void )
 	// vertex buffer 변수 생성
 	GLuint vertexbuffer;
 	// Generate 1 buffer, put the resulting identifier in vertexbuffer
-	// 버퍼 1개를 생성해서 위의 변수의 포인터를 vertexbuffer에 넣는다. 등록시킨다는 것 같다.
+	// 버퍼 1개를 생성하고 해당 버퍼의 ID(name이라고도 한다.)를 vertexbuffer에 저장한다.
 	glGenBuffers(1, &vertexbuffer);
 	// The following commands will talk about our 'vertexbuffer' buffer
-	// 'vertexbuffer'를 buffer에 할당.. 하는 것 같다.
+	// 'vertexbuffer'를 GL_ARRAY_BUFFER라는 유형의 버퍼에 `바인드` 한다.
+	// 바인딩(binding) : 프로그램에 사용된 구성 요소의 실제 값 또는 프로퍼티를 결정짓는 행위
 	glBindBuffer(GL_ARRAY_BUFFER, vertexbuffer);
 	// Give our vertices to OpenGL.
-	// openGL에 vertex를 등록하는 것 같다.
+	// openGL에 vertex 데이터를 전달
+	// 미리 정의된 정점 데이터(g_vertex_buffer_data)를 버퍼의 메모리에 복사하는 것
 	glBufferData(GL_ARRAY_BUFFER, sizeof(g_vertex_buffer_data), g_vertex_buffer_data, GL_STATIC_DRAW);
 
 	do{
@@ -330,7 +356,7 @@ int main( void )
 		// 1st attribute buffer : vertices
 		// 첫번째(0) 버퍼의 속성은 버텍스
 		glEnableVertexAttribArray(0);
-		// 위에 같은.. 코드가 있는데 왜 또 있는지..?
+		// 설정을 바꾸면 다시 바인드를 해주어야 설정이 적용된다.
 		glBindBuffer(GL_ARRAY_BUFFER, vertexbuffer);
 		glVertexAttribPointer(
 			0,                  // attribute 0. No particular reason for 0, but must match the layout in the shader. (첫번째 속성 데이터라는 것, 첫번째라는 것에 큰 의미는 없다.)
@@ -369,7 +395,7 @@ int main( void )
 
 `SimpleVertexShader.vertexshader`
 ```
-// 컴파일러에게 OpenGL 3의 구문을 사용할 것임을 알림
+// 컴파일러에게 OpenGL 3.3의 구문을 사용할 것임을 알림
 #version 330 core
 
 // Input vertex data, different for all executions of this shader.
