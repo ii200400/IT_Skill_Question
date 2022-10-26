@@ -112,6 +112,8 @@ glDisableVertexAttribArray(0);
 	- GLSL(OpenGL Shading Language)은  shader 언어이다, 튜토리얼에서도 사용한다. 
 		- C나 C++과 거의 비슷하게 보이는 것도 사실이다.
 
+더 자세한 내용을 바란다면 [이곳](https://heinleinsgame.tistory.com/8?category=757483)을 참고하자.
+
 ### 정점 셰이더(Vertex Shader)
 
 먼저 정점 셰이더를 살펴보고 다음에 프레그먼트 셰이더를 보겠다.
