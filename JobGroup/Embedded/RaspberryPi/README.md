@@ -92,7 +92,17 @@ explorer에서 아래의 버튼을 클릭하면
 
 ## get-apt와 apt의 차이
 
-### pip와 apt-get의 차이
+대부분의 블로그가 차이가 없다는 말 밖에 없어서 컨설턴트님과 필자의 경험을 미루어 볼 때, 둘의 차이점은 크게 의존성 관리 여부이다.
+
+`apt-get`으로 했을 때 설치가 안되는 라이브러리가 있었는데 `apt`로 바꿔주자마자 설치가 되었다. 의존성 파일에 또 의존성 파일이 있어서 설치에 어려움이 있었는데 그것을 모두 고려해서 설치를 진행해준 것이었다.
+
+[`What is the difference between apt and apt-get?`](https://askubuntu.com/questions/445384/what-is-the-difference-between-apt-and-apt-get)라는 글에 따르면 거의 대부분은 비슷하지만, `apt-get`는 사람보다는 `lower-level` 혹은 `back-end`에 맞춰 다양한 APT 도구 모음을 지원하고 `apt`는 사람(`end-users`)에 맞춰 개발되었다고 한다.
+
+## pip와 apt-get의 차이
+
+`apt`는 `Advanced packaging tool`의 약자로 이고 `pip`는 파이썬으로 작성된 패키지 소프트웨어를 다운로드, 설치, 관리하는 패키지 관리 시스템이다.
+
+사실 둘 다 패키지를 관리한다는 점에서는 같지만, `apt-get`는 Ubuntu 리포지토리에서, `pip`는 `PyPI`(파이썬 패키지 인덱스, 파이썬 모듈의 저장소)에서 다운로드 받기 때문에 파이썬 패키지만을 다룬다는 차이점이 있다.
 
 ## 라즈베리파이 SD카드 이미지 백업
 
@@ -105,6 +115,8 @@ explorer에서 아래의 버튼을 클릭하면
 그래서 그런지 백업은 5분인가 10분인가 걸렸지만, 복원은 3분 정도면 끝난다. 에러 해결해본다고 이것저것 설치하고 설정 변경하다가 라즈베리파이가 켜지지도 않는 경우가 꽤 있었는데 몰랐으면 울뻔했다!
 
 ## JS에서 Python 파일 실행하기
+
+해당 방법은 socket.io를 사용하면서 활용하지 않게 되었지만, 실습했던 내용을 정리하였다.
 
 프로젝트 중 라즈베리파이 센서의 값을 웹으로 송신해야하는 경우가 생겨 컨선턴트님께 여쭤보았더니 방법이 있으시다고 하셔서 검색해서 아래와 같이 실습을 해보았다.
 
@@ -164,7 +176,7 @@ AttributeError: 'str' object has no attribute 'toInt'
 [Done] exited with code=0 in 1.013 seconds
 ```
 
-참고
+### 참고
 
 - [[Node.js] 자바스크립트로 파이썬 연동 실행 방법(함수 매개변수 전달 호출 : child-process)](https://curryyou.tistory.com/225)
 - [자바스크립트에서 Python 파일 실행하기](https://doongdoongeee.tistory.com/148)
@@ -203,7 +215,6 @@ AttributeError: 'str' object has no attribute 'toInt'
 
 위의 정보를 토대로 `socket.io`를 통해 이미지를 발송할 예정이다!
 
-
 TM과 Socket.io를 활용하여 프로젝트에 적용한 [파일 링크](./codes/poseRecognition-NodeJs/README.md)
 
 ## node.js
@@ -232,3 +243,23 @@ TM에서 만든 모델을 적용하고 인식한 자세를 React로 전달하기
 
 
 TM과 Socket.io를 활용하여 프로젝트에 적용한 [파일 링크](./codes/poseRecognition-NodeJs/README.md)
+
+## porting
+
+컨설턴트님이 언급하신 말을 유추하면 다양한 라이브러리나 패키지를 서로 호환되는 버전을 신경써서 컴퓨터에 설치하는 작업같다. 해당 작업을 필자가 하기는 했지만 전문용어로 따로 있는 것은 모르고 진행했기 때문에 찾아보기로 하였다.
+
+## Stadia
+
+```
+구글의 클라우드 게임 서비스. 개발단계에서는 Project stream이라 불렸으며, 유튜브 기반으로, 사실상 유튜브 동영상을 보며 조작을 하는 컨셉이기 때문에 유튜브 재생만 가능하다면 저사양 PC든 스마트폰이든 태블릿 PC든 실시간 스트리밍을 통해 FHD 60프레임으로 게임을 할 수 있게 된다. 
+
+정식 출시때는 무려 4K 60프레임으로 게임을 즐길 수 있게 만들겠다고 발표하며 저사양 PC 유저들에게 충격을 주었다.
+
+-나무위키-
+```
+
+해당 기술을 활용하면 노트북을 꼭 사용할 필요가 없어서 위의 [통신 흐름도](../colaberation/README.md#결과)를 크게 간소화가 가능한 동시에 노드 서버도 하나로 통합할 수 있어 다음에 꼭 활용하고 싶다.
+
+[Stadia GDC 2019 Gaming Announcement](https://www.youtube.com/watch?v=nUih5C5rOrA&t=14s)
+
+솔직히 시간 생기면 라즈베리파이 사서 적용해 볼 생각도 난다.
