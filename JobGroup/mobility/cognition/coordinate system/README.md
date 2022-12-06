@@ -114,3 +114,8 @@ UTM(Universal Transverse Mercator) 좌표계
 <img src="https://user-images.githubusercontent.com/19484971/188798441-5cd20cd0-0fe5-4e3c-86fb-ee0747b3fce8.png" width=300>
 
 > 출처 : https://ko.wikipedia.org/wiki/UTM_%EC%A2%8C%ED%91%9C%EA%B3%84
+
+## LiDAR 좌표계
+
+## Camera 좌표계
+
