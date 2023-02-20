@@ -10,7 +10,6 @@
 - [인지(Cognition)](./cognition/README.md)
 - [판단(Judgment)](./judgment/README.md)
 - [제어(Control)](./control/README.md)
-- [SVM](./SVM/README.md)
 
 외부 페이지
 
