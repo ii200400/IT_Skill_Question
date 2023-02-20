@@ -81,7 +81,7 @@
 - [인지(Cognition)](https://github.com/ii200400/IT_Skill_Question/tree/master/JobGroup/mobility/cognition)
 - [판단(Judgment)](https://github.com/ii200400/IT_Skill_Question/tree/master/JobGroup/mobility/judgment)
 - [제어(Control)](https://github.com/ii200400/IT_Skill_Question/tree/master/JobGroup/mobility/control)
-- [모바일](./aos/README.md)
+- [모바일](./mobile.md)
 
 ## 👀 더 찾아보기
 
