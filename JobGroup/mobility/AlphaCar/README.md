@@ -37,6 +37,8 @@
 
 - [센서 및 주행 영상 모음](https://determined-elderberry-389.notion.site/1518071df6014a47bc14f24956136105)
 
+</br>
+
 ## 💁‍♀️ 프로젝트 소개
 
 - **프로젝트 기간**
@@ -52,6 +54,8 @@
 자율주행 자동차에 대한 기술연구가 진행되면 이를 많은 사람들이 자동차를 공유하여 주차장 부족 문제를 해소할 수 있다는 기대에서 기획하였습니다. 
 
 갑작스러운 상황에서도 센서를 활용하여 위험한 상황을 피하거나 대처하여 운전자가 없는 자동차를 구현하고 이것을 모두가 쉽게 접할 수 있는 택시로 활용할 수 있도록 자율주행 택시 서비스를 만들었습니다.
+
+</br>
 
 ## 🔧 주요 기능
 
@@ -74,6 +78,8 @@
   - 관리자의 차량 정보 및 평가 목록 조회
   - 차량 운행시간 조정
   - 수입 금액을 조회
+
+</br>
 
 ## 📒 주요 기술
 
@@ -105,6 +111,8 @@
 
 ![image](https://user-images.githubusercontent.com/19484971/220055541-8c2e8766-38f5-41b6-b3d2-fbab5c4efaec.png)
 
+</br>
+
 ## 📖 기술별 자료 정리
 
 - [ROS](https://github.com/ii200400/IT_Skill_Question/tree/master/JobGroup/mobility/ROS)
@@ -113,7 +121,8 @@
 - [제어(Control)](https://github.com/ii200400/IT_Skill_Question/tree/master/JobGroup/mobility/control)
 - [모바일](./mobile.md)
 
+</br>
+
 ## 👀 더 찾아보기
 
 - [노션](https://www.notion.so/5a5568486fbd4730ab43569cce17472c)
-- [MORAI SIM Standard User Manual](https://help-morai-sim-en.scrollhelp.site/morai-sim-standard-en/)
