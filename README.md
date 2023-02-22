@@ -1,7 +1,7 @@
 # IT_Skill_Question
 
 [Interview_Question_for_Beginner](https://github.com/JaeYeopHan/Interview_Question_for_Beginner)의 설명 중 번역체여서 이해를 할 수 없거나 카테고리가 아예 없는 경우도 있었다.   
-이런 점으로 인하여 개인적으로 영문위키와 수많은 블로그들을 참고하여 작성하였다.   
+이런 점으로 인하여 개인적으로 영문위키와 수많은 블로그, 서적 기타 등등 많은 도움을 받아 작성하였다.   
 
 ## 카테고리
 
