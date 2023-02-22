@@ -1,4 +1,4 @@
-목차
+`목차`
 
 - [핀홀 카메라 모델(Pinhole camera model)](./README.md#핀홀-카메라-모델pinhole-camera-model)
 - [Camera Calibration](./README.md#camera-calibration)
@@ -10,8 +10,24 @@
     - [영상 해상도](./README.md#영상-해상도)
     - [캘리브레이션 결과가 달라지는 이유](./README.md#캘리브레이션-결과가-달라지는-이유)
     - [참고사항](./README.md#참고사항)
+
+`관련 내용`
 - [openGL](./openGL/README.md)
-- [영상 기하학 (Image Geomatry)](./image%20geometry/README.md)
+  - [Tutorial 1 : Opening a window](./openGL/tutorial1.md)
+  - [Tutorial 2 : The first triangle](./openGL/tutorial2.md)
+  - [Tutorial 3 : Matrices](./openGL/tutorial3.md)
+  - [Tutorial 4 : A Colored Cube](./openGL/tutorial4.md)
+  - [Tutorial 5 : A Textured Cube](./openGL/tutorial5.md)
+  - [Tutorial 6 : Keyboard and Mouse](./openGL/tutorial6.md)
+  - [Tutorial 7 : Model loading - 미완](./openGL/tutorial7.md)
+  - [Tutorial 8 : Basic shading - 미완](./openGL/tutorial8.md)
+- [영상 기하학 (Image Geomatry)](./image%20geometry/image%20geometry/README.md)
+  - [좌표계 (Coordinate System)](./image%20geometry/Coordinate%20System.md)
+  - [동차좌표 (Homogeneous Coordinates)](./image%20geometry/Homogeneous%20Coordinates.md)
+  - [2D 변환 (2D Transformations)](./image%20geometry/2D%20Transformations.md)
+  - [3D 변환 (3D Transformations) - 미완](./image%20geometry/3D%20Transformations.md)
+  - [이미지 투영(Imaging Geometry) - 미완](./image%20geometry/Imaging%20Geometry.md)
+  - [에피폴라 기하학(Epipolar Geometry) - 미완](./image%20geometry/Epipolar%20Geometry.md)
 
 # Surround View Monitor
 
@@ -52,6 +68,17 @@
 세상은 3차원이지만 카메라로 사진을 찍으면 2차원의 평면 이미지로 변하게 된다. 이 때 카메라의 위치 및 방향, 사용된 렌즈, 렌즈와 이미지 센서와의 거리 등등 다양한 요인의 영향을 받는데 이러한 요인을 수치화 하는 과정을 카메라 캘리브레이션이라 부른다.
 
 3차원 점들이 영상에 투영된 위치를 구하거나 역으로 영상좌표로부터 3차원 공간좌표를 복원할 때 주로 사용된다! 어안렌즈는 시야각이 넓지만 왜곡이 심하기 때문에 꼭 `Camera Calibration`과정이 필요하다.
+
+<details>
+<summary>캘리브레이션을 활용한 어안렌즈 카메라 이미지 보정 예시</summary>
+<div markdown="1">
+
+  <img src="https://user-images.githubusercontent.com/19484971/220579310-f68ceb8c-8e59-4a0e-b8cc-03ece6323165.png" width=400>
+
+  > 어안렌즈 카메라 이미지 원본(좌), 보정 후 이미지(우)
+
+</div>
+</details>
 
 이 때 내부 파라미터와 외부 파라미터가 필요한데 아래와 같다.
 - 내부 파라미터(Intrinsic parameter)
