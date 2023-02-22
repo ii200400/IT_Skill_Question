@@ -35,6 +35,8 @@
 
 - [발표 시연 동영상](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/fdf501bb-8635-478e-b55e-af3af29ea018/ezgif.com-gif-maker_%281%29.mp4?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20230220%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20230220T083816Z&X-Amz-Expires=86400&X-Amz-Signature=c6d372d8f4c5f367f313053df6a727e9b44b838e26875910d03746d02318c5ad&X-Amz-SignedHeaders=host&x-id=GetObject)
 
+- [센서 및 주행 영상 모음](https://determined-elderberry-389.notion.site/1518071df6014a47bc14f24956136105)
+
 ## 💁‍♀️ 프로젝트 소개
 
 - **프로젝트 기간**
