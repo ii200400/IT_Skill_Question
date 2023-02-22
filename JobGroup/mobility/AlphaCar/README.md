@@ -53,7 +53,7 @@
 
 ## 🔧 주요 기능
 
-### 🚗 자율주행 기능
+### 🚗 모빌리티
 
 - LiDAR, 카메라 센서를 활용하여 주변 물체 인식
 - 자동 조향(3차 궤적함수) 및 속도조절(PID 제어기)
@@ -75,7 +75,7 @@
 
 ## 📒 주요 기술
 
-`자율주행`
+`Mobility`
 
 - ROS
 - [Morai Simulation - Drive](https://www.morai.ai/ko/drive)
@@ -83,7 +83,7 @@
 - Ubuntu (18.04.6 LTS)
 - Oracle VM VirtualBox
 
-`모바일`
+`Mobile`
 
 - Android Studio
 - Kotlin
