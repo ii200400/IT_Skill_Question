@@ -1,4 +1,4 @@
-# 알파카 (Alpha car)
+# 🚖 알파카 (Alpha car)
 
 스켈레톤 코드 공개 불가로 인하여 알파카 프로젝트의 README 만을 옮겨놓았습니다.
 
@@ -51,16 +51,16 @@
 
 갑작스러운 상황에서도 센서를 활용하여 위험한 상황을 피하거나 대처하여 운전자가 없는 자동차를 구현하고 이것을 모두가 쉽게 접할 수 있는 택시로 활용할 수 있도록 자율주행 택시 서비스를 만들었습니다.
 
-## 🚗 주요 기능
+## 🔧 주요 기능
 
-### 자율주행 기능
+### 🚗 자율주행 기능
 
 - LiDAR, 카메라 센서를 활용하여 주변 물체 인식
 - 자동 조향(3차 궤적함수) 및 속도조절(PID 제어기)
 - 장애물 회피(Lattice Planner)
 - 전방 자동차 거리 조절(Smart Cruise Control)
 
-### 모바일
+### 📱 모바일
 
 - 회원 관리 (회원가입, 로그인, 마이페이지, 회원정보 수정 등)
 - 도착지와 출발지 지정, 특정 위치 즐겨찾기
@@ -86,7 +86,7 @@
 
 ![image](https://user-images.githubusercontent.com/19484971/220055541-8c2e8766-38f5-41b6-b3d2-fbab5c4efaec.png)
 
-## 기술별 자료 정리
+## 📖 기술별 자료 정리
 
 - [ROS](https://github.com/ii200400/IT_Skill_Question/tree/master/JobGroup/mobility/ROS)
 - [인지(Cognition)](https://github.com/ii200400/IT_Skill_Question/tree/master/JobGroup/mobility/cognition)
