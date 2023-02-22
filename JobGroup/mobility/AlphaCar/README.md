@@ -75,12 +75,29 @@
 
 ## 📒 주요 기술
 
+`자율주행`
+
 - ROS
 - [Morai Simulation - Drive](https://www.morai.ai/ko/drive)
 - Python (2.7.17)
 - Ubuntu (18.04.6 LTS)
 - Oracle VM VirtualBox
+
+`모바일`
+
 - Android Studio
+- Kotlin
+- Naver Map API
+- BootPay
+- Firebase
+
+`Cooperation Tools`
+
+- GitLab
+- Jira
+- Notion
+- Kakao Oven
+- Figma
 
 ### 🖼 기술 스택 구조도
 
