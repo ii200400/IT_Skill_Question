@@ -75,11 +75,11 @@
 
 ## 📒 주요 기술
 
-- Python (2.7.17)
-- Oracle VM VirtualBox
-- Ubuntu (18.04.6 LTS)
 - ROS
 - Morai Simulation
+- Python (2.7.17)
+- Ubuntu (18.04.6 LTS)
+- Oracle VM VirtualBox
 - Android Studio
 
 ### 🖼 기술 스택 구조도
