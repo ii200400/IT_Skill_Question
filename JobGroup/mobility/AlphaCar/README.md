@@ -82,7 +82,7 @@
 - Morai Simulation
 - Android Studio
 
-### 기술 스택 구조도
+### 🖼 기술 스택 구조도
 
 ![image](https://user-images.githubusercontent.com/19484971/220055541-8c2e8766-38f5-41b6-b3d2-fbab5c4efaec.png)
 
