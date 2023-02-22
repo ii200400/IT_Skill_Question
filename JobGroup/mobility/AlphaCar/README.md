@@ -76,7 +76,7 @@
 ## 📒 주요 기술
 
 - ROS
-- Morai Simulation
+- [Morai Simulation - Drive](https://www.morai.ai/ko/drive)
 - Python (2.7.17)
 - Ubuntu (18.04.6 LTS)
 - Oracle VM VirtualBox
