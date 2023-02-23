@@ -1,12 +1,14 @@
+# ROS(Robot Operation System)
+
 `목차`
 
-- [ROS(Robot Operation System)](#ros-robot-operation-system-)
-  * [ROS의 시스템 구조](#ros의-시스템-구조)
-  * [ROS 용어](#ros-용어)
-  * [ROS 통신](#ros-통신)
-  * [ROS 개발환경 구조](#ros-개발환경-구조)
-  * [ROS 패키지 구조](#ros-패키지-구조)
-  * [ROS 명령어](#ros-명령어)
+* [개요](#개요)
+* [ROS의 시스템 구조](#ros의-시스템-구조)
+* [ROS 용어](#ros-용어)
+* [ROS 통신](#ros-통신)
+* [ROS 개발환경 구조](#ros-개발환경-구조)
+* [ROS 패키지 구조](#ros-패키지-구조)
+* [ROS 명령어](#ros-명령어)
 
 `관련 내용`
 
@@ -14,7 +16,7 @@
 - [자율주행 기초 알고리즘](./ros%20basic)
 - [자율주행 고급 학습](./ros%20advanced)
 
-# ROS(Robot Operation System)
+## 개요
 
 - 로봇을 개발하는데 필수적인 라이브러리 제공하는 소프트웨어 프레임워크
 - 노드간 통신을 기반으로 전체 시스템 구동
