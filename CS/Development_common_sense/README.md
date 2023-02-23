@@ -1,23 +1,5 @@
 # 1-6 개발상식
 
-- 객체 지향 프로그래밍 (Object Oriented Programming - OOP)
-  - 객체 지향 프로그래밍의 특징
-  - 객체 지향 설계 5원칙
-  - 객체 지향 프로그래밍 vs 절차 지향 프로그래밍
-- RESTful API
-  - REST
-  - API
-  - REST API 설계 규칙
-- MVC(Model-View-Controller) 패턴
-- 함수형 프로그래밍
-- VCS(Version Control System)
-  - Git
-  - Git WorkFlow
-  - Git 명령어
-  - Git Strategy (미완)
-- package와 import
-- CI/CD
-
 `목차`
 
 * [객체 지향 프로그래밍 (Object Oriented Programming - OOP)](#객체-지향-프로그래밍-object-oriented-programming---oop)
