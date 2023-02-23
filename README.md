@@ -31,11 +31,9 @@
     + [Servlet & JSP](./JobGroup/Web/JSP)
     + [Spring](./JobGroup/Web/spring)
     + [Vue](./vue)
-  + [Mobility](./mobility)
-    - [ROS](./ROS/README.md)
-    - [인지(Cognition)](./cognition/README.md)
-    - [판단(Judgment)](./judgment/README.md)
-    - [제어(Control)](./control/README.md)
-    
-+ 기타
-  + [알파카 프로젝트 README](https://github.com/ii200400/IT_Skill_Question/tree/master/JobGroup/mobility/AlphaCar)
+  + [Mobility](./JobGroup/mobility)
+    - [ROS](./JobGroup/mobility/ROS/README.md)
+    - [인지(Cognition)](./JobGroup/mobility/cognition/README.md)
+    - [판단(Judgment)](./JobGroup/mobility/judgment/README.md)
+    - [제어(Control)](./JobGroup/mobility/control/README.md)
+    - [알파카 프로젝트 README](https://github.com/ii200400/IT_Skill_Question/tree/master/JobGroup/mobility/AlphaCar)
