@@ -1,10 +1,44 @@
 # vue
 
-+ vue.js
+`목차`
 
-도데체 최ㅅㄹ님은 어떻게 들으면서 작성하시는 것인지..
-FE부터 밀렸는데 언제 정리하냐..
-ssr(server side rendering) csr(client side rendering), sfc(single file conponent)?
+* [개요](#개요)
+* [Vue.js](#vuejs)
+* [MVVM Pattern](#mvvm-pattern)
+* [vue instance](#vue-instance)
+  + [Life Cycle](#life-cycle)
+  + [템플릿](#템플릿)
+* [보간법(Interplation)](#보간법interplation)
+* [디렉티브(Directives)](#디렉티브directives)
+* [Component](#component)
+* [Router](#router)
+* [NodeJS](#nodejs)
+* [NPM (Node Package Manager)](#npm-node-package-manager)
+* [SFC (Single File Component)](#sfc-single-file-component)
+* [@vue/cil (Command Line Interface)](#vuecil-command-line-interface)
+  + [prettier 에러 해결 과정](#prettier-에러-해결-과정)
+  + [vue-cil 프로젝트 구조](#vue-cil-프로젝트-구조)
+* [Vuex](#vuex)
+  + [State](#state)
+  + [Actions](#actions)
+  + [Mustations](#mustations)
+  + [Getters](#getters)
+  + [Devtools](#devtools)
+* [Bootstrap Vue](#bootstrap-vue)
+
+```
+나중에 더 공부할 내용
+
+DOM, 가상 DOM
+
+DOM (리얼 DOM) : 실제 html 태그들 (view)
+가상 DOM : vue에서 가상 돔을 만들고, 리얼 DOM에 매핑해준다. (view model)
+
+div에 데이터를 주입할 때, server단에서 이 기능을 수행해주는지, client단에서 이 기능을 수행해 주는지에 따라 방식이 나뉜다.
+SSR(server side rendering) CSR(client side rendering), sfc(single file conponent) 은 다음에 정리하자.
+
+html(dom) 해석해서 화면에 뿌려주는 작업
+```
 
 ## 개요
 
@@ -19,22 +53,6 @@ ssr(server side rendering) csr(client side rendering), sfc(single file conponent
 Vue.js 참고문서
 + [가이드 문서](https://kr.vuejs.org/v2/guide/)
 + [API 문서](https://kr.vuejs.org/v2/api/)
-
-추가 사항
-
-DOM, 가상 DOM
-
-DOM (리얼 DOM) : 실제 html 태그들 (view)
-가상 DOM : vue에서 가상 돔을 만들고, 리얼 DOM에 매핑해준다. (view model)
-SSR, CSR
-
-server side rendering
-client side rendering
-div에 데이터를 주입할 때, server단에서 이 기능을 수행해주는지, client단에서 이 기능을 수행해 주는지에 따라 방식이 나뉜다.
-렌더링
-
-html(dom) 해석해서 화면에 뿌려주는 작업
-나중에 더 공부해보기
 
 ## Vue.js
 
