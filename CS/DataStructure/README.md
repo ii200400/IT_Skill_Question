@@ -22,7 +22,7 @@
 * [Heap](#heap)
   + [구현 방법](#구현-방법)
   + [heapify 과정](#heapify-과정)
-* [BST - Binary Search Tree (이진 탐색 트리)](#bst---binary-search-tree--이진-탐색-트리-)
+* [BST - Binary Search Tree (이진 탐색 트리)](#bst---binary-search-tree-이진-탐색-트리)
 * [Hash (해시)](#hash-해시)
   + [좋은 Hash Function 조건](#좋은-hash-function-조건)
   + [Collision Resolution](#collision-resolution)
