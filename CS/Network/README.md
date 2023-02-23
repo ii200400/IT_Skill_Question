@@ -1,15 +1,37 @@
 # 1-5. 네트워크
 
-+ [OSI 7계층](https://github.com/ii200400/IT_Skill_Question/tree/master/CS/Network#osi-7%EA%B3%84%EC%B8%B5)
-+ [TCP와 UDP](https://github.com/ii200400/IT_Skill_Question/tree/master/CS/Network#%EC%A0%84%EC%86%A1%EA%B3%84%EC%B8%B5-%ED%94%84%EB%A1%9C%ED%86%A0%EC%BD%9C--tcp--udp-)
-  + [TCP (Transmission Control Protocol)](https://github.com/ii200400/IT_Skill_Question/tree/master/CS/Network#tcp-transmission-control-protocol-%EC%A0%84%EC%86%A1%EC%A0%9C%EC%96%B4-%ED%94%84%EB%A1%9C%ED%86%A0%EC%BD%9C---%EC%97%B0%EA%B2%B0%ED%98%95-%ED%94%84%EB%A1%9C%ED%86%A0%EC%BD%9C)
-  + [UDP (User Datagram Protocol)](https://github.com/ii200400/IT_Skill_Question/tree/master/CS/Network#udp-user-datagram-protocol-%EC%82%AC%EC%9A%A9%EC%9E%90-%EB%8D%B0%EC%9D%B4%ED%84%B0%EA%B7%B8%EB%9E%A8-%ED%94%84%EB%A1%9C%ED%86%A0%EC%BD%9C---%EB%B9%84%EC%97%B0%EA%B2%B0%ED%98%95-%ED%94%84%EB%A1%9C%ED%86%A0%EC%BD%9C)
-+ [TCP/IP 4계층](https://github.com/ii200400/IT_Skill_Question/tree/master/CS/Network#tcpip-%ED%94%84%EB%A1%9C%ED%86%A0%EC%BD%9C-4%EA%B3%84%EC%B8%B5)
-+ [3-way handshaking & 4-way handshaking](https://github.com/ii200400/IT_Skill_Question/tree/master/CS/Network#tcp-3-way-handshaking--4-way-handshaking)
-+ [Http & Https](https://github.com/ii200400/IT_Skill_Question/tree/master/CS/Network#http--https)
-  + [HTTP 문제점 및 HTTPS 보안성](https://github.com/ii200400/IT_Skill_Question/tree/master/CS/Network#http-%EB%AC%B8%EC%A0%9C%EC%A0%90-%EB%B0%8F-https-%EB%B3%B4%EC%95%88%EC%84%B1)
-  + [Https 특징](https://github.com/ii200400/IT_Skill_Question/tree/master/CS/Network#https)
-+ DNS(Domain Name System)
+`목차`
+
+* [네트워크 개요](#네트워크-개요)
+* [OSI 7계층](#osi-7계층)
+  - [1. 물리 계층](#1-물리-계층)
+  - [2. 데이터링크 계층](#2-데이터링크-계층)
+  - [3. 네트워크 계층](#3-네트워크-계층)
+  - [4. 전송계층](#4-전송계층)
+  - [5. 세션계층](#5-세션계층)
+  - [6. 표현계층](#6-표현계층)
+  - [7. 응용계층](#7-응용계층)
+* [전송계층 프로토콜 ( TCP / UDP )](#전송계층-프로토콜--tcp--udp-)
+  + [TCP (Transmission Control Protocol, 전송제어 프로토콜) - 연결형 프로토콜](#tcp-transmission-control-protocol-전송제어-프로토콜---연결형-프로토콜)
+  + [UDP (User Datagram Protocol, 사용자 데이터그램 프로토콜) - 비연결형 프로토콜](#udp-user-datagram-protocol-사용자-데이터그램-프로토콜---비연결형-프로토콜)
+  + [TCP vs UDP](#tcp-vs-udp)
+* [TCP/IP 프로토콜 4계층](#tcp-ip-프로토콜-4계층)
+    - [1. 링크 계층 (Link Layer)](#1-링크-계층-link-layer)
+    - [2. 인터넷 계층 (Internet Layer)](#2-인터넷-계층-internet-layer)
+    - [3. 전송 계층(Transport Layer)](#3-전송-계층transport-layer)
+    - [4. 응용 계층(Application Layer)](#4-응용-계층application-layer)
+* [TCP 3-way handshaking & 4-way handshaking](#tcp-3-way-handshaking--4-way-handshaking)
+* [HTTP & HTTPS](#http--https)
+  + [HTTP 문제점 및 HTTPS 보안성](#http-문제점-및-https-보안성)
+  + [HTTPS 특징](#https-특징)
+    - [SSL 공개키, 개인키](#ssl-공개키-개인키)
+    - [HTTPS 단점](#https-단점)
+* [DNS(Domain Name System)](#dnsdomain-name-system)
+  + [DNS가 수행되는 과정](#dns가-수행되는-과정)
+  + [DNS 동작 원리](#dns-동작-원리)
+  + [DNS 캐싱](#dns-캐싱)
+  + [DNS 레코드](#dns-레코드)
+    - [레코드의 종류](#레코드의-종류)
 
 </br>
 
@@ -47,7 +69,7 @@
 + 용어
   + Protocol(프로토콜) : '전송 규약' 또는 '전송 규칙'을 의미한다. 
 
-#### 1. 물리 계층
+### 1. 물리 계층
 
 데이터를 전기신호로 바꿔 통신 케이블로 데이터를 전송하는 역할이다.   
 물리적 연결기의 전기적 명세를 정하고 네트워크의 두 노드를 물리적으로 연결시켜준다.
@@ -59,7 +81,7 @@
   + 데이터를 전기 신호로 바꾼다.
   + 오류 검출을 하지 않는다.
 
-#### 2. 데이터링크 계층
+### 2. 데이터링크 계층
 
 맥주소(MAC address)를 참고하여 직접 연결된 노드간에 데이터를 전달한다.   
 물리계층에서 받은 데이터에 관한 에러검출, 재전송, 흐름제어 등을 다룬다.
@@ -77,7 +99,7 @@
   + Bridge / Switch(브릿지 / 스위치)   
     데이터링크계층에서 전송거리를 연장시켜주는 장치, 같은 역할을 하지만 스위치가 더 기능이 좋다.
 
-#### 3. 네트워크 계층
+### 3. 네트워크 계층
 
 IP 주소를 참고하여 일단 데이터를 최적의 경로로 전송하고 보는 역할을 한다.
 도중에 데이터가 누락되거나 파괴되어도 확인 하지 않는다.
@@ -95,7 +117,7 @@ IP 주소를 참고하여 일단 데이터를 최적의 경로로 전송하고 �
   + Packet(패킷) : 데이터의 묶음 단위, 한번에 전송할 데이터의 크기를 나타낸다.
   + Router(라우터) : IP주소를 참고하여 복잡한 경로를 가진 네트워크에서 최적의 경로를 검색하고 다른 망으로 패킷을 보내주는 역할   
 
-#### 4. 전송계층
+### 4. 전송계층
 
 전송계층은 프로토콜 별로 다른 특징을 가지는데 여기에서는 TCP 기준으로 서술한다.      
 네트워크의 단말기(컴퓨터나 핸드폰 등)가 신뢰성있는 데이터를 주고 받을 수 있도록 해 준다.   
@@ -116,7 +138,7 @@ TCP는 위의 네트워크 계층의 프로토콜인 IP를 기반으로 만들�
     서로 다른 네트워크 상의 통신 프로토콜을 적절히 변환해주는 역할을 하며
     라우터와 스위치와는 다르게 프로토콜을 하나 이상 사용한다는 차이점이 있다.
 
-#### 5. 세션계층
+### 5. 세션계층
 
 응용 프로세스가 통신을 관리하기 위한 방법(세션/session)을 제공한다.   
 네트워크 통신 시작, 제어 및 운영, 연결 종료를 책임지며 데이터를 분리 및 유지하여 알맞은 Application으로 보내줄 수 있도록 한다.   
@@ -131,7 +153,7 @@ OS(Operating System)가 이 계층에 속한다.
     2. 프로세스들 사이에서 통신을 하기 위해 메시지 교환을 통해 서로를 인식한 이후부터 통신을 마칠 때까지의 기간 (CS)
     3. 통신을 시작하고 종료하기까지 사용자가 만든 일련의 요청 ex)장바구니 (Web)
 
-#### 6. 표현계층
+### 6. 표현계층
 
 데이터의 표현 형식(Format)을 정의한다.   
 네트워크와 응용프로그램 사이에서 데이터의 형식을 각자가 알아 볼 수 있도록 변환한다.   
@@ -145,7 +167,7 @@ JPEG, MPEG, QUICKTIME(동영상 포맷), MIDI(음악 포맷)등을 정의한다.
   + 데이터의 압축/암복호화
   + 포맷 형식 정의
 
-#### 7. 응용계층
+### 7. 응용계층
 
 응용 프로세스와 직접 관계하여 일반적인 응용 서비스를 수행한다.   
 OSI 7계층 중 최상위 계층이며, 사용자가 직접 눈으로 보고 실제로 작업을 하는 계층이다.
@@ -157,7 +179,7 @@ HTTP, FTP, SMTP 등이 이 계층에 속한 프로토콜이다.
   + 네트워크 소프트웨어 UI 구성
   + 사용자의 입출력(I/O) 데이터 처리
 
-#### 참고
+### 참고
 
 + 위키백과
 + https://ciscoking.tistory.com/3
