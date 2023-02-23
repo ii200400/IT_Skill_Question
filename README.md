@@ -24,6 +24,8 @@
     + [HTML](./JobGroup/Web/html)
     + [CSS](./JobGroup/Web/css)
     + [JavaScript](./JobGroup/Web/JavaScript)
+      + [Ajax](./JobGroup/Web/JavaScript/ajax)
+      + [jQuery](JobGroup/Web/JavaScript/jQuery)
     + [BootStrap](./JobGroup/Web/bootstrap)
     + [DB(데이터베이스)](https://github.com/ii200400/IT_Skill_Question/tree/master/CS/Database)
     + [Servlet & JSP](./JobGroup/Web/JSP)
