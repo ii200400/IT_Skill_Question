@@ -1,5 +1,13 @@
 # AJAX(Asynchronous Javascript And XML)
 
+`목차`
+
+- [ajax란?](#ajax란)
+- [AJAX(Asynchronous Javascript And XML)](#ajaxasynchronous-javascript-and-xml)
+  * [XML HTTP Request](#xml-http-request)
+
+## ajax란?
+
 + 웹에서 화면을 갱신하지 않고 데이터를 서버로부터 가져와 처리하는 방식을 의미한다.
   + 프레임워크나 라이브러리가 아니다!
   + 화면 갱신이 없으므로 사용자 입장에서는 편리하다. 
@@ -17,7 +25,7 @@
 
 (출처: https://www.w3schools.com/js/js_ajax_intro.asp)
 
-## XMLHTTPRequest
+## XML HTTP Request
 
 + JS가 Ajax 방식으로 통신할 때 사용하는 객체
   + Ajax통신 시 전송방식, 경로 등의 정보를 담는 역할
