@@ -15,7 +15,7 @@
   + [TCP (Transmission Control Protocol, 전송제어 프로토콜) - 연결형 프로토콜](#tcp-transmission-control-protocol-전송제어-프로토콜---연결형-프로토콜)
   + [UDP (User Datagram Protocol, 사용자 데이터그램 프로토콜) - 비연결형 프로토콜](#udp-user-datagram-protocol-사용자-데이터그램-프로토콜---비연결형-프로토콜)
   + [TCP vs UDP](#tcp-vs-udp)
-* [TCP/IP 프로토콜 4계층](#tcp-ip-프로토콜-4계층)
+* [TCP/IP 프로토콜 4계층](#tcpip-프로토콜-4계층)
     - [1. 링크 계층 (Link Layer)](#1-링크-계층-link-layer)
     - [2. 인터넷 계층 (Internet Layer)](#2-인터넷-계층-internet-layer)
     - [3. 전송 계층(Transport Layer)](#3-전송-계층transport-layer)
