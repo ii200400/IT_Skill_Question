@@ -4,7 +4,7 @@
 
 * [OS란?](#os란)
   + [하드웨어 인터페이스 (Hardware Interface)](#하드웨어-인터페이스-hardware-interface)
-  + [사용자 인터페이스 (User Interface)](#사용자=인터페이스-user-interface)
+  + [사용자 인터페이스 (User Interface)](#사용자-인터페이스-user-interface)
   + [유틸리티 (Utility)](#유틸리티-utility)
 * [프로세스](#프로세스)
   + [PCB(Process Control Block)](#pcbprocess-control-block)
@@ -29,8 +29,8 @@
     - [Round Robin](#round-robin)
 * [메모리 관리](#메모리-관리)
   + [메모리 단편화 해결 방법](#메모리-단편화-해결-방법)
-  + [Paging(페이징)](#paging-페이징)
-  + [Segmentation(세그멘테이션)](#segmentation-세그멘테이션)
+  + [Paging(페이징)](#paging페이징)
+  + [Segmentation(세그멘테이션)](#segmentation세그멘테이션)
 
 </br>
 
