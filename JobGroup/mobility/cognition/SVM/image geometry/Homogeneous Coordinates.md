@@ -1,9 +1,12 @@
 # 동차좌표 (Homogeneous Coordinates)
 
-- 참고 블로그
-    - [[영상 Geometry #2] Homogeneous Coordinates](https://darkpgmr.tistory.com/78)
-    - [Homogeneous Coordinates를 왜 쓸까?](https://coding-groot.tistory.com/89)
-    - [동차좌표계란?](https://jw910911.tistory.com/7)
+`목차`
+
+* [개요](#개요)
+* [동차좌표 (Homogeneous Coordinates) 이해](#동차좌표-homogeneous-coordinates-이해)
+* [사영 기하학 (projective geometry)](#사영-기하학-projective-geometry)
+
+## 개요
 
 위키백과에서는 아래와 같이 정의하였다.
 
@@ -14,6 +17,11 @@
 
 - 이 때 사용하는 2D 좌표계는 3D 좌표계에서 투영시켜 만든 것이므로 (projective)투영좌표 라고도 하는 것 같다.
 - 표현할 수 있는 좌표가 많다는 이유는 이전에도 작성했다 싶이 3D에서 2D로 변환되는 과정에서 깊이 정보가 사라지기 때문
+
+- 참고 블로그
+  - [[영상 Geometry #2] Homogeneous Coordinates](https://darkpgmr.tistory.com/78)
+  - [Homogeneous Coordinates를 왜 쓸까?](https://coding-groot.tistory.com/89)
+  - [동차좌표계란?](https://jw910911.tistory.com/7)
 
 ## 동차좌표 (Homogeneous Coordinates) 이해
 
@@ -64,6 +72,4 @@
     - 위의 현상을 알고있는데 왜 블로그에서는 형태가 보존된다고 쓴지 모르겠다. 곡선도 투영하면 직선이 나올 수 있는데.. 특별한 경우니 제외하는 걸까..?
 
 그래서 이것이 왜 필요한지 보았더니.. 이해가 안된다 아하하하ㅏ하하ㅏ. 첫번째 참고 블로그를 확인하자.
-
-### 보완
 
