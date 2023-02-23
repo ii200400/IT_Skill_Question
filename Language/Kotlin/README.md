@@ -1,20 +1,22 @@
 # 2-1. Kotlin
 
-+ Iterable
-+ Collection
-+ High-order functions
-+ Lambda
-+ KeyWords
-  + Final
-  + Inline
-+ Class
-  + Abstract
-  + Interface
-+ Annotation
-+ Generic
-+ Overriding vs Overloading
-+ Visibility Modifier (Access Modifier in Java)
-+ JVM과 GC 원리
+* [Kotlin 개요](#kotlin-개요)
+  + [Kotlin 특징](#kotlin-특징)
+* [Type](#type)
+  + [Primitive Data Type](#primitive-data-type)
+  + [Object Data Type](#object-data-type)
+* [Iterator](#iterator)
+    - [1. MutableIterator](#1-mutableiterator)
+    - [2. ListIterator](#2-listiterator)
+    - [3. MutableListIterator](#3-mutablelistiterator)
+  + [for vs forEach](#for-vs-foreach)
+    - [자바 Iterator 라이브러리](#자바-iterator-라이브러리)
+* [Collection](#collection)
+    - [Immutable Collection](#immutable-collection)
+    - [Mutable Collection](#mutable-collection)
+* [High-order functions (고차함수)](#high-order-functions-고차함수)
+* [Lambda](#lambda)
+* [inline](#inline)
 
 > 정리하고 싶은 내용들을 목차로 적어놓은 것이며 아직 대부분의 내용을 정리하지는 못했다.
 
