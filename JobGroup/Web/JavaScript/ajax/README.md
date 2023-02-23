@@ -3,8 +3,8 @@
 `목차`
 
 - [ajax란?](#ajax란)
-- [AJAX(Asynchronous Javascript And XML)](#ajaxasynchronous-javascript-and-xml)
-  * [XML HTTP Request](#xml-http-request)
+- [XML HTTP Request](#xml-http-request)
+	+ [jQuery Ajax 함수](#jquery-ajax-함수)
 
 ## ajax란?
 
