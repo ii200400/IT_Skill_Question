@@ -1,36 +1,42 @@
 # 1-4. 데이터 베이스
 
-* [개요](#--)
-* [DB(데이터베이스)](#db--------)
-* [RDBMS (관계형(Relational) 데이터베이스 시스템)](#rdbms------relational-------------)
+* [개요](#개요)
+* [DB(데이터베이스)](#db데이터베이스)
+* [RDBMS (관계형(Relational) 데이터베이스 시스템)](#rdbms-관계형relational-데이터베이스-시스템)
 	+ [Mysql](#mysql)
-* [ER Diagram (Entity-Relation Diagram)](#er-diagram--entity-relation-diagram-)
-	+ [모델링](#---)
-		- [정규화](#---)
-		- [역정규화](#----)
-* [Transaction (트랙젝션)](#transaction-------)
-* [Dead Lock (교착상태)](#dead-lock-------)
-* [SQL (Structured Query Language)](#sql--structured-query-language-)
+* [ER Diagram (Entity-Relation Diagram)](#er-diagram-entity-relation-diagram)
+	+ [모델링](#모델링)
+		- [정규화](#정규화)
+		- [역정규화](#역정규화)
+* [Transaction (트랙젝션)](#transaction-트랙젝션)
+* [Dead Lock (교착상태)](#dead-lock-교착상태)
+* [SQL (Structured Query Language)](#sql-structured-query-language)
 	+ [Data Type](#data-type)
-	+ [DDL (Data Definition Language)](#ddl--data-definition-language-)
+	+ [DDL (Data Definition Language)](#ddl-data-definition-language)
 		- [create](#create)
 		- [use](#use)
 		- [alter](#alter)
 		- [drop](#drop)
 		- [View](#view)
 		- [index](#index)
-	+ [DML (Data Manipulation Language)](#dml--data-manipulation-language-)
+	+ [DML (Data Manipulation Language)](#dml-data-manipulation-language)
 		- [insert](#insert)
 		- [update](#update)
 		- [Delete](#delete)
 		- [select](#select)
-	+ [DCL (Data Control Language)](#dcl--data-control-language-)
-	+ [TCL (Transaction Control Language)](#tcl--transaction-control-language-)
-	+ [Procedure(프로시저)](#procedure------)
-		- [구분자 변경](#------)
+	+ [DCL (Data Control Language)](#dcl-data-control-language)
+	+ [TCL (Transaction Control Language)](#tcl-transaction-control-language)
+	+ [Procedure(프로시저)](#procedure프로시저)
+		- [구분자 변경](#구분자-변경)
 
-<small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
+`관련 내용`
 
+- [join](./join)
+- [select](./select)
+- [subquery](./subquery)
+
+> join과 select는 아래에 작성하기 너무 많아 따로 파일을 만들어 작성하였다.<br>
+링크는 위와 글 중간에 넣었두었다.
 
 ## 개요
 
