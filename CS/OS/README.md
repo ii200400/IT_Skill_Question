@@ -1,28 +1,37 @@
 # 1-3. 컴퓨터 구조와 운영체제
 
-+ OS란?
-+ 프로세스
-  + 메모리 영역
-  + 상태 주기
-  + PCB(Process Control Block)
-+ 쓰레드
-  + 멀티 프로세스와 멀티 쓰레드
-+ 프로세스/쓰레드 동기화
-  + Critical Section(임계영역)
-    + 락(Lock)
-    + 세마포어(Semaphores)
-    + 교착상태(DeadLock)
-+ CPU 스캐줄링
-  + 장기스케줄러(Long-term scheduler)
-  + 중기스케줄러(Medium-term scheduler)
-  + 단기스케줄러(Short-term scheduler)
-    + FCFS(First Come First Served)
-    + SJF(Shortest Job First) & SRTF(Shortest Remaining time First)
-    +  Round Robin
-+ 메모리 관리
-  + Paging(페이징)
-  + Segmentation(세그멘테이션)
-  
+`목차`
+
+* [OS란?](#os란)
+  + [하드웨어 인터페이스 (Hardware Interface)](#하드웨어-인터페이스-hardware-interface)
+  + [사용자 인터페이스 (User Interface)](#사용자=인터페이스-user-interface)
+  + [유틸리티 (Utility)](#유틸리티-utility)
+* [프로세스](#프로세스)
+  + [PCB(Process Control Block)](#pcbprocess-control-block)
+  + [상태 주기](#상태-주기)
+  + [메모리 영역](#메모리-영역)
+* [쓰레드](#쓰레드)
+  + [TCB(Thread Control Block)](#tcbthread-control-block)
+  + [멀티 프로세스와 멀티 쓰레드](#멀티-프로세스와-멀티-쓰레드)
+* [프로세스/쓰레드 동기화](#프로세스쓰레드-동기화)
+  + [Critical Section(임계영역)](#critical-section임계영역)
+    - [락(Lock)](#락lock-혹은-mutex-뮤텍스)
+    - [세마포어(Semaphores)](#세마포어semaphores)
+    - [교착상태(DeadLock)](#교착상태deadlock)
+* [스케줄링](#스케줄링)
+* [스케줄러 종류](#스케줄러-종류)
+  + [장기스케줄러(Long-term scheduler or job scheduler)](#장기스케줄러long-term-scheduler-or-job-scheduler)
+  + [단기스케줄러(Short-term scheduler or CPU scheduler)](#단기스케줄러short-term-scheduler-or-cpu-scheduler)
+  + [중기스케줄러(Medium-term scheduler or Swapper)](#중기스케줄러medium-term-scheduler-or-swapper)
+  + [CPU 스케줄러(단기스케줄러) 종류](#cpu-스케줄러단기스케줄러-종류)
+    - [FCFS(First Come First Served)](#fcfsfirst-come-first-served)
+    - [SJF(Shortest Job First) & SRTF(Shortest Remaining time First)](#sjfshortest-job-first--srtfshortest-remaining-time-first)
+    - [Round Robin](#round-robin)
+* [메모리 관리](#메모리-관리)
+  + [메모리 단편화 해결 방법](#메모리-단편화-해결-방법)
+  + [Paging(페이징)](#paging-페이징)
+  + [Segmentation(세그멘테이션)](#segmentation-세그멘테이션)
+
 </br>
 
 아래의 내용은 조성호 저자의 `쉽게 배우는 운영체제` 책과 위키백과의 내용, 블로그 글을 참고하여 작성되었음을 밝힌다.   
@@ -40,11 +49,10 @@
 4. 악의적인 응용 프로그램으로부터 자원을 보호한다. (안전성)
 5. 다양한 하드웨어를 지원한다. (확장성)
 
-#### 운영체제가 사용자나 응용프로그램이 직접 컴퓨터 자원을 사용하는 것을 막는 이유
+> 운영체제가 사용자나 응용프로그램이 직접 컴퓨터 자원을 사용하는 것을 막는 이유<br>
+악의적인 프로그램이나 미숙한 사용자가 다른 사용자의 작업 데이터를 덮어 씌우거나 삭제하여 문제를 일으킬 수 있기 때문
 
-그 이유가 악의적인 프로그램이나 미숙한 사용자가 다른 사용자의 작업 데이터를 덮어 씌우거나 삭제하여 문제를 일으킬 수 있기 때문이다.
-
-#### 하드웨어 인터페이스 (Hardware Interface)
+### 하드웨어 인터페이스 (Hardware Interface)
 
 마우스나 키보드, CPU 등 컴퓨터에 사용되는 하드웨어들은 여러 회사에서 제작이되고 다양한 제품이 있다. 그만큼 하드웨어가 작동하기 위한 다양한 소프트웨어들이 있는데 복잡한 과정 없이 다양한 장치의 소프트웨어가 운영체제를 통해 작동할 수 있도록 만들어주는 것이 하드웨어 인터페이스이다.   
 즉, 다양한 하드웨어가 별도의 설치 없이도 운영체제를 통해서 원활하게 사용될 수 있도록 만드는 장치나 기능을 의미한다.
@@ -55,14 +63,14 @@
 
 간단히 정리하면! 하드웨어 인터페이스란 사용자가 다양한 부품을 편리하게 사용하기 위해 운영체제에서 제공하는 장치나 기능이다!
 
-#### 사용자 인터페이스 (User Interface)
+### 사용자 인터페이스 (User Interface)
 
 사용자가 운영체제를 편리하게 사용할 수 있도록 지원하는 기능이다.   
 
 오래전에는 운영체제에 그래픽 유저 인터페이스(GUI)가 없어서 키보드와 줄글로 이루어진 화면만을 가지고 컴퓨터를 사용했다고 한다;   
 하지만 지금은 운영체게가 GUI를 제공하면서 폴더를 키보드로 여는 것이 아니라 마우스의 더블클릭으로 간단하게 열 수 있고 터치 스크린 화면을 제공하고 있다면 단순히 화면을 터치하는 것으로도 가능하다.
 
-#### 유틸리티 (Utility)
+### 유틸리티 (Utility)
 
 컴퓨터가 할 수 있는 작업이 늘어남에 따라 점점 복잡한 작업을 수행하게 되었고, 운영체제 또한 마찬가지로 점점 기능이 많아지면서 모든 작업을 수행하기 어렵게 되었다.   
 이러한 운영체제를 위해서 운영체제의 작업을 보조하는 소프트웨어가 등장했는데 이를 유틸리티라고 한다. 대표적으로 바이러스 검사, 디스크 조각 모음, 압축 프로그램 등이 있다.
@@ -520,8 +528,7 @@ CPU를 점유한 프로세스가 할당 시간을 지나면 선점당하고 프�
   + 외부 단편화: 여유 메모리는 충분한데 실재로 프로세스를 할당할 수 없는 경우
   + 내부 단편화: 메모리를 할당할 때 프로세스가 필요한 양보다 더 큰 메모리가 할당되어 메모리 공간이 낭비 되는 상황
   + 압축(defragmentation) : 외부 단편화를 해소하기 위해 프로세스가 사용하는 공간들을 한쪽으로 몰아 자유공간을 확보하는 방법론, 속도가 느리다..
-
-#### 압축에 대한 [예시](https://en.wikipedia.org/wiki/File_system_fragmentation)
+    + 압축에 대한 [예시](https://en.wikipedia.org/wiki/File_system_fragmentation)
 
 압축 전
 | `Process A` | free | `Process B` | free | `Process C` | &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; free &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; | `Process D` |
@@ -584,7 +591,7 @@ Swapping으로 프로세스에 메모리를 할당/해제하면서 메모리 관
   + 크기가 일정하지 않은 세그먼트 특징으로 인하여 외부 단편화 문제는 그대로 남는다.
   + 테이블에 사용되는 메모리가 페이징에 비해 더 크다. 
 
-##### 참고
+#### 참고
 
 + (기본기를 쌓는 정아마추어 코딩블로그)[https://jeong-pro.tistory.com/91]
 + https://jhnyang.tistory.com/290
