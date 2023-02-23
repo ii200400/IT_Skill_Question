@@ -20,7 +20,7 @@
 `관련 내용`
 
 - [좌표계](./coordinate%20system)
-- [Orientation(강체의 방향)](./orientation)
+- [Orientation](./orientation)
 - [정밀도로지도](./precise%20road%20map)
 - [차선인지](./lane%20recognition)
 - [SVM(Surround View Monitor)](./SVM)
