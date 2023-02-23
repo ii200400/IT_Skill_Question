@@ -22,15 +22,10 @@
   - [Tutorial 4 : A Colored Cube](./openGL/tutorial4.md)
   - [Tutorial 5 : A Textured Cube](./openGL/tutorial5.md)
   - [Tutorial 6 : Keyboard and Mouse](./openGL/tutorial6.md)
-  - [Tutorial 7 : Model loading - 미완](./openGL/tutorial7.md)
-  - [Tutorial 8 : Basic shading - 미완](./openGL/tutorial8.md)
-- [영상 기하학 (Image Geomatry)](./image%20geometry/image%20geometry/README.md)
+- 영상 기하학 (Image Geomatry)
   - [좌표계 (Coordinate System)](./image%20geometry/Coordinate%20System.md)
   - [동차좌표 (Homogeneous Coordinates)](./image%20geometry/Homogeneous%20Coordinates.md)
   - [2D 변환 (2D Transformations)](./image%20geometry/2D%20Transformations.md)
-  - [3D 변환 (3D Transformations) - 미완](./image%20geometry/3D%20Transformations.md)
-  - [이미지 투영(Imaging Geometry) - 미완](./image%20geometry/Imaging%20Geometry.md)
-  - [에피폴라 기하학(Epipolar Geometry) - 미완](./image%20geometry/Epipolar%20Geometry.md)
 
 ## 개요
 
