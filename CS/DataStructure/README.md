@@ -1,3 +1,5 @@
+# 1-1. 자료구조
+
 `목차`
 
 * [자료구조의 필요성](#자료구조의-필요성)
@@ -36,8 +38,6 @@
     - [Open Address vs Separate Chaining(Linked List 기준)](#open-address-vs-separate-chaininglinked-list-기준)
 
 </br>
-
-# 1-1. 자료구조
 
 ## 자료구조의 필요성
 
