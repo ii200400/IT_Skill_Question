@@ -123,7 +123,7 @@ created - init이랑 똑같은것, Life Cycle Hook
 
 [가이드문서 - 라이프사이클 다이어그램](https://kr.vuejs.org/v2/guide/instance.html#%EB%9D%BC%EC%9D%B4%ED%94%84%EC%82%AC%EC%9D%B4%ED%81%B4-%EB%8B%A4%EC%9D%B4%EC%96%B4%EA%B7%B8%EB%9E%A8)
 
-<img src = "https://kr.vuejs.org/images/lifecycle.png" width="400">
+<img src = "https://v2.ko.vuejs.org/images/lifecycle.png" width="400">
 
 + created - 변수 초기화, 보통 여기에서 통신이 이루어진다. (back-end와 뭔가 처리)
 + mounted - el, dom, data 연결!
