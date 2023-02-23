@@ -6,15 +6,15 @@
 
 해당 레포지토리는 프로젝트를 진행하기 위해서 공부한 내용을 정리하기 위해서 만들었다. 그 강의에서 제공하는 동영상과 다양한 자율주행 tech 기술 글들을 참고하여 작성하였다.
 
-- [ROS](./ROS/README.md)
-- [인지(Cognition)](./cognition/README.md)
-- [판단(Judgment)](./judgment/README.md)
-- [제어(Control)](./control/README.md)
+- [ROS](./ROS)
+- [인지(Cognition)](./cognition)
+- [판단(Judgment)](./judgment)
+- [제어(Control)](./control)
+- [알파카 프로젝트 README](./AlphaCar)
 
 외부 페이지
 
-- 정보 공유를 위한 [노션](https://www.notion.so/5a5568486fbd4730ab43569cce17472c)
-- [MORAI SIM Standard User Manual](https://help-morai-sim-en.scrollhelp.site/morai-sim-standard-en/)
+- 실습에 사용한 [MORAI SIM Standard User Manual](https://help-morai-sim-en.scrollhelp.site/morai-sim-standard-en/)
 
 ## 자율주행이란?
 
