@@ -1,22 +1,22 @@
 `목차`
 
-- [ROS](#ros)
-  * [ROS 설치](#ros-설치)
-  * [ROS 패키지 생성](#ros-패키지생성)
-  * [morai msg 다운로드](#morai-msg-다운로드)
-  * [rosbridge 설치](#rosbridge-설치)
-  * [ROS 노드 메시지 예제](#ros-노드-메시지-예제)
-    + [launch](#launch)
-  * [시뮬레이터와 ROS 연동](#시뮬레이터와-ros-연동)
-    + [시뮬레이터 메시지](#시뮬레이터-메시지)
-  * [간단한 주행 script](#간단한-주행-script)
-    + [간단한 충돌 처리 script](#간단한-충돌-처리-script)
-  * [네트워크 설정](#네트워크-설정)
-  * [remote pc 통신](#remote-pc-통신)
-    + [가상환경 우분투](#가상환경-우분투)
-    + [멀티부팅 우분투](#멀티부팅-우분투)
+- [개요](#--)
+- [ROS 설치](#ros---)
+- [ROS 패키지 생성](#ros-------)
+- [morai msg 다운로드](#morai-msg-----)
+- [rosbridge 설치](#rosbridge---)
+- [ROS 노드 메시지 예제](#ros----------)
+  * [launch](#launch)
+- [시뮬레이터와 ROS 연동](#-------ros---)
+  * [시뮬레이터 메시지](#---------)
+- [간단한 주행 script](#-------script)
+  * [간단한 충돌 처리 script](#----------script)
+- [네트워크 설정](#-------)
+- [remote pc 통신](#remote-pc---)
+  * [가상환경 우분투](#--------)
+  * [멀티부팅 우분투](#--------)
 
-# ROS
+## 개요
 
 <img src="https://user-images.githubusercontent.com/19484971/194983568-b0835349-0e54-46d2-855b-a7a78648c945.PNG" width=300>
 
@@ -31,7 +31,7 @@ ROS를 통해 topic과 service가 통신하는 예제를 진행하고 기록하�
 - Morai (22.R2.1)
 - python 2.7
 
-설치한 주요 라이브러리는 다음과 같다. 라이브러리 버전은 단순히 최신것으로 설치했는데 확인하기 귀찮아서 지금은 생략해버렸다.. 크흠..
+설치한 주요 라이브러리는 다음과 같다.
 
 - ROS
 - python-rosinstall
