@@ -1,14 +1,33 @@
+`목차`
+
+* [4대 컴포넌트](#4대-컴포넌트)
+  + [Activity](#activity)
+    - [Activity 생명주기](#activity-생명주기)
+    - [1. onCreate()](#1-oncreate--)
+    - [2. onStart()](#2-onstart--)
+    - [3. onResume()](#3-onresume--)
+    - [4. onPause()](#4-onpause--)
+    - [5. onStop()](#5-onstop--)
+    - [7. onDestroy()](#7-ondestroy--)
+    - [6. onRestart()](#6-onrestart--)
+
 # 어플리케이션
 
-+ 디자인 패턴 (mvc, mvp, mvvm)
-+ UI (jetpack, custom UI)
-+ 4대 컴포넌트 (Activities, Services, BroadcaseReceivers, ContentProviders)
-  + Activity 생명주기
-+ framework
-+ 비동기 통신 (AsyncTask, Coroutine)
-+ API (RESTful API)
-+ 유닛 테스트
-+ 디버깅
+모바일 어플리케이션을 공부하기 위해서 어떤 것을 배워야 하는지 찾아보고 정리하고자 만들었다.
+
+아래는 정리하고자하는 목록이다.
+
+```
+디자인 패턴 (mvc, mvp, mvvm)
+UI (jetpack, custom UI)
+4대 컴포넌트 (Activities, Services, BroadcaseReceivers, ContentProviders)
+Activity 생명주기
+framework
+비동기 통신 (AsyncTask, Coroutine)
+API (RESTful API)
+유닛 테스트
+디버깅
+```
 
 참고 : https://jhpop.tistory.com/121
 
