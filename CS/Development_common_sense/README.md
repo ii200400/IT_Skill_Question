@@ -13,7 +13,7 @@
     - [5. 의존 역전 원칙(DIP - Dependency Inversion Principle)](#5-의존-역전-원칙dip---dependency-inversion-principle)
   + [절차 지향 프로그래밍](#절차-지향-프로그래밍)
   + [객체 지향 프로그래밍 vs 절차 지향 프로그래밍](#객체-지향-프로그래밍-vs-절차-지향-프로그래밍)
-    - [객체지향과 절차지향 도형 그리기 예제](#객체지향과-절차지향 도형-그리기-예제)
+    - [객체지향과 절차지향 도형 그리기 예제](#객체지향과-절차지향-도형-그리기-예제)
 * [RESTful API](#restful-api)
   + [REST (REpresentational State Transfer)](#rest-representational-state-transfer)
     - [REST 구성 요소](#rest-구성-요소)
