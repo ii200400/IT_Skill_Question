@@ -18,6 +18,53 @@
 - package와 import
 - CI/CD
 
+`목차`
+
+* [객체 지향 프로그래밍 (Object Oriented Programming - OOP)](#객체-지향-프로그래밍-object-oriented-programming---oop)
+  + [객체 지향 프로그래밍의 특징](#객체-지향-프로그래밍의-특징)
+  + [객체지향의 장점](#객체지향의-장점)
+  + [객체 지향 설계 5원칙](#객체-지향-설계-5원칙)
+    - [1. 단일 책임 원칙 (SRP - Single Responsibility Principle)](#1-단일-책임-원칙-srp---single-responsibility-principle)
+    - [2. 개방 폐쇄 원칙(OCP - Open-Closed Principle)](#2-개방-폐쇄-원칙ocp---open-closed-principle)
+    - [3. 리스코프 치환 원칙(LSP - Liskov Substitution Principle)](#3-리스코프-치환-원칙lsp---liskov-substitution-principle)
+    - [4. 인터페이스 분리 원칙(ISP - Interface Segregation Principle)](#4-인터페이스-분리-원칙isp---interface-segregation-principle)
+    - [5. 의존 역전 원칙(DIP - Dependency Inversion Principle)](#5-의존-역전-원칙dip---dependency-inversion-principle)
+  + [절차 지향 프로그래밍](#절차-지향-프로그래밍)
+  + [객체 지향 프로그래밍 vs 절차 지향 프로그래밍](#객체-지향-프로그래밍-vs-절차-지향-프로그래밍)
+    - [객체지향과 절차지향 도형 그리기 예제](#객체지향과-절차지향 도형-그리기-예제)
+* [RESTful API](#restful-api)
+  + [REST (REpresentational State Transfer)](#rest-representational-state-transfer)
+    - [REST 구성 요소](#rest-구성-요소)
+      * [1. 자원(Resource): URI](#1-자원resource-uri)
+      * [2. 행위(Verb): HTTP Method](#2-행위verb-http-method)
+      * [3. 표현(Representation of Resource)](#3-표현representation-of-resource)
+  + [REST 특징](#rest-특징)
+    - [1. Server-Client (서버-클라이언트 구조)](#1-server-client-서버-클라이언트-구조)
+    - [2. Stateless (무상태성)](#2-stateless-무상태성)
+    - [3. Cacheable (캐시 가능)](#3-cacheable-캐시-가능)
+    - [4. Layered System (계층형 구조)](#4-layered-system-계층형-구조)
+    - [5. Uniform Interface(인터페이스 일관성)](#5-uniform-interface-인터페이스-일관성)
+    - [6. Self-descriptiveness (자체 표현 구조)](#6-self-descriptiveness-자체-표현-구조)
+  + [API - Application Programming Interface](#api---application-programming-interface)
+  + [REST API 설계 규칙](#rest-api-설계-규칙)
+    - [유의사항](#유의사항)
+    - [HTTP 응답 상태 코드](#http-응답-상태-코드)
+* [MVC(Model-View-Controller) 패턴](#mvc-model-view-controller-패턴)
+* [함수형 프로그래밍](#함수형-프로그래밍)
+* [High-order functions (고차함수)](#high-order-functions-고차함수)
+* [First-class function (일급함수)](#first-class-function-일급함수)
+* [VCS(Version Control System)](#vcsversion-control-system)
+  + [Git](#git)
+    - [Git WorkFlow](#git-workflow)
+    - [Git 명령어](#git-명령어)
+    - [Git branch](#git-branch)
+    - [git merge](#git-merge)
+  + [Git Strategy](#git-strategy)
+* [Package와 Import](#package와-import)
+  + [Package](#package)
+  + [Import](#import)
+* [CI/CD](#ci-cd)
+
 ## 객체 지향 프로그래밍 (Object Oriented Programming - OOP)
 
 우리가 실생활에서 쓰는 모든 것을 객체로 취급하고 이러한 객체를 중점으로 프로그래밍하는 방식을 의미한다. 구현에 필요한 객체를 파악하고 각각의 객체들의 역할이 무엇인지를 단순화, 추상화하여 객체들 간의 상호작용을 중점으로 프로그램을 만드는 방식으로 프로그래밍을 하는 것에 중점을 둔다.
@@ -228,7 +275,7 @@ car 클래스는 wheel이라는 클래스를 변수로 가지도록 만들면 co
 
 <br/>
 
-##### 참고
+#### 참고
 
 - [객체 지향](http://www.incodom.kr/%EA%B0%9D%EC%B2%B4_%EC%A7%80%ED%96%A5)
 - [절차 지향](http://www.incodom.kr/%EC%A0%88%EC%B0%A8_%EC%A7%80%ED%96%A5)
@@ -442,7 +489,7 @@ RESTful 한 설계를 돕고 가독성을 높여주는 사항을 기술하겠다
 | 301 Moved Permanently  | 클라이언트가 요청한 리소스에 대한 URI가 변경된 경우 (응답 시 Location header에 변경된 URI를 보내준다.)                                         |
 | 5XX Server errors      | 서버 오류로 인해 요청을 수행할 수 없다.                                                                                                        |
 
-##### 참고
+#### 참고
 
 - [[Network] REST란? REST API란? RESTful이란?](https://gmlwjd9405.github.io/2018/09/21/rest-and-restful.html)
 - [REST API 제대로 알고 사용하기](https://meetup.toast.com/posts/92)
@@ -509,7 +556,7 @@ _(아니, 앱이나 웹이나 뷰를 통해서 UI를 처리할텐데 어떻게 �
 
 <br/>
 
-##### 참고
+#### 참고
 
 - [[IT 기술면접 준비자료] MVC패턴과 모델1, 모델2](https://preamtree.tistory.com/11)
 - [[아키텍처 패턴] MVC 패턴이란?](https://medium.com/@jang.wangsu/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4-mvc-%ED%8C%A8%ED%84%B4%EC%9D%B4%EB%9E%80-1d74fac6e256)
@@ -534,7 +581,7 @@ _(아니, 앱이나 웹이나 뷰를 통해서 UI를 처리할텐데 어떻게 �
 간단히는 다른 함수의 매개변수로 넣어줄 수 있는 함수를 의미한다.  
 프로그래밍 언어가 함수를 일급시민으로 대우한다면 일급 함수를 가진다고 말한다.
 
-#### 참고
+### 참고
 
 - (함수형 프로그래밍이 뭔가요?)[https://www.youtube.com/watch?v=jVG5jvOzu9Y&ab_channel=%EC%96%84%ED%8C%8D%ED%95%9C%EC%BD%94%EB%94%A9%EC%82%AC%EC%A0%84]
 
@@ -576,7 +623,7 @@ Git의 특징을 나열해보면 다음과 같다.
 - 되돌리기(Undo) 기능
 - branchd와 merge를 활용한 쉽고 빠른 협업
 
-참고
+#### 참고
 
 - [깃, 깃허브 이건 알고 사용하자](https://www.youtube.com/watch?v=lPrxhA4PLoA&t=0s&ab_channel=%EB%93%9C%EB%A6%BC%EC%BD%94%EB%94%A9by%EC%97%98%EB%A6%AC)
 - [깃, 깃허브 제대로 배우기 (기본 마스터편, 실무에서 꿀리지 말자)](https://www.youtube.com/watch?v=Z9dvM7qgN9s&ab_channel=%EB%93%9C%EB%A6%BC%EC%BD%94%EB%94%A9by%EC%97%98%EB%A6%AC)
@@ -751,7 +798,7 @@ CI/CD은 애플리케이션 통합, 테스트, 제공, 배포 과정을 가지�
 이러한 CI/CD 툴로 실무에서 가장 널리 쓰이는 Jenkins를 Doker로 설치하고 사용하는 시간을 가졌는데..
 설치때문에 머리가 아프다.. 설치하고 다시 작성하겠다;
 
-추가로
+추가로 공부할 리스트
 
 - 소켓
 - MVP(디자인패턴 말고)
