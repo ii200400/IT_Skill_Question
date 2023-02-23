@@ -31,7 +31,7 @@
   + [REST API 설계 규칙](#rest-api-설계-규칙)
     - [유의사항](#유의사항)
     - [HTTP 응답 상태 코드](#http-응답-상태-코드)
-* [MVC(Model-View-Controller) 패턴](#mvc-model-view-controller-패턴)
+* [MVC(Model-View-Controller) 패턴](#mvcmodel-view-controller-패턴)
 * [함수형 프로그래밍](#함수형-프로그래밍)
 * [High-order functions (고차함수)](#high-order-functions-고차함수)
 * [First-class function (일급함수)](#first-class-function-일급함수)
@@ -45,7 +45,7 @@
 * [Package와 Import](#package와-import)
   + [Package](#package)
   + [Import](#import)
-* [CI/CD](#ci-cd)
+* [CI/CD](#cicd)
 
 ## 객체 지향 프로그래밍 (Object Oriented Programming - OOP)
 
