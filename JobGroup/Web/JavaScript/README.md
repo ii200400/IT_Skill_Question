@@ -1,12 +1,46 @@
 # JavaScript
 
-단순히 보면 다양한 코딩 언어 중 하나지만, 웹에서는 변칙적인 사용자들의 입력에 대응하여 웹 페이지가 다양한 반응을 보일 수 있도록 만들어준다.
+`목차`
+
+* [개요](#개요)
+* [JavaScript 선언](#javascript-선언)
+* [주석](#주석)
+* [자료형](#자료형)
+	+ [자동 형 변환](#자동-형-변환)
+* [변수](#변수)
+	+ [var keyword & Dynamic Typing](#var-keyword--dynamic-typing)
+	+ [Variable Hoisting (변수 호이스팅)](#variable-hoisting-변수-호이스팅)
+* [const & let](#const--let)
+* [연산자](#연산자)
+* [객체](#객체)
+* [함수](#함수)
+	+ [콜백함수](#콜백함수)
+* [window 객체](#window-객체)
+	+ [alert, confirm, prompt(새 창 열기)](#alert-confirm-prompt새-창-열기)
+	+ [navigator](#navigator)
+	+ [location](#location)
+	+ [history](#history)
+	+ [open, close](#open-close)
+	+ [onload](#onload)
+* [DOM(Document Object Model)](#domdocument-object-model)
+	+ [문서 객체 만들기](#문서-객체-만들기)
+	+ [문서 객체 가져오기](#문서-객체-가져오기)
+* [Event](#event)
+	+ [이벤트 핸들러](#이벤트-핸들러)
+* [Web Storage (웹 스토리지)](#web-storage-웹-스토리지)
+	
+`관련 내용`
+
+- [Ajax](./ajax)
+- [jQuery](./jQuery)
 
 ## 개요
 
 프로토타입 기반의 스크립트 프로그래밍 언어이자 인터프리터 언어
 
-+ 기본적으로 ECMA(European Computer Manufacturers Association) Script 라는 유럽의 컴퓨터 제조 연합..?에서 채택한 기술 규격을 기본으로 한다.
+단순히 보면 다양한 코딩 언어 중 하나지만, 웹에서는 변칙적인 사용자들의 입력에 대응하여 웹 페이지가 다양한 반응을 보일 수 있도록 만들어준다.
+
++ 기본적으로 ECMA(European Computer Manufacturers Association) Script 라는 유럽의 컴퓨터 제조 연합(?)에서 채택한 기술 규격을 가짐
 	+ ES6이전과 이후의 자바스크립트 기능이 많이 달라졌다. ex) const, let
 + 웹 브라우저에서 동작하는 유일한 프로그래밍 언어
 + 객체지향 등의 여러 프로그래밍 패러다임을 지원

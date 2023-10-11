@@ -1,21 +1,34 @@
 # 자율주행(모빌리티)
 
+`목차`
+
+* [개요](#개요)
+* [자율주행이란?](#자율주행이란)
+* [자율주행의 필요성](#자율주행의-필요성)
+* [자율주행 자동화 단계](#자율주행-자동화-단계)
+* [자율주행 3단계 핵심기술](#자율주행-3단계-핵심기술)
+* [멘티 활동 일지](#멘티-활동-일지)
+* [우분투 환경 기타 설정](#우분투-환경-기타-설정)
+
+`관련 내용`
+
+- [ROS](./ROS)
+- [인지(Cognition)](./cognition)
+- [판단(Judgment)](./judgment)
+- [제어(Control)](./control)
+- [알파카 프로젝트 README](./AlphaCar)
+
+## 개요
+
 그 강의에서 특화 프로젝트(2학기 두번째 프로젝트)로 unity를 기반으로 만든 `Morai 시뮬레이터`와 oracle의 `VirtualBox`를 활용하여 설치한 우분투의 `ROS`와 통신하여 시뮬레이터 속의 가상의 자동차를 자율주행할 수 있도록 만드는 프로젝트를 진행하게 되었다.
 
 아직 프로젝트 이름을 붙이지 않아 임시로 `자율주행(모빌리티)`라고 붙였다.
 
 해당 레포지토리는 프로젝트를 진행하기 위해서 공부한 내용을 정리하기 위해서 만들었다. 그 강의에서 제공하는 동영상과 다양한 자율주행 tech 기술 글들을 참고하여 작성하였다.
 
-- [ROS](./ROS/README.md)
-- [인지(Cognition)](./cognition/README.md)
-- [판단(Judgment)](./judgment/README.md)
-- [제어(Control)](./control/README.md)
-- [SVM](./SVM/README.md)
-
 외부 페이지
 
-- 정보 공유를 위한 [노션](https://www.notion.so/5a5568486fbd4730ab43569cce17472c)
-- [MORAI SIM Standard User Manual](https://help-morai-sim-en.scrollhelp.site/morai-sim-standard-en/)
+- 실습에 사용한 [MORAI SIM Standard User Manual](https://help-morai-sim-en.scrollhelp.site/morai-sim-standard-en/)
 
 ## 자율주행이란?
 

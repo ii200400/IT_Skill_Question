@@ -1,44 +1,57 @@
 # 1-2 알고리즘
 
-+ Brute-Force Search
-  + Permutation
-  + Combination
-  + SubSet
-  + BitMask + NP
-+ Divide & Conquer
-+ Sort
-  + Bubble Sort
-  + Selection Sort
-  + Insert Sort
-  + Merge Sort
-  + Quick Sort
-  + Heap Sort
-  + Topological Sort
-+ Sieve of Eratosthenes
-+ Two Pointer
-+ Sliding Window
-+ Binary Search
-+ Graph Search
-  + DFS(Depth-First Search)
-  + BFS(Breadth-First Search)
-+ Minimum Spanning Tree, MST
-  + Prim Algorithm
-  + Kruskal Algorithm
-+ 그래프 최단 경로 문제
-  + Dijkstra Algorith
-  + Bellman-Ford Algorithm
-  + Floyd-Warshall Algorithm
-+ Dynamic Programming
-  + Knapsack
-  + LCS(Longest Common Subsequence)
-  + LIS(Longest Increasing Subsequence)
-  + Edit Distance
-  + Matrix Chain Multiplication
-+ Pattern Matching
-  + Rabin-karp
-  + Boyer Moore
-  + KMP
+`목차`
 
+* [개요](#개요)
+* [빅-오 표기법](#빅-오-표기법)
+* [Brute-Force Search (완전탐색)](#brute-force-search-완전탐색)
+  + [Permutation (순열)](#permutation-순열)
+  + [Combination (조합)](#combination-조합)
+  + [SubSet (부분 집합)](#subset-부분-집합)
+* [BitMask (비트마스크)](#bitmask-비트마스크)
+  + [코드 (Next Permutation)](#코드-next-permutation)
+* [Backtracking (백트래킹)](#backtracking-백트래킹)
+* [Greedy (탐욕법)](#greedy-탐욕법)
+* [Divide & Conquer](#divide--conquer)
+* [Sort (정렬)](#sort-정렬)
+  + [Bubble Sort (거품 정렬)](#bubble-sort-거품-정렬)
+  + [Selection Sort (선택 정렬)](#selection-sort-선택-정렬)
+  + [Insert Sort (삽입 정렬)](#insert-sort-삽입-정렬)
+  + [Merge Sort(합병 정렬)](#merge-sort-합병-정렬)
+  + [Quick Sort (퀵 정렬)](#quick-sort-퀵-정렬)
+  + [Heap Sort (힙 정렬)](#heap-sort-힙-정렬)
+  + [Topological Sort (위상 정렬)](#topological-sort-위상-정렬)
+* [Sieve of Eratosthenes](#sieve-of-eratosthenes)
+* [Two Pointer](#two-pointer)
+* [Sliding Window](#sliding-window)
+* [Binary Search](#binary-search)
+* [Graph Search](#graph-search)
+  + [DFS(Depth-First Search)](#dfsdepth-first-search)
+  + [BFS(Breadth-First Search)](#bfsbreadth-first-search)
+* [Minimum Spanning Tree, MST (최소 신장 트리)](#minimum-spanning-tree-mst-최소-신장-트리)
+  + [1. Prim Algorithm (프림 알고리즘)](#1-prim-algorithm-프림-알고리즘)
+  + [2. Kruskal Algorithm (크루스칼 알고리즘)](#2-kruskal-algorithm-크루스칼-알고리즘)
+    - [Disjoint-set (서로소 집합)](#disjoint-set-서로소-집합)
+    - [빠른 대표자 확인](#빠른-대표자-확인)
+* [그래프 최단 경로 문제](#그래프-최단-경로-문제)
+  + [1. Dijkstra Algorithm (다익스트라 알고리즘)](#1-dijkstra-algorithm-다익스트라-알고리즘)
+  + [2. Bellman-Ford Algorithm (벨만-포드 알고리즘)](#2-bellman-ford-algorithm-벨만-포드-알고리즘)
+  + [3. Floyd-Warshall Algorithm (플로이드-워셜 알고리즘)](#3-floyd-warshall-algorithm-플로이드-워셜-알고리즘)
+  + [경로 종류별 사용 알고리즘](#경로-종류별-사용-알고리즘)
+* [Dynamic Programming (다이나믹 프로그래밍)](#dynamic-programming-다이나믹-프로그래밍)
+  + [최적 부분문제 구조 (Optimal substructure)](#최적-부분문제-구조-optimal-substructure)
+  + [중복 부분문제 구조 (Overlapping subproblems)](#중복-부분문제-구조-overlapping-subproblems)
+  + [memoization (메모이제이션)](#memoization-메모이제이션)
+  + [knapsack (배낭)](#knapsack-배낭)
+  + [LIS(Longest Increasing Subsequence, 최장 증가 수열)](#lislongest-increasing-subsequence-최장-증가-수열)
+    - [이진탐색 활용](#이진탐색-활용)
+  + [LCS(Longest Common Subsequence)](#lcslongest-common-subsequence)
+  + [Edit Distance](#edit-distance)
+  + [Matrix Chain Multiplication](#matrix-chain-multiplication)
+* [Pattern Matching (문자열 패턴 매칭)](#pattern-matching-문자열-패턴-매칭)
+  + [Rabin-karp (라빈-카프)](#rabin-karp-라빈-카프)
+  + [Boyer Moore (보이어-무어)](#boyer-moore-보이어-무어)
+  + [KMP](#kmp)
 
 ## 개요
 
@@ -1013,7 +1026,7 @@ static void bfs(int[][] adjMatrix, int start){
 3. 2번의 작업을 V번 해준다.
 4. 만약 V번째에도 갱신이 되는 노드가 있다면 음수 사이클이 있다는 의미이다. (음수 사이클이 없다면 N-1내에 모든 노드가 최단 경로를 가진다.)
 
-##### 특징
+#### 특징
 
 1. 시간복잡도는 O(EV)이다. 모든 간선을 V번 살펴보기 때문이다.   
    밀집 그래프일수록 느려지며 최악의 경우 E=V(V-1)/2로, O(V^3)의 속도를 가진다.

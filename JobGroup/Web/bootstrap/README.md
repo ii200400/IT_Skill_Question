@@ -1,5 +1,13 @@
 # BootStrap
 
+`목차`
+
+* [개요](#개요)
+* [Container](#container)
+* [Grid System](#grid-system)
+
+## 개요
+
 + 빠르고 쉽게 웹 개발을 위한 무료 프론트엔드 프레임워크
   + 반응형 웹을 쉡게 만들기 위한 기능들을 제공
   + Bootstrap 4 이후 버전은 최신 브라우저들과 모바일 호환
@@ -24,8 +32,8 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 ```
 
-가장 중요한 Container와 Grid System 둘의 예시 코드만 남기고 나머지는 작성하지 않을 것이다.   
-웹에 대한 기술 중에서도 특히 bootstrap은 [w3schools-bootstrap](https://www.w3schools.com/bootstrap/bootstrap_ver.asp) 등의 사이트에서 원하는 기능을 찾고 복사/붙여넣기 후 적절하게 바꾸는 것이 훨씬 빠르기 때문이다. 그러니 이 곳에 정리를 하는 것은 특히나 의미가 없다고 판단하였다.
+가장 중요한 Container와 Grid System 둘의 예시 코드만 남기고 **나머지는 작성하지 않을 것이다.**  
+웹에 대한 기술 중에서도 특히 bootstrap은 [w3schools-bootstrap](https://www.w3schools.com/bootstrap/bootstrap_ver.asp) 등의 사이트에서 **원하는 기능을 찾고 복사/붙여넣기 후 적절하게 바꾸는 것이 훨씬 빠르기 때문**이다. 그러니 이 곳에 정리를 하는 것은 특히나 의미가 없다고 판단하였다.
 
 ## Container
 

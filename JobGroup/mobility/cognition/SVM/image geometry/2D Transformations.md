@@ -1,8 +1,14 @@
 # 2D 변환 (2D Transformation)
 
-- 참고 블로그
-    - [[영상 Geometry #3] 2D 변환 (Transformations)](https://darkpgmr.tistory.com/79)
-    - [늦깎이 공대생의 좌충우돌 이야기:티스토리](https://elecs.tistory.com/151)
+`목차`
+
+* [개요](#개요)
+* [Rigid Transformation (강체 변환)](#rigid-transformation-강체-변환)
+  + [평행이동(translation)만을 허용한 경우](#평행이동translation만을-허용한-경우)
+  + [회전(rotation)만을 허용한 경우](#회전rotation만을-허용한-경우)
+  + [Rigid 변환](#rigid-변환)
+
+## 개요
 
 이름 그대로 주어진 2D 물체의 위치, 크기, 방향, 모양 등을 바꾸는 것을 의미한다.
 
@@ -11,14 +17,18 @@
 <img src="https://user-images.githubusercontent.com/19484971/196948841-77b109f8-c1ee-4134-a767-63b28ceb9b99.png" width=500>
 
 - 두 물체를 매칭할 때 관계를 모델링한다고 한다.
-    - 어떤 변환 모델을 사용할지는 문제에 따라 적절하게 적용하는 것이 좋다.
-    - 회전변화를 고려할지, 스케일 변화를 고려할지, 아니면 affine 또는 원근(perspective) 변화까지도 고려할지를 잘 선택하자.
-    - 원근(perspective) 변환은 자주 쓰이지만 자유도가 높아 원하지 않은 결과를 낼 확률도 높다고 한다.
-    - 모델링이라는 단어는 보통 3D에서 쓰는 단어인데.., 그런 의미의 모델링이 아니라 수식을 만든다는 의미같다.
+  - 어떤 변환 모델을 사용할지는 문제에 따라 적절하게 적용하는 것이 좋다.
+  - 회전변화를 고려할지, 스케일 변화를 고려할지, 아니면 affine 또는 원근(perspective) 변화까지도 고려할지를 잘 선택하자.
+  - 원근(perspective) 변환은 자주 쓰이지만 자유도가 높아 원하지 않은 결과를 낼 확률도 높다고 한다.
+  - 모델링이라는 단어는 보통 3D에서 쓰는 단어인데.., 그런 의미의 모델링이 아니라 수식을 만든다는 의미같다.
 - 용어 정의
-    - 이미지 I에서의 점들은 X = (xi, yi)
-    - 이미지 I'에서 X에 대응되는 점들은 X' = (xi', yi')
-    - X와 X' 사이의 변환 관계 중 회전변화(rotation)를 R, 평행이동(translation)을 T
+  - 이미지 I에서의 점들은 X = (xi, yi)
+  - 이미지 I'에서 X에 대응되는 점들은 X' = (xi', yi')
+  - X와 X' 사이의 변환 관계 중 회전변화(rotation)를 R, 평행이동(translation)을 T
+
+- 참고 블로그
+  - [[영상 Geometry #3] 2D 변환 (Transformations)](https://darkpgmr.tistory.com/79)
+  - [늦깎이 공대생의 좌충우돌 이야기:티스토리](https://elecs.tistory.com/151)
 
 ## Rigid Transformation (강체 변환)
 

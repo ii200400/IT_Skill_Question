@@ -1,14 +1,41 @@
 # 1-1. 자료구조
 
-+ Array and List
-+ LinkedList
-+ Stack and Queue
-+ Priority Queue
-+ Graph
-+ Tree
-+ Binary Tree
-+ heap
-+ Hash
+`목차`
+
+* [자료구조의 필요성](#자료구조의-필요성)
+* [Array and List](#array-and-list)
+  + [Array (배열)](#array-배열)
+  + [List (리스트)](#list-리스트)
+* [LinkedList (연결리스트)](#linkedlist-연결리스트)
+  + [동적배열과 연결리스트의 시간복잡도](#동적배열과-연결리스트의-시간복잡도)
+* [Stack and Queue](#stack-and-queue)
+  + [Stack](#stack)
+  + [Queue](#queue)
+* [Priority Queue](#priority-queue)
+* [Graph](#graph)
+  + [그래프 표현 방법](#그래프-표현-방법)
+    - [1. 인접 행렬(adjacent matrix) - 행렬(2차원 배열)을 사용](#1-인접-행렬adjacent-matrix---행렬2차원-배열을-사용)
+    - [2. 인접 리스트(adjacent list) - 연결 리스트 사용](#2-인접-리스트adjacent-list---연결-리스트-사용)
+    - [3. 간선 리스트(Edge List) - 객체 리스트 사용](#3-간선-리스트edge-list---객체-리스트-사용)
+    - [그래프 선택](#그래프-선택)
+* [Tree](#tree)
+* [Binary Tree](#binary-tree)
+  + [트리 순회](#트리-순회)
+* [Heap](#heap)
+  + [구현 방법](#구현-방법)
+  + [heapify 과정](#heapify-과정)
+* [BST - Binary Search Tree (이진 탐색 트리)](#bst---binary-search-tree-이진-탐색-트리)
+* [Hash (해시)](#hash-해시)
+  + [좋은 Hash Function 조건](#좋은-hash-function-조건)
+  + [Collision Resolution](#collision-resolution)
+    - [1. Open Address (개방 주소법)](#1-open-address-개방-주소법)
+      * [1-1. Linear Probing (선형 탐색)](#1-1-linear-probing-선형-탐색)
+      * [1-2. Quadratic probing (제곱 탐색)](#1-2-quadratic-probing-제곱-탐색)
+      * [1-3. Double hashing probing (이중 탐색)](#1-3-double-hashing-probing-이중-탐색)
+    - [2. Separate Chaining (분리 연결법)](#2-separate-chaining-분리-연결법)
+      * [2-1. 연결 리스트를 사용하는 방식 (Linked List)](#2-1-연결-리스트를-사용하는-방식-linked-list)
+      * [2-2. 트리를 이용하는 방식 (Red-Black Tree)](#2-2-트리를-이용하는-방식-red-black-tree)
+    - [Open Address vs Separate Chaining(Linked List 기준)](#open-address-vs-separate-chaininglinked-list-기준)
 
 </br>
 

@@ -1,10 +1,18 @@
 # Orientation
 
-[참고 블로그](https://hub1234.tistory.com/21)
+`목차`
+
+* [개요](#개요)
+* [Euler Angle](#euler-angle)
+* [Quaternion](#quaternion)
+
+## 개요
 
 - 물체가 공간에서 얼마나 회전한 상태인지 표시하는 방식
 - 비슷한 용어로는 angular position, attitude
 - 대표적으로 오일러 각도(Euler Angle), Quaternion(쿼터니언)이 존재
+
++ [참고 블로그](https://hub1234.tistory.com/21)
 
 ## Euler Angle
 

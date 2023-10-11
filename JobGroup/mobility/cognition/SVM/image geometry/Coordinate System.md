@@ -1,5 +1,15 @@
 # 좌표계 (Coordinate System)
 
+`목차`
+
+* [개요](#개요)
+* [월드 좌표계 (World Coordinate System)](#월드-좌표계-world-coordinate-system)
+* [카메라 좌표계 (Camera Coordinate System)](#카메라-좌표계-camera-coordinate-system)
+* [영상 좌표계(Image Coordinate System)](#영상-좌표계image-coordinate-system)
+* [정규 이미지 좌표계 (Normalized Image Coordinate System)](#정규-이미지-좌표계-normalized-image-coordinate-system)
+
+## 개요
+
 공간에 있는 물체 혹은 점 등의 위치를 표시하기 위해 하나 이상의 숫자로 만든 좌표를 사용하는 체계.. 라고 한다.
 
 필자는 그냥 단순히 특정 공간에서 물체를 표시하기 위한 수학적 체계라고 생각하고 있다.
@@ -63,13 +73,13 @@
 - 정규 좌표계의 원점은 정규 이미지 평면의 중점(광학축 Zc와의 교점)입니다 (그림 1 참조). 픽셀 좌표계와 원점의 위치가 다름에 주의하기 바랍니다. 그리고 좌표축은 픽셀 좌표계와 구분하기 위해 u, v를 사용하겠다.
     - <img src="https://user-images.githubusercontent.com/19484971/196748355-0336b799-c37a-4eea-af11-791c6d8af834.png" width=100>
 - 카메라 내부 파라미터를 알면 다음과 같이 영상 좌표와 정규 좌표 사이의 변환이 가능하다.
-    - 여기서 K는 카메라 내부 파라미터를 의미하는 행렬이다.   
-    <img src="https://user-images.githubusercontent.com/19484971/196749708-1a71f867-71b0-45be-bd2c-e0a26763fff5.png" width=100>
+    - 여기서 K는 카메라 내부 파라미터를 의미하는 행렬이다.
+    - <img src="https://user-images.githubusercontent.com/19484971/196749708-1a71f867-71b0-45be-bd2c-e0a26763fff5.png" width=100>
     - 위의 내용을 행렬로 표현하면 아래와 같다.
-    <img src="https://user-images.githubusercontent.com/19484971/196752088-80c020bf-a4cc-40ab-8f4c-bf779a9ce2c3.png" width=200>
+    - <img src="https://user-images.githubusercontent.com/19484971/196752088-80c020bf-a4cc-40ab-8f4c-bf779a9ce2c3.png" width=100>
     - 식으로 표현하면 아래와 같다.   
-    <img src="https://user-images.githubusercontent.com/19484971/196828935-0d48d3bb-e07a-46b8-8fd0-c386692b7eec.png" width=200>
+    - <img src="https://user-images.githubusercontent.com/19484971/196828935-0d48d3bb-e07a-46b8-8fd0-c386692b7eec.png" width=100>
     - 역으로, 이미지 상의 픽셀 (x, y)에 대응하는 정규좌표(u, v)로 변환하는 것을 수식으로 표현하면 다음과 같다.   
-    <img src="https://user-images.githubusercontent.com/19484971/196829119-eba9b0f2-ba9d-4f75-97bd-3dc60354297b.png" width=200>
+    - <img src="https://user-images.githubusercontent.com/19484971/196829119-eba9b0f2-ba9d-4f75-97bd-3dc60354297b.png" width=100>
 - 최대한 물리적 요소를 제거한 정규화된 이미지 평면에서 공통된 기하학적 특성을 분석하기 위해서 사용한다.
     - 동일한 위치와 동일한 각도에서 찍더라도 사용한 카메라의 물리적 특성(렌즈, 이미지 센서 등)에 의해 다른 이미지를 얻기 때문
