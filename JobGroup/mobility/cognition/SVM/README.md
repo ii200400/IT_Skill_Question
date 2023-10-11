@@ -1,11 +1,8 @@
-<<<<<<< HEAD
-관련 정리글
+### 관련 정리글
 
 - [영상 기하학 (Image Geomatry)](./image%20geometry/README.md)
 - [openGL](./openGL/README.md)
 
-=======
->>>>>>> 3f9341539a8129a4603e7a6aa51a550648170388
 # Surround View Monitor
 
 `목차`
@@ -13,16 +10,17 @@
 - [개요](./개요)
 - [핀홀 카메라 모델(Pinhole camera model)](#핀홀-카메라-모델pinhole-camera-model)
 - [Camera Calibration](#camera-calibration)
-    - [초점거리(focal length)](#초점거리focal-length)
-    - [주점(principal point)](#주점principal-point)
-    - [비대칭 계수(skew coefficient)](#비대칭-계수skew-coefficient)
-    - [카메라 외부 파라미터(extrinsic parameters)](#카메라-외부-파라미터extrinsic-parameters)
-    - [자동초점조절(auto focusing)](#자동초점조절auto-focusing)
-    - [영상 해상도](#영상-해상도)
-    - [캘리브레이션 결과가 달라지는 이유](#캘리브레이션-결과가-달라지는-이유)
-    - [참고사항](#참고사항)
+  - [초점거리(focal length)](#초점거리focal-length)
+  - [주점(principal point)](#주점principal-point)
+  - [비대칭 계수(skew coefficient)](#비대칭-계수skew-coefficient)
+  - [카메라 외부 파라미터(extrinsic parameters)](#카메라-외부-파라미터extrinsic-parameters)
+  - [자동초점조절(auto focusing)](#자동초점조절auto-focusing)
+  - [영상 해상도](#영상-해상도)
+  - [캘리브레이션 결과가 달라지는 이유](#캘리브레이션-결과가-달라지는-이유)
+  - [참고사항](#참고사항)
 
 `관련 내용`
+
 - [openGL](./openGL/README.md)
   - [Tutorial 1 : Opening a window](./openGL/tutorial1.md)
   - [Tutorial 2 : The first triangle](./openGL/tutorial2.md)
@@ -92,7 +90,7 @@
 
   <img src="https://user-images.githubusercontent.com/19484971/220579310-f68ceb8c-8e59-4a0e-b8cc-03ece6323165.png" width=400>
 
-  > 어안렌즈 카메라 이미지 원본(좌), 보정 후 이미지(우)
+> 어안렌즈 카메라 이미지 원본(좌), 보정 후 이미지(우)
 
 </div>
 </details>
@@ -223,12 +221,10 @@
 캘리브레이션을 계산하기 위해서 체크보드 패턴을 자주 사용하는데 이를 사용할 때 참고하면 좋은 내용
 
 <<<<<<< HEAD
+
 - 패턴과의 거리는 최대한 가까울수록 좋다.
   - 캘리브레이션 자체는 패턴과의 거리와 관계없지만 패턴과의 거리가 가까우면 영상에서 좀더 정밀하게 코너점의 위치를 찾을 수 있기 때문
-  - 패턴 영상의 개수는 4개 이상이면 어느정도 캘리브레이션이 가능하지만 많을수록 좋으며 20장 이상 정도가 좋다고 한다.
-=======
-- 패턴과의 거리는 최대한 가까울수록 좋다. 
-    - 캘리브레이션 자체는 패턴과의 거리와 관계없지만 패턴과의 거리가 가까우면 영상에서 좀더 정밀하게 코너점의 위치를 찾을 수 있기 때문
-    - 패턴 영상의 개수는 4개 이상이면 어느정도 캘리브레이션이 가능하지만 많을수록 좋으며 20장 이상 정도가 좋다고 한다.
->>>>>>> 3f9341539a8129a4603e7a6aa51a550648170388
+  - # 패턴 영상의 개수는 4개 이상이면 어느정도 캘리브레이션이 가능하지만 많을수록 좋으며 20장 이상 정도가 좋다고 한다.
+- 패턴과의 거리는 최대한 가까울수록 좋다. - 캘리브레이션 자체는 패턴과의 거리와 관계없지만 패턴과의 거리가 가까우면 영상에서 좀더 정밀하게 코너점의 위치를 찾을 수 있기 때문 - 패턴 영상의 개수는 4개 이상이면 어느정도 캘리브레이션이 가능하지만 많을수록 좋으며 20장 이상 정도가 좋다고 한다.
+  > > > > > > > 3f9341539a8129a4603e7a6aa51a550648170388
 - 마지막으로 패턴 영상을 획득할 때에는 되도록 다양한 각도에서 영상을 획득하면 좋다.
