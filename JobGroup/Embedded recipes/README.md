@@ -11,3 +11,6 @@
 - Hardware 꼴라쥬(Collage) - 회로도 읽기
   - [Hardware 꼴라쥬(Collage)](./1/1.md)
     - 개요와 같은 느낌으로 생략해도 된다.
+  - [신호와 주파수 영역 - Spectrum Analysis](./1/2.md)
+    - 푸리에 변환
+  - [Analog 신호와 Digital 신호, 그리고 Ground](./1/3.md)
